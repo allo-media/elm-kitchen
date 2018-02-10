@@ -1,0 +1,23 @@
+{
+  "name": "elm-spa",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run copy-assets && elm-make src/Main.elm --yes --output=build/app.js",
+    "copy-assets": "rimraf build && mkdir build && cp -r public/* build",
+    "debug": "elm-live src/Main.elm --warn --dir=public/ --output=public/app.js --debug",
+    "install": "elm package install -y",
+    "optimize": "uglifyjs build/app.js -c -m -o build/app.js",
+    "start": "elm-live src/Main.elm --warn --port=3000 --dir=public/ --output=public/app.js",
+    "test": "exit 1"
+  },
+  "author": "Allo-Media",
+  "license": "ISC",
+  "devDependencies": {
+    "elm": "^0.18.0",
+    "elm-format": "^0.6.1-alpha",
+    "elm-live": "^2.7.5",
+    "uglify-js": "^3.1.6"
+  }
+}
