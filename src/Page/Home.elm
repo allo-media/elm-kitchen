@@ -5,6 +5,7 @@ import Data.Session exposing (Session)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
+import Route
 
 
 type alias Model =
@@ -58,4 +59,5 @@ view session ({ counter } as model) =
                 ]
                 []
             ]
+        , p [] [ a [ Route.href Route.SecondPage ] [ text "Go to second page" ] ]
         ]
