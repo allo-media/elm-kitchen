@@ -8,10 +8,10 @@ Todo
 
 - [x] Multiple pages
 - [ ] Page framing
-- [ ] Navigation & Routing
-- [ ] Session
+- [x] Navigation & Routing
+- [x] Session
 - [ ] Ports for loading and saving session data
-- [ ] Flags
+- [x] Flags
 - [ ] Sample request?
 
 License
