@@ -1,5 +1,6 @@
 module Main exposing (..)
 
+import Data.Session exposing (Session)
 import Html exposing (..)
 import Page.Home as Home
 import Page.SecondPage as SecondPage
@@ -12,6 +13,7 @@ type Page
 
 type alias Model =
     { page : Page
+    , session : Session
     }
 
 
@@ -22,15 +24,22 @@ type Msg
 init : ( Model, Cmd Msg )
 init =
     let
+        -- you'll usually want to retrieve and decode serialized session
+        -- information from flags here
+        session =
+            {}
+
         ( homeModel, cmds ) =
             Home.init
     in
-        { page = HomePage homeModel }
+        { page = HomePage homeModel
+        , session = session
+        }
             ! [ cmds |> Cmd.map HomeMsg ]
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update msg ({ page } as model) =
+update msg ({ page, session } as model) =
     let
         toPage toModel toMsg subUpdate subMsg subModel =
             let
@@ -42,7 +51,7 @@ update msg ({ page } as model) =
     in
         case ( msg, page ) of
             ( HomeMsg homeMsg, HomePage homeModel ) ->
-                toPage HomePage HomeMsg Home.update homeMsg homeModel
+                toPage HomePage HomeMsg (Home.update session) homeMsg homeModel
 
             ( _, SecondPage ) ->
                 { model | page = SecondPage } ! []
@@ -62,11 +71,11 @@ view : Model -> Html Msg
 view model =
     case model.page of
         HomePage homeModel ->
-            Home.view homeModel
+            Home.view model.session homeModel
                 |> Html.map HomeMsg
 
         SecondPage ->
-            SecondPage.view
+            SecondPage.view model.session
 
 
 main : Program Never Model Msg

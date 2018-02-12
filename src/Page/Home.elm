@@ -1,6 +1,7 @@
 module Page.Home exposing (..)
 
 import Data.Counter exposing (Counter)
+import Data.Session exposing (Session)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -22,8 +23,8 @@ init =
     { counter = { value = 1, interval = 10 } } ! []
 
 
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg ({ counter } as model) =
+update : Session -> Msg -> Model -> ( Model, Cmd Msg )
+update session msg ({ counter } as model) =
     case msg of
         Add ->
             { model | counter = { counter | value = counter.value + counter.interval } } ! []
@@ -43,8 +44,8 @@ onInputInterval str =
         |> SetInterval
 
 
-view : Model -> Html Msg
-view ({ counter } as model) =
+view : Session -> Model -> Html Msg
+view session ({ counter } as model) =
     div []
         [ span [] [ text (toString counter.value) ]
         , button [ onClick <| Substract ] [ text "-" ]
