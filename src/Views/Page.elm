@@ -9,6 +9,7 @@ import Route
 type ActivePage
     = Home
     | Counter
+    | CurrentTime
     | Other
 
 
@@ -24,6 +25,7 @@ frame ({ activePage, session } as config) content =
         [ classList
             [ ( "page-home", activePage == Home )
             , ( "page-counter", activePage == Counter )
+            , ( "page-current-time", activePage == CurrentTime )
             ]
         ]
         [ viewHeader config
@@ -43,5 +45,6 @@ viewHeader { session, activePage } =
             , ul []
                 [ navEntry Home Route.Home "Home"
                 , navEntry Counter Route.Counter "Counter"
+                , navEntry CurrentTime Route.CurrentTime "Current time"
                 ]
             ]
