@@ -1,20 +1,21 @@
 elm-create-spa
 ==============
 
-This is a modest attempt at providing a simplistic Elm SPA application skeleton based on rtfeldman's [Elm Example SPA](https://github.com/rtfeldman/elm-spa-example/), for Allo-Media's own needs.
+This is a modest attempt at providing a simplistic yet opinionated Elm SPA application skeleton based on rtfeldman's [Elm Example SPA](https://github.com/rtfeldman/elm-spa-example/), for Allo-Media's own needs.
 
-Todo
-----
+## Features
 
 - [x] Multiple pages
 - [x] Page framing
 - [x] Navigation & Routing
-- [x] Session
-- [ ] Ports for loading and saving session data
 - [x] Flags
+- [x] Session
+- [ ] SCSS styling integration
+- [ ] Minified build
+- [ ] Development server with hot reloading
+- [ ] Ports for loading and saving session data?
 - [ ] Sample request?
 
-License
--------
+## License
 
 MIT
