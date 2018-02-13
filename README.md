@@ -13,6 +13,7 @@ This is a modest attempt at providing a simplistic yet opinionated Elm [SPA](htt
 - Minified build
 - Development server with hot reloading
 - Sample HTTP request
+- Default test layout
 
 ## Code organization
 
@@ -71,6 +72,14 @@ $ npm start
 ```
 
 This will serve and recompile Elm and SCSS code when source files change. Served application is available at [localhost:3000](http://localhost:3000/).
+
+## Tests
+
+```
+$ npm test
+```
+
+Tests are located in the `tests` folder and are powered by [elm-test](https://github.com/elm-community/elm-test).
 
 ## Build
 
