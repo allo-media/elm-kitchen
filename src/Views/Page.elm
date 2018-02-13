@@ -22,8 +22,7 @@ frame : Config -> Html msg -> Html msg
 frame ({ activePage, session } as config) content =
     div
         [ classList
-            [ ( "page-frame", True )
-            , ( "page-home", activePage == Home )
+            [ ( "page-home", activePage == Home )
             , ( "page-second-page", activePage == SecondPage )
             ]
         ]
@@ -40,7 +39,7 @@ viewHeader { session, activePage } =
                 [ a [ Route.href route ] [ text label ] ]
     in
         div [ class "header" ]
-            [ h1 [ class "elm-create-app" ] [ text "elm-create-app" ]
+            [ h1 [] [ text "elm-create-app" ]
             , ul []
                 [ navEntry Home Route.Home "Home"
                 , navEntry SecondPage Route.SecondPage "Second page"
