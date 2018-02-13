@@ -11,7 +11,8 @@
   }
 
   ul {
-    margin: 0;
+    width: $content-width;
+    margin: 0 auto;
     padding: 0;
     list-style: none;
     display: flex;
