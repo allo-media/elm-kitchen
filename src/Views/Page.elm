@@ -1,7 +1,7 @@
 module Views.Page exposing (ActivePage(..), Config, frame)
 
 import Html exposing (..)
-import Html.Attributes exposing (class, classList)
+import Html.Attributes exposing (class, classList, href)
 import Data.Session exposing (Session)
 import Route
 
@@ -46,5 +46,9 @@ viewHeader { session, activePage } =
                 [ navEntry Home Route.Home "Home"
                 , navEntry Counter Route.Counter "Counter"
                 , navEntry CurrentTime Route.CurrentTime "Current time"
+                , li []
+                    [ a [ href "https://github.com/allo-media/elm-create-spa" ]
+                        [ text "Github" ]
+                    ]
                 ]
             ]
