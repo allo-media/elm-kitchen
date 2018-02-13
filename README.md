@@ -7,7 +7,7 @@ Todo
 ----
 
 - [x] Multiple pages
-- [ ] Page framing
+- [x] Page framing
 - [x] Navigation & Routing
 - [x] Session
 - [ ] Ports for loading and saving session data
