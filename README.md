@@ -3,6 +3,10 @@ elm-create-spa
 
 This is a modest attempt at providing a simplistic yet opinionated Elm [SPA](https://en.wikipedia.org/wiki/Single-page_application) application skeleton based on rtfeldman's [Elm Example SPA](https://github.com/rtfeldman/elm-spa-example/), for [Allo-Media](github.com/allo-media)'s own needs.
 
+![](https://i.imgur.com/AYUGZJW.png)
+
+[Check for yourself](https://allo-media.github.io/elm-create-spa/)
+
 ## Features
 
 - Multiple pages navigation & routing
@@ -54,12 +58,10 @@ style
 
 ## Installation
 
-For now installation is based on forking and/or cloning this repository:
-
 ```
-$ git clone https://github.com/allo-media/elm-create-spa.git myapp
-$ cd myapp
-$ rm -rf .git
+$ npm install -g elm-create-spa
+$ elm-create-app my-app
+$ cd my-app
 $ npm install
 ```
 
