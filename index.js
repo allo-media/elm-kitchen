@@ -1,12 +1,21 @@
 const program = require("commander");
 const fs = require("fs");
-const { copySync } = require("fs-extra");
+const { copySync, moveSync } = require("fs-extra");
 const path = require("path");
 const package = require("./package.json");
 const colors = require("colors");
 
+/*
+If you're wondering why the app skeleton features both a `gitignore` file and a
+`.gitignore` one, read this and cry https://github.com/npm/npm/issues/3763.
+Basically we can't publish any file named `.gitignore` to the npm package
+registry, so we package a `gitignore` that we rename to `.gitignore` as a post
+app init process. Sometimes, I wanna just move away from this industry and open
+a pub to drink every bottle out of it.
+*/
+
 const skeleton = path.resolve(__dirname, "skeleton");
-const excludes = fs.readFileSync(path.join(skeleton, ".gitignore"), "utf8")
+const excludes = fs.readFileSync(path.join(skeleton, "gitignore"), "utf8")
   .split("\n")
   .filter(line => line.trim() !== "");
 
@@ -38,6 +47,8 @@ program
         throw `Target dir ${dir} exists, aborting.`;
       }
       copySync(skeleton, target, { filter: exclude });
+      // Rename gitignore to gitignore. your read that well.
+      moveSync(`${target}/gitignore`, `${target}/.gitignore`);
       installed(target);
     } catch (err) {
       console.error(colors.red(err));
