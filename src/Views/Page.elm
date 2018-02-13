@@ -29,7 +29,7 @@ frame ({ activePage, session } as config) content =
             ]
         ]
         [ viewHeader config
-        , content
+        , div [ class "page-content" ] [ content ]
         ]
 
 

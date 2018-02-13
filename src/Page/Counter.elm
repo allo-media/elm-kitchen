@@ -48,14 +48,17 @@ onInputInterval str =
 view : Session -> Model -> Html Msg
 view session ({ counter } as model) =
     div []
-        [ button [ onClick <| Substract ] [ text "-" ]
-        , strong [] [ text (toString counter.value) ]
-        , button [ onClick <| Add ] [ text "+" ]
-        , input
-            [ onInput onInputInterval
-            , value <| toString counter.interval
-            , size 3
+        [ h2 [] [ text "Counter" ]
+        , div [ class "counter" ]
+            [ button [ onClick <| Substract ] [ text "-" ]
+            , strong [] [ text <| toString counter.value ]
+            , button [ onClick <| Add ] [ text "+" ]
+            , input
+                [ onInput onInputInterval
+                , value <| toString counter.interval
+                , size 3
+                ]
+                []
             ]
-            []
         , p [] [ a [ Route.href Route.Home ] [ text "Back to home" ] ]
         ]
