@@ -1,6 +1,6 @@
 {
   "name": "elm-create-spa",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "An utility to generate an Elm SPA skeleton.",
   "bin": {
     "elm-create-spa": "index.js"
