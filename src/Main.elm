@@ -6,6 +6,7 @@ import Navigation exposing (Location)
 import Page.Home as Home
 import Page.SecondPage as SecondPage
 import Route exposing (Route)
+import Views.Page as Page
 
 
 type alias Flags =
@@ -108,19 +109,27 @@ subscriptions model =
 
 view : Model -> Html Msg
 view model =
-    case model.page of
-        HomePage homeModel ->
-            Home.view model.session homeModel
-                |> Html.map HomeMsg
+    let
+        pageConfig =
+            Page.Config model.session
+    in
+        case model.page of
+            HomePage homeModel ->
+                Home.view model.session homeModel
+                    |> Html.map HomeMsg
+                    |> Page.frame (pageConfig Page.Home)
 
-        SecondPage ->
-            SecondPage.view model.session
+            SecondPage ->
+                SecondPage.view model.session
+                    |> Page.frame (pageConfig Page.SecondPage)
 
-        NotFound ->
-            Html.div [] [ Html.text "Not found" ]
+            NotFound ->
+                Html.div [] [ Html.text "Not found" ]
+                    |> Page.frame (pageConfig Page.Other)
 
-        Blank ->
-            Html.text ""
+            Blank ->
+                Html.text ""
+                    |> Page.frame (pageConfig Page.Other)
 
 
 main : Program Flags Model Msg
