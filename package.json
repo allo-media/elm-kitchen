@@ -7,6 +7,7 @@
     "build": "npm run sass-compile && npm run copy-assets && elm-make src/Main.elm --yes --output=build/app.js",
     "copy-assets": "rimraf build && mkdir build && cp -r public/* build",
     "debug": "elm-live src/Main.elm --warn --port=3000 --dir=public/ --output=public/app.js --debug",
+    "deploy": "npm run build && npm run optimize && gh-pages --dist build/",
     "install": "elm package install -y",
     "live": "elm-live src/Main.elm --warn --port=3000 --dir=public/ --output=public/app.js",
     "optimize": "uglifyjs build/app.js -c -m -o build/app.js",
@@ -22,6 +23,7 @@
     "elm": "^0.18.0",
     "elm-format": "^0.6.1-alpha",
     "elm-live": "^2.7.5",
+    "gh-pages": "^1.1.0",
     "node-sass-chokidar": "0.0.3",
     "rimraf": "^2.6.1",
     "uglify-js": "^3.1.6"
