@@ -10,9 +10,9 @@ This is a modest attempt at providing a simplistic yet opinionated Elm SPA appli
 - [x] Navigation & Routing
 - [x] Flags
 - [x] Session
-- [ ] SCSS styling integration
-- [ ] Minified build
-- [ ] Development server with hot reloading
+- [x] SCSS styling integration
+- [x] Minified build
+- [x] Development server with hot reloading
 - [ ] Ports for loading and saving session data?
 - [ ] Sample request?
 
