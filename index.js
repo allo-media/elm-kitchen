@@ -17,13 +17,6 @@ a pub to drink every bottle out of it.
 */
 
 const skeleton = path.resolve(__dirname, "skeleton");
-const excludes = fs.readFileSync(path.join(skeleton, "gitignore"), "utf8")
-  .split("\n")
-  .filter(line => line.trim() !== "");
-
-function exclude(path) {
-  return !excludes.some(exclude => path.includes(exclude));
-}
 
 function installed(target) {
   console.log("");
@@ -48,8 +41,7 @@ program
       if (fs.existsSync(target)) {
         throw `Target dir ${dir} exists, aborting.`;
       }
-      copySync(skeleton, target, { filter: exclude });
-      // Rename gitignore to gitignore. your read that well.
+      copySync(skeleton, target);
       moveSync(`${target}/gitignore`, `${target}/.gitignore`);
       installed(target);
     } catch (err) {
