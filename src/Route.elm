@@ -8,14 +8,14 @@ import UrlParser as Url exposing (Parser, s)
 
 type Route
     = Home
-    | SecondPage
+    | Counter
 
 
 route : Parser (Route -> a) a
 route =
     Url.oneOf
         [ Url.map Home Url.top
-        , Url.map SecondPage (s "second-page")
+        , Url.map Counter (s "counter")
         ]
 
 
@@ -40,8 +40,8 @@ routeToString route =
                 Home ->
                     []
 
-                SecondPage ->
-                    [ "second-page" ]
+                Counter ->
+                    [ "counter" ]
     in
         "#/" ++ String.join "/" pieces
 

@@ -4,7 +4,7 @@ import Data.Session exposing (Session)
 import Html exposing (..)
 import Navigation exposing (Location)
 import Page.Home as Home
-import Page.SecondPage as SecondPage
+import Page.Counter as Counter
 import Route exposing (Route)
 import Views.Page as Page
 
@@ -15,9 +15,9 @@ type alias Flags =
 
 type Page
     = Blank
-    | HomePage Home.Model
+    | HomePage
     | NotFound
-    | SecondPage
+    | Counter Counter.Model
 
 
 type alias Model =
@@ -27,7 +27,7 @@ type alias Model =
 
 
 type Msg
-    = HomeMsg Home.Msg
+    = CounterMsg Counter.Msg
     | SetRoute (Maybe Route)
 
 
@@ -38,15 +38,15 @@ setRoute maybeRoute model =
             { model | page = NotFound } ! []
 
         Just Route.Home ->
-            let
-                ( homeModel, homeCmds ) =
-                    Home.init
-            in
-                { model | page = HomePage homeModel }
-                    ! [ Cmd.map HomeMsg homeCmds ]
+            { model | page = HomePage } ! []
 
-        Just Route.SecondPage ->
-            { model | page = SecondPage } ! []
+        Just Route.Counter ->
+            let
+                ( counterModel, counterCmds ) =
+                    Counter.init
+            in
+                { model | page = Counter counterModel }
+                    ! [ Cmd.map CounterMsg counterCmds ]
 
 
 init : Flags -> Location -> ( Model, Cmd Msg )
@@ -78,11 +78,11 @@ update msg ({ page, session } as model) =
             ( SetRoute route, _ ) ->
                 setRoute route model
 
-            ( HomeMsg homeMsg, HomePage homeModel ) ->
-                toPage HomePage HomeMsg (Home.update session) homeMsg homeModel
+            ( _, HomePage ) ->
+                { model | page = HomePage } ! []
 
-            ( _, SecondPage ) ->
-                { model | page = SecondPage } ! []
+            ( CounterMsg counterMsg, Counter counterModel ) ->
+                toPage Counter CounterMsg (Counter.update session) counterMsg counterModel
 
             ( _, NotFound ) ->
                 { model | page = NotFound } ! []
@@ -94,10 +94,10 @@ update msg ({ page, session } as model) =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     case model.page of
-        HomePage modelHome ->
+        HomePage ->
             Sub.none
 
-        SecondPage ->
+        Counter _ ->
             Sub.none
 
         NotFound ->
@@ -114,14 +114,14 @@ view model =
             Page.Config model.session
     in
         case model.page of
-            HomePage homeModel ->
-                Home.view model.session homeModel
-                    |> Html.map HomeMsg
+            HomePage ->
+                Home.view model.session
                     |> Page.frame (pageConfig Page.Home)
 
-            SecondPage ->
-                SecondPage.view model.session
-                    |> Page.frame (pageConfig Page.SecondPage)
+            Counter counterModel ->
+                Counter.view model.session counterModel
+                    |> Html.map CounterMsg
+                    |> Page.frame (pageConfig Page.Counter)
 
             NotFound ->
                 Html.div [] [ Html.text "Not found" ]

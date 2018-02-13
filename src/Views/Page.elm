@@ -8,7 +8,7 @@ import Route
 
 type ActivePage
     = Home
-    | SecondPage
+    | Counter
     | Other
 
 
@@ -23,7 +23,7 @@ frame ({ activePage, session } as config) content =
     div
         [ classList
             [ ( "page-home", activePage == Home )
-            , ( "page-second-page", activePage == SecondPage )
+            , ( "page-counter", activePage == Counter )
             ]
         ]
         [ viewHeader config
@@ -42,6 +42,6 @@ viewHeader { session, activePage } =
             [ h1 [] [ text "elm-create-app" ]
             , ul []
                 [ navEntry Home Route.Home "Home"
-                , navEntry SecondPage Route.SecondPage "Second page"
+                , navEntry Counter Route.Counter "Counter"
                 ]
             ]
