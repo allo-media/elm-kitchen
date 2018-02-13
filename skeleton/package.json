@@ -1,0 +1,32 @@
+{
+  "name": "elm-spa",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run sass-compile && npm run copy-assets && elm-make src/Main.elm --yes --output=build/app.js",
+    "copy-assets": "rimraf build && mkdir build && cp -r public/* build",
+    "debug": "elm-live src/Main.elm --warn --port=3000 --dir=public/ --output=public/app.js --debug",
+    "deploy": "npm run build && npm run optimize && gh-pages --dist build/",
+    "install": "elm package install -y",
+    "live": "elm-live src/Main.elm --warn --port=3000 --dir=public/ --output=public/app.js",
+    "optimize": "uglifyjs build/app.js -c -m -o build/app.js",
+    "sass-compile": "node-sass-chokidar style/ -o public --output-style compressed --include-path node_modules/",
+    "sass-watch": "node-sass-chokidar style/ -o public --output-style compressed --include-path node_modules/ -w",
+    "start": "npm run sass-compile && concurrently --kill-others \"npm run sass-watch\" \"npm run live\"",
+    "test": "elm-test"
+  },
+  "author": "Allo-Media",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "elm": "^0.18.0",
+    "elm-format": "^0.6.1-alpha",
+    "elm-live": "^2.7.5",
+    "elm-test": "^0.18.12",
+    "gh-pages": "^1.1.0",
+    "node-sass-chokidar": "0.0.3",
+    "rimraf": "^2.6.1",
+    "uglify-js": "^3.1.6"
+  }
+}
