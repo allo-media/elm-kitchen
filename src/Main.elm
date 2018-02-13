@@ -16,7 +16,7 @@ type alias Flags =
 
 type Page
     = Blank
-    | HomePage
+    | HomePage Home.Model
     | Counter Counter.Model
     | CurrentTime CurrentTime.Model
     | NotFound
@@ -29,7 +29,8 @@ type alias Model =
 
 
 type Msg
-    = CounterMsg Counter.Msg
+    = HomeMsg Home.Msg
+    | CounterMsg Counter.Msg
     | CurrentTimeMsg CurrentTime.Msg
     | SetRoute (Maybe Route)
 
@@ -41,7 +42,12 @@ setRoute maybeRoute model =
             { model | page = NotFound } ! []
 
         Just Route.Home ->
-            { model | page = HomePage } ! []
+            let
+                ( homeModel, homeCmds ) =
+                    Home.init model.session
+            in
+                { model | page = HomePage homeModel }
+                    ! [ Cmd.map HomeMsg homeCmds ]
 
         Just Route.Counter ->
             let
@@ -90,8 +96,8 @@ update msg ({ page, session } as model) =
             ( SetRoute route, _ ) ->
                 setRoute route model
 
-            ( _, HomePage ) ->
-                { model | page = HomePage } ! []
+            ( HomeMsg homeMsg, HomePage homeModel ) ->
+                toPage HomePage HomeMsg (Home.update session) homeMsg homeModel
 
             ( CounterMsg counterMsg, Counter counterModel ) ->
                 toPage Counter CounterMsg (Counter.update session) counterMsg counterModel
@@ -109,7 +115,7 @@ update msg ({ page, session } as model) =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     case model.page of
-        HomePage ->
+        HomePage _ ->
             Sub.none
 
         Counter _ ->
@@ -133,8 +139,8 @@ view model =
             Page.Config model.session
     in
         case model.page of
-            HomePage ->
-                Home.view model.session
+            HomePage homeModel ->
+                Home.view model.session homeModel
                     |> Page.frame (pageConfig Page.Home)
 
             Counter counterModel ->

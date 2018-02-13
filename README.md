@@ -5,17 +5,42 @@ This is a modest attempt at providing a simplistic yet opinionated Elm SPA appli
 
 ## Features
 
-- [x] Multiple pages
-- [x] Page framing
-- [x] Navigation & Routing
-- [x] Flags
-- [x] Session
-- [x] SCSS styling integration
-- [x] Minified build
-- [x] Development server with hot reloading
-- [ ] Ports for loading and saving session data?
-- [ ] Sample request?
+- Multiple pages navigation & routing
+- Page framing
+- Flags
+- Session
+- SCSS styling integration
+- Minified build
+- Development server with hot reloading
+- Sample HTTP request
+
+## Usage
+
+For now installation is based on forking and/or cloning this repository:
+
+```
+$ git clone https://github.com/allo-media/elm-create-spa.git myapp
+$ cd myapp
+$ rm -rf .git
+$ npm install
+```
+
+To start the development server:
+
+```
+$ npm start
+```
+
+To build the application:
+
+```
+$ npm run build
+```
+
+The resulting build is available in the `build` folder.
+
+Application is served at [http://localhost:3000](http://localhost:3000).
 
 ## License
 
-MIT
+[MIT](https://opensource.org/licenses/MIT)

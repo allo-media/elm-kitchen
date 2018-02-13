@@ -41,7 +41,7 @@ viewHeader { session, activePage } =
                 [ a [ Route.href route ] [ text label ] ]
     in
         div [ class "header" ]
-            [ h1 [] [ text "elm-create-app" ]
+            [ h1 [] [ text "elm-create-spa" ]
             , ul []
                 [ navEntry Home Route.Home "Home"
                 , navEntry Counter Route.Counter "Counter"
