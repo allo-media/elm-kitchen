@@ -43,11 +43,12 @@ src
 
 Rtfeldman explains this organization in a [dedicated blog post](https://dev.to/rtfeldman/tour-of-an-open-source-elm-spa).
 
-SCSS stylesheets are stored within the `style` folder:
+SCSS stylesheets are stored within the `style` folder (freely inspired by [SMACSS](https://smacss.com/)):
 
 ```
 style
 ├── base
+│   ├── _base.scss
 │   └── _variables.scss
 ├── modules
 │   ├── _module-counter.scss
