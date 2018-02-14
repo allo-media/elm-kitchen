@@ -1,6 +1,5 @@
-// Define your styles here.
-
 /* CORE */
+@import "./base/_base";
 @import "./base/_variables";
 
 /* MODULES */
@@ -8,11 +7,3 @@
 @import "./modules/_module-page-content";
 @import "./modules/_module-counter";
 @import "./modules/_module-readme";
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  color: $main-text-color;
-  background-color: $light-background;
-}
