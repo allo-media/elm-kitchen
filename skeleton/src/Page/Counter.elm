@@ -1,4 +1,4 @@
-module Page.Counter exposing (..)
+module Page.Counter exposing (Model, Msg(..), init, update, view)
 
 import Data.Counter exposing (Counter)
 import Data.Session exposing (Session)

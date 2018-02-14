@@ -1,4 +1,4 @@
-module Page.Home exposing (..)
+module Page.Home exposing (Model, Msg(..), init, update, view)
 
 import Data.Session exposing (Session)
 import Html exposing (..)

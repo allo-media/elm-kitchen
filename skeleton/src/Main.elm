@@ -1,4 +1,4 @@
-module Main exposing (..)
+module Main exposing (main)
 
 import Data.Session exposing (Session)
 import Html exposing (..)

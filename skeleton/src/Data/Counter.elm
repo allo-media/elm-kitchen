@@ -1,4 +1,4 @@
-module Data.Counter exposing (..)
+module Data.Counter exposing (Counter)
 
 
 type alias Counter =
