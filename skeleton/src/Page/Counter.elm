@@ -56,9 +56,7 @@ view session ({ counter } as model) =
                 , button [ onClick <| Add ] [ text "+" ]
                 ]
             , p []
-                [ text "Amount = "
-                , text <| toString counter.interval
-                , input
+                [ input
                     [ type_ "range"
                     , onInput onInputInterval
                     , value <| toString counter.interval
@@ -67,6 +65,9 @@ view session ({ counter } as model) =
                     , size 3
                     ]
                     []
+                , br [] []
+                , text "Amount = "
+                , text <| toString counter.interval
                 ]
             ]
         , p [] [ a [ Route.href Route.Home ] [ text "Back to home" ] ]
