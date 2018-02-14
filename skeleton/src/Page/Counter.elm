@@ -21,7 +21,7 @@ type Msg
 
 init : ( Model, Cmd Msg )
 init =
-    { counter = { value = 1, interval = 10 } } ! []
+    { counter = { value = 1, interval = 5 } } ! []
 
 
 update : Session -> Msg -> Model -> ( Model, Cmd Msg )
@@ -50,15 +50,25 @@ view session ({ counter } as model) =
     div []
         [ h2 [] [ text "Counter" ]
         , div [ class "counter" ]
-            [ button [ onClick <| Substract ] [ text "-" ]
-            , strong [] [ text <| toString counter.value ]
-            , button [ onClick <| Add ] [ text "+" ]
-            , input
-                [ onInput onInputInterval
-                , value <| toString counter.interval
-                , size 3
+            [ img [ src "https://gist.githubusercontent.com/n1k0/6c67e2734bcd387ebec26cce23ee2c13/raw/44eff26fe13f8d827b28f193fdf7db1828ec366a/demo.svg" ] []
+            , p []
+                [ button [ onClick <| Substract ] [ text "-" ]
+                , strong [] [ text <| toString counter.value ]
+                , button [ onClick <| Add ] [ text "+" ]
                 ]
-                []
+            , p []
+                [ text "Amount = "
+                , text <| toString counter.interval
+                , input
+                    [ type_ "range"
+                    , onInput onInputInterval
+                    , value <| toString counter.interval
+                    , Html.Attributes.min "1"
+                    , Html.Attributes.max "10"
+                    , size 3
+                    ]
+                    []
+                ]
             ]
         , p [] [ a [ Route.href Route.Home ] [ text "Back to home" ] ]
         ]

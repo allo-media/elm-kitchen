@@ -3,7 +3,7 @@ elm-create-spa
 
 This is a modest attempt at providing a simplistic yet opinionated Elm [SPA](https://en.wikipedia.org/wiki/Single-page_application) application skeleton based on rtfeldman's [Elm Example SPA](https://github.com/rtfeldman/elm-spa-example/), for [Allo-Media](github.com/allo-media)'s own needs.
 
-![](https://i.imgur.com/AYUGZJW.png)
+![demo](https://cdn.rawgit.com/n1k0/6c67e2734bcd387ebec26cce23ee2c13/raw/44eff26fe13f8d827b28f193fdf7db1828ec366a/demo.svg)
 
 [Check for yourself](https://allo-media.github.io/elm-create-spa/)
 

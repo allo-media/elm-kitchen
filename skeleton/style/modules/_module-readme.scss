@@ -1,0 +1,22 @@
+@import "../base/_variables";
+
+.readme {
+  p, li {
+    line-height: 1.5em;
+  }
+
+  p>code, li>code {
+    background-color: $dark-background;
+    color: #fff;
+    padding: 1px 3px;
+    border-radius: 4px;
+  }
+
+  pre {
+    background-color: #333;
+    color: #fff;
+    padding: .7em 1em;
+    border-radius: 4px;
+    font-size: 1.1em;
+  }
+}
