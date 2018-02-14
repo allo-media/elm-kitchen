@@ -46,9 +46,11 @@ viewHeader { session, activePage } =
                 [ navEntry Home Route.Home "Home"
                 , navEntry Counter Route.Counter "Counter"
                 , navEntry CurrentTime Route.CurrentTime "Current time"
-                , li []
-                    [ a [ href "https://github.com/allo-media/elm-create-spa" ]
-                        [ text "Github" ]
-                    ]
                 ]
+            , a
+                [ Html.Attributes.target "_blank"
+                , class "github-link"
+                , href "https://github.com/allo-media/elm-create-spa"
+                ]
+                [ text "Github" ]
             ]
