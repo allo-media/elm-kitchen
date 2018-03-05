@@ -1,16 +1,16 @@
 {
-  "name": "elm-create-spa",
+  "name": "elm-kitchen",
   "version": "1.2.0",
   "description": "An utility to generate an Elm SPA skeleton.",
   "bin": {
-    "elm-create-spa": "index.js"
+    "elm-kitchen": "index.js"
   },
   "scripts": {
     "test": "exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/allo-media/elm-create-spa.git"
+    "url": "git+https://github.com/allo-media/elm-kitchen.git"
   },
   "keywords": [
     "elm",
@@ -22,9 +22,9 @@
   "author": "Nicolas Perriault <nicolas@perriault.net>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/allo-media/elm-create-spa/issues"
+    "url": "https://github.com/allo-media/elm-kitchen/issues"
   },
-  "homepage": "https://github.com/allo-media/elm-create-spa#readme",
+  "homepage": "https://github.com/allo-media/elm-kitchen#readme",
   "dependencies": {
     "colors": "^1.1.2",
     "commander": "^2.14.1",

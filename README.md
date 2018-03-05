@@ -1,11 +1,11 @@
-elm-create-spa
+elm-kitchen
 ==============
 
 This is a modest attempt at providing a simplistic yet opinionated Elm [SPA](https://en.wikipedia.org/wiki/Single-page_application) application skeleton based on rtfeldman's [Elm Example SPA](https://github.com/rtfeldman/elm-spa-example/), for [Allo-Media](http://tech.allo-media.net/)'s own needs.
 
-![demo](https://cdn.rawgit.com/allo-media/elm-create-spa/9eefefeffbfb29c7ceddb79d9c95d38b4d33d6a6/assets/demo.svg)
+![demo](https://cdn.rawgit.com/allo-media/elm-kitchen/9eefefeffbfb29c7ceddb79d9c95d38b4d33d6a6/assets/demo.svg)
 
-[Check for yourself](https://allo-media.github.io/elm-create-spa/)
+[Check for yourself](https://allo-media.github.io/elm-kitchen/)
 
 ## Features
 
@@ -60,8 +60,8 @@ style
 ## Installation
 
 ```
-$ npm install -g elm-create-spa
-$ elm-create-app my-app
+$ npm install -g elm-kitchen
+$ elm-kitchen my-app
 $ cd my-app
 $ npm install
 ```
