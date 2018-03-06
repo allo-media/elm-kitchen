@@ -6,4 +6,4 @@ import Http exposing (Request, getString)
 
 getReadme : Session -> Request String
 getReadme session =
-    getString "https://raw.githubusercontent.com/allo-media/elm-create-spa/master/README.md"
+    getString "https://raw.githubusercontent.com/allo-media/elm-kitchen/master/README.md"

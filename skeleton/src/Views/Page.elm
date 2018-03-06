@@ -50,7 +50,7 @@ viewHeader { session, activePage } =
             , a
                 [ Html.Attributes.target "_blank"
                 , class "github-link"
-                , href "https://github.com/allo-media/elm-create-spa"
+                , href "https://github.com/allo-media/elm-kitchen"
                 ]
                 [ text "Github" ]
             ]
