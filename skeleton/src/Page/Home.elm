@@ -50,5 +50,5 @@ update session msg model =
 view : Session -> Model -> Html msg
 view session model =
     div []
-        [ Markdown.toHtml [ class "readme" ] model.readme
+        [ Markdown.toHtml [ class "content readme" ] model.readme
         ]

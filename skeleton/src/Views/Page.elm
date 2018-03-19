@@ -37,15 +37,17 @@ viewHeader : Config -> Html msg
 viewHeader { session, activePage } =
     let
         navEntry page route label =
-            li [ classList [ ( "active", page == activePage ) ] ]
+            li [ classList [ ( "is-active", page == activePage ) ] ]
                 [ a [ Route.href route ] [ text label ] ]
     in
         div [ class "header" ]
             [ h1 [] [ text "elm-kitchen" ]
-            , ul []
-                [ navEntry Home Route.Home "Home"
-                , navEntry Counter Route.Counter "Counter"
-                , navEntry CurrentTime Route.CurrentTime "Current time"
+            , div [ class "tabs is-centered is-medium is-fullwidth" ]
+                [ ul []
+                    [ navEntry Home Route.Home "Home"
+                    , navEntry Counter Route.Counter "Counter"
+                    , navEntry CurrentTime Route.CurrentTime "Current time"
+                    ]
                 ]
             , a
                 [ Html.Attributes.target "_blank"

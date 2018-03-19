@@ -3,6 +3,7 @@ module Page.CurrentTime exposing (Model, Msg(..), init, update, subscriptions, v
 import Data.Date exposing (formatDate)
 import Data.Session exposing (Session)
 import Html exposing (..)
+import Html.Attributes exposing (..)
 import Route
 import Task
 import Time exposing (Time)
@@ -36,7 +37,7 @@ subscriptions model =
 
 view : Session -> Model -> Html Msg
 view session model =
-    div []
+    div [ class "content" ]
         [ h2 [] [ text "What time is it?" ]
         , p [] [ model.time |> formatDate |> text ]
         , p [] [ a [ Route.href Route.Home ] [ text "Back to home" ] ]

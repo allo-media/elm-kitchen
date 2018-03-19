@@ -1,10 +1,6 @@
 @import "../base/_variables";
 
 .readme {
-  p, li {
-    line-height: 1.5em;
-  }
-
   p>code, li>code {
     background-color: $dark-background;
     color: #fff;
@@ -15,13 +11,6 @@
   pre {
     background-color: #333;
     color: #fff;
-    padding: .7em 1em;
     border-radius: 4px;
-    font-size: 1.1em;
-  }
-
-  img {
-    width: 100%;
-    margin: 0 auto;
   }
 }
