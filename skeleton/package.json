@@ -13,7 +13,7 @@
     "optimize": "uglifyjs build/app.js -c -m -o build/app.js",
     "sass-compile": "node-sass-chokidar style/ -o public --output-style compressed --include-path node_modules/",
     "sass-watch": "node-sass-chokidar style/ -o public --output-style compressed --include-path node_modules/ -w",
-    "start": "run-p sass-watch live",
+    "start": "npm run sass-compile && run-p sass-watch live",
     "test": "elm-test"
   },
   "author": "Allo-Media",
