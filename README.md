@@ -12,7 +12,7 @@ This is a modest attempt at providing a simplistic yet opinionated Elm [SPA](htt
 - Page framing
 - Flags
 - Session
-- SCSS styling integration
+- [Bulma](http://bulma.io/) & SCSS styling integration
 - Minified build
 - Development server with hot reloading
 - Sample HTTP request

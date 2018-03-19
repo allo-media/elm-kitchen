@@ -47,17 +47,18 @@ onInputInterval str =
 
 view : Session -> Model -> Html Msg
 view session ({ counter } as model) =
-    div []
+    div [ class "content" ]
         [ h2 [] [ text "Counter" ]
         , div [ class "counter" ]
-            [ p []
-                [ button [ onClick <| Substract ] [ text "-" ]
-                , strong [] [ text <| toString counter.value ]
-                , button [ onClick <| Add ] [ text "+" ]
+            [ div [ class "buttons has-addons is-centered" ]
+                [ button [ class "button is-large", onClick <| Substract ] [ text "-" ]
+                , strong [ class "button is-large" ] [ text <| toString counter.value ]
+                , button [ class "button is-large", onClick <| Add ] [ text "+" ]
                 ]
             , p []
                 [ input
                     [ type_ "range"
+                    , class "slider"
                     , onInput onInputInterval
                     , value <| toString counter.interval
                     , Html.Attributes.min "1"
