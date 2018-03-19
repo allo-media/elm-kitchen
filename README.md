@@ -42,7 +42,7 @@ src
 
 Rtfeldman explains this organization in a [dedicated blog post](https://dev.to/rtfeldman/tour-of-an-open-source-elm-spa).
 
-SCSS stylesheets are stored within the `style` folder (freely inspired by [SMACSS](https://smacss.com/)):
+SCSS stylesheets are stored within the `style` folder (freely inspired by [SMACSS](https://smacss.com/)). Bulma styles are loaded by default, so your custom styles can easily override them when/if needed.
 
 ```
 style
