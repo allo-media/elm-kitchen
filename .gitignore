@@ -7,3 +7,5 @@ node_modules
 /skeleton/package-lock.json
 /skeleton/public/app.js
 /skeleton/public/main.css
+
+.DS_Store
