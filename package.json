@@ -1,6 +1,6 @@
 {
   "name": "elm-kitchen",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "An utility to generate an Elm SPA skeleton.",
   "bin": {
     "elm-kitchen": "index.js"
