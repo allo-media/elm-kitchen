@@ -141,6 +141,7 @@ view model =
         case model.page of
             HomePage homeModel ->
                 Home.view model.session homeModel
+                    |> Html.map HomeMsg
                     |> Page.frame (pageConfig Page.Home)
 
             Counter counterModel ->
