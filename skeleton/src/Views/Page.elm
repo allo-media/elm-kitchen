@@ -1,7 +1,7 @@
 module Views.Page exposing (ActivePage(..), Config, frame)
 
-import Html exposing (..)
-import Html.Attributes exposing (class, classList, href)
+import Html.Styled as Html exposing (..)
+import Html.Styled.Attributes exposing (class, classList, href)
 import Data.Session exposing (Session)
 import Route
 
@@ -50,7 +50,7 @@ viewHeader { session, activePage } =
                     ]
                 ]
             , a
-                [ Html.Attributes.target "_blank"
+                [ Html.Styled.Attributes.target "_blank"
                 , class "github-link"
                 , href "https://github.com/allo-media/elm-kitchen"
                 ]

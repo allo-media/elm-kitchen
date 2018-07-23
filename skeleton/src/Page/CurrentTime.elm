@@ -2,8 +2,8 @@ module Page.CurrentTime exposing (Model, Msg(..), init, update, subscriptions, v
 
 import Data.Date exposing (formatDate)
 import Data.Session exposing (Session)
-import Html exposing (..)
-import Html.Attributes exposing (..)
+import Html.Styled as Html exposing (..)
+import Html.Styled.Attributes exposing (..)
 import Route
 import Task
 import Time exposing (Time)

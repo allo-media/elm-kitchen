@@ -2,9 +2,9 @@ module Page.Counter exposing (Model, Msg(..), init, update, view)
 
 import Data.Counter exposing (Counter)
 import Data.Session exposing (Session)
-import Html exposing (..)
-import Html.Attributes exposing (..)
-import Html.Events exposing (..)
+import Html.Styled as Html exposing (..)
+import Html.Styled.Attributes exposing (..)
+import Html.Styled.Events exposing (..)
 import Route
 
 
@@ -61,8 +61,8 @@ view session ({ counter } as model) =
                     , class "slider"
                     , onInput onInputInterval
                     , value <| toString counter.interval
-                    , Html.Attributes.min "1"
-                    , Html.Attributes.max "10"
+                    , Html.Styled.Attributes.min "1"
+                    , Html.Styled.Attributes.max "10"
                     , size 3
                     ]
                     []

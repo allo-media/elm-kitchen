@@ -1,7 +1,7 @@
 module Main exposing (main)
 
 import Data.Session exposing (Session)
-import Html exposing (..)
+import Html.Styled as Html exposing (..)
 import Navigation exposing (Location)
 import Page.Home as Home
 import Page.Counter as Counter
@@ -167,7 +167,7 @@ main : Program Flags Model Msg
 main =
     Navigation.programWithFlags (Route.fromLocation >> SetRoute)
         { init = init
-        , view = view
+        , view = view >> Html.toUnstyled
         , update = update
         , subscriptions = subscriptions
         }
