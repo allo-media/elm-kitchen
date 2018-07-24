@@ -28,7 +28,7 @@ frame ({ activePage, session } as config) content =
         ]
 
 
-githubIconStyle : List (Attribute msg) -> List (Html msg) -> Html msg
+githubIconStyle : Element msg
 githubIconStyle =
     styled a
         [ position absolute
