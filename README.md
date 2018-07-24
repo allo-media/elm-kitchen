@@ -42,19 +42,7 @@ src
 
 Rtfeldman explains this organization in a [dedicated blog post](https://dev.to/rtfeldman/tour-of-an-open-source-elm-spa).
 
-SCSS stylesheets are stored within the `style` folder (freely inspired by [SMACSS](https://smacss.com/)). Bulma styles are loaded by default, so your custom styles can easily override them when/if needed.
-
-```
-style
-├── base
-│   ├── _base.scss
-│   └── _variables.scss
-├── modules
-│   ├── _module-counter.scss
-│   ├── _module-header.scss
-│   └── _module-page-content.scss
-└── main.scss
-```
+[elm-css](http://package.elm-lang.org/packages/rtfeldman/elm-css/latest) used to style your app.
 
 ## Installation
 
