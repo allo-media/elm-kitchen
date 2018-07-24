@@ -2,7 +2,6 @@ module Page.Home exposing (Model, Msg(..), init, update, view)
 
 import Data.Session exposing (Session)
 import Html.Styled as Html exposing (..)
-import Html.Attributes as Attr
 import Http
 import Markdown
 import Request.Github exposing (getReadme)
@@ -50,5 +49,5 @@ update session msg model =
 view : Session -> Model -> Html msg
 view session model =
     div []
-        [ Markdown.toHtml [ Attr.class "content readme" ] model.readme |> Html.fromUnstyled
+        [ Markdown.toHtml [] model.readme |> Html.fromUnstyled
         ]
