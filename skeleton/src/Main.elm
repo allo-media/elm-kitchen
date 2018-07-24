@@ -4,8 +4,6 @@ import Data.Session exposing (Session)
 import Html.Styled as Html exposing (..)
 import Navigation exposing (Location)
 import Page.Home as Home
-import Page.Counter as Counter
-import Page.CurrentTime as CurrentTime
 import Route exposing (Route)
 import Views.Page as Page
 
@@ -17,8 +15,6 @@ type alias Flags =
 type Page
     = Blank
     | HomePage Home.Model
-    | Counter Counter.Model
-    | CurrentTime CurrentTime.Model
     | NotFound
 
 
@@ -30,8 +26,6 @@ type alias Model =
 
 type Msg
     = HomeMsg Home.Msg
-    | CounterMsg Counter.Msg
-    | CurrentTimeMsg CurrentTime.Msg
     | SetRoute (Maybe Route)
 
 
@@ -48,23 +42,6 @@ setRoute maybeRoute model =
             in
                 { model | page = HomePage homeModel }
                     ! [ Cmd.map HomeMsg homeCmds ]
-
-        Just Route.Counter ->
-            let
-                ( counterModel, counterCmds ) =
-                    -- FIXME: pass session
-                    Counter.init
-            in
-                { model | page = Counter counterModel }
-                    ! [ Cmd.map CounterMsg counterCmds ]
-
-        Just Route.CurrentTime ->
-            let
-                ( currentTimeModel, currentTimeCmds ) =
-                    CurrentTime.init model.session
-            in
-                { model | page = CurrentTime currentTimeModel }
-                    ! [ Cmd.map CurrentTimeMsg currentTimeCmds ]
 
 
 init : Flags -> Location -> ( Model, Cmd Msg )
@@ -99,12 +76,6 @@ update msg ({ page, session } as model) =
             ( HomeMsg homeMsg, HomePage homeModel ) ->
                 toPage HomePage HomeMsg (Home.update session) homeMsg homeModel
 
-            ( CounterMsg counterMsg, Counter counterModel ) ->
-                toPage Counter CounterMsg (Counter.update session) counterMsg counterModel
-
-            ( CurrentTimeMsg currentTimeMsg, CurrentTime currentTimeModel ) ->
-                toPage CurrentTime CurrentTimeMsg (CurrentTime.update session) currentTimeMsg currentTimeModel
-
             ( _, NotFound ) ->
                 { model | page = NotFound } ! []
 
@@ -117,13 +88,6 @@ subscriptions model =
     case model.page of
         HomePage _ ->
             Sub.none
-
-        Counter _ ->
-            Sub.none
-
-        CurrentTime model ->
-            CurrentTime.subscriptions model
-                |> Sub.map CurrentTimeMsg
 
         NotFound ->
             Sub.none
@@ -143,16 +107,6 @@ view model =
                 Home.view model.session homeModel
                     |> Html.map HomeMsg
                     |> Page.frame (pageConfig Page.Home)
-
-            Counter counterModel ->
-                Counter.view model.session counterModel
-                    |> Html.map CounterMsg
-                    |> Page.frame (pageConfig Page.Counter)
-
-            CurrentTime currentTimeModel ->
-                CurrentTime.view model.session currentTimeModel
-                    |> Html.map CurrentTimeMsg
-                    |> Page.frame (pageConfig Page.CurrentTime)
 
             NotFound ->
                 Html.div [] [ Html.text "Not found" ]

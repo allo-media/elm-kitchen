@@ -11,22 +11,17 @@
     "install": "elm package install -y",
     "live": "elm-live src/Main.elm --warn --port=3000 --dir=public/ --output=public/app.js",
     "optimize": "uglifyjs build/app.js -c -m -o build/app.js",
-    "sass-compile": "node-sass-chokidar style/ -o public --output-style compressed --include-path node_modules/",
-    "sass-watch": "node-sass-chokidar style/ -o public --output-style compressed --include-path node_modules/ -w",
-    "start": "npm run sass-compile && run-p sass-watch live",
+    "start": "npm run live",
     "test": "elm-test"
   },
   "author": "Allo-Media",
   "license": "ISC",
   "devDependencies": {
-    "bulma": "^0.6.2",
-    "bulma-extensions": "^1.0.13",
     "elm": "^0.18.0",
     "elm-format": "^0.6.1-alpha",
     "elm-live": "^2.7.5",
     "elm-test": "^0.18.12",
     "gh-pages": "^1.1.0",
-    "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.2",
     "rimraf": "^2.6.1",
     "uglify-js": "^3.1.6"
