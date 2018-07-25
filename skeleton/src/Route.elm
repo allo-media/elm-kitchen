@@ -1,23 +1,19 @@
 module Route exposing (Route(..), fromLocation, href, modifyUrl)
 
-import Html exposing (Attribute)
-import Html.Attributes as Attr
+import Html.Styled exposing (Attribute)
+import Html.Styled.Attributes as Attr
 import Navigation exposing (Location)
-import UrlParser as Url exposing (Parser, s)
+import UrlParser as Url exposing (Parser)
 
 
 type Route
     = Home
-    | Counter
-    | CurrentTime
 
 
 route : Parser (Route -> a) a
 route =
     Url.oneOf
         [ Url.map Home Url.top
-        , Url.map Counter (s "counter")
-        , Url.map CurrentTime (s "current-time")
         ]
 
 
@@ -41,14 +37,8 @@ routeToString route =
             case route of
                 Home ->
                     []
-
-                Counter ->
-                    [ "counter" ]
-
-                CurrentTime ->
-                    [ "current-time" ]
     in
-        "#/" ++ String.join "/" pieces
+    "#/" ++ String.join "/" pieces
 
 
 modifyUrl : Route -> Cmd msg

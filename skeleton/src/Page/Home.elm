@@ -1,8 +1,7 @@
 module Page.Home exposing (Model, Msg(..), init, update, view)
 
 import Data.Session exposing (Session)
-import Html exposing (..)
-import Html.Attributes exposing (class)
+import Html.Styled as Html exposing (..)
 import Http
 import Markdown
 import Request.Github exposing (getReadme)
@@ -38,7 +37,7 @@ errorToMarkdown error =
 
 
 update : Session -> Msg -> Model -> ( Model, Cmd Msg )
-update session msg model =
+update _ msg model =
     case msg of
         ReadmeReceived (Ok readme) ->
             { model | readme = readme } ! []
@@ -48,7 +47,7 @@ update session msg model =
 
 
 view : Session -> Model -> Html msg
-view session model =
+view _ model =
     div []
-        [ Markdown.toHtml [ class "content readme" ] model.readme
+        [ Markdown.toHtml [] model.readme |> Html.fromUnstyled
         ]

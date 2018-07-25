@@ -2,8 +2,6 @@
 
 This is a modest attempt at providing a simplistic yet opinionated Elm [SPA](https://en.wikipedia.org/wiki/Single-page_application) application skeleton based on rtfeldman's [Elm Example SPA](https://github.com/rtfeldman/elm-spa-example/), for [Allo-Media](http://tech.allo-media.net/)'s own needs.
 
-![demo](https://cdn.rawgit.com/allo-media/elm-kitchen/9eefefeffbfb29c7ceddb79d9c95d38b4d33d6a6/assets/demo.svg)
-
 [Check for yourself](https://allo-media.github.io/elm-kitchen/)
 
 ## Features
@@ -28,33 +26,20 @@ src
 │   ├── Counter.elm
 │   ├── Date.elm
 │   └── Session.elm
+├── Main.elm
 ├── Page
-│   ├── Counter.elm
-│   ├── CurrentTime.elm
 │   └── Home.elm
 ├── Request
 │   └── Github.elm
-├── Views
-│   └── Page.elm
-├── Main.elm
-└── Route.elm
+├── Route.elm
+└── Views
+    ├── Page.elm
+    └── Theme.elm
 ```
 
 Rtfeldman explains this organization in a [dedicated blog post](https://dev.to/rtfeldman/tour-of-an-open-source-elm-spa).
 
-SCSS stylesheets are stored within the `style` folder (freely inspired by [SMACSS](https://smacss.com/)). Bulma styles are loaded by default, so your custom styles can easily override them when/if needed.
-
-```
-style
-├── base
-│   ├── _base.scss
-│   └── _variables.scss
-├── modules
-│   ├── _module-counter.scss
-│   ├── _module-header.scss
-│   └── _module-page-content.scss
-└── main.scss
-```
+[elm-css](http://package.elm-lang.org/packages/rtfeldman/elm-css/latest) is used to style your app.
 
 ## Installation
 
