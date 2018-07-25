@@ -28,21 +28,20 @@ src
 │   ├── Counter.elm
 │   ├── Date.elm
 │   └── Session.elm
+├── Main.elm
 ├── Page
-│   ├── Counter.elm
-│   ├── CurrentTime.elm
 │   └── Home.elm
 ├── Request
 │   └── Github.elm
-├── Views
-│   └── Page.elm
-├── Main.elm
-└── Route.elm
+├── Route.elm
+└── Views
+    ├── Page.elm
+    └── Theme.elm
 ```
 
 Rtfeldman explains this organization in a [dedicated blog post](https://dev.to/rtfeldman/tour-of-an-open-source-elm-spa).
 
-[elm-css](http://package.elm-lang.org/packages/rtfeldman/elm-css/latest) used to style your app.
+[elm-css](http://package.elm-lang.org/packages/rtfeldman/elm-css/latest) is used to style your app.
 
 ## Installation
 
