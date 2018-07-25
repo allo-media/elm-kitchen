@@ -37,7 +37,7 @@ errorToMarkdown error =
 
 
 update : Session -> Msg -> Model -> ( Model, Cmd Msg )
-update session msg model =
+update _ msg model =
     case msg of
         ReadmeReceived (Ok readme) ->
             { model | readme = readme } ! []
@@ -47,7 +47,7 @@ update session msg model =
 
 
 view : Session -> Model -> Html msg
-view session model =
+view _ model =
     div []
         [ Markdown.toHtml [] model.readme |> Html.fromUnstyled
         ]

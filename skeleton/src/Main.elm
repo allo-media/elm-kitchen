@@ -45,7 +45,7 @@ setRoute maybeRoute model =
 
 
 init : Flags -> Location -> ( Model, Cmd Msg )
-init flags location =
+init _ location =
     let
         -- you'll usually want to retrieve and decode serialized session
         -- information from flags here

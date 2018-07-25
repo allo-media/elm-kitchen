@@ -1,10 +1,9 @@
 module Views.Page exposing (ActivePage(..), Config, frame)
 
 import Css exposing (..)
-import Html.Styled as Html exposing (..)
-import Html.Styled.Attributes exposing (class, classList, href, css)
+import Html.Styled exposing (..)
+import Html.Styled.Attributes exposing (class, href, css)
 import Data.Session exposing (Session)
-import Route
 import Views.Theme exposing (defaultCss, Element)
 
 
@@ -20,7 +19,7 @@ type alias Config =
 
 
 frame : Config -> Html msg -> Html msg
-frame ({ activePage, session } as config) content =
+frame config content =
     div []
         [ defaultCss
         , viewHeader config
@@ -57,17 +56,12 @@ title =
 
 
 viewHeader : Config -> Html msg
-viewHeader { session, activePage } =
-    let
-        navEntry page route label =
-            li []
-                [ a [ Route.href route ] [ text label ] ]
-    in
-        div [ class "header" ]
-            [ title [] [ text "elm-kitchen" ]
-            , githubIconStyle
-                [ Html.Styled.Attributes.target "_blank"
-                , href "https://github.com/allo-media/elm-kitchen"
-                ]
-                [ text "Github" ]
+viewHeader _ =
+    div [ class "header" ]
+        [ title [] [ text "elm-kitchen" ]
+        , githubIconStyle
+            [ Html.Styled.Attributes.target "_blank"
+            , href "https://github.com/allo-media/elm-kitchen"
             ]
+            [ text "Github" ]
+        ]
