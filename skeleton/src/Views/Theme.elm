@@ -1,8 +1,8 @@
-module Views.Theme exposing (defaultCss, theme, Element)
+module Views.Theme exposing (Element, defaultCss, theme)
 
 import Css exposing (..)
-import Css.Foreign exposing (global, html, body, img)
-import Html.Styled exposing (Html, Attribute)
+import Css.Foreign exposing (body, global, html, img)
+import Html.Styled exposing (Attribute, Html)
 
 
 type alias Theme =

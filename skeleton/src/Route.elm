@@ -38,7 +38,7 @@ routeToString route =
                 Home ->
                     []
     in
-        "#/" ++ String.join "/" pieces
+    "#/" ++ String.join "/" pieces
 
 
 modifyUrl : Route -> Cmd msg

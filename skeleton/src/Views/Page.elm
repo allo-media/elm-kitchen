@@ -1,10 +1,10 @@
 module Views.Page exposing (ActivePage(..), Config, frame)
 
 import Css exposing (..)
-import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (class, href, css, src)
 import Data.Session exposing (Session)
-import Views.Theme exposing (defaultCss, Element)
+import Html.Styled exposing (..)
+import Html.Styled.Attributes exposing (class, css, href, src)
+import Views.Theme exposing (Element, defaultCss)
 
 
 type ActivePage

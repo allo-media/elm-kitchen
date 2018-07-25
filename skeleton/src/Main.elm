@@ -40,8 +40,8 @@ setRoute maybeRoute model =
                 ( homeModel, homeCmds ) =
                     Home.init model.session
             in
-                { model | page = HomePage homeModel }
-                    ! [ Cmd.map HomeMsg homeCmds ]
+            { model | page = HomePage homeModel }
+                ! [ Cmd.map HomeMsg homeCmds ]
 
 
 init : Flags -> Location -> ( Model, Cmd Msg )
@@ -52,10 +52,10 @@ init _ location =
         session =
             {}
     in
-        setRoute (Route.fromLocation location)
-            { page = Blank
-            , session = session
-            }
+    setRoute (Route.fromLocation location)
+        { page = Blank
+        , session = session
+        }
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -66,21 +66,21 @@ update msg ({ page, session } as model) =
                 ( newModel, newCmd ) =
                     subUpdate subMsg subModel
             in
-                { model | page = toModel newModel }
-                    ! [ Cmd.map toMsg newCmd ]
+            { model | page = toModel newModel }
+                ! [ Cmd.map toMsg newCmd ]
     in
-        case ( msg, page ) of
-            ( SetRoute route, _ ) ->
-                setRoute route model
+    case ( msg, page ) of
+        ( SetRoute route, _ ) ->
+            setRoute route model
 
-            ( HomeMsg homeMsg, HomePage homeModel ) ->
-                toPage HomePage HomeMsg (Home.update session) homeMsg homeModel
+        ( HomeMsg homeMsg, HomePage homeModel ) ->
+            toPage HomePage HomeMsg (Home.update session) homeMsg homeModel
 
-            ( _, NotFound ) ->
-                { model | page = NotFound } ! []
+        ( _, NotFound ) ->
+            { model | page = NotFound } ! []
 
-            ( _, _ ) ->
-                model ! []
+        ( _, _ ) ->
+            model ! []
 
 
 subscriptions : Model -> Sub Msg
@@ -102,19 +102,19 @@ view model =
         pageConfig =
             Page.Config model.session
     in
-        case model.page of
-            HomePage homeModel ->
-                Home.view model.session homeModel
-                    |> Html.map HomeMsg
-                    |> Page.frame (pageConfig Page.Home)
+    case model.page of
+        HomePage homeModel ->
+            Home.view model.session homeModel
+                |> Html.map HomeMsg
+                |> Page.frame (pageConfig Page.Home)
 
-            NotFound ->
-                Html.div [] [ Html.text "Not found" ]
-                    |> Page.frame (pageConfig Page.Other)
+        NotFound ->
+            Html.div [] [ Html.text "Not found" ]
+                |> Page.frame (pageConfig Page.Other)
 
-            Blank ->
-                Html.text ""
-                    |> Page.frame (pageConfig Page.Other)
+        Blank ->
+            Html.text ""
+                |> Page.frame (pageConfig Page.Other)
 
 
 main : Program Flags Model Msg
