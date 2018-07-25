@@ -2,8 +2,6 @@
 
 This is a modest attempt at providing a simplistic yet opinionated Elm [SPA](https://en.wikipedia.org/wiki/Single-page_application) application skeleton based on rtfeldman's [Elm Example SPA](https://github.com/rtfeldman/elm-spa-example/), for [Allo-Media](http://tech.allo-media.net/)'s own needs.
 
-![demo](https://cdn.rawgit.com/allo-media/elm-kitchen/9eefefeffbfb29c7ceddb79d9c95d38b4d33d6a6/assets/demo.svg)
-
 [Check for yourself](https://allo-media.github.io/elm-kitchen/)
 
 ## Features
