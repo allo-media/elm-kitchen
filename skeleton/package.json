@@ -6,10 +6,10 @@
   "scripts": {
     "build": "npm run copy-assets && elm-make src/Main.elm --yes --output=build/app.js",
     "copy-assets": "rimraf build && mkdir build && cp -r public/* build",
-    "debug": "elm-live src/Main.elm --warn --port=3000 --dir=public/ --output=public/app.js --debug",
+    "debug": "elm-live src/Main.elm --debug --port=3000 --dir=public/ --output=public/app.js --debug",
     "deploy": "npm run build && npm run optimize && gh-pages --dist build/",
-    "install": "elm package install -y",
-    "live": "elm-live src/Main.elm --warn --port=3000 --dir=public/ --output=public/app.js",
+    "install": "elm make",
+    "live": "elm-live src/Main.elm --port=3000 --dir=public/ --output=public/app.js",
     "optimize": "uglifyjs build/app.js -c -m -o build/app.js",
     "start": "npm run live",
     "test": "elm-test"
@@ -17,10 +17,10 @@
   "author": "Allo-Media",
   "license": "ISC",
   "devDependencies": {
-    "elm": "^0.18.0",
-    "elm-format": "^0.7.0-exp",
-    "elm-live": "^2.7.5",
-    "elm-test": "^0.18.12",
+    "elm": "^0.19.0",
+    "elm-format": "^0.8.0",
+    "elm-live": "next",
+    "elm-test": "beta",
     "gh-pages": "^1.1.0",
     "npm-run-all": "^4.1.2",
     "rimraf": "^2.6.1",

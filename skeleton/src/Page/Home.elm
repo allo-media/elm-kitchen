@@ -19,11 +19,11 @@ type Msg
 
 init : Session -> ( Model, Cmd Msg )
 init session =
-    { readme = "Retrieving README from github" }
-        ! [ getReadme session
-                |> Http.toTask
-                |> Task.attempt ReadmeReceived
-          ]
+    ( { readme = "Retrieving README from github" }
+    , getReadme session
+        |> Http.toTask
+        |> Task.attempt ReadmeReceived
+    )
 
 
 errorToMarkdown : Http.Error -> String
@@ -33,17 +33,21 @@ errorToMarkdown error =
 
     There was an error attempting to retrieve README information:
 
-        """ ++ toString error
+        """ ++ Debug.toString error
 
 
 update : Session -> Msg -> Model -> ( Model, Cmd Msg )
 update _ msg model =
     case msg of
         ReadmeReceived (Ok readme) ->
-            { model | readme = readme } ! []
+            ( { model | readme = readme }
+            , Cmd.none
+            )
 
         ReadmeReceived (Err error) ->
-            { model | readme = errorToMarkdown error } ! []
+            ( { model | readme = errorToMarkdown error }
+            , Cmd.none
+            )
 
 
 view : Session -> Model -> Html msg

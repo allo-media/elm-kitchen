@@ -7,11 +7,8 @@ This is a modest attempt at providing a simplistic yet opinionated Elm [SPA](htt
 ## Features
 
 - Multiple pages navigation & routing
-- Page framing
 - Flags
 - Session
-- [Bulma](http://bulma.io/) & SCSS styling integration
-- Minified build
 - Development server with hot reloading
 - Sample HTTP request
 - Default test layout

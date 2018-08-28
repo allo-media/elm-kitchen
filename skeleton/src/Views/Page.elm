@@ -1,5 +1,6 @@
 module Views.Page exposing (ActivePage(..), Config, frame)
 
+import Browser exposing (Document)
 import Css exposing (..)
 import Data.Session exposing (Session)
 import Html.Styled exposing (..)
@@ -18,13 +19,18 @@ type alias Config =
     }
 
 
-frame : Config -> Html msg -> Html msg
+frame : Config -> Html msg -> Document msg
 frame config content =
-    div []
-        [ defaultCss
-        , viewHeader config
-        , div [ css [ padding2 (Css.em 1) zero ] ] [ content ]
+    { title = "Page.frame"
+    , body =
+        [ div []
+            [ defaultCss
+            , viewHeader config
+            , div [ css [ padding2 (Css.em 1) zero ] ] [ content ]
+            ]
+            |> toUnstyled
         ]
+    }
 
 
 githubIconStyle : Element msg

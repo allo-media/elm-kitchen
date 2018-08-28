@@ -1,10 +1,12 @@
 module Main exposing (main)
 
+import Browser exposing (Document)
+import Browser.Navigation as Nav
 import Data.Session exposing (Session)
 import Html.Styled as Html exposing (..)
-import Navigation exposing (Location)
 import Page.Home as Home
 import Route exposing (Route)
+import Url exposing (Url)
 import Views.Page as Page
 
 
@@ -25,7 +27,10 @@ type alias Model =
 
 
 type Msg
-    = HomeMsg Home.Msg
+    = ChangedRoute (Maybe Route)
+    | ChangedUrl Url
+    | ClickedLink Browser.UrlRequest
+    | HomeMsg Home.Msg
     | SetRoute (Maybe Route)
 
 
@@ -33,26 +38,29 @@ setRoute : Maybe Route -> Model -> ( Model, Cmd Msg )
 setRoute maybeRoute model =
     case maybeRoute of
         Nothing ->
-            { model | page = NotFound } ! []
+            ( { model | page = NotFound }
+            , Cmd.none
+            )
 
         Just Route.Home ->
             let
                 ( homeModel, homeCmds ) =
                     Home.init model.session
             in
-            { model | page = HomePage homeModel }
-                ! [ Cmd.map HomeMsg homeCmds ]
+            ( { model | page = HomePage homeModel }
+            , Cmd.map HomeMsg homeCmds
+            )
 
 
-init : Flags -> Location -> ( Model, Cmd Msg )
-init _ location =
+init : Flags -> Url -> Nav.Key -> ( Model, Cmd Msg )
+init flags url key =
     let
         -- you'll usually want to retrieve and decode serialized session
         -- information from flags here
         session =
             {}
     in
-    setRoute (Route.fromLocation location)
+    setRoute (Route.fromUrl url)
         { page = Blank
         , session = session
         }
@@ -66,8 +74,9 @@ update msg ({ page, session } as model) =
                 ( newModel, newCmd ) =
                     subUpdate subMsg subModel
             in
-            { model | page = toModel newModel }
-                ! [ Cmd.map toMsg newCmd ]
+            ( { model | page = toModel newModel }
+            , Cmd.map toMsg newCmd
+            )
     in
     case ( msg, page ) of
         ( SetRoute route, _ ) ->
@@ -77,10 +86,14 @@ update msg ({ page, session } as model) =
             toPage HomePage HomeMsg (Home.update session) homeMsg homeModel
 
         ( _, NotFound ) ->
-            { model | page = NotFound } ! []
+            ( { model | page = NotFound }
+            , Cmd.none
+            )
 
         ( _, _ ) ->
-            model ! []
+            ( model
+            , Cmd.none
+            )
 
 
 subscriptions : Model -> Sub Msg
@@ -96,7 +109,7 @@ subscriptions model =
             Sub.none
 
 
-view : Model -> Html Msg
+view : Model -> Document Msg
 view model =
     let
         pageConfig =
@@ -119,9 +132,11 @@ view model =
 
 main : Program Flags Model Msg
 main =
-    Navigation.programWithFlags (Route.fromLocation >> SetRoute)
+    Browser.application
         { init = init
-        , view = view >> Html.toUnstyled
+        , view = view
         , update = update
         , subscriptions = subscriptions
+        , onUrlChange = ChangedUrl
+        , onUrlRequest = ClickedLink
         }

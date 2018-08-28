@@ -1,19 +1,21 @@
-module Route exposing (Route(..), fromLocation, href, modifyUrl)
+module Route exposing (Route(..), fromUrl, href, modifyUrl)
 
+import Browser exposing (Document)
+import Browser.Navigation as Nav
 import Html.Styled exposing (Attribute)
 import Html.Styled.Attributes as Attr
-import Navigation exposing (Location)
-import UrlParser as Url exposing (Parser)
+import Url exposing (Url)
+import Url.Parser as Parser exposing ((</>), Parser, oneOf, s, string)
 
 
 type Route
     = Home
 
 
-route : Parser (Route -> a) a
-route =
-    Url.oneOf
-        [ Url.map Home Url.top
+parser : Parser (Route -> a) a
+parser =
+    oneOf
+        [ Parser.map Home Parser.top
         ]
 
 
@@ -22,12 +24,10 @@ href route =
     Attr.href (routeToString route)
 
 
-fromLocation : Location -> Maybe Route
-fromLocation location =
-    if String.isEmpty location.hash then
-        Just Home
-    else
-        Url.parseHash route location
+fromUrl : Url -> Maybe Route
+fromUrl url =
+    { url | path = Maybe.withDefault "" url.fragment, fragment = Nothing }
+        |> Parser.parse parser
 
 
 routeToString : Route -> String
@@ -41,6 +41,6 @@ routeToString route =
     "#/" ++ String.join "/" pieces
 
 
-modifyUrl : Route -> Cmd msg
-modifyUrl =
-    routeToString >> Navigation.modifyUrl
+modifyUrl : Nav.Key -> Route -> Cmd msg
+modifyUrl key route =
+    Nav.replaceUrl key (routeToString route)
