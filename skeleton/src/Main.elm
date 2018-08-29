@@ -30,11 +30,10 @@ type alias Model =
 
 
 type Msg
-    = ChangedRoute (Maybe Route)
-    | ChangedUrl Url
-    | ClickedLink Browser.UrlRequest
-    | HomeMsg Home.Msg
-    | SetRoute (Maybe Route)
+    = HomeMsg Home.Msg
+    | RouteChanged (Maybe Route)
+    | UrlChanged Url
+    | UrlRequested Browser.UrlRequest
 
 
 setRoute : Maybe Route -> Model -> ( Model, Cmd Msg )
@@ -88,7 +87,13 @@ update msg ({ page, session } as model) =
             )
     in
     case ( msg, page ) of
-        ( ClickedLink urlRequest, _ ) ->
+        ( HomeMsg homeMsg, HomePage homeModel ) ->
+            toPage HomePage HomeMsg (Home.update session) homeMsg homeModel
+
+        ( RouteChanged route, _ ) ->
+            setRoute route model
+
+        ( UrlRequested urlRequest, _ ) ->
             case urlRequest of
                 Browser.Internal url ->
                     ( model
@@ -100,17 +105,8 @@ update msg ({ page, session } as model) =
                     , Nav.load href
                     )
 
-        ( ChangedRoute route, _ ) ->
-            setRoute route model
-
-        ( ChangedUrl url, _ ) ->
+        ( UrlChanged url, _ ) ->
             setRoute (Route.fromUrl url) model
-
-        ( SetRoute route, _ ) ->
-            setRoute route model
-
-        ( HomeMsg homeMsg, HomePage homeModel ) ->
-            toPage HomePage HomeMsg (Home.update session) homeMsg homeModel
 
         ( _, NotFound ) ->
             ( { model | page = NotFound }
@@ -171,6 +167,6 @@ main =
         , view = view
         , update = update
         , subscriptions = subscriptions
-        , onUrlChange = ChangedUrl
-        , onUrlRequest = ClickedLink
+        , onUrlChange = UrlChanged
+        , onUrlRequest = UrlRequested
         }
