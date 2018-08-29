@@ -213,12 +213,12 @@ property =
 
 stringProperty : String -> String -> Attribute msg
 stringProperty key string =
-    Elm.Kernel.VirtualDom.property key (Json.string string)
+    VirtualDom.Styled.property key (Json.string string)
 
 
 boolProperty : String -> Bool -> Attribute msg
 boolProperty key bool =
-    Elm.Kernel.VirtualDom.property key (Json.bool bool)
+    VirtualDom.Styled.property key (Json.bool bool)
 
 
 {-| Create _attributes_, like saying `domNode.setAttribute('class', 'greeting')`
@@ -306,7 +306,7 @@ context menu.
 -}
 contextmenu : String -> Attribute msg
 contextmenu =
-    Elm.Kernel.VirtualDom.attribute "contextmenu"
+    VirtualDom.Styled.attribute "contextmenu"
 
 
 {-| Defines the text direction. Allowed values are ltr (Left-To-Right) or rtl
@@ -321,7 +321,7 @@ dir =
 -}
 draggable : String -> Attribute msg
 draggable =
-    Elm.Kernel.VirtualDom.attribute "draggable"
+    VirtualDom.Styled.attribute "draggable"
 
 
 {-| Indicates that the element accept the dropping of content on it.
@@ -334,7 +334,7 @@ dropzone =
 {-| -}
 itemprop : String -> Attribute msg
 itemprop =
-    Elm.Kernel.VirtualDom.attribute "itemprop"
+    VirtualDom.Styled.attribute "itemprop"
 
 
 {-| Defines the language used in the element.
@@ -356,7 +356,7 @@ instead.
 -}
 tabindex : Int -> Attribute msg
 tabindex n =
-    Elm.Kernel.VirtualDom.attribute "tabIndex" (String.fromInt n)
+    VirtualDom.Styled.attribute "tabIndex" (String.fromInt n)
 
 
 
@@ -368,7 +368,7 @@ tabindex n =
 -}
 src : String -> Attribute msg
 src url =
-    stringProperty "src" (Elm.Kernel.VirtualDom.noJavaScriptOrHtmlUri url)
+    stringProperty "src" url
 
 
 {-| Declare the height of a `canvas`, `embed`, `iframe`, `img`, `input`,
@@ -376,7 +376,7 @@ src url =
 -}
 height : Int -> Attribute msg
 height n =
-    Elm.Kernel.VirtualDom.attribute "height" (String.fromInt n)
+    VirtualDom.Styled.attribute "height" (String.fromInt n)
 
 
 {-| Declare the width of a `canvas`, `embed`, `iframe`, `img`, `input`,
@@ -384,7 +384,7 @@ height n =
 -}
 width : Int -> Attribute msg
 width n =
-    Elm.Kernel.VirtualDom.attribute "width" (String.fromInt n)
+    VirtualDom.Styled.attribute "width" (String.fromInt n)
 
 
 {-| Alternative text in case an image can't be displayed. Works with `img`,
@@ -553,7 +553,7 @@ acceptCharset =
 -}
 action : String -> Attribute msg
 action uri =
-    stringProperty "action" (Elm.Kernel.VirtualDom.noJavaScriptUri uri)
+    stringProperty "action" uri
 
 
 {-| Indicates whether a `form` or an `input` can have their values automatically
@@ -602,7 +602,7 @@ For `input`.
 -}
 list : String -> Attribute msg
 list =
-    Elm.Kernel.VirtualDom.attribute "list"
+    VirtualDom.Styled.attribute "list"
 
 
 {-| Defines the minimum number of characters allowed in an `input` or
@@ -610,7 +610,7 @@ list =
 -}
 minlength : Int -> Attribute msg
 minlength n =
-    Elm.Kernel.VirtualDom.attribute "minLength" (String.fromInt n)
+    VirtualDom.Styled.attribute "minLength" (String.fromInt n)
 
 
 {-| Defines the maximum number of characters allowed in an `input` or
@@ -618,7 +618,7 @@ minlength n =
 -}
 maxlength : Int -> Attribute msg
 maxlength n =
-    Elm.Kernel.VirtualDom.attribute "maxlength" (String.fromInt n)
+    VirtualDom.Styled.attribute "maxlength" (String.fromInt n)
 
 
 {-| Defines which HTTP method to use when submitting a `form`. Can be GET
@@ -684,7 +684,7 @@ For `select` specifies the number of visible options in a drop-down list.
 -}
 size : Int -> Attribute msg
 size n =
-    Elm.Kernel.VirtualDom.attribute "size" (String.fromInt n)
+    VirtualDom.Styled.attribute "size" (String.fromInt n)
 
 
 {-| The element ID described by this `label` or the element IDs that are used
@@ -701,7 +701,7 @@ for =
 -}
 form : String -> Attribute msg
 form =
-    Elm.Kernel.VirtualDom.attribute "form"
+    VirtualDom.Styled.attribute "form"
 
 
 
@@ -740,14 +740,14 @@ step n =
 -}
 cols : Int -> Attribute msg
 cols n =
-    Elm.Kernel.VirtualDom.attribute "cols" (String.fromInt n)
+    VirtualDom.Styled.attribute "cols" (String.fromInt n)
 
 
 {-| Defines the number of rows in a `textarea`.
 -}
 rows : Int -> Attribute msg
 rows n =
-    Elm.Kernel.VirtualDom.attribute "rows" (String.fromInt n)
+    VirtualDom.Styled.attribute "rows" (String.fromInt n)
 
 
 {-| Indicates whether the text should be wrapped in a `textarea`. Possible
@@ -826,7 +826,7 @@ cite =
 -}
 href : String -> Attribute msg
 href url =
-    stringProperty "href" (Elm.Kernel.VirtualDom.noJavaScriptUri url)
+    stringProperty "href" url
 
 
 {-| Specify where the results of clicking an `a`, `area`, `base`, or `form`
@@ -884,7 +884,7 @@ or `style`.
 -}
 media : String -> Attribute msg
 media =
-    Elm.Kernel.VirtualDom.attribute "media"
+    VirtualDom.Styled.attribute "media"
 
 
 {-| Specify a URL to send a short POST request to when the user clicks on an
@@ -900,7 +900,7 @@ For `a`, `area`, `link`.
 -}
 rel : String -> Attribute msg
 rel =
-    Elm.Kernel.VirtualDom.attribute "rel"
+    VirtualDom.Styled.attribute "rel"
 
 
 
@@ -912,7 +912,7 @@ For `del`, `ins`, `time`.
 -}
 datetime : String -> Attribute msg
 datetime =
-    Elm.Kernel.VirtualDom.attribute "datetime"
+    VirtualDom.Styled.attribute "datetime"
 
 
 {-| Indicates whether this date and time is the date of the nearest `article`
@@ -920,7 +920,7 @@ ancestor element. For `time`.
 -}
 pubdate : String -> Attribute msg
 pubdate =
-    Elm.Kernel.VirtualDom.attribute "pubdate"
+    VirtualDom.Styled.attribute "pubdate"
 
 
 
@@ -952,7 +952,7 @@ For `td` and `th`.
 -}
 colspan : Int -> Attribute msg
 colspan n =
-    Elm.Kernel.VirtualDom.attribute "colspan" (String.fromInt n)
+    VirtualDom.Styled.attribute "colspan" (String.fromInt n)
 
 
 {-| A space separated list of element IDs indicating which `th` elements are
@@ -968,7 +968,7 @@ For `td` and `th`.
 -}
 rowspan : Int -> Attribute msg
 rowspan n =
-    Elm.Kernel.VirtualDom.attribute "rowspan" (String.fromInt n)
+    VirtualDom.Styled.attribute "rowspan" (String.fromInt n)
 
 
 {-| Specifies the scope of a header cell `th`. Possible values are: col, row,
@@ -983,7 +983,7 @@ scope =
 -}
 manifest : String -> Attribute msg
 manifest =
-    Elm.Kernel.VirtualDom.attribute "manifest"
+    VirtualDom.Styled.attribute "manifest"
 
 
 
