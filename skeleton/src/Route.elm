@@ -48,4 +48,4 @@ routeToString route =
 
 modifyUrl : Nav.Key -> Route -> Cmd msg
 modifyUrl key route =
-    Nav.replaceUrl key (routeToString route)
+    Nav.pushUrl key (routeToString route)
