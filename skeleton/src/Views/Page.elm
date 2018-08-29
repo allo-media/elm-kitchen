@@ -5,11 +5,13 @@ import Css exposing (..)
 import Data.Session exposing (Session)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (class, css, href, src)
+import Route
 import Views.Theme exposing (Element, defaultCss)
 
 
 type ActivePage
     = Home
+    | SecondPage
     | Other
 
 
@@ -62,6 +64,11 @@ viewHeader : Config -> Html msg
 viewHeader _ =
     div [ class "header" ]
         [ title [] [ text "elm-kitchen" ]
+        , div [ css [ textAlign center ] ]
+            [ a [ Route.href Route.Home ] [ text "Home" ]
+            , text " | "
+            , a [ Route.href Route.SecondPage ] [ text "Second page" ]
+            ]
         , githubIconStyle
             [ Html.Styled.Attributes.target "_blank"
             , href "https://github.com/allo-media/elm-kitchen"

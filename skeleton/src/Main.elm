@@ -5,6 +5,7 @@ import Browser.Navigation as Nav
 import Data.Session exposing (Session)
 import Html.Styled as Html exposing (..)
 import Page.Home as Home
+import Page.SecondPage as SecondPage
 import Route exposing (Route)
 import Url exposing (Url)
 import Views.Page as Page
@@ -17,11 +18,13 @@ type alias Flags =
 type Page
     = Blank
     | HomePage Home.Model
+    | SecondPage
     | NotFound
 
 
 type alias Model =
-    { page : Page
+    { navKey : Nav.Key
+    , page : Page
     , session : Session
     }
 
@@ -51,9 +54,14 @@ setRoute maybeRoute model =
             , Cmd.map HomeMsg homeCmds
             )
 
+        Just Route.SecondPage ->
+            ( { model | page = SecondPage }
+            , Cmd.none
+            )
+
 
 init : Flags -> Url -> Nav.Key -> ( Model, Cmd Msg )
-init flags url key =
+init flags url navKey =
     let
         -- you'll usually want to retrieve and decode serialized session
         -- information from flags here
@@ -61,7 +69,8 @@ init flags url key =
             {}
     in
     setRoute (Route.fromUrl url)
-        { page = Blank
+        { navKey = navKey
+        , page = Blank
         , session = session
         }
 
@@ -79,6 +88,24 @@ update msg ({ page, session } as model) =
             )
     in
     case ( msg, page ) of
+        ( ClickedLink urlRequest, _ ) ->
+            case urlRequest of
+                Browser.Internal url ->
+                    ( model
+                    , Nav.pushUrl model.navKey (Url.toString url)
+                    )
+
+                Browser.External href ->
+                    ( model
+                    , Nav.load href
+                    )
+
+        ( ChangedRoute route, _ ) ->
+            setRoute route model
+
+        ( ChangedUrl url, _ ) ->
+            setRoute (Route.fromUrl url) model
+
         ( SetRoute route, _ ) ->
             setRoute route model
 
@@ -102,6 +129,9 @@ subscriptions model =
         HomePage _ ->
             Sub.none
 
+        SecondPage ->
+            Sub.none
+
         NotFound ->
             Sub.none
 
@@ -120,6 +150,10 @@ view model =
             Home.view model.session homeModel
                 |> Html.map HomeMsg
                 |> Page.frame (pageConfig Page.Home)
+
+        SecondPage ->
+            SecondPage.view
+                |> Page.frame (pageConfig Page.SecondPage)
 
         NotFound ->
             Html.div [] [ Html.text "Not found" ]

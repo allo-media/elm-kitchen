@@ -10,12 +10,14 @@ import Url.Parser as Parser exposing ((</>), Parser, oneOf, s, string)
 
 type Route
     = Home
+    | SecondPage
 
 
 parser : Parser (Route -> a) a
 parser =
     oneOf
         [ Parser.map Home Parser.top
+        , Parser.map SecondPage (s "second-page")
         ]
 
 
@@ -37,6 +39,9 @@ routeToString route =
             case route of
                 Home ->
                     []
+
+                SecondPage ->
+                    [ "second-page" ]
     in
     "#/" ++ String.join "/" pieces
 
