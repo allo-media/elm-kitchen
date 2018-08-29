@@ -10,14 +10,15 @@ import Url.Parser as Parser exposing ((</>), Parser, oneOf, s, string)
 
 type Route
     = Home
-    | SecondPage
+    | SecondPage (Maybe String)
 
 
 parser : Parser (Route -> a) a
 parser =
     oneOf
         [ Parser.map Home Parser.top
-        , Parser.map SecondPage (s "second-page")
+        , Parser.map (SecondPage Nothing) (s "second-page")
+        , Parser.map (SecondPage << Just) (s "second-page" </> Parser.string)
         ]
 
 
@@ -40,8 +41,11 @@ routeToString route =
                 Home ->
                     []
 
-                SecondPage ->
+                SecondPage Nothing ->
                     [ "second-page" ]
+
+                SecondPage (Just id) ->
+                    [ "second-page", id ]
     in
     "#/" ++ String.join "/" pieces
 

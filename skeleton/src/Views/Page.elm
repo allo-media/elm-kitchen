@@ -67,7 +67,7 @@ viewHeader _ =
         , div [ css [ textAlign center ] ]
             [ a [ Route.href Route.Home ] [ text "Home" ]
             , text " | "
-            , a [ Route.href Route.SecondPage ] [ text "Second page" ]
+            , a [ Route.href (Route.SecondPage Nothing) ] [ text "UI Explorer" ]
             ]
         , githubIconStyle
             [ Html.Styled.Attributes.target "_blank"

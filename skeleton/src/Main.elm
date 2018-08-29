@@ -18,7 +18,7 @@ type alias Flags =
 type Page
     = Blank
     | HomePage Home.Model
-    | SecondPage
+    | SecondPage SecondPage.Model
     | NotFound
 
 
@@ -31,6 +31,7 @@ type alias Model =
 
 type Msg
     = HomeMsg Home.Msg
+    | SecondPageMsg SecondPage.Msg
     | RouteChanged (Maybe Route)
     | UrlChanged Url
     | UrlRequested Browser.UrlRequest
@@ -53,8 +54,12 @@ setRoute maybeRoute model =
             , Cmd.map HomeMsg homeCmds
             )
 
-        Just Route.SecondPage ->
-            ( { model | page = SecondPage }
+        Just (Route.SecondPage maybeId) ->
+            let
+                ( secondPageModel, secondPageCmds ) =
+                    SecondPage.init model.session maybeId
+            in
+            ( { model | page = SecondPage secondPageModel }
             , Cmd.none
             )
 
@@ -89,6 +94,9 @@ update msg ({ page, session } as model) =
     case ( msg, page ) of
         ( HomeMsg homeMsg, HomePage homeModel ) ->
             toPage HomePage HomeMsg (Home.update session) homeMsg homeModel
+
+        ( SecondPageMsg secondPageMsg, SecondPage secondPageModel ) ->
+            toPage SecondPage SecondPageMsg SecondPage.update secondPageMsg secondPageModel
 
         ( RouteChanged route, _ ) ->
             setRoute route model
@@ -125,7 +133,7 @@ subscriptions model =
         HomePage _ ->
             Sub.none
 
-        SecondPage ->
+        SecondPage _ ->
             Sub.none
 
         NotFound ->
@@ -147,8 +155,9 @@ view model =
                 |> Html.map HomeMsg
                 |> Page.frame (pageConfig Page.Home)
 
-        SecondPage ->
-            SecondPage.view
+        SecondPage secondPageModel ->
+            SecondPage.view secondPageModel
+                |> Html.map SecondPageMsg
                 |> Page.frame (pageConfig Page.SecondPage)
 
         NotFound ->
