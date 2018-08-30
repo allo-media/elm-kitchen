@@ -1,4 +1,4 @@
-module Route exposing (Route(..), fromUrl, href, modifyUrl)
+module Route exposing (Route(..), fromUrl, href, pushUrl)
 
 import Browser exposing (Document)
 import Browser.Navigation as Nav
@@ -46,6 +46,6 @@ routeToString route =
     "#/" ++ String.join "/" pieces
 
 
-modifyUrl : Nav.Key -> Route -> Cmd msg
-modifyUrl key route =
+pushUrl : Nav.Key -> Route -> Cmd msg
+pushUrl key route =
     Nav.pushUrl key (routeToString route)
