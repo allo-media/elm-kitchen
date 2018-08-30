@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run copy-assets && elm-make src/Main.elm --yes --optimize --output=build/app.js",
+    "build": "npm run copy-assets && elm make src/Main.elm --optimize --output=build/app.js",
     "copy-assets": "rimraf build && mkdir build && cp -r public/* build",
     "debug": "elm-live src/Main.elm --debug --port=3000 --dir=public/ --output=public/app.js --debug",
     "deploy": "npm run build && gh-pages --dist build/",
