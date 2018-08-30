@@ -4,7 +4,7 @@ import Data.Session exposing (Session)
 import Html.Styled as Html exposing (..)
 import Http
 import Markdown
-import Request.Github exposing (getReadme)
+import Request.Github as Github
 import Task
 
 
@@ -20,20 +20,17 @@ type Msg
 init : Session -> ( Model, Cmd Msg )
 init session =
     ( { readme = "Retrieving README from github" }
-    , getReadme session
-        |> Http.toTask
-        |> Task.attempt ReadmeReceived
+    , Github.getReadme session |> Http.send ReadmeReceived
     )
 
 
 errorToMarkdown : Http.Error -> String
 errorToMarkdown error =
-    """
-    ## Error
+    """## Error
 
-    There was an error attempting to retrieve README information:
+There was an error attempting to retrieve README information:
 
-        """ ++ Debug.toString error
+> *""" ++ Github.errorToString error ++ "*"
 
 
 update : Session -> Msg -> Model -> ( Model, Cmd Msg )

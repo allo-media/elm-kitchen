@@ -61,13 +61,21 @@ title =
 
 
 viewHeader : Config -> Html msg
-viewHeader _ =
+viewHeader { activePage } =
+    let
+        linkIf page route caption =
+            if page == activePage then
+                strong [] [ text caption ]
+
+            else
+                a [ Route.href route ] [ text caption ]
+    in
     div [ class "header" ]
         [ title [] [ text "elm-kitchen" ]
         , div [ css [ textAlign center ] ]
-            [ a [ Route.href Route.Home ] [ text "Home" ]
+            [ linkIf Home Route.Home "Home"
             , text " | "
-            , a [ Route.href Route.SecondPage ] [ text "Second page" ]
+            , linkIf SecondPage Route.SecondPage "Second page"
             ]
         , githubIconStyle
             [ Html.Styled.Attributes.target "_blank"

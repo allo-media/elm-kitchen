@@ -6,12 +6,14 @@ This is a modest attempt at providing a simplistic yet opinionated Elm [SPA](htt
 
 ## Features
 
+- Elm 0.19 ready
 - Multiple pages navigation & routing
 - Flags
 - Session
 - Development server with hot reloading
 - Sample HTTP request
 - Default test layout
+- [elm-css](http://package.elm-lang.org/packages/rtfeldman/elm-css/latest) support
 
 ## Code organization
 
@@ -34,9 +36,7 @@ src
     └── Theme.elm
 ```
 
-Rtfeldman explains this organization in a [dedicated blog post](https://dev.to/rtfeldman/tour-of-an-open-source-elm-spa).
-
-[elm-css](http://package.elm-lang.org/packages/rtfeldman/elm-css/latest) is used to style your app.
+Richard Feldman explains this organization in a [dedicated blog post](https://dev.to/rtfeldman/tour-of-an-open-source-elm-spa).
 
 ## Installation
 
