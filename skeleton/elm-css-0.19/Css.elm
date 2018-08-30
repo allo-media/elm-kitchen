@@ -61,6 +61,7 @@ module Css exposing
     , panX
     , panY
     , pinchZoom
+    , animationName
     , FontSize, ColorValue, ColorStop, IntOrAuto
     , thin, thick, blink
     )
@@ -448,6 +449,7 @@ functions let you define custom properties and selectors, respectively.
 @docs panX
 @docs panY
 @docs pinchZoom
+@docs animationName
 
 
 # Types

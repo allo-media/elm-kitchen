@@ -235,7 +235,7 @@ bias =
 {-| -}
 by : String -> Attribute msg
 by value =
-    VirtualDom.Styled.attribute "by" (VirtualDom.Styled.noJavaScriptUri value)
+    VirtualDom.Styled.attribute "by" value
 
 
 {-| -}
@@ -385,7 +385,7 @@ format =
 {-| -}
 from : String -> Attribute msg
 from value =
-    VirtualDom.Styled.attribute "from" (VirtualDom.Styled.noJavaScriptUri value)
+    VirtualDom.Styled.attribute "from" value
 
 
 {-| -}
@@ -1027,7 +1027,7 @@ title =
 {-| -}
 to : String -> Attribute msg
 to value =
-    VirtualDom.Styled.attribute "to" (VirtualDom.Styled.noJavaScriptUri value)
+    VirtualDom.Styled.attribute "to" value
 
 
 {-| -}
@@ -1111,7 +1111,7 @@ vMathematical =
 {-| -}
 values : String -> Attribute msg
 values value =
-    VirtualDom.Styled.attribute "values" (VirtualDom.Styled.noJavaScriptUri value)
+    VirtualDom.Styled.attribute "values" value
 
 
 {-| -}
