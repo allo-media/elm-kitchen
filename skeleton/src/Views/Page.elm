@@ -21,14 +21,14 @@ type alias Config =
     }
 
 
-frame : Config -> Html msg -> Document msg
-frame config content =
-    { title = "Page.frame"
+frame : Config -> ( String, List (Html msg) ) -> Document msg
+frame config ( title, content ) =
+    { title = title ++ " | elm-kitchen"
     , body =
         [ div []
             [ defaultCss
             , viewHeader config
-            , div [ css [ padding2 (Css.em 1) zero ] ] [ content ]
+            , div [ css [ padding2 (Css.em 1) zero ] ] content
             ]
             |> toUnstyled
         ]
@@ -49,8 +49,8 @@ githubIconStyle =
         ]
 
 
-title : Element msg
-title =
+heading1 : Element msg
+heading1 =
     styled h1
         [ textAlign center
         , margin2 (Css.em 1) zero
@@ -71,7 +71,7 @@ viewHeader { activePage } =
                 a [ Route.href route ] [ text caption ]
     in
     div [ class "header" ]
-        [ title [] [ text "elm-kitchen" ]
+        [ heading1 [] [ text "elm-kitchen" ]
         , div [ css [ textAlign center ] ]
             [ linkIf Home Route.Home "Home"
             , text " | "

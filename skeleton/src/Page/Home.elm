@@ -1,5 +1,6 @@
 module Page.Home exposing (Model, Msg(..), init, update, view)
 
+import Browser exposing (Document)
 import Data.Session exposing (Session)
 import Html.Styled as Html exposing (..)
 import Http
@@ -47,8 +48,11 @@ update _ msg model =
             )
 
 
-view : Session -> Model -> Html msg
+view : Session -> Model -> ( String, List (Html Msg) )
 view _ model =
-    div []
-        [ Markdown.toHtml [] model.readme |> Html.fromUnstyled
-        ]
+    ( "Home"
+    , [ model.readme
+            |> Markdown.toHtml []
+            |> Html.fromUnstyled
+      ]
+    )

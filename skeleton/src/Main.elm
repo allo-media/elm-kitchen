@@ -140,23 +140,26 @@ view model =
     let
         pageConfig =
             Page.Config model.session
+
+        mapMsg msg ( title, content ) =
+            ( title, content |> List.map (Html.map msg) )
     in
     case model.page of
         HomePage homeModel ->
             Home.view model.session homeModel
-                |> Html.map HomeMsg
+                |> mapMsg HomeMsg
                 |> Page.frame (pageConfig Page.Home)
 
         SecondPage ->
-            SecondPage.view
+            SecondPage.view model.session
                 |> Page.frame (pageConfig Page.SecondPage)
 
         NotFound ->
-            Html.div [] [ Html.text "Not found" ]
+            ( "Not Found", [ Html.text "Not found" ] )
                 |> Page.frame (pageConfig Page.Other)
 
         Blank ->
-            Html.text ""
+            ( "", [] )
                 |> Page.frame (pageConfig Page.Other)
 
 
