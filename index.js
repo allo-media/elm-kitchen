@@ -42,6 +42,7 @@ program
         throw `Target dir ${dir} exists, aborting.`;
       }
       copySync(skeleton, target);
+      copySync(path.resolve(__dirname, "README.md"), `${target}/public/README.md`);
       moveSync(`${target}/gitignore`, `${target}/.gitignore`);
       installed(target);
     } catch (err) {
