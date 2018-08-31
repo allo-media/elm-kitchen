@@ -1,46 +1,51 @@
-module Route exposing (Route(..), fromLocation, href, modifyUrl)
+module Route exposing (Route(..), fromUrl, href, pushUrl)
 
+import Browser exposing (Document)
+import Browser.Navigation as Nav
 import Html.Styled exposing (Attribute)
 import Html.Styled.Attributes as Attr
-import Navigation exposing (Location)
-import UrlParser as Url exposing (Parser)
+import Url exposing (Url)
+import Url.Parser as Parser exposing ((</>), Parser)
 
 
 type Route
     = Home
+    | Counter
 
 
-route : Parser (Route -> a) a
-route =
-    Url.oneOf
-        [ Url.map Home Url.top
+parser : Parser (Route -> a) a
+parser =
+    Parser.oneOf
+        [ Parser.map Home Parser.top
+        , Parser.map Counter (Parser.s "second-page")
         ]
+
+
+fromUrl : Url -> Maybe Route
+fromUrl url =
+    { url | path = Maybe.withDefault "" url.fragment, fragment = Nothing }
+        |> Parser.parse parser
 
 
 href : Route -> Attribute msg
 href route =
-    Attr.href (routeToString route)
+    Attr.href (toString route)
 
 
-fromLocation : Location -> Maybe Route
-fromLocation location =
-    if String.isEmpty location.hash then
-        Just Home
-    else
-        Url.parseHash route location
+pushUrl : Nav.Key -> Route -> Cmd msg
+pushUrl key route =
+    Nav.pushUrl key (toString route)
 
 
-routeToString : Route -> String
-routeToString route =
+toString : Route -> String
+toString route =
     let
         pieces =
             case route of
                 Home ->
                     []
+
+                Counter ->
+                    [ "second-page" ]
     in
     "#/" ++ String.join "/" pieces
-
-
-modifyUrl : Route -> Cmd msg
-modifyUrl =
-    routeToString >> Navigation.modifyUrl

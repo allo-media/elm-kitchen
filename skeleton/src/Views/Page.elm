@@ -1,14 +1,17 @@
 module Views.Page exposing (ActivePage(..), Config, frame)
 
+import Browser exposing (Document)
 import Css exposing (..)
 import Data.Session exposing (Session)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (class, css, href, src)
+import Route
 import Views.Theme exposing (Element, defaultCss)
 
 
 type ActivePage
     = Home
+    | Counter
     | Other
 
 
@@ -18,13 +21,18 @@ type alias Config =
     }
 
 
-frame : Config -> Html msg -> Html msg
-frame config content =
-    div []
-        [ defaultCss
-        , viewHeader config
-        , div [ css [ padding2 (Css.em 1) zero ] ] [ content ]
+frame : Config -> ( String, List (Html msg) ) -> Document msg
+frame config ( title, content ) =
+    { title = title ++ " | elm-kitchen"
+    , body =
+        [ div []
+            [ defaultCss
+            , viewHeader config
+            , div [ css [ padding2 (Css.em 1) zero ] ] content
+            ]
+            |> toUnstyled
         ]
+    }
 
 
 githubIconStyle : Element msg
@@ -41,8 +49,8 @@ githubIconStyle =
         ]
 
 
-title : Element msg
-title =
+heading1 : Element msg
+heading1 =
     styled h1
         [ textAlign center
         , margin2 (Css.em 1) zero
@@ -53,9 +61,22 @@ title =
 
 
 viewHeader : Config -> Html msg
-viewHeader _ =
+viewHeader { activePage } =
+    let
+        linkIf page route caption =
+            if page == activePage then
+                strong [] [ text caption ]
+
+            else
+                a [ Route.href route ] [ text caption ]
+    in
     div [ class "header" ]
-        [ title [] [ text "elm-kitchen" ]
+        [ heading1 [] [ text "elm-kitchen" ]
+        , div [ css [ textAlign center ] ]
+            [ linkIf Home Route.Home "Home"
+            , text " | "
+            , linkIf Counter Route.Counter "Second page"
+            ]
         , githubIconStyle
             [ Html.Styled.Attributes.target "_blank"
             , href "https://github.com/allo-media/elm-kitchen"

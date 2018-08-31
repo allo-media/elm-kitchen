@@ -1,10 +1,13 @@
 module Main exposing (main)
 
+import Browser exposing (Document)
+import Browser.Navigation as Nav
 import Data.Session exposing (Session)
 import Html.Styled as Html exposing (..)
-import Navigation exposing (Location)
+import Page.Counter as Counter
 import Page.Home as Home
 import Route exposing (Route)
+import Url exposing (Url)
 import Views.Page as Page
 
 
@@ -15,45 +18,61 @@ type alias Flags =
 type Page
     = Blank
     | HomePage Home.Model
+    | CounterPage Counter.Model
     | NotFound
 
 
 type alias Model =
-    { page : Page
+    { navKey : Nav.Key
+    , page : Page
     , session : Session
     }
 
 
 type Msg
     = HomeMsg Home.Msg
-    | SetRoute (Maybe Route)
+    | CounterMsg Counter.Msg
+    | RouteChanged (Maybe Route)
+    | UrlChanged Url
+    | UrlRequested Browser.UrlRequest
 
 
 setRoute : Maybe Route -> Model -> ( Model, Cmd Msg )
 setRoute maybeRoute model =
+    let
+        toPage page subInit subMsg =
+            let
+                ( subModel, subCmds ) =
+                    subInit model.session
+            in
+            ( { model | page = page subModel }
+            , Cmd.map subMsg subCmds
+            )
+    in
     case maybeRoute of
         Nothing ->
-            { model | page = NotFound } ! []
+            ( { model | page = NotFound }
+            , Cmd.none
+            )
 
         Just Route.Home ->
-            let
-                ( homeModel, homeCmds ) =
-                    Home.init model.session
-            in
-            { model | page = HomePage homeModel }
-                ! [ Cmd.map HomeMsg homeCmds ]
+            toPage HomePage Home.init HomeMsg
+
+        Just Route.Counter ->
+            toPage CounterPage Counter.init CounterMsg
 
 
-init : Flags -> Location -> ( Model, Cmd Msg )
-init _ location =
+init : Flags -> Url -> Nav.Key -> ( Model, Cmd Msg )
+init flags url navKey =
     let
         -- you'll usually want to retrieve and decode serialized session
         -- information from flags here
         session =
             {}
     in
-    setRoute (Route.fromLocation location)
-        { page = Blank
+    setRoute (Route.fromUrl url)
+        { navKey = navKey
+        , page = Blank
         , session = session
         }
 
@@ -66,21 +85,44 @@ update msg ({ page, session } as model) =
                 ( newModel, newCmd ) =
                     subUpdate subMsg subModel
             in
-            { model | page = toModel newModel }
-                ! [ Cmd.map toMsg newCmd ]
+            ( { model | page = toModel newModel }
+            , Cmd.map toMsg newCmd
+            )
     in
     case ( msg, page ) of
-        ( SetRoute route, _ ) ->
-            setRoute route model
-
         ( HomeMsg homeMsg, HomePage homeModel ) ->
             toPage HomePage HomeMsg (Home.update session) homeMsg homeModel
 
+        ( CounterMsg counterMsg, CounterPage counterModel ) ->
+            toPage CounterPage CounterMsg (Counter.update session) counterMsg counterModel
+
+        ( RouteChanged route, _ ) ->
+            setRoute route model
+
+        ( UrlRequested urlRequest, _ ) ->
+            case urlRequest of
+                Browser.Internal url ->
+                    ( model
+                    , Nav.pushUrl model.navKey (Url.toString url)
+                    )
+
+                Browser.External href ->
+                    ( model
+                    , Nav.load href
+                    )
+
+        ( UrlChanged url, _ ) ->
+            setRoute (Route.fromUrl url) model
+
         ( _, NotFound ) ->
-            { model | page = NotFound } ! []
+            ( { model | page = NotFound }
+            , Cmd.none
+            )
 
         ( _, _ ) ->
-            model ! []
+            ( model
+            , Cmd.none
+            )
 
 
 subscriptions : Model -> Sub Msg
@@ -89,6 +131,9 @@ subscriptions model =
         HomePage _ ->
             Sub.none
 
+        CounterPage _ ->
+            Sub.none
+
         NotFound ->
             Sub.none
 
@@ -96,32 +141,42 @@ subscriptions model =
             Sub.none
 
 
-view : Model -> Html Msg
+view : Model -> Document Msg
 view model =
     let
         pageConfig =
             Page.Config model.session
+
+        mapMsg msg ( title, content ) =
+            ( title, content |> List.map (Html.map msg) )
     in
     case model.page of
         HomePage homeModel ->
             Home.view model.session homeModel
-                |> Html.map HomeMsg
+                |> mapMsg HomeMsg
                 |> Page.frame (pageConfig Page.Home)
 
+        CounterPage counterModel ->
+            Counter.view model.session counterModel
+                |> mapMsg CounterMsg
+                |> Page.frame (pageConfig Page.Counter)
+
         NotFound ->
-            Html.div [] [ Html.text "Not found" ]
+            ( "Not Found", [ Html.text "Not found" ] )
                 |> Page.frame (pageConfig Page.Other)
 
         Blank ->
-            Html.text ""
+            ( "", [] )
                 |> Page.frame (pageConfig Page.Other)
 
 
 main : Program Flags Model Msg
 main =
-    Navigation.programWithFlags (Route.fromLocation >> SetRoute)
+    Browser.application
         { init = init
-        , view = view >> Html.toUnstyled
+        , view = view
         , update = update
         , subscriptions = subscriptions
+        , onUrlChange = UrlChanged
+        , onUrlRequest = UrlRequested
         }

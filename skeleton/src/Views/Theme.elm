@@ -1,7 +1,7 @@
 module Views.Theme exposing (Element, defaultCss, theme)
 
 import Css exposing (..)
-import Css.Foreign exposing (body, global, html, img)
+import Css.Global exposing (body, global, html, img)
 import Html.Styled exposing (Attribute, Html)
 
 
