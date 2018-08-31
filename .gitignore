@@ -1,9 +1,6 @@
 elm-stuff
 node_modules
+package-lock.json
 /skeleton/build
-/skeleton/elm-stuff
-/skeleton/tests/elm-stuff
-/skeleton/node_modules
-/skeleton/package-lock.json
 /skeleton/public/app.js
-/skeleton/public/main.css
+

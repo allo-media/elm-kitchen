@@ -1,6 +1,6 @@
 {
   "name": "elm-kitchen",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "An utility to generate an Elm SPA skeleton.",
   "bin": {
     "elm-kitchen": "index.js"
@@ -19,7 +19,7 @@
     "cli",
     "app"
   ],
-  "author": "Nicolas Perriault <nicolas@perriault.net>",
+  "author": "Allo-Media <contact@allo-media.net>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/allo-media/elm-kitchen/issues"
