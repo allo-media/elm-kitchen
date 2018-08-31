@@ -1,1 +1,9853 @@
-(function(){"use strict";function E(e){function t(r){return function(t){return e(r,t)}}return t.arity=2,t.func=e,t}function O(n){function t(e){return function(r){return function(t){return n(e,r,t)}}}return t.arity=3,t.func=n,t}function $(o){function t(n){return function(e){return function(r){return function(t){return o(n,e,r,t)}}}}return t.arity=4,t.func=o,t}function c(c){function t(o){return function(n){return function(e){return function(r){return function(t){return c(o,n,e,r,t)}}}}}return t.arity=5,t.func=c,t}function t(i){function t(c){return function(o){return function(n){return function(e){return function(r){return function(t){return i(c,o,n,e,r,t)}}}}}}return t.arity=6,t.func=i,t}function r(u){function t(i){return function(c){return function(o){return function(n){return function(e){return function(r){return function(t){return u(i,c,o,n,e,r,t)}}}}}}}return t.arity=7,t.func=u,t}function z(t,r,e){return 2===t.arity?t.func(r,e):t(r)(e)}function j(t,r,e,n){return 3===t.arity?t.func(r,e,n):t(r)(e)(n)}function b(t,r,e,n,o){return 4===t.arity?t.func(r,e,n,o):t(r)(e)(n)(o)}function y(t,r,e,n,o,c){return 5===t.arity?t.func(r,e,n,o,c):t(r)(e)(n)(o)(c)}function f(t,r,e,n,o,c,i){return 6===t.arity?t.func(r,e,n,o,c,i):t(r)(e)(n)(o)(c)(i)}E(function(t,r){return t&r}),E(function(t,r){return t|r}),E(function(t,r){return t^r}),E(function(t,r){return r<<t}),E(function(t,r){return r>>t}),E(function(t,r){return r>>>t});var e,n={fromCode:function(t){return W.chr(String.fromCharCode(t))},toCode:function(t){return t.charCodeAt(0)},toUpper:function(t){return W.chr(t.toUpperCase())},toLower:function(t){return W.chr(t.toLowerCase())},toLocaleUpper:function(t){return W.chr(t.toLocaleUpperCase())},toLocaleLower:function(t){return W.chr(t.toLocaleLowerCase())}},o=(e=["LT","EQ","GT"],{div:E(function(t,r){return t/r|0}),rem:E(function(t,r){return t%r}),mod:E(function t(r,e){if(0===e)throw new Error("Cannot perform mod 0. Division by zero error.");var n=r%e,o=0===r?0:0<e?0<=r?n:n+e:-t(-r,-e);return o===e?0:o}),pi:Math.PI,e:Math.E,cos:Math.cos,sin:Math.sin,tan:Math.tan,acos:Math.acos,asin:Math.asin,atan:Math.atan,atan2:E(Math.atan2),degrees:function(t){return t*Math.PI/180},turns:function(t){return 2*Math.PI*t},fromPolar:function(t){var r=t._0,e=t._1;return W.Tuple2(r*Math.cos(e),r*Math.sin(e))},toPolar:function(t){var r=t._0,e=t._1;return W.Tuple2(Math.sqrt(r*r+e*e),Math.atan2(e,r))},sqrt:Math.sqrt,logBase:E(function(t,r){return Math.log(r)/Math.log(t)}),negate:function(t){return-t},abs:function(t){return t<0?-t:t},min:E(function(t,r){return W.cmp(t,r)<0?t:r}),max:E(function(t,r){return 0<W.cmp(t,r)?t:r}),clamp:O(function(t,r,e){return W.cmp(e,t)<0?t:0<W.cmp(e,r)?r:e}),compare:E(function(t,r){return{ctor:e[W.cmp(t,r)+1]}}),xor:E(function(t,r){return t!==r}),not:function(t){return!t},truncate:function(t){return 0|t},ceiling:Math.ceil,floor:Math.floor,round:Math.round,toFloat:function(t){return t},isNaN:isNaN,isInfinite:function(t){return t===1/0||t===-1/0}}),W=function(){function l(t,r,e,n){if(100<e)return n.push({x:t,y:r}),!0;if(t===r)return!0;if("object"!=typeof t){if("function"==typeof t)throw new Error('Trying to use `(==)` on functions. There is no way to know if functions are "the same" in the Elm sense. Read more about this at http://package.elm-lang.org/packages/elm-lang/core/latest/Basics#== which describes why it is this way and what the better version will look like.');return!1}if(null===t||null===r)return!1;if(t instanceof Date)return t.getTime()===r.getTime();if(!("ctor"in t)){for(var o in t)if(!l(t[o],r[o],e+1,n))return!1;return!0}if("RBNode_elm_builtin"!==t.ctor&&"RBEmpty_elm_builtin"!==t.ctor||(t=kr(t),r=kr(r)),"Set_elm_builtin"===t.ctor&&(t=_elm_lang$core$Set$toList(t),r=_elm_lang$core$Set$toList(r)),"::"===t.ctor){for(var c=t,i=r;"::"===c.ctor&&"::"===i.ctor;){if(!l(c._0,i._0,e+1,n))return!1;c=c._1,i=i._1}return c.ctor===i.ctor}if("_Array"===t.ctor){var u=Xt.toJSArray(t),a=Xt.toJSArray(r);if(u.length!==a.length)return!1;for(var _=0;_<u.length;_++)if(!l(u[_],a[_],e+1,n))return!1;return!0}if(!l(t.ctor,r.ctor,e+1,n))return!1;for(var o in t)if(!l(t[o],r[o],e+1,n))return!1;return!0}var u=-1,a=0,_=1;var r=0;var o={ctor:"[]"};function c(t,r){return{ctor:"::",_0:t,_1:r}}function i(t){return t.start.line==t.end.line?"on line "+t.start.line:"between lines "+t.start.line+" and "+t.end.line}function s(t){var r=typeof t;if("function"===r)return"<function>";if("boolean"===r)return t?"True":"False";if("number"===r)return t+"";if(t instanceof String)return"'"+f(t,!0)+"'";if("string"===r)return'"'+f(t,!1)+'"';if(null===t)return"null";if("object"===r&&"ctor"in t){var e=t.ctor.substring(0,5);if("_Tupl"===e){var n=[];for(var o in t)"ctor"!==o&&n.push(s(t[o]));return"("+n.join(",")+")"}if("_Task"===e)return"<task>";if("_Array"===t.ctor)return"Array.fromList "+s(Zt(t));if("<decoder>"===t.ctor)return"<decoder>";if("_Process"===t.ctor)return"<process:"+t.id+">";if("::"===t.ctor){n="["+s(t._0);for(t=t._1;"::"===t.ctor;)n+=","+s(t._0),t=t._1;return n+"]"}if("[]"===t.ctor)return"[]";if("Set_elm_builtin"===t.ctor)return"Set.fromList "+s(_elm_lang$core$Set$toList(t));if("RBNode_elm_builtin"===t.ctor||"RBEmpty_elm_builtin"===t.ctor)return"Dict.fromList "+s(kr(t));n="";for(var c in t)if("ctor"!==c){var i=s(t[c]),u=i[0];n+=" "+("{"===u||"("===u||"<"===u||'"'===u||i.indexOf(" ")<0?i:"("+i+")")}return t.ctor+n}if("object"===r){if(t instanceof Date)return"<"+t.toString()+">";if(t.elm_web_socket)return"<websocket>";n=[];for(var o in t)n.push(o+" = "+s(t[o]));return 0===n.length?"{}":"{ "+n.join(", ")+" }"}return"<internal structure>"}function f(t,r){var e=t.replace(/\\/g,"\\\\").replace(/\n/g,"\\n").replace(/\t/g,"\\t").replace(/\r/g,"\\r").replace(/\v/g,"\\v").replace(/\0/g,"\\0");return r?e.replace(/\'/g,"\\'"):e.replace(/\"/g,'\\"')}return{eq:function(t,r){for(var e,n=[],o=l(t,r,0,n);o&&(e=n.pop());)o=l(e.x,e.y,0,n);return o},cmp:function t(r,e){if("object"!=typeof r)return r===e?a:r<e?u:_;if(r instanceof String){var n=r.valueOf(),o=e.valueOf();return n===o?a:n<o?u:_}if("::"===r.ctor||"[]"===r.ctor){for(;"::"===r.ctor&&"::"===e.ctor;){if((c=t(r._0,e._0))!==a)return c;r=r._1,e=e._1}return r.ctor===e.ctor?a:"[]"===r.ctor?u:_}if("_Tuple"===r.ctor.slice(0,6)){var c,i=r.ctor.slice(6)-0;if(0===i)return a;if(1<=i){if((c=t(r._0,e._0))!==a)return c;if(2<=i){if((c=t(r._1,e._1))!==a)return c;if(3<=i){if((c=t(r._2,e._2))!==a)return c;if(4<=i){if((c=t(r._3,e._3))!==a)return c;if(5<=i){if((c=t(r._4,e._4))!==a)return c;if(6<=i){if((c=t(r._5,e._5))!==a)return c;if(7<=i)throw new Error("Comparison error: cannot compare tuples with more than 6 elements.")}}}}}}return a}throw new Error("Comparison error: comparison is only defined on ints, floats, times, chars, strings, lists of comparable values, and tuples of comparable values.")},Tuple0:{ctor:"_Tuple0"},Tuple2:function(t,r){return{ctor:"_Tuple2",_0:t,_1:r}},chr:function(t){return new String(t)},update:function(t,r){var e={};for(var n in t)e[n]=t[n];for(var n in r)e[n]=r[n];return e},guid:function(t){return r++},append:E(function(t,r){if("string"==typeof t)return t+r;if("[]"===t.ctor)return r;var e=c(t._0,o),n=e;for(t=t._1;"[]"!==t.ctor;)n._1=c(t._0,o),t=t._1,n=n._1;return n._1=r,e}),crash:function(r,e){return function(t){throw new Error("Ran into a `Debug.crash` in module `"+r+"` "+i(e)+"\nThe message provided by the code author is:\n\n    "+t)}},crashCase:function(r,e,n){return function(t){throw new Error("Ran into a `Debug.crash` in module `"+r+"`\n\nThis was caused by the `case` expression "+i(e)+".\nOne of the branches ended with a crash and the following value got through:\n\n    "+s(n)+"\n\nThe message provided by the code author is:\n\n    "+t)}},toString:s}}(),i=(E(function(t,r){var e=r;return z(t,e._0,e._1)}),O(function(t,r,e){return t({ctor:"_Tuple2",_0:r,_1:e})}),O(function(t,r,e){return z(t,e,r)})),u=E(function(t,r){return t}),a=function(t){return t};(w=w||{})["<|"]=E(function(t,r){return t(r)}),(w=w||{})["|>"]=E(function(t,r){return r(t)}),(w=w||{})[">>"]=O(function(t,r,e){return r(t(e))}),(w=w||{})["<<"]=O(function(t,r,e){return t(r(e))}),(w=w||{})["++"]=W.append;var k=W.toString,s=o.toFloat,_=o.floor,d=o.round;(w=w||{})["||"]=o.or,(w=w||{})["&&"]=o.and;var h=o.max,p=o.min,v=o.compare;(w=w||{})[">="]=o.ge,(w=w||{})["<="]=o.le,(w=w||{})[">"]=o.gt,(w=w||{})["<"]=o.lt,(w=w||{})["/="]=o.neq,(w=w||{})["=="]=o.eq;var l=o.pi,g=o.abs,m=o.negate;(w=w||{})["^"]=o.exp,(w=w||{})["%"]=o.mod;var w;(w=w||{})["//"]=o.div,(w=w||{})["/"]=o.floatDiv,(w=w||{})["*"]=o.mul,(w=w||{})["-"]=o.sub,(w=w||{})["+"]=o.add;var x=o.turns,T=o.degrees,S=n.toCode,R=O(function(t,r,e){var n=S(e);return-1<W.cmp(n,S(t))&&W.cmp(n,S(r))<1}),B=(z(R,W.chr("A"),W.chr("Z")),z(R,W.chr("a"),W.chr("z")),z(R,W.chr("0"),W.chr("9")),z(R,W.chr("0"),W.chr("7")),{crash:function(t){throw new Error(t)},log:E(function(t,r){var e=t+": "+W.toString(r),n=n||{};return n.stdout?n.stdout.write(e):console.log(e),r})}),N=(B.crash,B.log,E(function(t,r){var e=r;return"Just"===e.ctor?e._0:t})),A={ctor:"Nothing"},C=(E(function(t,r){var e=r;return"Just"===e.ctor?t(e._0):A}),function(t){return{ctor:"Just",_0:t}}),M=E(function(t,r){var e=r;return"Just"===e.ctor?C(t(e._0)):A}),L=O(function(t,r,e){var n={ctor:"_Tuple2",_0:r,_1:e};return"_Tuple2"===n.ctor&&"Just"===n._0.ctor&&"Just"===n._1.ctor?C(z(t,n._0._0,n._1._0)):A}),P=($(function(t,r,e,n){var o={ctor:"_Tuple3",_0:r,_1:e,_2:n};return"_Tuple3"===o.ctor&&"Just"===o._0.ctor&&"Just"===o._1.ctor&&"Just"===o._2.ctor?C(j(t,o._0._0,o._1._0,o._2._0)):A}),c(function(t,r,e,n,o){var c={ctor:"_Tuple4",_0:r,_1:e,_2:n,_3:o};return"_Tuple4"===c.ctor&&"Just"===c._0.ctor&&"Just"===c._1.ctor&&"Just"===c._2.ctor&&"Just"===c._3.ctor?C(b(t,c._0._0,c._1._0,c._2._0,c._3._0)):A}),t(function(t,r,e,n,o,c){var i={ctor:"_Tuple5",_0:r,_1:e,_2:n,_3:o,_4:c};return"_Tuple5"===i.ctor&&"Just"===i._0.ctor&&"Just"===i._1.ctor&&"Just"===i._2.ctor&&"Just"===i._3.ctor&&"Just"===i._4.ctor?C(y(t,i._0._0,i._1._0,i._2._0,i._3._0,i._4._0)):A}),function(){var n={ctor:"[]"};function o(t,r){return{ctor:"::",_0:t,_1:r}}function u(t){for(var r=n,e=t.length;e--;)r=o(t[e],r);return r}function i(t){for(var r=[];"[]"!==t.ctor;)r.push(t._0),t=t._1;return r}return{Nil:n,Cons:o,cons:E(o),toArray:i,fromArray:u,foldr:O(function(t,r,e){for(var n=i(e),o=r,c=n.length;c--;)o=z(t,n[c],o);return o}),map2:O(function(t,r,e){for(var n=[];"[]"!==r.ctor&&"[]"!==e.ctor;)n.push(z(t,r._0,e._0)),r=r._1,e=e._1;return u(n)}),map3:$(function(t,r,e,n){for(var o=[];"[]"!==r.ctor&&"[]"!==e.ctor&&"[]"!==n.ctor;)o.push(j(t,r._0,e._0,n._0)),r=r._1,e=e._1,n=n._1;return u(o)}),map4:c(function(t,r,e,n,o){for(var c=[];"[]"!==r.ctor&&"[]"!==e.ctor&&"[]"!==n.ctor&&"[]"!==o.ctor;)c.push(b(t,r._0,e._0,n._0,o._0)),r=r._1,e=e._1,n=n._1,o=o._1;return u(c)}),map5:t(function(t,r,e,n,o,c){for(var i=[];"[]"!==r.ctor&&"[]"!==e.ctor&&"[]"!==n.ctor&&"[]"!==o.ctor&&"[]"!==c.ctor;)i.push(y(t,r._0,e._0,n._0,o._0,c._0)),r=r._1,e=e._1,n=n._1,o=o._1,c=c._1;return u(i)}),sortBy:E(function(e,t){return u(i(t).sort(function(t,r){return W.cmp(e(t),e(r))}))}),sortWith:E(function(n,t){return u(i(t).sort(function(t,r){var e=n(t)(r).ctor;return"EQ"===e?0:"LT"===e?-1:1}))})}}()),D=(P.sortWith,P.sortBy,function(t){return{ctor:"::",_0:t,_1:{ctor:"[]"}}}),I=(E(function(t,r){for(;;){if(W.cmp(t,0)<1)return r;var e=r;if("[]"===e.ctor)return r;t=t-1,r=e._1}}),P.map5,P.map4,P.map3,P.map2),F=E(function(t,r){for(;;){var e=r;if("[]"===e.ctor)return!1;if(t(e._0))return!0;t=t,r=e._1}}),q=E(function(r,t){return!z(F,function(t){return!r(t)},t)}),U=P.foldr,J=O(function(t,r,e){for(;;){var n=e;if("[]"===n.ctor)return r;var o=t,c=z(t,n._0,r);t=o,r=c,e=n._1}}),H=function(t){return j(J,E(function(t,r){return r+1}),0,t)},V=(E(function(r,t){return z(F,function(t){return W.eq(t,r)},t)}),function(t){return"[]"===t.ctor}),K=function(t){var r=t;return"::"===r.ctor?C(r._1):A},Q=function(t){var r=t;return"::"===r.ctor?C(r._0):A},G=G||{};G["::"]=P.cons;var X=E(function(e,t){return j(U,E(function(t,r){return{ctor:"::",_0:e(t),_1:r}}),{ctor:"[]"},t)}),Z=E(function(e,t){var r=E(function(t,r){return e(t)?{ctor:"::",_0:t,_1:r}:r});return j(U,r,{ctor:"[]"},t)}),Y=O(function(t,r,e){var n=t(r);return"Just"===n.ctor?{ctor:"::",_0:n._0,_1:e}:e}),tt=E(function(t,r){return j(U,Y(t),{ctor:"[]"},r)}),rt=function(t){return j(J,E(function(t,r){return{ctor:"::",_0:t,_1:r}}),{ctor:"[]"},t)},et=(O(function(n,t,r){var e=E(function(t,r){var e=r;return"::"===e.ctor?{ctor:"::",_0:z(n,t,e._0),_1:r}:{ctor:"[]"}});return rt(j(J,e,{ctor:"::",_0:t,_1:{ctor:"[]"}},r))}),E(function(t,r){return"[]"===r.ctor?t:j(U,E(function(t,r){return{ctor:"::",_0:t,_1:r}}),r,t)})),nt=function(t){return j(U,et,{ctor:"[]"},t)},ot=E(function(t,r){return nt(z(X,t,r))}),ct=(E(function(c,t){var r=E(function(t,r){var e=r,n=e._0,o=e._1;return c(t)?{ctor:"_Tuple2",_0:{ctor:"::",_0:t,_1:n},_1:o}:{ctor:"_Tuple2",_0:n,_1:{ctor:"::",_0:t,_1:o}}});return j(U,r,{ctor:"_Tuple2",_0:{ctor:"[]"},_1:{ctor:"[]"}},t)}),E(function(e,t){var r=t;if("[]"===r.ctor)return{ctor:"[]"};var n=E(function(t,r){return{ctor:"::",_0:e,_1:{ctor:"::",_0:t,_1:r}}}),o=j(U,n,{ctor:"[]"},r._1);return{ctor:"::",_0:r._0,_1:o}}),O(function(t,r,e){for(;;){if(W.cmp(t,0)<1)return e;var n=r;if("[]"===n.ctor)return e;t=t-1,r=n._1,e={ctor:"::",_0:n._0,_1:e}}})),it=E(function(t,r){return rt(j(ct,t,r,{ctor:"[]"}))}),ut=O(function(t,r,e){if(W.cmp(r,0)<1)return{ctor:"[]"};var n={ctor:"_Tuple2",_0:r,_1:e};t:do{r:do{if("_Tuple2"!==n.ctor)break t;if("[]"===n._1.ctor)return e;if("::"!==n._1._1.ctor){if(1===n._0)break r;break t}switch(n._0){case 1:break r;case 2:return{ctor:"::",_0:n._1._0,_1:{ctor:"::",_0:n._1._1._0,_1:{ctor:"[]"}}};case 3:if("::"===n._1._1._1.ctor)return{ctor:"::",_0:n._1._0,_1:{ctor:"::",_0:n._1._1._0,_1:{ctor:"::",_0:n._1._1._1._0,_1:{ctor:"[]"}}}};break t;default:if("::"===n._1._1._1.ctor&&"::"===n._1._1._1._1.ctor){var o=n._1._1._1._0,c=n._1._1._0,i=n._1._0,u=n._1._1._1._1._0,a=n._1._1._1._1._1;return 0<W.cmp(t,1e3)?{ctor:"::",_0:i,_1:{ctor:"::",_0:c,_1:{ctor:"::",_0:o,_1:{ctor:"::",_0:u,_1:z(it,r-4,a)}}}}:{ctor:"::",_0:i,_1:{ctor:"::",_0:c,_1:{ctor:"::",_0:o,_1:{ctor:"::",_0:u,_1:j(ut,t+1,r-4,a)}}}}}break t}}while(0);return{ctor:"::",_0:n._1._0,_1:{ctor:"[]"}}}while(0);return e}),at=E(function(t,r){return j(ut,0,t,r)}),_t=O(function(t,r,e){for(;;){if(W.cmp(r,0)<1)return t;t={ctor:"::",_0:e,_1:t},r=r-1,e=e}}),lt=(E(function(t,r){return j(_t,{ctor:"[]"},t,r)}),O(function(t,r,e){for(;;){if(!(W.cmp(t,r)<1))return e;var n={ctor:"::",_0:r,_1:e};t=t,r=r-1,e=n}})),st=E(function(t,r){return j(lt,t,r,{ctor:"[]"})}),ft=(E(function(t,r){return j(I,t,z(st,0,H(r)-1),r)}),E(function(t,r){var e=r;return"Ok"===e.ctor?e._0:t}),function(t){return{ctor:"Err",_0:t}}),dt=(E(function(t,r){var e=r;return"Ok"===e.ctor?t(e._0):ft(e._0)}),function(t){return{ctor:"Ok",_0:t}}),ht=E(function(t,r){var e=r;return"Ok"===e.ctor?dt(t(e._0)):ft(e._0)}),pt=(O(function(t,r,e){var n={ctor:"_Tuple2",_0:r,_1:e};return"Ok"===n._0.ctor?"Ok"===n._1.ctor?dt(z(t,n._0._0,n._1._0)):ft(n._1._0):ft(n._0._0)}),$(function(t,r,e,n){var o={ctor:"_Tuple3",_0:r,_1:e,_2:n};return"Ok"===o._0.ctor?"Ok"===o._1.ctor?"Ok"===o._2.ctor?dt(j(t,o._0._0,o._1._0,o._2._0)):ft(o._2._0):ft(o._1._0):ft(o._0._0)}),c(function(t,r,e,n,o){var c={ctor:"_Tuple4",_0:r,_1:e,_2:n,_3:o};return"Ok"===c._0.ctor?"Ok"===c._1.ctor?"Ok"===c._2.ctor?"Ok"===c._3.ctor?dt(b(t,c._0._0,c._1._0,c._2._0,c._3._0)):ft(c._3._0):ft(c._2._0):ft(c._1._0):ft(c._0._0)}),t(function(t,r,e,n,o,c){var i={ctor:"_Tuple5",_0:r,_1:e,_2:n,_3:o,_4:c};return"Ok"===i._0.ctor?"Ok"===i._1.ctor?"Ok"===i._2.ctor?"Ok"===i._3.ctor?"Ok"===i._4.ctor?dt(y(t,i._0._0,i._1._0,i._2._0,i._3._0,i._4._0)):ft(i._4._0):ft(i._3._0):ft(i._2._0):ft(i._1._0):ft(i._0._0)}),E(function(t,r){var e=r;return"Ok"===e.ctor?dt(e._0):ft(t(e._0))})),gt=(E(function(t,r){var e=r;return"Just"===e.ctor?dt(e._0):ft(t)}),function(){function o(t,r){for(var e="";0<t;)1&t&&(e+=r),t>>=1,r+=r;return e}function c(t){return ft("could not convert string '"+t+"' to an Int")}function e(t){return ft("could not convert string '"+t+"' to a Float")}return{isEmpty:function(t){return 0===t.length},cons:E(function(t,r){return t+r}),uncons:function(t){var r=t[0];return r?C(W.Tuple2(W.chr(r),t.slice(1))):A},append:E(function(t,r){return t+r}),concat:function(t){return P.toArray(t).join("")},length:function(t){return t.length},map:E(function(t,r){for(var e=r.split(""),n=e.length;n--;)e[n]=t(W.chr(e[n]));return e.join("")}),filter:E(function(t,r){return r.split("").map(W.chr).filter(t).join("")}),reverse:function(t){return t.split("").reverse().join("")},foldl:O(function(t,r,e){for(var n=e.length,o=0;o<n;++o)r=z(t,W.chr(e[o]),r);return r}),foldr:O(function(t,r,e){for(var n=e.length;n--;)r=z(t,W.chr(e[n]),r);return r}),split:E(function(t,r){return P.fromArray(r.split(t))}),join:E(function(t,r){return P.toArray(r).join(t)}),repeat:E(o),slice:O(function(t,r,e){return e.slice(t,r)}),left:E(function(t,r){return t<1?"":r.slice(0,t)}),right:E(function(t,r){return t<1?"":r.slice(-t)}),dropLeft:E(function(t,r){return t<1?r:r.slice(t)}),dropRight:E(function(t,r){return t<1?r:r.slice(0,-t)}),pad:O(function(t,r,e){var n=(t-e.length)/2;return o(Math.ceil(n),r)+e+o(0|n,r)}),padLeft:O(function(t,r,e){return o(t-e.length,r)+e}),padRight:O(function(t,r,e){return e+o(t-e.length,r)}),trim:function(t){return t.trim()},trimLeft:function(t){return t.replace(/^\s+/,"")},trimRight:function(t){return t.replace(/\s+$/,"")},words:function(t){return P.fromArray(t.trim().split(/\s+/g))},lines:function(t){return P.fromArray(t.split(/\r\n|\r|\n/g))},toUpper:function(t){return t.toUpperCase()},toLower:function(t){return t.toLowerCase()},any:E(function(t,r){for(var e=r.length;e--;)if(t(W.chr(r[e])))return!0;return!1}),all:E(function(t,r){for(var e=r.length;e--;)if(!t(W.chr(r[e])))return!1;return!0}),contains:E(function(t,r){return-1<r.indexOf(t)}),startsWith:E(function(t,r){return 0===r.indexOf(t)}),endsWith:E(function(t,r){return r.length>=t.length&&r.lastIndexOf(t)===r.length-t.length}),indexes:E(function(t,r){var e=t.length;if(e<1)return P.Nil;for(var n=0,o=[];-1<(n=r.indexOf(t,n));)o.push(n),n+=e;return P.fromArray(o)}),toInt:function(t){var r=t.length;if(0===r)return c(t);if("0"===(n=t[0])&&"x"===t[1]){for(var e=2;e<r;++e)if(!("0"<=(n=t[e])&&n<="9"||"A"<=n&&n<="F"||"a"<=n&&n<="f"))return c(t);return dt(parseInt(t,16))}if("9"<n||n<"0"&&"-"!==n&&"+"!==n)return c(t);for(e=1;e<r;++e){var n;if((n=t[e])<"0"||"9"<n)return c(t)}return dt(parseInt(t,10))},toFloat:function(t){if(0===t.length||/[\sxbo]/.test(t))return e(t);var r=+t;return r==r?dt(r):e(t)},toList:function(t){return P.fromArray(t.split("").map(W.chr))},fromList:function(t){return P.toArray(t).join("")}}}()),vt=gt.fromList,mt=gt.toList,bt=(gt.toFloat,gt.toInt),yt=(gt.indexes,gt.indexes,gt.endsWith,gt.startsWith),kt=(gt.contains,gt.all,gt.any,gt.toLower),wt=(gt.toUpper,gt.lines,gt.words,gt.trimRight,gt.trimLeft,gt.trim),xt=(gt.padRight,gt.padLeft,gt.pad,gt.dropRight,gt.dropLeft),Tt=(gt.right,gt.left,gt.slice,gt.repeat,gt.join),St=gt.split,Rt=(gt.foldr,gt.foldl),Bt=(gt.reverse,gt.filter,gt.map,gt.length),Nt=gt.concat,Et=gt.append,Ot=(gt.uncons,gt.cons),At=gt.isEmpty,Ct=(E(function(t,r){var e=r;return{ctor:"_Tuple2",_0:e._0,_1:t(e._1)}}),E(function(t,r){var e=r;return{ctor:"_Tuple2",_0:t(e._0),_1:e._1}}),function(t){return t._1}),Mt=function(t){return t._0},Lt=function(){function c(t,r){return function(t){}}function i(o,i,u,c){var a,_={};var r=d(Pt.nativeBinding(function(t){var r=o._0;a=c(l,r);var e=o._1,n=u(r);h(_,e,n),t(Pt.succeed(r))}),function(o,c){return Pt.nativeBinding(function(t){var r=z(i,o,c);c=r._0,a(c);var e=r._1,n=u(c);h(_,e,n),t(Pt.succeed(c))})});function l(t){Pt.rawSend(r,t)}var t=function(t,r){var e;for(var n in f){var o=f[n];o.isForeign&&((e=e||{})[n]="cmd"===o.tag?g(n):v(n,r)),t[n]=s(o,r)}return e}(_,l);return t?{ports:t}:{}}var f={};function s(t,r){var n={main:r,self:void 0},o=t.tag,c=t.onEffects,i=t.onSelfMsg;var e=d(t.init,function(t,r){if("self"===t.ctor)return j(i,n,t._0,r);var e=t._0;switch(o){case"cmd":return j(c,n,e.cmds,r);case"sub":return j(c,n,e.subs,r);case"fx":return b(c,n,e.cmds,e.subs,r)}});return n.self=e}function d(t,n){var o=Pt.andThen;var r=z(o,function t(r){var e=Pt.receive(function(t){return n(t,r)});return z(o,t,e)},t);return Pt.rawSpawn(r)}function e(r){return function(t){return{type:"leaf",home:r,value:t}}}function n(t){return{type:"node",branches:t}}function h(t,r,e){var n={};for(var o in p(!0,r,n,null),p(!1,e,n,null),t){var c=o in n?n[o]:{cmds:P.Nil,subs:P.Nil};Pt.rawSend(t[o],{ctor:"fx",_0:c})}}function p(t,r,e,n){switch(r.type){case"leaf":var o=r.home,c=(u=t,a=o,_=n,l=r.value,z(u?f[a].cmdMap:f[a].subMap,function(t){for(var r=_;r;)t=r.tagger(t),r=r.rest;return t},l));return void(e[o]=function(t,r,e){if(e=e||{cmds:P.Nil,subs:P.Nil},t)return e.cmds=P.Cons(r,e.cmds),e;return e.subs=P.Cons(r,e.subs),e}(t,c,e[o]));case"node":for(var i=r.branches;"[]"!==i.ctor;)p(t,i._0,e,n),i=i._1;return;case"map":return void p(t,r.tree,e,{tagger:r.tagger,rest:n})}var u,a,_,l}function o(t){if(t in f)throw new Error("There can only be one port named `"+t+"`, but your program has multiple.")}var u=E(function(t,r){return r});function g(t){var i=[],u=f[t].converter,a=Pt.succeed(null);return f[t].init=a,f[t].onEffects=O(function(t,r,e){for(;"[]"!==r.ctor;){for(var n=i,o=u(r._0),c=0;c<n.length;c++)n[c](o);r=r._1}return a}),{subscribe:function(t){i.push(t)},unsubscribe:function(t){var r=(i=i.slice()).indexOf(t);0<=r&&i.splice(r,1)}}}var a=E(function(r,e){return function(t){return r(e(t))}});function v(e,n){var c=[],o=P.Nil,i=f[e].converter,u=function(t,r,e){for(var n=l(t,r,e),o=0;o<c.length;o++)s(c[o]);return c=null,a=s,u=l,n},a=function(t){c.push(t)},_=Pt.succeed(null);function l(t,r,e){return o=r,_}function s(t){for(var r=o;"[]"!==r.ctor;)n(r._0(t)),r=r._1}return f[e].init=_,f[e].onEffects=O(function(t,r,e){return u(t,r,e)}),{send:function(t){var r=z(ye,i,t);if("Err"===r.ctor)throw new Error("Trying to send an unexpected type of value through port `"+e+"`:\n"+r._0);a(r._0)}}}return{sendToApp:E(function(r,e){return Pt.nativeBinding(function(t){r.main(e),t(Pt.succeed(W.Tuple0))})}),sendToSelf:E(function(t,r){return z(Pt.send,t.self,{ctor:"self",_0:r})}),effectManagers:f,outgoingPort:function(t,r){return o(t),f[t]={tag:"cmd",cmdMap:u,converter:r,isForeign:!0},e(t)},incomingPort:function(t,r){return o(t),f[t]={tag:"sub",subMap:a,converter:r,isForeign:!0},e(t)},htmlToProgram:function(t){var r=n(P.Nil),e=W.Tuple2(W.Tuple0,r);return Le({init:e,view:function(t){return main},update:E(function(t,r){return e}),subscriptions:function(t){return r}})},program:function(e){return function(t){return function(t,r){t.worker=function(t){if(void 0!==t)throw new Error("The `"+r+"` module does not need flags.\nCall "+r+".worker() with no arguments and you should be all set!");return i(e.init,e.update,e.subscriptions,c)}}}},programWithFlags:function(o){return function(n){return function(t,e){t.worker=function(t){if(void 0===n)throw new Error("Are you trying to sneak a Never value into Elm? Trickster!\nIt looks like "+e+".main is defined with `programWithFlags` but has type `Program Never`.\nUse `program` instead if you do not want flags.");var r=z(pe.run,n,t);if("Err"===r.ctor)throw new Error(e+".worker(...) was called with an unexpected argument.\nI tried to convert it to an Elm value, but ran into this problem:\n\n"+r._0);return i(o.init(r._0),o.update,o.subscriptions,c)}}}},initialize:i,leaf:e,batch:n,map:E(function(t,r){return{type:"map",tagger:t,tree:r}})}}(),Pt=function(){var o=1e4;function n(t){return{ctor:"_Task_succeed",value:t}}function t(t){return{ctor:"_Task_nativeBinding",callback:t,cancel:null}}function e(t){var r={ctor:"_Process",id:W.guid(),root:t,stack:null,mailbox:[]};return _(r),r}function c(t,r){t.mailbox.push(r),_(t)}function i(t,r){for(;t<o;){var e=r.root.ctor;if("_Task_succeed"!==e)if("_Task_fail"!==e)if("_Task_andThen"!==e)if("_Task_onError"!==e){if("_Task_nativeBinding"===e){r.root.cancel=r.root.callback(function(t){r.root=t,_(r)});break}if("_Task_receive"!==e)throw new Error(e);var n=r.mailbox;if(0===n.length)break;r.root=r.root.callback(n.shift()),++t}else r.stack={ctor:"_Task_onError",callback:r.root.callback,rest:r.stack},r.root=r.root.task,++t;else r.stack={ctor:"_Task_andThen",callback:r.root.callback,rest:r.stack},r.root=r.root.task,++t;else{for(;r.stack&&"_Task_andThen"===r.stack.ctor;)r.stack=r.stack.rest;if(null===r.stack)break;r.root=r.stack.callback(r.root.value),r.stack=r.stack.rest,++t}else{for(;r.stack&&"_Task_onError"===r.stack.ctor;)r.stack=r.stack.rest;if(null===r.stack)break;r.root=r.stack.callback(r.root.value),r.stack=r.stack.rest,++t}}return t<o?t+1:(_(r),t)}var u=!1,a=[];function _(t){a.push(t),u||(setTimeout(l,0),u=!0)}function l(){for(var t,r=0;r<o&&(t=a.shift());)t.root&&(r=i(r,t));t?setTimeout(l,0):u=!1}return{succeed:n,fail:function(t){return{ctor:"_Task_fail",value:t}},nativeBinding:t,andThen:E(function(t,r){return{ctor:"_Task_andThen",callback:t,task:r}}),onError:E(function(t,r){return{ctor:"_Task_onError",callback:t,task:r}}),receive:function(t){return{ctor:"_Task_receive",callback:t}},spawn:function(r){return t(function(t){t(n(e(r)))})},kill:function(e){return t(function(t){var r=e.root;"_Task_nativeBinding"===r.ctor&&r.cancel&&r.cancel(),e.root=null,t(n(W.Tuple0))})},sleep:function(e){return t(function(t){var r=setTimeout(function(){t(n(W.Tuple0))},e);return function(){clearTimeout(r)}})},send:E(function(r,e){return t(function(t){c(r,e),t(n(W.Tuple0))})}),rawSpawn:e,rawSend:c}}(),Dt=Lt.batch,It=Dt({ctor:"[]"}),Ft=Ft||{};Ft["!"]=E(function(t,r){return{ctor:"_Tuple2",_0:t,_1:Dt(r)}});var qt=Lt.map,Ut=Lt.batch,$t=Ut({ctor:"[]"}),zt=(Lt.map,Pt.succeed,Lt.sendToSelf),jt=Lt.sendToApp,Wt=(Lt.programWithFlags,Lt.program,O(function(t,r,e){var n=e,o=n._0,c=n._1;if("Nothing"===c.ctor)return W.cmp(r,128)<0?{ctor:"_Tuple2",_0:z(t,r,o),_1:A}:W.cmp(r,2048)<0?{ctor:"_Tuple2",_0:z(t,128|63&r,z(t,192|r>>>6,o)),_1:A}:W.cmp(r,55296)<0||-1<W.cmp(r,57344)?{ctor:"_Tuple2",_0:z(t,128|63&r,z(t,128|63&r>>>6,z(t,224|r>>>12,o))),_1:A}:{ctor:"_Tuple2",_0:o,_1:C(r)};var i=65536+(1023&r|(1023&c._0)<<10);return{ctor:"_Tuple2",_0:z(t,128|63&i,z(t,128|63&i>>>6,z(t,128|63&i>>>12,z(t,240|i>>>18,o)))),_1:A}})),Jt=O(function(e,t,r){var n=E(function(t,r){return j(Wt,e,S(t),r)});return Mt(j(Rt,n,{ctor:"_Tuple2",_0:t,_1:A},r))}),Ht=E(function(t,r){return 4294967295&(65535&r)*t+((65535&(r>>>16)*t)<<16)}),Vt=E(function(t,r){var e=z(Ht,3432918353,r);return t^z(Ht,461845907,e>>>17|e<<15)}),Kt=E(function(t,r){var e,n,o=r.hash|t<<r.shift;return 24===r.shift?{shift:0,seed:(e=z(Vt,r.seed,o),27492+(65535&(n=z(Ht,5,e>>>19|e<<13)))+((65535&58964+(n>>>16))<<16)),hash:0,charsProcessed:r.charsProcessed+1}:{shift:r.shift+8,seed:r.seed,hash:o,charsProcessed:r.charsProcessed+1}}),Qt=$(function(t,r,e,n){return{shift:t,seed:r,hash:e,charsProcessed:n}}),Gt=E(function(t,r){return e=j(Jt,Kt,b(Qt,0,t,0,0),r),n=(W.eq(e.hash,0)?e.seed:z(Vt,e.seed,e.hash))^e.charsProcessed,o=z(Ht,2246822507,n^n>>>16),((c=z(Ht,3266489909,o^o>>>13))^c>>>16)>>>0;var e,n,o,c}),Xt=function(){var d=32,u=2,i={ctor:"_Array",height:0,table:[]};function a(t,r){var e=t.height;if(r.length===e){var n={ctor:"_Array",height:e+1,table:[],lengths:[]};r.push(n)}r[e].table.push(t);var o=k(t);0<r[e].lengths.length&&(o+=r[e].lengths[r[e].lengths.length-1]),r[e].lengths.push(o),r[e].table.length===d&&(a(r[e],r),r[e]={ctor:"_Array",height:e+1,table:[],lengths:[]})}function _(t,r){var e=t.table.length-1;t.table[e]=r,t.lengths[e]=k(r),t.lengths[e]+=0<e?t.lengths[e-1]:0}function l(t,r){if(0<r.table.length){t.table[0]=r,t.lengths[0]=k(r);for(var e=k(t.table[0]),n=1;n<t.lengths.length;n++)e+=k(t.table[n]),t.lengths[n]=e}else{t.table.shift();for(n=1;n<t.lengths.length;n++)t.lengths[n]=t.lengths[n]-t.lengths[0];t.lengths.shift()}}function s(t,r){for(var e=0,n=0;n<t.table.length;n++)e+=t.table[n].table.length;for(n=0;n<r.table.length;n++)e+=r.table[n].table.length;return t.table.length+r.table.length-(Math.floor((e-1)/d)+1)}function h(t,r,e){return e<t.length?t[e]:r[e-t.length]}function p(t,r,e,n){e<t.length?t[e]=n:r[e-t.length]=n}function g(t,r,e,n){p(t.table,r.table,e,n);var o=0===e||e===t.lengths.length?0:h(t.lengths,t.lengths,e-1);p(t.lengths,r.lengths,e,o+k(n))}function v(t,r){r<0&&(r=0);var e={ctor:"_Array",height:t,table:new Array(r)};return 0<t&&(e.lengths=new Array(r)),e}function f(t,r,e){for(var n=v(t.height,Math.min(d,t.table.length+r.table.length-e)),o=v(t.height,n.table.length-(t.table.length+r.table.length-e)),c=0;h(t.table,r.table,c).table.length%d==0;)p(n.table,o.table,c,h(t.table,r.table,c)),p(n.lengths,o.lengths,c,h(t.lengths,r.lengths,c)),c++;for(var i=c,u=new v(t.height-1,0),a=0;c-i-(0<u.table.length?1:0)<e;){var _=h(t.table,r.table,c),l=Math.min(d-u.table.length,_.table.length);if(u.table=u.table.concat(_.table.slice(a,l)),0<u.height)for(var s=u.lengths.length,f=s;f<s+l-a;f++)u.lengths[f]=k(u.table[f]),u.lengths[f]+=0<f?u.lengths[f-1]:0;a+=l,_.table.length<=l&&(c++,a=0),u.table.length===d&&(g(n,o,i,u),u=v(t.height-1,0),i++)}for(0<u.table.length&&(g(n,o,i,u),i++);c<t.table.length+r.table.length;)g(n,o,i,h(t.table,r.table,c)),c++,i++;return[n,o]}function m(t){return t.table[t.table.length-1]}function b(t){return t.table[0]}function y(t){var r={ctor:"_Array",height:t.height,table:t.table.slice()};return 0<t.height&&(r.lengths=t.lengths.slice()),r}function k(t){return 0===t.height?t.table.length:t.lengths[t.lengths.length-1]}function w(t,r){for(var e=t>>5*r.height;r.lengths[e]<=t;)e++;return e}function x(t,r){return 0===r?{ctor:"_Array",height:0,table:[t]}:{ctor:"_Array",height:r,table:[x(t,r-1)],lengths:[1]}}function T(t,r){return r===t.height?t:{ctor:"_Array",height:r,table:[T(t,r-1)],lengths:[k(t)]}}function S(t,r){return{ctor:"_Array",height:t.height+1,table:[t,r],lengths:[k(t),k(t)+k(r)]}}return{empty:i,fromList:function(t){if("[]"===t.ctor)return i;for(var r=new Array(d),e=[],n=0;"[]"!==t.ctor;)r[n]=t._0,t=t._1,++n===d&&(a({ctor:"_Array",height:0,table:r},e),r=new Array(d),n=0);0<n&&a({ctor:"_Array",height:0,table:r.splice(0,n)},e);for(var o=0;o<e.length-1;o++)0<e[o].table.length&&a(e[o],e);var c=e[e.length-1];return 0<c.height&&1===c.table.length?c.table[0]:c},toList:function(t){return function t(r,e){for(var n=e.table.length-1;0<=n;n--)r=0===e.height?P.Cons(e.table[n],r):t(r,e.table[n]);return r}(P.Nil,t)},initialize:E(function(t,r){return t<=0?i:function t(r,e,n,o){if(0===e){for(var c=new Array((o-n)%(d+1)),i=0;i<c.length;i++)c[i]=r(n+i);return{ctor:"_Array",height:0,table:c}}for(var u=Math.pow(d,e),c=new Array(Math.ceil((o-n)/u)),a=new Array(c.length),i=0;i<c.length;i++)c[i]=t(r,e-1,n+i*u,Math.min(n+(i+1)*u,o)),a[i]=k(c[i])+(0<i?a[i-1]:0);return{ctor:"_Array",height:e,table:c,lengths:a}}(r,Math.floor(Math.log(t)/Math.log(d)),0,t)}),append:E(function(t,r){if(0===t.table.length)return r;if(0===r.table.length)return t;var e=function t(r,e){if(0===r.height&&0===e.height)return[r,e];if(1!==r.height||1!==e.height)if(r.height===e.height){r=y(r),e=y(e);var n=t(m(r),b(e));_(r,n[1]),l(e,n[0])}else if(r.height>e.height){r=y(r);var n=t(m(r),e);_(r,n[0]),e=T(n[1],n[1].height+1)}else{e=y(e);var n=t(r,b(e)),o=0===n[0].table.length?0:1,c=0===o?1:0;l(e,n[o]),r=T(n[c],n[c].height+1)}if(0===r.table.length||0===e.table.length)return[r,e];var i=s(r,e);return i<=u?[r,e]:f(r,e,i)}(t,r);if(e[0].table.length+e[1].table.length<=d){if(0===e[0].table.length)return e[1];if(0===e[1].table.length)return e[0];if(e[0].table=e[0].table.concat(e[1].table),0<e[0].height){for(var n=k(e[0]),o=0;o<e[1].lengths.length;o++)e[1].lengths[o]+=n;e[0].lengths=e[0].lengths.concat(e[1].lengths)}return e[0]}if(0<e[0].height){var c=s(t,r);u<c&&(e=f(e[0],e[1],c))}return S(e[0],e[1])}),push:E(function(t,r){var e=function t(r,e){if(0===e.height){if(e.table.length<d){var n={ctor:"_Array",height:0,table:e.table.slice()};return n.table.push(r),n}return null}var o=t(r,m(e));if(null!==o){var n=y(e);return n.table[n.table.length-1]=o,n.lengths[n.lengths.length-1]++,n}if(e.table.length<d){var c=x(r,e.height-1),n=y(e);return n.table.push(c),n.lengths.push(n.lengths[n.lengths.length-1]+k(c)),n}return null}(t,r);return null!==e?e:S(r,x(t,r.height))}),slice:O(function(t,r,e){return t<0&&(t+=k(e)),r<0&&(r+=k(e)),function t(r,e){if(0===r)return e;if(0===e.height){var n={ctor:"_Array",height:0};return n.table=e.table.slice(r,e.table.length+1),n}var o=w(r,e),c=t(r-(0<o?e.lengths[o-1]:0),e.table[o]);if(o===e.table.length-1)return c;var n={ctor:"_Array",height:e.height,table:e.table.slice(o,e.table.length+1),lengths:new Array(e.table.length-o)};n.table[0]=c;for(var i=0,u=0;u<n.table.length;u++)i+=k(n.table[u]),n.lengths[u]=i;return n}(t,function t(r,e){if(r===k(e))return e;if(0===e.height){var n={ctor:"_Array",height:0};return n.table=e.table.slice(0,r),n}var o=w(r,e),c=t(r-(0<o?e.lengths[o-1]:0),e.table[o]);if(0===o)return c;var n={ctor:"_Array",height:e.height,table:e.table.slice(0,o),lengths:e.lengths.slice(0,o)};return 0<c.table.length&&(n.table[o]=c,n.lengths[o]=k(c)+(0<o?n.lengths[o-1]:0)),n}(r,e))}),get:E(function(t,r){if(t<0||t>=k(r))throw new Error("Index "+t+" is out of range. Check the length of your array first or use getMaybe or getWithDefault.");return function(t,r){for(var e=r.height;0<e;e--){for(var n=t>>5*e;r.lengths[n]<=t;)n++;0<n&&(t-=r.lengths[n-1]),r=r.table[n]}return r.table[t]}(t,r)}),set:O(function(t,r,e){return t<0||k(e)<=t?e:function t(r,e,n){if(0===(n=y(n)).height)n.table[r]=e;else{var o=w(r,n);0<o&&(r-=n.lengths[o-1]),n.table[o]=t(r,e,n.table[o])}return n}(t,r,e)}),map:E(function t(r,e){var n={ctor:"_Array",height:e.height,table:new Array(e.table.length)};0<e.height&&(n.lengths=e.lengths);for(var o=0;o<e.table.length;o++)n.table[o]=0===e.height?r(e.table[o]):t(r,e.table[o]);return n}),indexedMap:E(function(t,r){return function t(r,e,n){var o={ctor:"_Array",height:e.height,table:new Array(e.table.length)};0<e.height&&(o.lengths=e.lengths);for(var c=0;c<e.table.length;c++)o.table[c]=0===e.height?z(r,n+c,e.table[c]):t(r,e.table[c],0==c?n:n+e.lengths[c-1]);return o}(t,r,0)}),foldl:O(function t(r,e,n){if(0===n.height)for(var o=0;o<n.table.length;o++)e=z(r,n.table[o],e);else for(o=0;o<n.table.length;o++)e=t(r,e,n.table[o]);return e}),foldr:O(function t(r,e,n){if(0===n.height)for(var o=n.table.length;o--;)e=z(r,n.table[o],e);else for(o=n.table.length;o--;)e=t(r,e,n.table[o]);return e}),length:k,toJSArray:function(t){var r=new Array(k(t));return function t(r,e,n){for(var o=0;o<n.table.length;o++)if(0===n.height)r[e+o]=n.table[o];else{var c=0===o?0:n.lengths[o-1];t(r,e+c,n.table[o])}}(r,0,t),r},fromJSArray:function(t){return 0===t.length?i:function t(r,e,n,o){if(0===e)return{ctor:"_Array",height:0,table:r.slice(n,o)};for(var c=Math.pow(d,e),i=new Array(Math.ceil((o-n)/c)),u=new Array(i.length),a=0;a<i.length;a++)i[a]=t(r,e-1,n+a*c,Math.min(n+(a+1)*c,o)),u[a]=k(i[a])+(0<a?u[a-1]:0);return{ctor:"_Array",height:e,table:i,lengths:u}}(t,Math.floor(Math.log(t.length)/Math.log(d)),0,t.length)}}}(),Zt=(Xt.append,Xt.length,Xt.slice,Xt.set,E(function(t,r){return W.cmp(0,t)<1&&W.cmp(t,Xt.length(r))<0?C(z(Xt.get,t,r)):A}),Xt.push,Xt.empty,E(function(e,t){var r=E(function(t,r){return e(t)?z(Xt.push,t,r):r});return j(Xt.foldl,r,Xt.empty,t)}),Xt.foldr,Xt.foldl,Xt.indexedMap,Xt.map,Xt.toList),Yt=(Xt.fromList,Xt.initialize),tr=(E(function(t,r){return z(Yt,t,u(r))}),E(function(t,r){var e=_(t);return s(z(w["%"],e,r))+t-s(e)})),rr=(O(function(t,r,e){var n=s(e)/255,o=s(r)/255,c=s(t)/255,i=z(h,z(h,c,o),n),u=z(p,z(p,c,o),n),a=i-u,_=(i+u)/2,l=W.eq(_,0)?0:a/(1-g(2*_-1));return{ctor:"_Tuple3",_0:T(60)*(W.eq(i,c)?z(tr,(o-n)/a,6):W.eq(i,o)?(n-c)/a+2:(c-o)/a+4),_1:l,_2:_}}),O(function(t,r,e){var n=t/T(60),o=(1-g(2*e-1))*r,c=o*(1-g(z(tr,n,2)-1)),i=W.cmp(n,0)<0?{ctor:"_Tuple3",_0:0,_1:0,_2:0}:W.cmp(n,1)<0?{ctor:"_Tuple3",_0:o,_1:c,_2:0}:W.cmp(n,2)<0?{ctor:"_Tuple3",_0:c,_1:o,_2:0}:W.cmp(n,3)<0?{ctor:"_Tuple3",_0:0,_1:o,_2:c}:W.cmp(n,4)<0?{ctor:"_Tuple3",_0:0,_1:c,_2:o}:W.cmp(n,5)<0?{ctor:"_Tuple3",_0:c,_1:0,_2:o}:W.cmp(n,6)<0?{ctor:"_Tuple3",_0:o,_1:0,_2:c}:{ctor:"_Tuple3",_0:0,_1:0,_2:0},u=e-o/2;return{ctor:"_Tuple3",_0:i._0+u,_1:i._1+u,_2:i._2+u}})),er=$(function(t,r,e,n){return{ctor:"HSLA",_0:t,_1:r,_2:e,_3:n}}),nr=$(function(t,r,e,n){return b(er,t-x(s(_(t/(2*l)))),r,e,n)}),or=(O(function(t,r,e){return b(nr,t,r,e,1)}),$(function(t,r,e,n){return{ctor:"RGBA",_0:t,_1:r,_2:e,_3:n}})),cr=(O(function(t,r,e){return b(or,t,r,e,1)}),b(or,239,41,41,1),b(or,204,0,0,1),b(or,164,0,0,1),b(or,252,175,62,1),b(or,245,121,0,1),b(or,206,92,0,1),b(or,255,233,79,1),b(or,237,212,0,1),b(or,196,160,0,1),b(or,138,226,52,1),b(or,115,210,22,1),b(or,78,154,6,1),b(or,114,159,207,1),b(or,52,101,164,1),b(or,32,74,135,1),b(or,173,127,168,1),b(or,117,80,123,1),b(or,92,53,102,1),b(or,233,185,110,1),b(or,193,125,17,1),b(or,143,89,2,1),b(or,0,0,0,1),b(or,255,255,255,1),b(or,238,238,236,1),b(or,211,215,207,1),b(or,186,189,182,1),b(or,238,238,236,1),b(or,211,215,207,1),b(or,186,189,182,1),b(or,136,138,133,1),b(or,85,87,83,1),b(or,46,52,54,1),c(function(t,r,e,n,o){return{ctor:"Radial",_0:t,_1:r,_2:e,_3:n,_4:o}}),O(function(t,r,e){return{ctor:"Linear",_0:t,_1:r,_2:e}}),Pt.onError),ir=Pt.andThen,ur=E(function(t,r){var e=r;return Pt.spawn(z(ir,jt(t),e._0))}),ar=Pt.fail,_r=(E(function(r,t){return z(cr,function(t){return ar(r(t))},t)}),Pt.succeed),lr=E(function(r,t){return z(ir,function(t){return _r(r(t))},t)}),sr=O(function(e,t,n){return z(ir,function(r){return z(ir,function(t){return _r(z(e,r,t))},n)},t)}),fr=($(function(n,t,r,o){return z(ir,function(e){return z(ir,function(r){return z(ir,function(t){return _r(j(n,e,r,t))},o)},r)},t)}),c(function(o,t,r,c,i){return z(ir,function(n){return z(ir,function(e){return z(ir,function(r){return z(ir,function(t){return _r(b(o,n,e,r,t))},i)},c)},r)},t)}),t(function(c,t,r,e,i,u){return z(ir,function(o){return z(ir,function(n){return z(ir,function(e){return z(ir,function(r){return z(ir,function(t){return _r(y(c,o,n,e,r,t))},u)},i)},e)},r)},t)}),function(t){var r=t;return"[]"===r.ctor?_r({ctor:"[]"}):j(sr,E(function(t,r){return{ctor:"::",_0:t,_1:r}}),r._0,fr(r._1))}),dr=O(function(t,r,e){return z(lr,function(t){return{ctor:"_Tuple0"}},fr(z(X,ur(t),r)))}),hr=_r({ctor:"_Tuple0"}),pr=O(function(t,r,e){return _r({ctor:"_Tuple0"})}),gr=Lt.leaf("Task"),vr=function(t){return{ctor:"Perform",_0:t}},mr=(E(function(t,r){return gr(vr(z(lr,t,r)))}),E(function(r,t){return gr(vr(z(cr,function(t){return _r(r(ft(t)))},z(ir,function(t){return _r(r(dt(t)))},t))))})),br=E(function(t,r){return vr(z(lr,t,r._0))});Lt.effectManagers.Task={pkg:"elm-lang/core",init:hr,onEffects:dr,onSelfMsg:pr,tag:"cmd",cmdMap:br};var yr=O(function(t,r,e){for(;;){var n=e;if("RBEmpty_elm_builtin"===n.ctor)return r;var o=t,c=j(t,n._1,n._2,j(yr,t,r,n._4));t=o,r=c,e=n._3}}),kr=function(t){return j(yr,O(function(t,r,e){return{ctor:"::",_0:{ctor:"_Tuple2",_0:t,_1:r},_1:e}}),{ctor:"[]"},t)},wr=O(function(t,r,e){for(;;){var n=e;if("RBEmpty_elm_builtin"===n.ctor)return r;var o=t,c=j(t,n._1,n._2,j(wr,t,r,n._3));t=o,r=c,e=n._4}}),xr=t(function(l,s,f,t,r,e){var n=O(function(t,r,e){for(;;){var n=e,o=n._1,c=n._0,i=c;if("[]"===i.ctor)return{ctor:"_Tuple2",_0:c,_1:j(f,t,r,o)};var u=i._1,a=i._0._1,_=i._0._0;if(!(W.cmp(_,t)<0))return 0<W.cmp(_,t)?{ctor:"_Tuple2",_0:c,_1:j(f,t,r,o)}:{ctor:"_Tuple2",_0:u,_1:b(s,_,a,r,o)};t=t,r=r,e={ctor:"_Tuple2",_0:u,_1:j(l,_,a,o)}}}),o=j(wr,n,{ctor:"_Tuple2",_0:kr(t),_1:e},r),c=o._0,i=o._1;return j(J,E(function(t,r){var e=t;return j(l,e._0,e._1,r)}),i,c)}),Tr=$(function(t,r,e,n){return B.crash(Nt({ctor:"::",_0:"Internal red-black tree invariant violated, expected ",_1:{ctor:"::",_0:t,_1:{ctor:"::",_0:" and got ",_1:{ctor:"::",_0:k(r),_1:{ctor:"::",_0:"/",_1:{ctor:"::",_0:e,_1:{ctor:"::",_0:"/",_1:{ctor:"::",_0:n,_1:{ctor:"::",_0:"\nPlease report this bug to <https://github.com/elm-lang/core/issues>",_1:{ctor:"[]"}}}}}}}}}}))}),Sr=function(t){var r=t;t:do{if("RBNode_elm_builtin"===r.ctor){if("BBlack"===r._0.ctor)return!0;break t}if("LBBlack"===r._0.ctor)return!0;break t}while(0);return!1},Rr=E(function(t,r){for(;;){var e=r;if("RBEmpty_elm_builtin"===e.ctor)return t;t=z(Rr,t+1,e._4),r=e._3}}),Br=E(function(t,r){t:for(;;){var e=r;if("RBEmpty_elm_builtin"===e.ctor)return A;switch(z(v,t,e._1).ctor){case"LT":t=t,r=e._3;continue t;case"EQ":return C(e._2);default:t=t,r=e._4;continue t}}}),Nr=E(function(t,r){return"Just"===z(Br,t,r).ctor}),Er=O(function(t,r,e){for(;;){var n=e;if("RBEmpty_elm_builtin"===n.ctor)return{ctor:"_Tuple2",_0:t,_1:r};t=n._1,r=n._2,e=n._4}}),Or={ctor:"NBlack"},Ar={ctor:"BBlack"},Cr={ctor:"Black"},Mr={ctor:"Red"},Lr=function(t){switch(t.ctor){case"BBlack":return Cr;case"Black":return Mr;case"Red":return Or;default:return B.crash("Can't make a negative black node less black!")}},Pr={ctor:"LBBlack"},Dr={ctor:"LBlack"},Ir=function(t){return{ctor:"RBEmpty_elm_builtin",_0:t}},Fr=Ir(Dr),qr=c(function(t,r,e,n,o){return{ctor:"RBNode_elm_builtin",_0:t,_1:r,_2:e,_3:n,_4:o}}),Ur=function(t){var r=t;return"RBNode_elm_builtin"===r.ctor?y(qr,Lr(r._0),r._1,r._2,r._3,r._4):Ir(Dr)},$r=function(l){return function(_){return function(a){return function(u){return function(i){return function(c){return function(o){return function(n){return function(e){return function(r){return function(t){return y(qr,Lr(l),u,i,y(qr,Cr,_,a,n,e),y(qr,Cr,c,o,r,t))}}}}}}}}}}},zr=function(t){var r=t;return"RBEmpty_elm_builtin"===r.ctor?B.crash("can't make a Leaf red"):y(qr,Mr,r._1,r._2,r._3,r._4)},jr=c(function(t,r,e,n,o){var c=y(qr,t,r,e,n,o);return function(t){var r=t;if("RBNode_elm_builtin"===r.ctor){var e=r._0;return W.eq(e,Cr)||W.eq(e,Ar)}return!0}(c)?function(t){var r=t;t:do{r:do{e:do{n:do{o:do{c:do{i:do{if("RBNode_elm_builtin"!==r.ctor)break t;if("RBNode_elm_builtin"===r._3.ctor)if("RBNode_elm_builtin"===r._4.ctor)switch(r._3._0.ctor){case"Red":switch(r._4._0.ctor){case"Red":if("RBNode_elm_builtin"===r._3._3.ctor&&"Red"===r._3._3._0.ctor)break i;if("RBNode_elm_builtin"===r._3._4.ctor&&"Red"===r._3._4._0.ctor)break c;if("RBNode_elm_builtin"===r._4._3.ctor&&"Red"===r._4._3._0.ctor)break o;if("RBNode_elm_builtin"===r._4._4.ctor&&"Red"===r._4._4._0.ctor)break n;break t;case"NBlack":if("RBNode_elm_builtin"===r._3._3.ctor&&"Red"===r._3._3._0.ctor)break i;if("RBNode_elm_builtin"===r._3._4.ctor&&"Red"===r._3._4._0.ctor)break c;if("BBlack"===r._0.ctor&&"RBNode_elm_builtin"===r._4._3.ctor&&"Black"===r._4._3._0.ctor&&"RBNode_elm_builtin"===r._4._4.ctor&&"Black"===r._4._4._0.ctor)break e;break t;default:if("RBNode_elm_builtin"===r._3._3.ctor&&"Red"===r._3._3._0.ctor)break i;if("RBNode_elm_builtin"===r._3._4.ctor&&"Red"===r._3._4._0.ctor)break c;break t}case"NBlack":switch(r._4._0.ctor){case"Red":if("RBNode_elm_builtin"===r._4._3.ctor&&"Red"===r._4._3._0.ctor)break o;if("RBNode_elm_builtin"===r._4._4.ctor&&"Red"===r._4._4._0.ctor)break n;if("BBlack"===r._0.ctor&&"RBNode_elm_builtin"===r._3._3.ctor&&"Black"===r._3._3._0.ctor&&"RBNode_elm_builtin"===r._3._4.ctor&&"Black"===r._3._4._0.ctor)break r;break t;case"NBlack":if("BBlack"===r._0.ctor){if("RBNode_elm_builtin"===r._4._3.ctor&&"Black"===r._4._3._0.ctor&&"RBNode_elm_builtin"===r._4._4.ctor&&"Black"===r._4._4._0.ctor)break e;if("RBNode_elm_builtin"===r._3._3.ctor&&"Black"===r._3._3._0.ctor&&"RBNode_elm_builtin"===r._3._4.ctor&&"Black"===r._3._4._0.ctor)break r;break t}break t;default:if("BBlack"===r._0.ctor&&"RBNode_elm_builtin"===r._3._3.ctor&&"Black"===r._3._3._0.ctor&&"RBNode_elm_builtin"===r._3._4.ctor&&"Black"===r._3._4._0.ctor)break r;break t}default:switch(r._4._0.ctor){case"Red":if("RBNode_elm_builtin"===r._4._3.ctor&&"Red"===r._4._3._0.ctor)break o;if("RBNode_elm_builtin"===r._4._4.ctor&&"Red"===r._4._4._0.ctor)break n;break t;case"NBlack":if("BBlack"===r._0.ctor&&"RBNode_elm_builtin"===r._4._3.ctor&&"Black"===r._4._3._0.ctor&&"RBNode_elm_builtin"===r._4._4.ctor&&"Black"===r._4._4._0.ctor)break e;break t;default:break t}}else switch(r._3._0.ctor){case"Red":if("RBNode_elm_builtin"===r._3._3.ctor&&"Red"===r._3._3._0.ctor)break i;if("RBNode_elm_builtin"===r._3._4.ctor&&"Red"===r._3._4._0.ctor)break c;break t;case"NBlack":if("BBlack"===r._0.ctor&&"RBNode_elm_builtin"===r._3._3.ctor&&"Black"===r._3._3._0.ctor&&"RBNode_elm_builtin"===r._3._4.ctor&&"Black"===r._3._4._0.ctor)break r;break t;default:break t}else{if("RBNode_elm_builtin"!==r._4.ctor)break t;switch(r._4._0.ctor){case"Red":if("RBNode_elm_builtin"===r._4._3.ctor&&"Red"===r._4._3._0.ctor)break o;if("RBNode_elm_builtin"===r._4._4.ctor&&"Red"===r._4._4._0.ctor)break n;break t;case"NBlack":if("BBlack"===r._0.ctor&&"RBNode_elm_builtin"===r._4._3.ctor&&"Black"===r._4._3._0.ctor&&"RBNode_elm_builtin"===r._4._4.ctor&&"Black"===r._4._4._0.ctor)break e;break t;default:break t}}}while(0);return $r(r._0)(r._3._3._1)(r._3._3._2)(r._3._1)(r._3._2)(r._1)(r._2)(r._3._3._3)(r._3._3._4)(r._3._4)(r._4)}while(0);return $r(r._0)(r._3._1)(r._3._2)(r._3._4._1)(r._3._4._2)(r._1)(r._2)(r._3._3)(r._3._4._3)(r._3._4._4)(r._4)}while(0);return $r(r._0)(r._1)(r._2)(r._4._3._1)(r._4._3._2)(r._4._1)(r._4._2)(r._3)(r._4._3._3)(r._4._3._4)(r._4._4)}while(0);return $r(r._0)(r._1)(r._2)(r._4._1)(r._4._2)(r._4._4._1)(r._4._4._2)(r._3)(r._4._3)(r._4._4._3)(r._4._4._4)}while(0);return y(qr,Cr,r._4._3._1,r._4._3._2,y(qr,Cr,r._1,r._2,r._3,r._4._3._3),y(jr,Cr,r._4._1,r._4._2,r._4._3._4,zr(r._4._4)))}while(0);return y(qr,Cr,r._3._4._1,r._3._4._2,y(jr,Cr,r._3._1,r._3._2,zr(r._3._3),r._3._4._3),y(qr,Cr,r._1,r._2,r._3._4._4,r._4))}while(0);return t}(c):c}),Wr=c(function(t,r,e,n,o){return Sr(n)||Sr(o)?y(jr,function(t){switch(t.ctor){case"Black":return Ar;case"Red":return Cr;case"NBlack":return Mr;default:return B.crash("Can't make a double black node more black!")}}(t),r,e,Ur(n),Ur(o)):y(qr,t,r,e,n,o)}),Jr=c(function(t,r,e,n,o){var c=o;return"RBEmpty_elm_builtin"===c.ctor?j(Hr,t,n,o):y(Wr,t,r,e,n,y(Jr,c._0,c._1,c._2,c._3,c._4))}),Hr=O(function(t,r,e){var n={ctor:"_Tuple2",_0:r,_1:e};if("RBEmpty_elm_builtin"!==n._0.ctor){if("RBEmpty_elm_builtin"===n._1.ctor){var o=n._1._0,c=n._0._0,i=c,u=o;return"_Tuple3"==="_Tuple3"&&"Black"===t.ctor&&"Red"===i.ctor&&"LBlack"===u.ctor?y(qr,Cr,n._0._1,n._0._2,n._0._3,n._0._4):b(Tr,"Black/Red/LBlack",t,k(c),k(o))}var a=n._0._2,_=n._0._4,l=n._0._1,s=y(Jr,n._0._0,l,a,n._0._3,_),f=j(Er,l,a,_),d=f._0,h=f._1;return y(Wr,t,d,h,s,e)}if("RBEmpty_elm_builtin"!==n._1.ctor){var p=n._1._0,g=n._0._0,v=g,m=p;return"_Tuple3"==="_Tuple3"&&"Black"===t.ctor&&"LBlack"===v.ctor&&"Red"===m.ctor?y(qr,Cr,n._1._1,n._1._2,n._1._3,n._1._4):b(Tr,"Black/LBlack/Red",t,k(g),k(p))}switch(t.ctor){case"Red":return Ir(Dr);case"Black":return Ir(Pr);default:return B.crash("cannot have bblack or nblack nodes at this point")}}),Vr=E(function(t,r){var e=r;if("RBEmpty_elm_builtin"===e.ctor)return Ir(Dr);var n=e._1;return y(qr,e._0,n,z(t,n,e._2),z(Vr,t,e._3),z(Vr,t,e._4))}),Kr={ctor:"Same"},Qr={ctor:"Remove"},Gr={ctor:"Insert"},Xr=O(function(h,p,t){var r,e,n,g=function(t){var r=t;if("RBEmpty_elm_builtin"===r.ctor){var e=p(A);return"Nothing"===e.ctor?{ctor:"_Tuple2",_0:Kr,_1:Fr}:{ctor:"_Tuple2",_0:Gr,_1:y(qr,Mr,h,e._0,Fr,Fr)}}var n=r._2,o=r._4,c=r._3,i=r._1,u=r._0;switch(z(v,h,i).ctor){case"EQ":var a=p(C(n));return"Nothing"===a.ctor?{ctor:"_Tuple2",_0:Qr,_1:j(Hr,u,c,o)}:{ctor:"_Tuple2",_0:Kr,_1:y(qr,u,i,a._0,c,o)};case"LT":var _=g(c),l=_._0,s=_._1;switch(l.ctor){case"Same":return{ctor:"_Tuple2",_0:Kr,_1:y(qr,u,i,n,s,o)};case"Insert":return{ctor:"_Tuple2",_0:Gr,_1:y(jr,u,i,n,s,o)};default:return{ctor:"_Tuple2",_0:Qr,_1:y(Wr,u,i,n,s,o)}}default:var f=g(o),d=(l=f._0,f._1);switch(l.ctor){case"Same":return{ctor:"_Tuple2",_0:Kr,_1:y(qr,u,i,n,c,d)};case"Insert":return{ctor:"_Tuple2",_0:Gr,_1:y(jr,u,i,n,c,d)};default:return{ctor:"_Tuple2",_0:Qr,_1:y(Wr,u,i,n,c,d)}}}},o=g(t),c=o._0,i=o._1;switch(c.ctor){case"Same":return i;case"Insert":return"RBNode_elm_builtin"===(n=e=i).ctor&&"Red"===n._0.ctor?y(qr,Cr,n._1,n._2,n._3,n._4):e;default:return"RBEmpty_elm_builtin"===(r=i).ctor?Ir(Dr):y(qr,Cr,r._1,r._2,r._3,r._4)}}),Zr=O(function(t,r,e){return j(Xr,t,u(C(r)),e)}),Yr=E(function(t,r){return j(Zr,t,r,Fr)}),te=(E(function(t,r){return j(wr,Zr,r,t)}),E(function(n,t){var r=O(function(t,r,e){return z(n,t,r)?j(Zr,t,r,e):e});return j(wr,r,Fr,t)})),re=(E(function(t,e){return z(te,E(function(t,r){return z(Nr,t,e)}),t)}),E(function(i,t){var r=O(function(t,r,e){var n=e,o=n._1,c=n._0;return z(i,t,r)?{ctor:"_Tuple2",_0:j(Zr,t,r,c),_1:o}:{ctor:"_Tuple2",_0:c,_1:j(Zr,t,r,o)}});return j(wr,r,{ctor:"_Tuple2",_0:Fr,_1:Fr},t)}),function(t){return j(J,E(function(t,r){var e=t;return j(Zr,e._0,e._1,r)}),Fr,t)}),ee=E(function(t,r){return j(Xr,t,u(A),r)}),ne=(E(function(t,r){return j(wr,O(function(t,r,e){return z(ee,t,e)}),t,r)}),{now:Pt.nativeBinding(function(t){t(Pt.succeed(Date.now()))}),setInterval_:E(function(e,n){return Pt.nativeBinding(function(t){var r=setInterval(function(){Pt.rawSpawn(n)},e);return function(){clearInterval(r)}})})}),oe=ne.setInterval_,ce=O(function(r,t,e){var n=t;if("[]"===n.ctor)return _r(e);var o=n._0,c=Pt.spawn(z(oe,o,z(zt,r,o)));return z(ir,function(t){return j(ce,r,n._1,j(Zr,o,t,e))},c)}),ie=E(function(t,r){var e=t,n=e._1,o=e._0,c=z(Br,o,r);return"Nothing"===c.ctor?j(Zr,o,{ctor:"::",_0:n,_1:{ctor:"[]"}},r):j(Zr,o,{ctor:"::",_0:n,_1:c._0},r)}),ue=ne.now,ae=O(function(e,t,r){var n=z(Br,t,r.taggers);if("Nothing"===n.ctor)return _r(r);return z(ir,function(t){return _r(r)},z(ir,function(r){return fr(z(X,function(t){return z(jt,e,t(r))},n._0))},ue))}),_e=Lt.leaf("Time"),le=E(function(t,r){return{taggers:t,processes:r}}),se=_r(z(le,Fr,Fr)),fe=O(function(r,t,e){var n=e,o=O(function(t,r,e){var n=e;return{ctor:"_Tuple3",_0:n._0,_1:n._1,_2:z(ir,function(t){return n._2},Pt.kill(r))}}),c=$(function(t,r,e,n){var o=n;return{ctor:"_Tuple3",_0:o._0,_1:j(Zr,t,e,o._1),_2:o._2}}),i=O(function(t,r,e){var n=e;return{ctor:"_Tuple3",_0:{ctor:"::",_0:t,_1:n._0},_1:n._1,_2:n._2}}),u=j(J,ie,Fr,t),a=f(xr,i,c,o,u,n.processes,{ctor:"_Tuple3",_0:{ctor:"[]"},_1:Fr,_2:_r({ctor:"_Tuple0"})}),_=a._0,l=a._1,s=a._2;return z(ir,function(t){return _r(z(le,u,t))},z(ir,function(t){return j(ce,r,_,l)},s))}),de=E(function(t,r){return{ctor:"Every",_0:t,_1:r}}),he=(E(function(t,r){return _e(z(de,t,r))}),E(function(r,t){var e=t;return z(de,e._0,function(t){return r(e._1(t))})}));Lt.effectManagers.Time={pkg:"elm-lang/core",init:se,onEffects:fe,onSelfMsg:ae,tag:"sub",subMap:he};var pe=function(){function _(t,r){return{ctor:"<decoder>",tag:"map-many",func:t,decoders:r}}function v(t){return{tag:"ok",value:t}}function m(t,r){return{tag:"primitive",type:t,value:r}}function b(t,r){return{tag:"index",index:t,rest:r}}function y(t,r){return{tag:"field",field:t,rest:r}}function b(t,r){return{tag:"index",index:t,rest:r}}function n(t,r){var e=function t(r,e){switch(r.tag){case"bool":return"boolean"==typeof e?v(e):m("a Bool",e);case"int":return"number"!=typeof e?m("an Int",e):-2147483647<e&&e<2147483647&&(0|e)===e?v(e):!isFinite(e)||e%1?m("an Int",e):v(e);case"float":return"number"==typeof e?v(e):m("a Float",e);case"string":return"string"==typeof e?v(e):e instanceof String?v(e+""):m("a String",e);case"null":return null===e?v(r.value):m("null",e);case"value":return v(e);case"list":if(!(e instanceof Array))return m("a List",e);for(var n=P.Nil,o=e.length;o--;){var c=t(r.decoder,e[o]);if("ok"!==c.tag)return b(o,c);n=P.Cons(c.value,n)}return v(n);case"array":if(!(e instanceof Array))return m("an Array",e);for(var i=e.length,u=new Array(i),o=i;o--;){var c=t(r.decoder,e[o]);if("ok"!==c.tag)return b(o,c);u[o]=c.value}return v(Xt.fromJSArray(u));case"maybe":var c=t(r.decoder,e);return"ok"===c.tag?v(C(c.value)):v(A);case"field":var a=r.field;if("object"!=typeof e||null===e||!(a in e))return m("an object with a field named `"+a+"`",e);var c=t(r.decoder,e[a]);return"ok"===c.tag?c:y(a,c);case"index":var _=r.index;if(!(e instanceof Array))return m("an array",e);if(_>=e.length)return m("a longer array. Need index "+_+" but there are only "+e.length+" entries",e);var c=t(r.decoder,e[_]);return"ok"===c.tag?c:b(_,c);case"key-value":if("object"!=typeof e||null===e||e instanceof Array)return m("an object",e);var l=P.Nil;for(var s in e){var c=t(r.decoder,e[s]);if("ok"!==c.tag)return y(s,c);var f=W.Tuple2(s,c.value);l=P.Cons(f,l)}return v(l);case"map-many":for(var d=r.func,h=r.decoders,o=0;o<h.length;o++){var c=t(h[o],e);if("ok"!==c.tag)return c;d=d(c.value)}return v(d);case"andThen":var c=t(r.decoder,e);return"ok"!==c.tag?c:t(r.callback(c.value),e);case"oneOf":for(var p=[],g=r.decoders;"[]"!==g.ctor;){var c=t(g._0,e);if("ok"===c.tag)return c;p.push(c),g=g._1}return{tag:"oneOf",problems:p};case"fail":return{tag:"fail",msg:r.msg};case"succeed":return v(r.msg)}}(t,r);return"ok"===e.tag?dt(e.value):ft(function t(r){for(var e,n="_";r;)switch(r.tag){case"primitive":return"Expecting "+r.type+("_"===n?"":" at "+n)+" but instead got: "+(void 0===(e=r.value)?"undefined":JSON.stringify(e));case"index":n+="["+r.index+"]",r=r.rest;break;case"field":n+="."+r.field,r=r.rest;break;case"oneOf":for(var o=r.problems,c=0;c<o.length;c++)o[c]=t(o[c]);return"I ran into the following problems"+("_"===n?"":" at "+n)+":\n\n"+o.join("\n");case"fail":return"I ran into a `fail` decoder"+("_"===n?"":" at "+n)+": "+r.msg}}(e))}function o(t,r){if(t===r)return!0;if(t.tag!==r.tag)return!1;switch(t.tag){case"succeed":case"fail":return t.msg===r.msg;case"bool":case"int":case"float":case"string":case"value":return!0;case"null":return t.value===r.value;case"list":case"array":case"maybe":case"key-value":return o(t.decoder,r.decoder);case"field":return t.field===r.field&&o(t.decoder,r.decoder);case"index":return t.index===r.index&&o(t.decoder,r.decoder);case"map-many":return t.func===r.func&&e(t.decoders,r.decoders);case"andThen":return t.callback===r.callback&&o(t.decoder,r.decoder);case"oneOf":return e(t.decoders,r.decoders)}}function e(t,r){var e=t.length;if(e!==r.length)return!1;for(var n=0;n<e;n++)if(!o(t[n],r[n]))return!1;return!0}return{encode:E(function(t,r){return JSON.stringify(r,null,t)}),runOnString:E(function(t,r){var e;try{e=JSON.parse(r)}catch(t){return ft("Given an invalid JSON: "+t.message)}return n(t,e)}),run:E(n),decodeNull:function(t){return{ctor:"<decoder>",tag:"null",value:t}},decodePrimitive:function(t){return{ctor:"<decoder>",tag:t}},decodeContainer:E(function(t,r){return{ctor:"<decoder>",tag:t,decoder:r}}),decodeField:E(function(t,r){return{ctor:"<decoder>",tag:"field",field:t,decoder:r}}),decodeIndex:E(function(t,r){return{ctor:"<decoder>",tag:"index",index:t,decoder:r}}),map1:E(function(t,r){return _(t,[r])}),map2:O(function(t,r,e){return _(t,[r,e])}),map3:$(function(t,r,e,n){return _(t,[r,e,n])}),map4:c(function(t,r,e,n,o){return _(t,[r,e,n,o])}),map5:t(function(t,r,e,n,o,c){return _(t,[r,e,n,o,c])}),map6:r(function(t,r,e,n,o,c,i){return _(t,[r,e,n,o,c,i])}),map7:function(a){function t(u){return function(i){return function(c){return function(o){return function(n){return function(e){return function(r){return function(t){return a(u,i,c,o,n,e,r,t)}}}}}}}}return t.arity=8,t.func=a,t}(function(t,r,e,n,o,c,i,u){return _(t,[r,e,n,o,c,i,u])}),map8:function(_){function t(a){return function(u){return function(i){return function(c){return function(o){return function(n){return function(e){return function(r){return function(t){return _(a,u,i,c,o,n,e,r,t)}}}}}}}}}return t.arity=9,t.func=_,t}(function(t,r,e,n,o,c,i,u,a){return _(t,[r,e,n,o,c,i,u,a])}),decodeKeyValuePairs:function(t){return{ctor:"<decoder>",tag:"key-value",decoder:t}},andThen:E(function(t,r){return{ctor:"<decoder>",tag:"andThen",decoder:r,callback:t}}),fail:function(t){return{ctor:"<decoder>",tag:"fail",msg:t}},succeed:function(t){return{ctor:"<decoder>",tag:"succeed",msg:t}},oneOf:function(t){return{ctor:"<decoder>",tag:"oneOf",decoders:t}},identity:function(t){return t},encodeNull:null,encodeArray:Xt.toJSArray,encodeList:P.toArray,encodeObject:function(t){for(var r={};"[]"!==t.ctor;){var e=t._0;r[e._0]=e._1,t=t._1}return r},equality:o}}(),ge=(pe.encodeList,pe.encodeArray,pe.encodeObject,pe.encodeNull,pe.identity),ve=(pe.identity,pe.identity,pe.identity),me=(pe.encode,pe.decodeNull,pe.decodePrimitive("value")),be=(pe.andThen,pe.fail,pe.succeed),ye=pe.run,ke=pe.runOnString,we=(pe.map8,pe.map7,pe.map6,pe.map5,pe.map4,pe.map3,pe.map2,pe.map1),xe=(pe.oneOf,pe.decodeIndex,pe.decodeField),Te=(E(function(t,r){return j(U,xe,r,t)}),pe.decodeKeyValuePairs,pe.decodePrimitive("float"),pe.decodePrimitive("int"),pe.decodePrimitive("bool"),pe.decodePrimitive("string"),{regex:function(t){return new RegExp(t,"g")},caseInsensitive:function(t){return new RegExp(t.source,"gi")},escape:function(t){return t.replace(/[-\/\\^$*+?.()|[\]{}]/g,"\\$&")},contains:E(function(t,r){return null!==r.match(t)}),find:O(function(t,r,e){t="All"===t.ctor?1/0:t._0;for(var n,o=[],c=0,i=e,u=r.lastIndex,a=-1;c++<t&&(n=r.exec(i))&&a!==r.lastIndex;){for(var _=n.length-1,l=new Array(_);0<_;){var s=n[_];l[--_]=void 0===s?A:C(s)}o.push({match:n[0],submatches:P.fromArray(l),index:n.index,number:c}),a=r.lastIndex}return r.lastIndex=u,P.fromArray(o)}),replace:$(function(o,t,c,r){o="All"===o.ctor?1/0:o._0;var i=0;return r.replace(t,function(t){if(i++>=o)return t;for(var r=arguments.length-3,e=new Array(r);0<r;){var n=arguments[r];e[--r]=void 0===n?A:C(n)}return c({match:t,submatches:P.fromArray(e),index:arguments[arguments.length-2],number:i})})}),split:O(function(t,r,e){if((t="All"===t.ctor?1/0:t._0)===1/0)return P.fromArray(e.split(r));for(var n,o=e,c=[],i=r.lastIndex,u=r.lastIndex;t--&&(n=r.exec(o));)c.push(o.slice(i,n.index)),i=r.lastIndex;return c.push(o.slice(i)),r.lastIndex=u,P.fromArray(c)})}),Se=Pt.kill,Re=(Pt.sleep,Pt.spawn),Be=Te.replace,Ne=Te.regex,Ee=($(function(t,r,e,n){return{match:t,submatches:r,index:e,number:n}}),{ctor:"All"}),Oe=function(){var t={addEventListener:function(){},removeEventListener:function(){}},r=n("undefined"!=typeof document?document:t),e=n("undefined"!=typeof window?window:t);function n(c){return function(e,n,o){return Pt.nativeBinding(function(t){function r(t){var r=z(ye,n,t);"Ok"===r.ctor&&Pt.rawSpawn(o(r._0))}return c.addEventListener(e,r),function(){c.removeEventListener(e,r)}})}}var o="undefined"!=typeof requestAnimationFrame?requestAnimationFrame:function(t){t()};function c(e,n){return Pt.nativeBinding(function(r){o(function(){var t=document.getElementById(e);r(null!==t?Pt.succeed(n(t)):Pt.fail({ctor:"NotFound",_0:e}))})})}return{onDocument:O(r),onWindow:O(e),focus:function(t){return c(t,function(t){return t.focus(),W.Tuple0})},blur:function(t){return c(t,function(t){return t.blur(),W.Tuple0})},getScrollTop:function(t){return c(t,function(t){return t.scrollTop})},setScrollTop:E(function(t,r){return c(t,function(t){return t.scrollTop=r,W.Tuple0})}),getScrollLeft:function(t){return c(t,function(t){return t.scrollLeft})},setScrollLeft:E(function(t,r){return c(t,function(t){return t.scrollLeft=r,W.Tuple0})}),toBottom:function(t){return c(t,function(t){return t.scrollTop=t.scrollHeight,W.Tuple0})},toRight:function(t){return c(t,function(t){return t.scrollLeft=t.scrollWidth,W.Tuple0})},height:E(function(e,t){return c(t,function(t){switch(e.ctor){case"Content":return t.scrollHeight;case"VisibleContent":return t.clientHeight;case"VisibleContentWithBorders":return t.offsetHeight;case"VisibleContentWithBordersAndMargins":var r=t.getBoundingClientRect();return r.bottom-r.top}})}),width:E(function(e,t){return c(t,function(t){switch(e.ctor){case"Content":return t.scrollWidth;case"VisibleContent":return t.clientWidth;case"VisibleContentWithBorders":return t.offsetWidth;case"VisibleContentWithBordersAndMargins":var r=t.getBoundingClientRect();return r.right-r.left}})})}}(),Ae=Oe.onWindow,Ce=(Oe.onDocument,function(){var s="STYLE",f="EVENT",d="ATTR",h="ATTR_NS",A="undefined"!=typeof document?document:{};function o(t,r,e){return{type:"thunk",func:t,args:r,thunk:e,node:void 0}}function _(t){for(var r,e={};"[]"!==t.ctor;){var n=t._0,o=n.key;if(o===d||o===h||o===f){var c=e[o]||{};c[n.realKey]=n.value,e[o]=c}else if(o===s){for(var i=e[o]||{},u=n.value;"[]"!==u.ctor;){var a=u._0;i[a._0]=a._1,u=u._1}e[o]=i}else if("namespace"===o)r=n.value;else if("className"===o){var _=e[o];e[o]=void 0===_?n.value:_+" "+n.value}else e[o]=n.value;t=t._1}return{facts:e,namespace:r}}function e(t,r,e){return{key:f,realKey:t,value:{options:r,decoder:e}}}function C(t,r){switch(t.type){case"thunk":return t.node||(t.node=t.thunk()),C(t.node,r);case"tagger":for(var e=t.node,n=t.tagger;"tagger"===e.type;)"object"!=typeof n?n=[n,e.tagger]:n.push(e.tagger),e=e.node;var o={tagger:n,parent:r};return(u=C(e,o)).elm_event_node_ref=o,u;case"text":return A.createTextNode(t.text);case"node":a(u=t.namespace?A.createElementNS(t.namespace,t.tag):A.createElement(t.tag),r,t.facts);for(var c=t.children,i=0;i<c.length;i++)u.appendChild(C(c[i],r));return u;case"keyed-node":a(u=t.namespace?A.createElementNS(t.namespace,t.tag):A.createElement(t.tag),r,t.facts);for(c=t.children,i=0;i<c.length;i++)u.appendChild(C(c[i]._1,r));return u;case"custom":var u;return a(u=t.impl.render(t.model),r,t.facts),u}}function a(t,r,e){for(var n in e){var o=e[n];switch(n){case s:c(t,o);break;case f:i(t,r,o);break;case d:l(t,o);break;case h:p(t,o);break;case"value":t[n]!==o&&(t[n]=o);break;default:t[n]=o}}}function c(t,r){var e=t.style;for(var n in r)e[n]=r[n]}function i(t,r,e){var n=t.elm_handlers||{};for(var o in e){var c=n[o],i=e[o];if(void 0===i)t.removeEventListener(o,c),n[o]=void 0;else if(void 0===c){c=u(r,i);t.addEventListener(o,c),n[o]=c}else c.info=i}t.elm_handlers=n}function u(a,t){function _(t){var r=_.info,e=z(pe.run,r.decoder,t);if("Ok"===e.ctor){var n=r.options;n.stopPropagation&&t.stopPropagation(),n.preventDefault&&t.preventDefault();for(var o=e._0,c=a;c;){var i=c.tagger;if("function"==typeof i)o=i(o);else for(var u=i.length;u--;)o=i[u](o);c=c.parent}}}return _.info=t,_}function l(t,r){for(var e in r){var n=r[e];void 0===n?t.removeAttribute(e):t.setAttribute(e,n)}}function p(t,r){for(var e in r){var n=r[e],o=n.namespace,c=n.value;void 0===c?t.removeAttributeNS(o,e):t.setAttributeNS(o,e,c)}}function M(t,r){var e=[];return P(t,r,e,0),e}function L(t,r,e){return{index:r,type:t,data:e,domNode:void 0,eventNode:void 0}}function P(t,r,e,n){if(t!==r){var o=t.type,c=r.type;if(o===c)switch(c){case"thunk":for(var i=t.args,u=r.args,a=i.length,_=t.func===r.func&&a===u.length;_&&a--;)_=i[a]===u[a];if(_)return void(r.node=t.node);r.node=r.thunk();var l=[];return P(t.node,r.node,l,0),void(0<l.length&&e.push(L("p-thunk",n,l)));case"tagger":for(var s=t.tagger,f=r.tagger,d=!1,h=t.node;"tagger"===h.type;)d=!0,"object"!=typeof s?s=[s,h.tagger]:s.push(h.tagger),h=h.node;for(var p=r.node;"tagger"===p.type;)d=!0,"object"!=typeof f?f=[f,p.tagger]:f.push(p.tagger),p=p.node;return d&&s.length!==f.length?void e.push(L("p-redraw",n,r)):((d?function(t,r){for(var e=0;e<t.length;e++)if(t[e]!==r[e])return!1;return!0}(s,f):s===f)||e.push(L("p-tagger",n,f)),void P(h,p,e,n+1));case"text":return t.text!==r.text?void e.push(L("p-text",n,r.text)):void 0;case"node":return t.tag!==r.tag||t.namespace!==r.namespace?void e.push(L("p-redraw",n,r)):(void 0!==(g=m(t.facts,r.facts))&&e.push(L("p-facts",n,g)),void function(t,r,e,n){var o=t.children,c=r.children,i=o.length,u=c.length;u<i?e.push(L("p-remove-last",n,i-u)):i<u&&e.push(L("p-append",n,c.slice(i)));for(var a=n,_=i<u?i:u,l=0;l<_;l++){a++;var s=o[l];P(s,c[l],e,a),a+=s.descendantsCount||0}}(t,r,e,n));case"keyed-node":return t.tag!==r.tag||t.namespace!==r.namespace?void e.push(L("p-redraw",n,r)):(void 0!==(g=m(t.facts,r.facts))&&e.push(L("p-facts",n,g)),void function(t,r,e,n){var o,c=[],i={},u=[],a=t.children,_=r.children,l=a.length,s=_.length,f=0,d=0,h=n;for(;f<l&&d<s;){var p=a[f],g=_[d],v=p._0,m=g._0,b=p._1,y=g._1;if(v!==m){var k=f+1<l,w=d+1<s;if(k)var x=a[f+1],T=x._0,S=x._1,R=m===T;if(w)var B=_[d+1],N=B._0,E=B._1,O=v===N;if(k&&w&&O&&R)P(b,E,c,++h),D(i,c,v,y,d,u),h+=b.descendantsCount||0,I(i,c,v,S,++h),h+=S.descendantsCount||0,f+=2,d+=2;else if(w&&O)h++,D(i,c,m,y,d,u),P(b,E,c,h),h+=b.descendantsCount||0,f+=1,d+=2;else if(k&&R)I(i,c,v,b,++h),h+=b.descendantsCount||0,P(S,y,c,++h),h+=S.descendantsCount||0,f+=2,d+=1;else{if(!k||!w||T!==N)break;I(i,c,v,b,++h),D(i,c,m,y,d,u),h+=b.descendantsCount||0,P(S,E,c,++h),h+=S.descendantsCount||0,f+=2,d+=2}}else P(b,y,c,++h),h+=b.descendantsCount||0,f++,d++}for(;f<l;){h++;var p=a[f],b=p._1;I(i,c,p._0,b,h),h+=b.descendantsCount||0,f++}for(;d<s;){o=o||[];var g=_[d];D(i,c,g._0,g._1,void 0,o),d++}(0<c.length||0<u.length||void 0!==o)&&e.push(L("p-reorder",n,{patches:c,inserts:u,endInserts:o}))}(t,r,e,n));case"custom":if(t.impl!==r.impl)return void e.push(L("p-redraw",n,r));var g;void 0!==(g=m(t.facts,r.facts))&&e.push(L("p-facts",n,g));var v=r.impl.diff(t,r);return v?void e.push(L("p-custom",n,v)):void 0}else e.push(L("p-redraw",n,r))}}function m(t,r,e){var n,o,c;for(var i in t)if(i!==s&&i!==f&&i!==d&&i!==h)if(i in r){var u=t[i],a=r[i];u===a&&"value"!==i||e===f&&(c=a,((o=u).options===c.options||o.options.stopPropagation===c.options.stopPropagation&&o.options.preventDefault===c.options.preventDefault)&&pe.equality(o.decoder,c.decoder))||((n=n||{})[i]=a)}else(n=n||{})[i]=void 0===e?"string"==typeof t[i]?"":null:e===s?"":e===f||e===d?void 0:{namespace:t[i].namespace,value:void 0};else{var _=m(t[i],r[i]||{},i);_&&((n=n||{})[i]=_)}for(var l in r)l in t||((n=n||{})[l]=r[l]);return n}var g="_elmW6BL";function D(t,r,e,n,o,c){var i=t[e];if(void 0===i)return i={tag:"insert",vnode:n,index:o,data:void 0},c.push({index:o,entry:i}),void(t[e]=i);if("remove"===i.tag){c.push({index:o,entry:i}),i.tag="move";var u=[];return P(i.vnode,n,u,i.index),i.index=o,void(i.data.data={patches:u,entry:i})}D(t,r,e+g,n,o,c)}function I(t,r,e,n,o){var c=t[e];if(void 0===c){var i=L("p-remove",o,void 0);return r.push(i),void(t[e]={tag:"remove",vnode:n,index:o,data:i})}if("insert"!==c.tag)I(t,r,e+g,n,o);else{c.tag="move";var u=[];P(n,c.vnode,u,o);i=L("p-remove",o,{patches:u,entry:c});r.push(i)}}function b(t,r,e,n){!function t(r,e,n,o,c,i,u){var a=n[o];var _=a.index;for(;_===c;){var l=a.type;if("p-thunk"===l)b(r,e.node,a.data,u);else if("p-reorder"===l){a.domNode=r,a.eventNode=u;var s=a.data.patches;0<s.length&&t(r,e,s,0,c,i,u)}else if("p-remove"===l){a.domNode=r,a.eventNode=u;var f=a.data;if(void 0!==f){f.entry.data=r;var s=f.patches;0<s.length&&t(r,e,s,0,c,i,u)}}else a.domNode=r,a.eventNode=u;if(!(a=n[++o])||(_=a.index)>i)return o}switch(e.type){case"tagger":for(var d=e.node;"tagger"===d.type;)d=d.node;return t(r,d,n,o,c+1,i,r.elm_event_node_ref);case"node":for(var h=e.children,p=r.childNodes,g=0;g<h.length;g++){c++;var v=h[g],m=c+(v.descendantsCount||0);if(c<=_&&_<=m&&(o=t(p[g],v,n,o,c,m,u),!(a=n[o])||(_=a.index)>i))return o;c=m}return o;case"keyed-node":for(var h=e.children,p=r.childNodes,g=0;g<h.length;g++){c++;var v=h[g]._1,m=c+(v.descendantsCount||0);if(c<=_&&_<=m&&(o=t(p[g],v,n,o,c,m,u),!(a=n[o])||(_=a.index)>i))return o;c=m}return o;case"text":case"thunk":throw new Error("should never traverse `text` or `thunk` nodes like this")}}(t,r,e,0,0,r.descendantsCount,n)}function F(t,r,e,n){return 0===e.length?t:(b(t,r,e,n),v(t,e))}function v(t,r){for(var e=0;e<r.length;e++){var n=r[e],o=n.domNode,c=y(o,n);o===t&&(t=c)}return t}function y(t,r){switch(r.type){case"p-redraw":return function(t,r,e){var n=t.parentNode,o=C(r,e);void 0===o.elm_event_node_ref&&(o.elm_event_node_ref=t.elm_event_node_ref);n&&o!==t&&n.replaceChild(o,t);return o}(t,r.data,r.eventNode);case"p-facts":return a(t,r.eventNode,r.data),t;case"p-text":return t.replaceData(0,t.length,r.data),t;case"p-thunk":return v(t,r.data);case"p-tagger":return void 0!==t.elm_event_node_ref?t.elm_event_node_ref.tagger=r.data:t.elm_event_node_ref={tagger:r.data,parent:r.eventNode},t;case"p-remove-last":for(var e=r.data;e--;)t.removeChild(t.lastChild);return t;case"p-append":var n=r.data;for(e=0;e<n.length;e++)t.appendChild(C(n[e],r.eventNode));return t;case"p-remove":var o=r.data;if(void 0===o)return t.parentNode.removeChild(t),t;var c=o.entry;return void 0!==c.index&&t.parentNode.removeChild(t),c.data=v(t,o.patches),t;case"p-reorder":return function(t,r){var e=r.data,n=function(t,r){if(void 0===t)return;for(var e=A.createDocumentFragment(),n=0;n<t.length;n++){var o=t[n],c=o.entry;e.appendChild("move"===c.tag?c.data:C(c.vnode,r.eventNode))}return e}(e.endInserts,r);t=v(t,e.patches);for(var o=e.inserts,c=0;c<o.length;c++){var i=o[c],u=i.entry,a="move"===u.tag?u.data:C(u.vnode,r.eventNode);t.insertBefore(a,t.childNodes[i.index])}void 0!==n&&t.appendChild(n);return t}(t,r);case"p-custom":var i=r.data;return i.applyPatch(t,i.data);default:throw new Error("Ran into an unknown patch!")}}var n=r(function(t,o){return function(t,r,e){if(void 0===r)return t;var n="The `"+o+"` module does not need flags.\nInitialize it with no arguments and you should be all set!";k(n,e)}}),t=r(function(c,i){return function(t,r,e){if(void 0===c){var n="Are you trying to sneak a Never value into Elm? Trickster!\nIt looks like "+i+".main is defined with `programWithFlags` but has type `Program Never`.\nUse `program` instead if you do not want flags.";k(n,e)}var o=z(pe.run,c,r);if("Ok"===o.ctor)return t(o._0);var n="Trying to initialize the `"+i+"` module with an unexpected flag.\nI tried to convert it to an Elm value, but ran into this problem:\n\n"+o._0;k(n,e)}});function r(h){return E(function(f,d){return function(s){return function(t,r,e){var n,o,c,i,u,a,_,l=h(s,r);void 0===e?(u=d,_=l,(a=t).embed=function(t,r){for(;t.lastChild;)t.removeChild(t.lastChild);return Lt.initialize(_(u.init,r,t),u.update,u.subscriptions,w(t,u.view))},a.fullscreen=function(t){return Lt.initialize(_(u.init,t,document.body),u.update,u.subscriptions,w(document.body,u.view))}):(n=z(f,e,d),c=r,i=l,(o=t).fullscreen=function(t){var r={doc:void 0};return Lt.initialize(i(n.init,t,document.body),n.update(T(r)),n.subscriptions,S(c,document.body,r,n.view,n.viewIn,n.viewOut))},o.embed=function(t,r){var e={doc:void 0};return Lt.initialize(i(n.init,r,t),n.update(T(e)),n.subscriptions,S(c,t,e,n.view,n.viewIn,n.viewOut))})}}})}function k(t,r){throw r&&(r.innerHTML='<div style="padding-left:1em;"><h2 style="font-weight:normal;"><b>Oops!</b> Something went wrong when starting your Elm program.</h2><pre style="padding-left:1em;">'+t+"</pre></div>"),new Error(t)}function w(c,i){return function(t,r){var e={tagger:t,parent:void 0},n=i(r),o=C(n,e);return c.appendChild(o),q(o,i,n,e)}}var x="undefined"!=typeof requestAnimationFrame?requestAnimationFrame:function(t){setTimeout(t,1e3/60)};function q(e,n,t,o){var c,i="NO_REQUEST",u=t;function a(){switch(i){case"NO_REQUEST":throw new Error("Unexpected draw callback.\nPlease report this to <https://github.com/elm-lang/virtual-dom/issues>.");case"PENDING_REQUEST":x(a),i="EXTRA_REQUEST";var t=n(c),r=M(u,t);return e=F(e,u,r,o),void(u=t);case"EXTRA_REQUEST":return void(i="NO_REQUEST")}}return function(t){"NO_REQUEST"===i&&x(a),i="PENDING_REQUEST",c=t}}function T(n){return Pt.nativeBinding(function(t){var r=n.doc;if(r){var e=r.getElementsByClassName("debugger-sidebar-messages")[0];e&&(e.scrollTop=e.scrollHeight)}t(Pt.succeed(W.Tuple0))})}function S(S,R,B,N,E,O){return function(t,r){var e={tagger:t,parent:void 0},n={tagger:t,parent:void 0},o=N(r),c=C(o,e);R.appendChild(c);var i=q(c,N,o,e),u=E(r)._1,a=C(u,n);R.appendChild(a);var _,l,s,f,d,h,p,g,v,m,b,y,k,w,x=q(a,(l=E,g=a,f=function(t){if("keydown"!==t.type||!t.metaKey||82!==t.which){for(var r="scroll"===t.type||"wheel"===t.type,e=t.target;null!==e;){if("elm-overlay-message-details"===e.className&&r)return;if(e===g&&!r)return;e=e.parentNode}t.stopPropagation(),t.preventDefault()}},d="Normal",h=(_=e).tagger,p=function(){},function(t){var r=l(t),e=r._0.ctor;return _.tagger="Normal"===e?h:p,d!==e&&(U("removeEventListener",f,d),U("addEventListener",f,e),"Normal"===d&&(s=document.body.style.overflow,document.body.style.overflow="hidden"),"Normal"===e&&(document.body.style.overflow=s),d=e),r._1}),u,n),T=(v=O,m=n,b=S,y=B,function(t){if(t.isDebuggerOpen){if(!y.doc)return k=v(t),void(w=function(t,r,e,n){var o=screen.width-900,c=screen.height-360,i=window.open("","","width=900,height=360,left="+o+",top="+c);A=i.document,(r.doc=A).title="Debugger - "+t,A.body.style.margin="0",A.body.style.padding="0";var u=C(e,n);function a(){r.doc=void 0,i.close()}return A.body.appendChild(u),A.addEventListener("keydown",function(t){t.metaKey&&82===t.which&&window.location.reload(),38===t.which&&(n.tagger({ctor:"Up"}),t.preventDefault()),40===t.which&&(n.tagger({ctor:"Down"}),t.preventDefault())}),window.addEventListener("unload",a),i.addEventListener("unload",function(){r.doc=void 0,window.removeEventListener("unload",a),n.tagger({ctor:"Close"})}),A=document,u}(b,y,k,m));A=y.doc;var r=v(t),e=M(k,r);w=F(w,k,e,m),k=r,A=document}});return function(t){i(t),x(t),T(t)}}}function U(t,r,e){switch(e){case"Normal":return;case"Pause":return R(t,r,B);case"Message":return R(t,r,N)}}function R(t,r,e){for(var n=0;n<e.length;n++)document.body[t](e[n],r,!0)}var B=["click","dblclick","mousemove","mouseup","mousedown","mouseenter","mouseleave","touchstart","touchend","touchcancel","touchmove","pointerdown","pointerup","pointerover","pointerout","pointerenter","pointerleave","pointermove","pointercancel","dragstart","drag","dragend","dragenter","dragover","dragleave","drop","keyup","keydown","keypress","input","change","focus","blur"],N=B.concat("wheel","scroll");return{node:function(e){return E(function(t,r){return function(t,r,e){for(var n=_(r),o=n.namespace,c=n.facts,i=[],u=0;"[]"!==e.ctor;){var a=e._0;u+=a.descendantsCount||0,i.push(a),e=e._1}return u+=i.length,{type:"node",tag:t,facts:c,children:i,namespace:o,descendantsCount:u}}(e,t,r)})},text:function(t){return{type:"text",text:t}},custom:function(t,r,e){return{type:"custom",facts:_(t).facts,model:r,impl:e}},map:E(function(t,r){return{type:"tagger",tagger:t,node:r,descendantsCount:1+(r.descendantsCount||0)}}),on:O(e),style:function(t){return{key:s,value:t}},property:E(function(t,r){return{key:t,value:r}}),attribute:E(function(t,r){return{key:d,realKey:t,value:r}}),attributeNS:O(function(t,r,e){return{key:h,realKey:r,value:{value:e,namespace:t}}}),mapProperty:E(function(t,r){return r.key!==f?r:e(r.realKey,r.value.options,z(we,t,r.value.decoder))}),lazy:E(function(t,r){return o(t,[r],function(){return t(r)})}),lazy2:O(function(t,r,e){return o(t,[r,e],function(){return z(t,r,e)})}),lazy3:$(function(t,r,e,n){return o(t,[r,e,n],function(){return j(t,r,e,n)})}),keyedNode:O(function(t,r,e){for(var n=_(r),o=n.namespace,c=n.facts,i=[],u=0;"[]"!==e.ctor;){var a=e._0;u+=a._1.descendantsCount||0,i.push(a),e=e._1}return{type:"keyed-node",tag:t,facts:c,children:i,namespace:o,descendantsCount:u+=i.length}}),program:n,programWithFlags:t,staticProgram:function(t){var r=W.Tuple2(W.Tuple0,It);return z(n,void 0,{init:r,view:function(){return t},update:E(function(){return r}),subscriptions:function(){return $t}})()}}}()),Me=function(t){return z(Ce.programWithFlags,void 0,t)},Le=function(t){return z(Ce.program,void 0,t)},Pe=Ce.keyedNode,De=Ce.lazy3,Ie=Ce.lazy2,Fe=Ce.lazy,qe={stopPropagation:!1,preventDefault:!1},Ue=Ce.on,$e=E(function(t,r){return j(Ue,t,qe,r)}),ze=(Ce.style,Ce.mapProperty),je=Ce.attributeNS,We=Ce.attribute,Je=Ce.property,He=Ce.map,Ve=Ce.text,Ke=Ce.node,Qe=(E(function(t,r){return{stopPropagation:t,preventDefault:r}}),Me),Ge=Le,Xe=Ke,Ze=(Xe("body"),Xe("section"),Xe("nav"),Xe("article"),Xe("aside"),Xe("h1"),Xe("h2"),Xe("h3"),Xe("h4"),Xe("h5"),Xe("h6"),Xe("header"),Xe("footer"),Xe("address"),Xe("main"),Xe("p"),Xe("hr"),Xe("pre"),Xe("blockquote"),Xe("ol"),Xe("ul"),Xe("li"),Xe("dl"),Xe("dt"),Xe("dd"),Xe("figure"),Xe("figcaption"),Xe("div"),Xe("a"),Xe("em"),Xe("strong"),Xe("small"),Xe("s"),Xe("cite"),Xe("q"),Xe("dfn"),Xe("abbr"),Xe("time"),Xe("code"),Xe("var"),Xe("samp"),Xe("kbd"),Xe("sub"),Xe("sup"),Xe("i"),Xe("b"),Xe("u"),Xe("mark"),Xe("ruby"),Xe("rt"),Xe("rp"),Xe("bdi"),Xe("bdo"),Xe("span"),Xe("br"),Xe("wbr"),Xe("ins"),Xe("del"),Xe("img"),Xe("iframe"),Xe("embed"),Xe("object"),Xe("param"),Xe("video"),Xe("audio"),Xe("source"),Xe("track"),Xe("canvas"),Xe("math"),Xe("table"),Xe("caption"),Xe("colgroup"),Xe("col"),Xe("tbody"),Xe("thead"),Xe("tfoot"),Xe("tr"),Xe("td"),Xe("th"),Xe("form"),Xe("fieldset"),Xe("legend"),Xe("label"),Xe("input"),Xe("button"),Xe("select"),Xe("datalist"),Xe("optgroup"),Xe("option"),Xe("textarea"),Xe("keygen"),Xe("output"),Xe("progress"),Xe("meter"),Xe("details"),Xe("summary"),Xe("menuitem"),Xe("menu"),{toTask:E(function(i,u){return Pt.nativeBinding(function(r){var e,t,n,o,c=new XMLHttpRequest;n=c,"Nothing"!==(o=u).ctor&&n.addEventListener("progress",function(t){t.lengthComputable&&Pt.rawSpawn(o._0({bytes:t.loaded,bytesExpected:t.total}))}),c.addEventListener("error",function(){r(Pt.fail({ctor:"NetworkError"}))}),c.addEventListener("timeout",function(){r(Pt.fail({ctor:"Timeout"}))}),c.addEventListener("load",function(){r(function(t,r){var e,n={status:{code:(e=t).status,message:e.statusText},headers:function(t){var r=Fr;if(!t)return r;for(var e=t.split("\r\n"),n=e.length;n--;){var o=e[n],c=o.indexOf(": ");if(0<c){var i=o.substring(0,c),u=o.substring(c+2);r=j(Xr,i,function(t){return"Just"===t.ctor?C(u+", "+t._0):C(u)},r)}}return r}(e.getAllResponseHeaders()),url:e.responseURL,body:e.response};if(t.status<200||300<=t.status)return n.body=t.responseText,Pt.fail({ctor:"BadStatus",_0:n});var o=r(n);return"Ok"===o.ctor?Pt.succeed(o._0):(n.body=t.responseText,Pt.fail({ctor:"BadPayload",_0:o._0,_1:n}))}(c,i.expect.responseToResult))});try{c.open(i.method,i.url,!0)}catch(t){return r(Pt.fail({ctor:"BadUrl",_0:i.url}))}return e=c,z(X,function(t){e.setRequestHeader(t._0,t._1)},(t=i).headers),e.responseType=t.expect.responseType,e.withCredentials=t.withCredentials,"Just"===t.timeout.ctor&&(e.timeout=t.timeout._0),function(t,r){switch(r.ctor){case"EmptyBody":return t.send();case"StringBody":return t.setRequestHeader("Content-Type",r._0),t.send(r._1);case"FormDataBody":t.send(r._0)}}(c,i.body),function(){c.abort()}})}),expectStringResponse:function(t){return{responseType:"text",responseToResult:t}},mapExpect:E(function(e,n){return{responseType:n.responseType,responseToResult:function(t){var r=n.responseToResult(t);return z(ht,e,r)}}}),multipart:function(t){for(var r=new FormData;"[]"!==t.ctor;){var e=t._0;r.append(e._0,e._1),t=t._1}return{ctor:"FormDataBody",_0:r}},encodeUri:function(t){return encodeURIComponent(t)},decodeUri:function(t){try{return C(decodeURIComponent(t))}catch(t){return A}}}),Ye=(E(function(t,r){return W.update(r,{expect:z(Ze.mapExpect,t,r.expect)})}),r(function(t,r,e,n,o,c,i){return{method:t,headers:r,url:e,body:n,expect:o,timeout:c,withCredentials:i}}),E(function(t,r){return{ctor:"StringBody",_0:t,_1:r}}),E(function(t,r){return{ctor:"Header",_0:t,_1:r}}),Ze.decodeUri),tn=Ze.expectStringResponse,rn=function(r){return tn(function(t){return z(ke,r,t.body)})},en=tn(function(t){return dt(t.body)}),nn={ctor:"EmptyBody"},on=function(t){return{ctor:"Request",_0:t}},cn=(O(function(t,r,e){return on({method:"POST",headers:{ctor:"[]"},url:t,body:r,expect:rn(e),timeout:A,withCredentials:!1})}),E(function(t,r){return on({method:"GET",headers:{ctor:"[]"},url:t,body:nn,expect:rn(r),timeout:A,withCredentials:!1})}),function(t){return z(Ze.toTask,t._0,A)}),un=(E(function(t,r){return z(mr,t,cn(r))}),$(function(t,r,e,n){return{url:t,status:r,headers:e,body:n}}),E(function(t,r){return{ctor:"BadPayload",_0:t,_1:r}}),E(function(t,r){return{ctor:"StringPart",_0:t,_1:r}}),function(){function e(){var t=document.location;return{href:t.href,host:t.host,hostname:t.hostname,protocol:t.protocol,origin:t.origin,port_:t.port,pathname:t.pathname,search:t.search,hash:t.hash,username:t.username,password:t.password}}return{go:function(r){return Pt.nativeBinding(function(t){0!==r&&history.go(r),t(Pt.succeed(W.Tuple0))})},setLocation:function(r){return Pt.nativeBinding(function(t){try{window.location=r}catch(t){document.location.reload(!1)}t(Pt.succeed(W.Tuple0))})},reloadPage:function(r){return Pt.nativeBinding(function(t){document.location.reload(r),t(Pt.succeed(W.Tuple0))})},pushState:function(r){return Pt.nativeBinding(function(t){history.pushState({},"",r),t(Pt.succeed(e()))})},replaceState:function(r){return Pt.nativeBinding(function(t){history.replaceState({},"",r),t(Pt.succeed(e()))})},getLocation:e,isInternetExplorer11:function(){return-1!==window.navigator.userAgent.indexOf("Trident")}}}()),an=un.replaceState,_n=un.pushState,ln=un.go,sn=un.reloadPage,fn=un.setLocation,dn=dn||{};dn["&>"]=E(function(t,r){return z(ir,function(t){return r},t)});var hn=O(function(r,t,e){return z(dn["&>"],fr(z(X,function(t){return z(jt,r,t._0(e))},t)),_r({ctor:"_Tuple0"}))}),pn=O(function(t,r,e){var n=e;switch(n.ctor){case"Jump":return ln(n._0);case"New":return z(ir,z(hn,t,r),_n(n._0));case"Modify":return z(ir,z(hn,t,r),an(n._0));case"Visit":return fn(n._0);default:return sn(n._0)}}),gn=O(function(t,r,e){return z(dn["&>"],j(hn,t,e.subs,r),_r(e))}),vn=Lt.leaf("Navigation"),mn=Lt.leaf("Navigation"),bn=E(function(t,r){return{subs:t,popWatcher:r}}),yn=_r(z(bn,{ctor:"[]"},A)),kn=function(t){return{ctor:"Reload",_0:t}},wn=(mn(kn(!1)),mn(kn(!0)),function(t){return{ctor:"Visit",_0:t}}),xn=function(t){return{ctor:"Modify",_0:t}},Tn=function(t){return{ctor:"New",_0:t}},Sn=function(t){return{ctor:"Jump",_0:t}},Rn=E(function(t,r){var e=r;switch(e.ctor){case"Jump":return Sn(e._0);case"New":return Tn(e._0);case"Modify":return xn(e._0);case"Visit":return wn(e._0);default:return kn(e._0)}}),Bn=function(t){return{ctor:"Monitor",_0:t}},Nn=(E(function(r,e){var t=e.init(un.getLocation({ctor:"_Tuple0"}));return Ge({init:t,view:e.view,update:e.update,subscriptions:function(t){return Ut({ctor:"::",_0:vn(Bn(r)),_1:{ctor:"::",_0:e.subscriptions(t),_1:{ctor:"[]"}}})}})}),E(function(r,e){return Qe({init:function(t){return z(e.init,t,un.getLocation({ctor:"_Tuple0"}))},view:e.view,update:e.update,subscriptions:function(t){return Ut({ctor:"::",_0:vn(Bn(r)),_1:{ctor:"::",_0:e.subscriptions(t),_1:{ctor:"[]"}}})}})})),En=E(function(r,t){var e=t;return Bn(function(t){return r(e._0(t))})}),On=E(function(t,r){return{ctor:"InternetExplorer",_0:t,_1:r}}),An=function(t){return{ctor:"Normal",_0:t}},Cn=function(r){var t=function(t){return z(zt,r,un.getLocation({ctor:"_Tuple0"}))};return un.isInternetExplorer11({ctor:"_Tuple0"})?j(sr,On,Re(j(Ae,"popstate",me,t)),Re(j(Ae,"hashchange",me,t))):z(lr,An,Re(j(Ae,"popstate",me,t)))},Mn=$(function(n,t,o,r){var c=r.popWatcher,e=function(){var t,r,e={ctor:"_Tuple2",_0:o,_1:c};t:do{if("[]"===e._0.ctor){if("Just"===e._1.ctor)return z(dn["&>"],(t=e._1._0,void 0,"Normal"===(r=t).ctor?Se(r._0):z(dn["&>"],Se(r._0),Se(r._1))),_r(z(bn,o,A)));break t}if("Nothing"===e._1.ctor)return z(lr,function(t){return z(bn,o,C(t))},Cn(n));break t}while(0);return _r(z(bn,o,c))}();return z(dn["&>"],fr(z(X,z(pn,n,o),t)),e)});Lt.effectManagers.Navigation={pkg:"elm-lang/navigation",init:yn,onEffects:Mn,onSelfMsg:gn,tag:"fx",cmdMap:Rn,subMap:En};var Ln=function(){var o={render:function(t){var r=n(t.markdown,u(t.options)),e=document.createElement("div");return e.innerHTML=r,e},diff:function(t,r){if(t.model.markdown===r.model.markdown&&t.model.options===r.model.options)return null;return{applyPatch:e,data:n(r.model.markdown,u(r.model.options))}}};function e(t,r){return t.innerHTML=r,t}var c,i,n=(i=(c={}).exports={},function(){var f={newline:/^\n+/,code:/^( {4}[^\n]+\n*)+/,fences:r,hr:/^( *[-*_]){3,} *(?:\n+|$)/,heading:/^ *(#{1,6}) *([^\n]+?) *#* *(?:\n+|$)/,nptable:r,lheading:/^([^\n]+)\n *(=|-){2,} *(?:\n+|$)/,blockquote:/^( *>[^\n]+(\n(?!def)[^\n]+)*\n*)+/,list:/^( *)(bull) [\s\S]+?(?:hr|def|\n{2,}(?! )(?!\1bull )\n*|\s*$)/,html:/^ *(?:comment *(?:\n|\s*$)|closed *(?:\n{2,}|\s*$)|closing *(?:\n{2,}|\s*$))/,def:/^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$)/,table:r,paragraph:/^((?:[^\n]+\n?(?!hr|heading|lheading|blockquote|tag|def))+)\n*/,text:/^[^\n]+/};function a(t){this.tokens=[],this.tokens.links={},this.options=t||d.defaults,this.rules=f.normal,this.options.gfm&&(this.options.tables?this.rules=f.tables:this.rules=f.gfm)}f.bullet=/(?:[*+-]|\d+\.)/,f.item=/^( *)(bull) [^\n]*(?:\n(?!\1bull )[^\n]*)*/,f.item=t(f.item,"gm")(/bull/g,f.bullet)(),f.list=t(f.list)(/bull/g,f.bullet)("hr","\\n+(?=\\1?(?:[-*_] *){3,}(?:\\n+|$))")("def","\\n+(?="+f.def.source+")")(),f.blockquote=t(f.blockquote)("def",f.def)(),f._tag="(?!(?:a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)\\b)\\w+(?!:/|[^\\w\\s@]*@)\\b",f.html=t(f.html)("comment",/<!--[\s\S]*?-->/)("closed",/<(tag)[\s\S]+?<\/\1>/)("closing",/<tag(?:"[^"]*"|'[^']*'|[^'">])*?>/)(/tag/g,f._tag)(),f.paragraph=t(f.paragraph)("hr",f.hr)("heading",f.heading)("lheading",f.lheading)("blockquote",f.blockquote)("tag","<"+f._tag)("def",f.def)(),f.normal=s({},f),f.gfm=s({},f.normal,{fences:/^ *(`{3,}|~{3,})[ \.]*(\S+)? *\n([\s\S]*?)\s*\1 *(?:\n+|$)/,paragraph:/^/,heading:/^ *(#{1,6}) +([^\n]+?) *#* *(?:\n+|$)/}),f.gfm.paragraph=t(f.paragraph)("(?!","(?!"+f.gfm.fences.source.replace("\\1","\\2")+"|"+f.list.source.replace("\\1","\\3")+"|")(),f.tables=s({},f.gfm,{nptable:/^ *(\S.*\|.*)\n *([-:]+ *\|[-| :]*)\n((?:.*\|.*(?:\n|$))*)\n*/,table:/^ *\|(.+)\n *\|( *[-:]+[-| :]*)\n((?: *\|.*(?:\n|$))*)\n*/}),a.rules=f,a.lex=function(t,r){return new a(r).lex(t)},a.prototype.lex=function(t){return t=t.replace(/\r\n|\r/g,"\n").replace(/\t/g,"    ").replace(/\u00a0/g," ").replace(/\u2424/g,"\n"),this.token(t,!0)},a.prototype.token=function(t,r,e){var n,o,c,i,u,a,_,l,s;for(t=t.replace(/^ +$/gm,"");t;)if((c=this.rules.newline.exec(t))&&(t=t.substring(c[0].length),1<c[0].length&&this.tokens.push({type:"space"})),c=this.rules.code.exec(t))t=t.substring(c[0].length),c=c[0].replace(/^ {4}/gm,""),this.tokens.push({type:"code",text:this.options.pedantic?c:c.replace(/\n+$/,"")});else if(c=this.rules.fences.exec(t))t=t.substring(c[0].length),this.tokens.push({type:"code",lang:c[2],text:c[3]||""});else if(c=this.rules.heading.exec(t))t=t.substring(c[0].length),this.tokens.push({type:"heading",depth:c[1].length,text:c[2]});else if(r&&(c=this.rules.nptable.exec(t))){for(t=t.substring(c[0].length),a={type:"table",header:c[1].replace(/^ *| *\| *$/g,"").split(/ *\| */),align:c[2].replace(/^ *|\| *$/g,"").split(/ *\| */),cells:c[3].replace(/\n$/,"").split("\n")},l=0;l<a.align.length;l++)/^ *-+: *$/.test(a.align[l])?a.align[l]="right":/^ *:-+: *$/.test(a.align[l])?a.align[l]="center":/^ *:-+ *$/.test(a.align[l])?a.align[l]="left":a.align[l]=null;for(l=0;l<a.cells.length;l++)a.cells[l]=a.cells[l].split(/ *\| */);this.tokens.push(a)}else if(c=this.rules.lheading.exec(t))t=t.substring(c[0].length),this.tokens.push({type:"heading",depth:"="===c[2]?1:2,text:c[1]});else if(c=this.rules.hr.exec(t))t=t.substring(c[0].length),this.tokens.push({type:"hr"});else if(c=this.rules.blockquote.exec(t))t=t.substring(c[0].length),this.tokens.push({type:"blockquote_start"}),c=c[0].replace(/^ *> ?/gm,""),this.token(c,r,!0),this.tokens.push({type:"blockquote_end"});else if(c=this.rules.list.exec(t)){for(t=t.substring(c[0].length),i=c[2],this.tokens.push({type:"list_start",ordered:1<i.length}),n=!1,s=(c=c[0].match(this.rules.item)).length,l=0;l<s;l++)_=(a=c[l]).length,~(a=a.replace(/^ *([*+-]|\d+\.) +/,"")).indexOf("\n ")&&(_-=a.length,a=this.options.pedantic?a.replace(/^ {1,4}/gm,""):a.replace(new RegExp("^ {1,"+_+"}","gm"),"")),this.options.smartLists&&l!==s-1&&(i===(u=f.bullet.exec(c[l+1])[0])||1<i.length&&1<u.length||(t=c.slice(l+1).join("\n")+t,l=s-1)),o=n||/\n\n(?!\s*$)/.test(a),l!==s-1&&(n="\n"===a.charAt(a.length-1),o||(o=n)),this.tokens.push({type:o?"loose_item_start":"list_item_start"}),this.token(a,!1,e),this.tokens.push({type:"list_item_end"});this.tokens.push({type:"list_end"})}else if(c=this.rules.html.exec(t))t=t.substring(c[0].length),this.tokens.push({type:this.options.sanitize?"paragraph":"html",pre:!this.options.sanitizer&&("pre"===c[1]||"script"===c[1]||"style"===c[1]),text:c[0]});else if(!e&&r&&(c=this.rules.def.exec(t)))t=t.substring(c[0].length),this.tokens.links[c[1].toLowerCase()]={href:c[2],title:c[3]};else if(r&&(c=this.rules.table.exec(t))){for(t=t.substring(c[0].length),a={type:"table",header:c[1].replace(/^ *| *\| *$/g,"").split(/ *\| */),align:c[2].replace(/^ *|\| *$/g,"").split(/ *\| */),cells:c[3].replace(/(?: *\| *)?\n$/,"").split("\n")},l=0;l<a.align.length;l++)/^ *-+: *$/.test(a.align[l])?a.align[l]="right":/^ *:-+: *$/.test(a.align[l])?a.align[l]="center":/^ *:-+ *$/.test(a.align[l])?a.align[l]="left":a.align[l]=null;for(l=0;l<a.cells.length;l++)a.cells[l]=a.cells[l].replace(/^ *\| *| *\| *$/g,"").split(/ *\| */);this.tokens.push(a)}else if(r&&(c=this.rules.paragraph.exec(t)))t=t.substring(c[0].length),this.tokens.push({type:"paragraph",text:"\n"===c[1].charAt(c[1].length-1)?c[1].slice(0,-1):c[1]});else if(c=this.rules.text.exec(t))t=t.substring(c[0].length),this.tokens.push({type:"text",text:c[0]});else if(t)throw new Error("Infinite loop on byte: "+t.charCodeAt(0));return this.tokens};var e={escape:/^\\([\\`*{}\[\]()#+\-.!_>])/,autolink:/^<([^ >]+(@|:\/)[^ >]+)>/,url:r,tag:/^<!--[\s\S]*?-->|^<\/?\w+(?:"[^"]*"|'[^']*'|[^'">])*?>/,link:/^!?\[(inside)\]\(href\)/,reflink:/^!?\[(inside)\]\s*\[([^\]]*)\]/,nolink:/^!?\[((?:\[[^\]]*\]|[^\[\]])*)\]/,strong:/^__([\s\S]+?)__(?!_)|^\*\*([\s\S]+?)\*\*(?!\*)/,em:/^\b_((?:[^_]|__)+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,code:/^(`+)\s*([\s\S]*?[^`])\s*\1(?!`)/,br:/^ {2,}\n(?!\s*$)/,del:r,text:/^[\s\S]+?(?=[\\<!\[_*`]| {2,}\n|$)/};function n(t,r){if(this.options=r||d.defaults,this.links=t,this.rules=e.normal,this.renderer=this.options.renderer||new o,this.renderer.options=this.options,!this.links)throw new Error("Tokens array requires a `links` property.");this.options.gfm?this.options.breaks?this.rules=e.breaks:this.rules=e.gfm:this.options.pedantic&&(this.rules=e.pedantic)}function o(t){this.options=t||{}}function _(t){this.tokens=[],this.token=null,this.options=t||d.defaults,this.options.renderer=this.options.renderer||new o,this.renderer=this.options.renderer,this.renderer.options=this.options}function l(t,r){return t.replace(r?/&/g:/&(?!#?\w+;)/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")}function t(n,o){return n=n.source,o=o||"",function t(r,e){return r?(e=(e=e.source||e).replace(/(^|[^\[])\^/g,"$1"),n=n.replace(r,e),t):new RegExp(n,o)}}function r(){}function s(t){for(var r,e,n=1;n<arguments.length;n++)for(e in r=arguments[n])Object.prototype.hasOwnProperty.call(r,e)&&(t[e]=r[e]);return t}function d(t,e,n){if(n||"function"==typeof e){n||(n=e,e=null);var o,c,i=(e=s({},d.defaults,e||{})).highlight,r=0;try{o=a.lex(t,e)}catch(t){return n(t)}c=o.length;var u=function(r){if(r)return e.highlight=i,n(r);var t;try{t=_.parse(o,e)}catch(t){r=t}return e.highlight=i,r?n(r):n(null,t)};if(!i||i.length<3)return u();if(delete e.highlight,!c)return u();for(;r<o.length;r++)!function(e){"code"!==e.type?--c||u():i(e.text,e.lang,function(t,r){return t?u(t):null==r||r===e.text?--c||u():(e.text=r,e.escaped=!0,void(--c||u()))})}(o[r])}else try{return e&&(e=s({},d.defaults,e)),_.parse(a.lex(t,e),e)}catch(t){if(t.message+="\nPlease report this to https://github.com/chjj/marked.",(e||d.defaults).silent)return"<p>An error occured:</p><pre>"+l(t.message+"",!0)+"</pre>";throw t}}e._inside=/(?:\[[^\]]*\]|[^\[\]]|\](?=[^\[]*\]))*/,e._href=/\s*<?([\s\S]*?)>?(?:\s+['"]([\s\S]*?)['"])?\s*/,e.link=t(e.link)("inside",e._inside)("href",e._href)(),e.reflink=t(e.reflink)("inside",e._inside)(),e.normal=s({},e),e.pedantic=s({},e.normal,{strong:/^__(?=\S)([\s\S]*?\S)__(?!_)|^\*\*(?=\S)([\s\S]*?\S)\*\*(?!\*)/,em:/^_(?=\S)([\s\S]*?\S)_(?!_)|^\*(?=\S)([\s\S]*?\S)\*(?!\*)/}),e.gfm=s({},e.normal,{escape:t(e.escape)("])","~|])")(),url:/^(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/,del:/^~~(?=\S)([\s\S]*?\S)~~/,text:t(e.text)("]|","~]|")("|","|https?://|")()}),e.breaks=s({},e.gfm,{br:t(e.br)("{2,}","*")(),text:t(e.gfm.text)("{2,}","*")()}),n.rules=e,n.output=function(t,r,e){return new n(r,e).output(t)},n.prototype.output=function(t){for(var r,e,n,o,c="";t;)if(o=this.rules.escape.exec(t))t=t.substring(o[0].length),c+=o[1];else if(o=this.rules.autolink.exec(t))t=t.substring(o[0].length),"@"===o[2]?(e=":"===o[1].charAt(6)?this.mangle(o[1].substring(7)):this.mangle(o[1]),n=this.mangle("mailto:")+e):n=e=l(o[1]),c+=this.renderer.link(n,null,e);else if(this.inLink||!(o=this.rules.url.exec(t))){if(o=this.rules.tag.exec(t))!this.inLink&&/^<a /i.test(o[0])?this.inLink=!0:this.inLink&&/^<\/a>/i.test(o[0])&&(this.inLink=!1),t=t.substring(o[0].length),c+=this.options.sanitize?this.options.sanitizer?this.options.sanitizer(o[0]):l(o[0]):o[0];else if(o=this.rules.link.exec(t))t=t.substring(o[0].length),this.inLink=!0,c+=this.outputLink(o,{href:o[2],title:o[3]}),this.inLink=!1;else if((o=this.rules.reflink.exec(t))||(o=this.rules.nolink.exec(t))){if(t=t.substring(o[0].length),r=(o[2]||o[1]).replace(/\s+/g," "),!(r=this.links[r.toLowerCase()])||!r.href){c+=o[0].charAt(0),t=o[0].substring(1)+t;continue}this.inLink=!0,c+=this.outputLink(o,r),this.inLink=!1}else if(o=this.rules.strong.exec(t))t=t.substring(o[0].length),c+=this.renderer.strong(this.output(o[2]||o[1]));else if(o=this.rules.em.exec(t))t=t.substring(o[0].length),c+=this.renderer.em(this.output(o[2]||o[1]));else if(o=this.rules.code.exec(t))t=t.substring(o[0].length),c+=this.renderer.codespan(l(o[2],!0));else if(o=this.rules.br.exec(t))t=t.substring(o[0].length),c+=this.renderer.br();else if(o=this.rules.del.exec(t))t=t.substring(o[0].length),c+=this.renderer.del(this.output(o[1]));else if(o=this.rules.text.exec(t))t=t.substring(o[0].length),c+=this.renderer.text(l(this.smartypants(o[0])));else if(t)throw new Error("Infinite loop on byte: "+t.charCodeAt(0))}else t=t.substring(o[0].length),n=e=l(o[1]),c+=this.renderer.link(n,null,e);return c},n.prototype.outputLink=function(t,r){var e=l(r.href),n=r.title?l(r.title):null;return"!"!==t[0].charAt(0)?this.renderer.link(e,n,this.output(t[1])):this.renderer.image(e,n,l(t[1]))},n.prototype.smartypants=function(t){return this.options.smartypants?t.replace(/---/g,"—").replace(/--/g,"–").replace(/(^|[-\u2014\/(\[{"\s])'/g,"$1‘").replace(/'/g,"’").replace(/(^|[-\u2014\/(\[{\u2018\s])"/g,"$1“").replace(/"/g,"”").replace(/\.{3}/g,"…"):t},n.prototype.mangle=function(t){if(!this.options.mangle)return t;for(var r,e="",n=t.length,o=0;o<n;o++)r=t.charCodeAt(o),.5<Math.random()&&(r="x"+r.toString(16)),e+="&#"+r+";";return e},o.prototype.code=function(t,r,e){if(this.options.highlight){var n=this.options.highlight(t,r);null!=n&&n!==t&&(e=!0,t=n)}return r?'<pre><code class="'+this.options.langPrefix+l(r,!0)+'">'+(e?t:l(t,!0))+"\n</code></pre>\n":"<pre><code>"+(e?t:l(t,!0))+"\n</code></pre>"},o.prototype.blockquote=function(t){return"<blockquote>\n"+t+"</blockquote>\n"},o.prototype.html=function(t){return t},o.prototype.heading=function(t,r,e){return"<h"+r+' id="'+this.options.headerPrefix+e.toLowerCase().replace(/[^\w]+/g,"-")+'">'+t+"</h"+r+">\n"},o.prototype.hr=function(){return this.options.xhtml?"<hr/>\n":"<hr>\n"},o.prototype.list=function(t,r){var e=r?"ol":"ul";return"<"+e+">\n"+t+"</"+e+">\n"},o.prototype.listitem=function(t){return"<li>"+t+"</li>\n"},o.prototype.paragraph=function(t){return"<p>"+t+"</p>\n"},o.prototype.table=function(t,r){return"<table>\n<thead>\n"+t+"</thead>\n<tbody>\n"+r+"</tbody>\n</table>\n"},o.prototype.tablerow=function(t){return"<tr>\n"+t+"</tr>\n"},o.prototype.tablecell=function(t,r){var e=r.header?"th":"td";return(r.align?"<"+e+' style="text-align:'+r.align+'">':"<"+e+">")+t+"</"+e+">\n"},o.prototype.strong=function(t){return"<strong>"+t+"</strong>"},o.prototype.em=function(t){return"<em>"+t+"</em>"},o.prototype.codespan=function(t){return"<code>"+t+"</code>"},o.prototype.br=function(){return this.options.xhtml?"<br/>":"<br>"},o.prototype.del=function(t){return"<del>"+t+"</del>"},o.prototype.link=function(t,r,e){if(this.options.sanitize){try{var n=decodeURIComponent((o=t,o.replace(/&(#(?:\d+)|(?:#x[0-9A-Fa-f]+)|(?:\w+));?/g,function(t,r){return"colon"===(r=r.toLowerCase())?":":"#"===r.charAt(0)?"x"===r.charAt(1)?String.fromCharCode(parseInt(r.substring(2),16)):String.fromCharCode(+r.substring(1)):""}))).replace(/[^\w:]/g,"").toLowerCase()}catch(t){return""}if(0===n.indexOf("javascript:")||0===n.indexOf("vbscript:")||0===n.indexOf("data:"))return""}var o,c='<a href="'+t+'"';return r&&(c+=' title="'+r+'"'),c+=">"+e+"</a>"},o.prototype.image=function(t,r,e){var n='<img src="'+t+'" alt="'+e+'"';return r&&(n+=' title="'+r+'"'),n+=this.options.xhtml?"/>":">"},o.prototype.text=function(t){return t},_.parse=function(t,r,e){return new _(r,e).parse(t)},_.prototype.parse=function(t){this.inline=new n(t.links,this.options,this.renderer),this.tokens=t.reverse();for(var r="";this.next();)r+=this.tok();return r},_.prototype.next=function(){return this.token=this.tokens.pop()},_.prototype.peek=function(){return this.tokens[this.tokens.length-1]||0},_.prototype.parseText=function(){for(var t=this.token.text;"text"===this.peek().type;)t+="\n"+this.next().text;return this.inline.output(t)},_.prototype.tok=function(){switch(this.token.type){case"space":return"";case"hr":return this.renderer.hr();case"heading":return this.renderer.heading(this.inline.output(this.token.text),this.token.depth,this.token.text);case"code":return this.renderer.code(this.token.text,this.token.lang,this.token.escaped);case"table":var t,r,e,n,o="",c="";for(e="",t=0;t<this.token.header.length;t++)this.token.align[t],e+=this.renderer.tablecell(this.inline.output(this.token.header[t]),{header:!0,align:this.token.align[t]});for(o+=this.renderer.tablerow(e),t=0;t<this.token.cells.length;t++){for(r=this.token.cells[t],e="",n=0;n<r.length;n++)e+=this.renderer.tablecell(this.inline.output(r[n]),{header:!1,align:this.token.align[n]});c+=this.renderer.tablerow(e)}return this.renderer.table(o,c);case"blockquote_start":for(c="";"blockquote_end"!==this.next().type;)c+=this.tok();return this.renderer.blockquote(c);case"list_start":c="";for(var i=this.token.ordered;"list_end"!==this.next().type;)c+=this.tok();return this.renderer.list(c,i);case"list_item_start":for(c="";"list_item_end"!==this.next().type;)c+="text"===this.token.type?this.parseText():this.tok();return this.renderer.listitem(c);case"loose_item_start":for(c="";"list_item_end"!==this.next().type;)c+=this.tok();return this.renderer.listitem(c);case"html":var u=this.token.pre||this.options.pedantic?this.token.text:this.inline.output(this.token.text);return this.renderer.html(u);case"paragraph":return this.renderer.paragraph(this.inline.output(this.token.text));case"text":return this.renderer.paragraph(this.parseText())}},r.exec=r,d.options=d.setOptions=function(t){return s(d.defaults,t),d},d.defaults={gfm:!0,tables:!0,breaks:!1,pedantic:!1,sanitize:!1,sanitizer:null,mangle:!0,smartLists:!1,silent:!1,highlight:null,langPrefix:"lang-",smartypants:!1,headerPrefix:"",renderer:new o,xhtml:!1},d.Parser=_,d.parser=_.parse,d.Renderer=o,d.Lexer=a,d.lexer=a.lex,d.InlineLexer=n,d.inlineLexer=n.output,d.parse=d,void 0!==c&&"object"==typeof i?c.exports=d:"function"==typeof define&&define.amd?define(function(){return d}):this.marked=d}.call(function(){return this||("undefined"!=typeof window?window:global)}()),c.exports);function u(e){function t(t,r){return r||"Just"!==e.defaultHighlighting.ctor||(r=e.defaultHighlighting._0),"undefined"!=typeof hljs&&r&&0<=hljs.listLanguages().indexOf(r)?hljs.highlight(r,t,!0).value:t}var r=e.githubFlavored;return"Just"===r.ctor?{highlight:t,gfm:!0,tables:r._0.tables,breaks:r._0.breaks,sanitize:e.sanitize,smartypants:e.smartypants}:{highlight:t,gfm:!1,tables:!1,breaks:!1,sanitize:e.sanitize,smartypants:e.smartypants}}return{toHtml:O(function(t,r,e){var n={options:t,markdown:e};return Ce.custom(r,n,o)})}}(),Pn=(Ln.toHtml,{githubFlavored:C({tables:!1,breaks:!1}),defaultHighlighting:A,sanitize:!1,smartypants:!1}),Dn=E(function(t,r){return j(Ln.toHtml,Pn,t,r)}),In=($(function(t,r,e,n){return{githubFlavored:t,defaultHighlighting:r,sanitize:e,smartypants:n}}),function(t){var r=z(St,"=",t);return"::"===r.ctor&&"::"===r._1.ctor&&"[]"===r._1._1.ctor?j(L,E(function(t,r){return{ctor:"_Tuple2",_0:t,_1:r}}),Ye(r._0),Ye(r._1._0)):A}),Fn=function(t){return re(z(tt,In,z(St,"&",z(xt,1,t))))},qn=O(function(t,r,e){var n,o;return function(t){for(;;){var r=t;if("[]"===r.ctor)return A;var e=r._0,n=e.unvisited;if("[]"===n.ctor)return C(e.value);if(""===n._0&&"[]"===n._1.ctor)return C(e.value);t=r._1}}(t._0({visited:{ctor:"[]"},unvisited:(n=r,o=z(St,"/",n),"::"===o.ctor&&""===o._0?o._1:o),params:e,value:a}))}),Un=E(function(t,r){return j(qn,t,z(xt,1,r.hash),Fn(r.search))}),$n=(E(function(t,r){return j(qn,t,r.pathname,Fn(r.search))}),E(function(t,r){var e=r;return{visited:e.visited,unvisited:e.unvisited,params:e.params,value:t(e.value)}})),zn=$(function(t,r,e,n){return{visited:t,unvisited:r,params:e,value:n}}),jn=function(t){return{ctor:"Parser",_0:t}},Wn=E(function(t,c){return jn(function(t){var r=t,e=r.unvisited;if("[]"===e.ctor)return{ctor:"[]"};var n=e._0,o=c(n);return"Ok"===o.ctor?{ctor:"::",_0:b(zn,{ctor:"::",_0:n,_1:r.visited},e._1,r.params,r.value(o._0)),_1:{ctor:"[]"}}:{ctor:"[]"}})});z(Wn,"STRING",dt),z(Wn,"NUMBER",bt);(Jn=Jn||{})["</>"]=E(function(t,r){var e=t,n=r;return jn(function(t){return z(ot,n._0,e._0(t))})});var Jn,Hn=E(function(e,t){var n=t;return jn(function(t){var r=t;return z(X,$n(r.value),n._0({visited:r.visited,unvisited:r.unvisited,params:r.params,value:e}))})}),Vn=jn(function(t){return{ctor:"::",_0:t,_1:{ctor:"[]"}}});(Jn=Jn||{})["<?>"]=E(function(t,r){var e=t,n=r;return jn(function(t){return z(ot,n._0,e._0(t))})});E(function(n,o){return{ctor:"QueryParser",_0:function(t){var r=t,e=r.params;return{ctor:"::",_0:b(zn,r.visited,r.unvisited,e,r.value(o(z(Br,n,e)))),_1:{ctor:"[]"}}}}});var Kn,Qn=function(t){return b(Be,Ee,Ne("[^a-zA-Z0-9_-]"),function(t){return""},b(Be,Ee,Ne("\\s+"),function(t){return"-"},wt(k(t))))},Gn=E(function(t,r){return z(w["++"],Qn(t),Qn(r))}),Xn=function(t){t:for(;;){var r=t;if("[]"===r.ctor)return{ctor:"[]"};switch(r._0.ctor){case"StyleBlockDeclaration":var e=r._1;if(V(r._0._0._2)){t=e;continue t}return{ctor:"::",_0:r._0,_1:Xn(e)};case"MediaRule":var n=r._1;if(z(q,function(t){return V(t._2)},r._0._1)){t=n;continue t}return{ctor:"::",_0:r._0,_1:Xn(n)};case"SupportsRule":var o=r._1;if(V(r._0._1)){t=o;continue t}return{ctor:"::",_0:r._0,_1:Xn(o)};case"DocumentRule":return{ctor:"::",_0:r._0,_1:Xn(r._1)};case"PageRule":var c=r._1;if(V(r._0._1)){t=c;continue t}return{ctor:"::",_0:r._0,_1:Xn(c)};case"FontFace":var i=r._1;if(V(r._0._0)){t=i;continue t}return{ctor:"::",_0:r._0,_1:Xn(i)};case"Keyframes":var u=r._1;if(V(r._0._1)){t=u;continue t}return{ctor:"::",_0:r._0,_1:Xn(u)};case"Viewport":var a=r._1;if(V(r._0._0)){t=a;continue t}return{ctor:"::",_0:r._0,_1:Xn(a)};case"CounterStyle":var _=r._1;if(V(r._0._0)){t=_;continue t}return{ctor:"::",_0:r._0,_1:Xn(_)};default:var l=r._1;if(z(q,function(t){return V(t._1)},r._0._0)){t=l;continue t}return{ctor:"::",_0:r._0,_1:Xn(l)}}}},Zn=E(function(t,r){var e=r;return"[]"===e.ctor?r:"[]"===e._1.ctor?t(e._0):{ctor:"::",_0:e._0,_1:z(Zn,t,e._1)}}),Yn=E(function(t,r){var e=r;return"[]"===e.ctor?r:"[]"===e._1.ctor?{ctor:"::",_0:t(e._0),_1:{ctor:"[]"}}:{ctor:"::",_0:e._0,_1:z(Yn,t,e._1)}}),to=(O(function(t,r,e){return{important:t,key:r,value:e}}),$(function(t,r,e,n){return{charset:t,imports:r,namespaces:e,declarations:n}}),E(function(t,r){return{feature:t,value:r}}),{ctor:"Compatible"}),ro=function(t){return{ctor:"Viewport",_0:t}},eo=E(function(t,r){return{ctor:"Keyframes",_0:t,_1:r}}),no=E(function(t,r){return{ctor:"PageRule",_0:t,_1:r}}),oo=c(function(t,r,e,n,o){return{ctor:"DocumentRule",_0:t,_1:r,_2:e,_3:n,_4:o}}),co=E(function(t,r){return{ctor:"SupportsRule",_0:t,_1:r}}),io=E(function(t,r){return{ctor:"MediaRule",_0:t,_1:r}}),uo=function(t){return{ctor:"StyleBlockDeclaration",_0:t}},ao=E(function(t,r){var e=r;t:do{if("[]"===e.ctor)return r;if("[]"!==e._1.ctor)break t;switch(e._0.ctor){case"StyleBlockDeclaration":return z(X,uo,t(e._0._0));case"MediaRule":if("::"===e._0._1.ctor){if("[]"===e._0._1._1.ctor)return{ctor:"::",_0:z(io,e._0._0,t(e._0._1._0)),_1:{ctor:"[]"}};var n=z(ao,t,{ctor:"::",_0:z(io,e._0._0,e._0._1._1),_1:{ctor:"[]"}});return"::"===n.ctor&&"MediaRule"===n._0.ctor&&"[]"===n._1.ctor?{ctor:"::",_0:z(io,n._0._0,{ctor:"::",_0:e._0._1._0,_1:n._0._1}),_1:{ctor:"[]"}}:n}break t;case"SupportsRule":return{ctor:"::",_0:z(co,e._0._0,z(ao,t,e._0._1)),_1:{ctor:"[]"}};case"DocumentRule":return z(X,b(oo,e._0._0,e._0._1,e._0._2,e._0._3),t(e._0._4));case"PageRule":case"FontFace":case"Keyframes":case"Viewport":case"CounterStyle":default:return r}}while(0);return{ctor:"::",_0:e._0,_1:z(ao,t,e._1)}}),_o=O(function(t,r,e){return{ctor:"StyleBlock",_0:t,_1:r,_2:e}}),lo=E(function(t,r){var e=r;return j(_o,e._0,e._1,z(w["++"],e._2,{ctor:"::",_0:t,_1:{ctor:"[]"}}))}),so=E(function(t,r){var e=r;if("[]"===e.ctor)return r;if("[]"!==e._1.ctor)return{ctor:"::",_0:e._0,_1:z(so,t,e._1)};switch(e._0.ctor){case"StyleBlockDeclaration":return{ctor:"::",_0:uo(z(lo,t,e._0._0)),_1:{ctor:"[]"}};case"MediaRule":return{ctor:"::",_0:z(io,e._0._0,z(Yn,lo(t),e._0._1)),_1:{ctor:"[]"}};default:return r}}),fo=E(function(t,r){var e=r;if("[]"===e._1.ctor){var n=e._0;return{ctor:"::",_0:j(_o,n,{ctor:"[]"},e._2),_1:{ctor:"::",_0:j(_o,t(n),{ctor:"[]"},{ctor:"[]"}),_1:{ctor:"[]"}}}}var o=e._1,c=e._0,i=t(c),u=z(X,t,o);return{ctor:"::",_0:j(_o,c,o,e._2),_1:{ctor:"::",_0:j(_o,i,u,{ctor:"[]"}),_1:{ctor:"[]"}}}}),ho=function(t){return{ctor:"CustomQuery",_0:t}},po=(E(function(t,r){return{ctor:"NotQuery",_0:t,_1:r}}),E(function(t,r){return{ctor:"OnlyQuery",_0:t,_1:r}}),O(function(t,r,e){return{ctor:"Selector",_0:t,_1:r,_2:e}})),go=E(function(t,r){var e=r;return j(po,e._0,e._1,C(t))}),vo=E(function(t,r){return z(fo,go(t),r)}),mo=E(function(t,r){return{ctor:"CustomSelector",_0:t,_1:r}}),bo=function(t){return{ctor:"UniversalSelectorSequence",_0:t}},yo=E(function(t,r){return{ctor:"TypeSelectorSequence",_0:t,_1:r}}),ko=E(function(t,r){var e=r;switch(e.ctor){case"TypeSelectorSequence":return z(yo,e._0,z(w["++"],e._1,{ctor:"::",_0:t,_1:{ctor:"[]"}}));case"UniversalSelectorSequence":return bo(z(w["++"],e._0,{ctor:"::",_0:t,_1:{ctor:"[]"}}));default:return z(mo,e._0,z(w["++"],e._1,{ctor:"::",_0:t,_1:{ctor:"[]"}}))}}),wo=E(function(t,r){var e=r;return"[]"===e.ctor?{ctor:"[]"}:"_Tuple2"===e._0.ctor&&"[]"===e._1.ctor?{ctor:"::",_0:{ctor:"_Tuple2",_0:e._0._0,_1:z(ko,t,e._0._1)},_1:{ctor:"[]"}}:{ctor:"::",_0:e._0,_1:z(wo,t,e._1)}}),xo=E(function(t,r){var e=r;return"[]"===e._1.ctor?j(po,z(ko,t,e._0),{ctor:"[]"},e._2):j(po,e._0,z(wo,t,e._1),e._2)}),To=E(function(t,r){var e=r;t:do{if("[]"===e.ctor)return r;if("[]"!==e._1.ctor)break t;switch(e._0.ctor){case"StyleBlockDeclaration":if("[]"===e._0._0._1.ctor)return{ctor:"::",_0:uo(j(_o,z(xo,t,e._0._0._0),{ctor:"[]"},e._0._0._2)),_1:{ctor:"[]"}};var n=z(Yn,xo(t),e._0._0._1);return{ctor:"::",_0:uo(j(_o,e._0._0._0,n,e._0._0._2)),_1:{ctor:"[]"}};case"MediaRule":if("::"===e._0._1.ctor){if("[]"===e._0._1._1.ctor){if("[]"===e._0._1._0._1.ctor){var o=j(_o,z(xo,t,e._0._1._0._0),{ctor:"[]"},e._0._1._0._2);return{ctor:"::",_0:z(io,e._0._0,{ctor:"::",_0:o,_1:{ctor:"[]"}}),_1:{ctor:"[]"}}}n=z(Yn,xo(t),e._0._1._0._1),o=j(_o,e._0._1._0._0,n,e._0._1._0._2);return{ctor:"::",_0:z(io,e._0._0,{ctor:"::",_0:o,_1:{ctor:"[]"}}),_1:{ctor:"[]"}}}var c=z(To,t,{ctor:"::",_0:z(io,e._0._0,e._0._1._1),_1:{ctor:"[]"}});return"::"===c.ctor&&"MediaRule"===c._0.ctor&&"[]"===c._1.ctor?{ctor:"::",_0:z(io,c._0._0,{ctor:"::",_0:e._0._1._0,_1:c._0._1}),_1:{ctor:"[]"}}:c}break t;case"SupportsRule":return{ctor:"::",_0:z(co,e._0._0,z(To,t,e._0._1)),_1:{ctor:"[]"}};case"DocumentRule":if("[]"===e._0._4._1.ctor){o=j(_o,z(xo,t,e._0._4._0),{ctor:"[]"},e._0._4._2);return{ctor:"::",_0:y(oo,e._0._0,e._0._1,e._0._2,e._0._3,o),_1:{ctor:"[]"}}}n=z(Yn,xo(t),e._0._4._1),o=j(_o,e._0._4._0,n,e._0._4._2);return{ctor:"::",_0:y(oo,e._0._0,e._0._1,e._0._2,e._0._3,o),_1:{ctor:"[]"}};case"PageRule":case"FontFace":case"Keyframes":case"Viewport":case"CounterStyle":default:return r}}while(0);return{ctor:"::",_0:e._0,_1:z(To,t,e._1)}}),So=E(function(t,r){return z(fo,xo(t),r)}),Ro=function(t){return{ctor:"ClassSelector",_0:t}},Bo=function(t){return t._0},No=E(function(t,r){var e=r;switch(e.ctor){case"StyleBlockDeclaration":return z(io,t,{ctor:"::",_0:e._0,_1:{ctor:"[]"}});case"MediaRule":return z(io,z(w["++"],t,e._0),e._1);case"SupportsRule":return z(co,e._0,z(X,No(t),e._1));case"DocumentRule":return y(oo,e._0,e._1,e._2,e._3,e._4);case"PageRule":case"FontFace":case"Keyframes":case"Viewport":case"CounterStyle":default:return r}}),Eo=function(t){return{charset:A,imports:{ctor:"[]"},namespaces:{ctor:"[]"},snippets:t}},Oo=($(function(t,r,e,n){return{key:t,value:r,important:e,warnings:n}}),$(function(t,r,e,n){return{charset:t,imports:r,namespaces:e,snippets:n}}),function(t){return{ctor:"ApplyStyles",_0:t}}),Ao=(E(function(t,r){return{ctor:"WithMedia",_0:t,_1:r}}),E(function(t,r){return{ctor:"WithPseudoElement",_0:t,_1:r}})),Co=E(function(t,r){return{ctor:"NestSnippet",_0:t,_1:r}}),Mo=E(function(t,r){return{ctor:"ExtendSelector",_0:t,_1:r}}),Lo=function(t){return{ctor:"AppendProperty",_0:t}},Po=E(function(t,r){var e=r;switch(e.ctor){case"AppendProperty":return Lo(t(e._0));case"ExtendSelector":return z(Mo,e._0,z(Do,t,e._1));case"NestSnippet":case"WithPseudoElement":case"WithMedia":return r;default:return Oo(z(Yn,Po(t),e._0))}}),Do=E(function(t,r){var e=r;return"[]"===e.ctor?r:"[]"===e._1.ctor?{ctor:"::",_0:z(Po,t,e._0),_1:{ctor:"[]"}}:{ctor:"::",_0:e._0,_1:z(Do,t,e._1)}}),Io=function(t){return{ctor:"Snippet",_0:t}},Fo=(E(function(t,r){return{ctor:"Keyframes",_0:t,_1:r}}),E(function(t,r){return{ctor:"PageRule",_0:t,_1:r}}),c(function(t,r,e,n,o){return{ctor:"DocumentRule",_0:t,_1:r,_2:e,_3:n,_4:o}}),E(function(t,r){return{ctor:"SupportsRule",_0:t,_1:r}}),E(function(t,r){return{ctor:"MediaRule",_0:t,_1:r}})),qo=function(t){return{ctor:"StyleBlockDeclaration",_0:t}},Uo=O(function(t,r,e){return{ctor:"StyleBlock",_0:t,_1:r,_2:e}}),$o=function(t){return vt(W.cmp(t,0)<0?{ctor:"::",_0:W.chr("-"),_1:z(zo,{ctor:"[]"},m(t))}:z(zo,{ctor:"[]"},t))},zo=E(function(t,r){for(;;){if(W.cmp(r,16)<0)return{ctor:"::",_0:jo(r),_1:t};t={ctor:"::",_0:jo(z(w["%"],r,16)),_1:t},r=r/16|0}}),jo=function(t){var r=t;switch(r){case 0:return W.chr("0");case 1:return W.chr("1");case 2:return W.chr("2");case 3:return W.chr("3");case 4:return W.chr("4");case 5:return W.chr("5");case 6:return W.chr("6");case 7:return W.chr("7");case 8:return W.chr("8");case 9:return W.chr("9");case 10:return W.chr("a");case 11:return W.chr("b");case 12:return W.chr("c");case 13:return W.chr("d");case 14:return W.chr("e");case 15:return W.chr("f");default:return W.crashCase("Hex",{start:{line:138,column:5},end:{line:188,column:84}},r)(z(w["++"],"Tried to convert ",z(w["++"],$o(t)," to hexadecimal.")))}},Wo=O(function(r,t,e){var n=t;if("[]"===n.ctor)return dt(e);var o=function(t){return j(Wo,r-1,n._1,e+t*Math.pow(16,r))},c=n._0;switch(c.valueOf()){case"0":return o(0);case"1":return o(1);case"2":return o(2);case"3":return o(3);case"4":return o(4);case"5":return o(5);case"6":return o(6);case"7":return o(7);case"8":return o(8);case"9":return o(9);case"a":return o(10);case"b":return o(11);case"c":return o(12);case"d":return o(13);case"e":return o(14);case"f":return o(15);default:return ft(z(w["++"],k(c)," is not a valid hexadecimal character."))}}),Jo=function(t){return k(t+0)},Ho=function(t){return j(i,E(function(t,r){return z(w["++"],t,r)}),"%",Jo(z(E(function(t,r){return t*r}),100,t)))},Vo=function(t){return Ao({ctor:"PseudoElement",_0:t})},Ko=(Vo("after"),Vo("before"),Vo("first-letter"),Vo("first-line"),Vo("selection"),function(t){return Mo({ctor:"PseudoClassSelector",_0:t})}),Qo=(Ko("active"),Ko("checked"),Ko("disabled"),Ko("empty"),Ko("enabled"),Ko("first"),Ko("first-child"),Ko("first-of-type"),Ko("fullscreen"),Ko("focus"),Ko("hover"),Ko("visited"),Ko("indeterminate"),Ko("invalid"),Ko("last-child"),Ko("last-of-type"),Ko("link"),Ko("only-child"),Ko("only-of-type"),Ko("optional"),Ko("out-of-range"),Ko("read-write"),Ko("required"),Ko("root"),Ko("scope"),Ko("target"),Ko("valid"),O(function(t,r,e){return Lo({key:r,value:e,important:!1,warnings:t})})),Go=Qo({ctor:"[]"}),Xo=(z(Go,"pointer-events","fill"),z(Go,"pointer-events","all"),function(t){return j(Qo,t.warnings,"color",t.value)}),Zo=($(function(t,r,e,n){var o=z(Tt," ",{ctor:"::",_0:t.value,_1:{ctor:"::",_0:r.value,_1:{ctor:"::",_0:e.value,_1:{ctor:"::",_0:n.value,_1:{ctor:"[]"}}}}}),c=z(w["++"],t.warnings,z(w["++"],r.warnings,z(w["++"],e.warnings,n.warnings)));return j(Qo,c,"border-color",o)}),O(function(t,r,e){var n=z(Tt," ",{ctor:"::",_0:t.value,_1:{ctor:"::",_0:r.value,_1:{ctor:"::",_0:e.value,_1:{ctor:"[]"}}}}),o=z(w["++"],t.warnings,z(w["++"],r.warnings,e.warnings));return j(Qo,o,"border-color",n)}),E(function(t,r){var e=z(Tt," ",{ctor:"::",_0:t.value,_1:{ctor:"::",_0:r.value,_1:{ctor:"[]"}}}),n=z(w["++"],t.warnings,r.warnings);return j(Qo,n,"border-color",e)}),E(function(t,r){var e={ctor:"::",_0:{ctor:"_Tuple2",_0:!W.eq(Bt(t),4),_1:z(w["++"],"Feature tags must be exactly 4 characters long. ",z(w["++"],t," is invalid."))},_1:{ctor:"::",_0:{ctor:"_Tuple2",_0:W.cmp(r,0)<0,_1:z(w["++"],"Feature values cannot be negative. ",z(w["++"],k(r)," is invalid."))},_1:{ctor:"[]"}}},n=z(X,Ct,z(Z,Mt,e));return{value:z(w["++"],k(t),z(w["++"]," ",k(r))),featureTagValue:to,warnings:n}}),{value:"sans-serif",fontFamily:to}),Yo={value:"absolute",position:to},tc={value:"fill-available",minMaxDimension:to,lengthOrMinMaxDimension:to,lengthOrNoneOrMinMaxDimension:to},rc=(W.update(tc,{value:"fit-content"}),W.update(tc,{value:"min-content"}),W.update(tc,{value:"max-content"}),z(Go,"display","flex"),r(function(t,r,e,n,o,c,i){return z(Go,t,z(Tt," ",{ctor:"::",_0:r.value,_1:{ctor:"::",_0:e.value,_1:{ctor:"::",_0:n.value,_1:{ctor:"::",_0:o.value,_1:{ctor:"::",_0:c.value,_1:{ctor:"::",_0:i.value,_1:{ctor:"[]"}}}}}}}))})("box-shadow"),t(function(t,r,e,n,o,c){return z(Go,t,z(Tt," ",{ctor:"::",_0:r.value,_1:{ctor:"::",_0:e.value,_1:{ctor:"::",_0:n.value,_1:{ctor:"::",_0:o.value,_1:{ctor:"::",_0:c.value,_1:{ctor:"[]"}}}}}}))})("box-shadow"),c(function(t,r,e,n,o){return z(Go,t,z(Tt," ",{ctor:"::",_0:r.value,_1:{ctor:"::",_0:e.value,_1:{ctor:"::",_0:n.value,_1:{ctor:"::",_0:o.value,_1:{ctor:"[]"}}}}}))})),ec=(rc("text-shadow"),rc("box-shadow"),rc("padding"),rc("margin"),rc("border-image-outset"),rc("border-image-width"),rc("border-width"),rc("border-radius"),$(function(t,r,e,n){return z(Go,t,z(Tt," ",{ctor:"::",_0:r.value,_1:{ctor:"::",_0:e.value,_1:{ctor:"::",_0:n.value,_1:{ctor:"[]"}}}}))})),nc=(ec("text-shadow"),ec("box-shadow"),ec("text-indent"),ec("padding"),ec("margin"),ec("border")),oc=(ec("border-top"),ec("border-bottom"),ec("border-left"),ec("border-right"),ec("border-block-start"),ec("border-block-end"),ec("border-block-start"),ec("border-block-end"),ec("border-image-outset"),ec("border-image-width"),ec("border-width"),ec("border-radius"),ec("outline"),ec("font-variant"),ec("font-variant-numeric"),ec("text-decoration"),O(function(t,r,e){return z(Go,t,z(Tt," ",{ctor:"::",_0:r.value,_1:{ctor:"::",_0:e.value,_1:{ctor:"[]"}}}))})),cc=(oc("text-shadow"),oc("box-shadow"),oc("text-indent"),oc("padding")),ic=oc("margin"),uc=(oc("border"),oc("border-top"),oc("border-bottom"),oc("border-left"),oc("border-right"),oc("border-block-start"),oc("border-block-end"),oc("border-block-start"),oc("border-block-end"),oc("border-image-outset"),oc("border-image-width"),oc("border-width"),oc("border-top-width"),oc("border-bottom-left-radius"),oc("border-bottom-right-radius"),oc("border-top-left-radius"),oc("border-top-right-radius"),oc("border-radius"),oc("border-spacing"),oc("background-repeat"),oc("background-position"),oc("background-size"),oc("font-variant"),oc("font-variant-numeric"),oc("text-decoration"),E(function(t,r){return z(Go,t,r.value)})),ac=(uc("text-rendering"),uc("text-orientation"),uc("text-overflow"),uc("text-shadow"),uc("box-shadow"),uc("text-indent"),uc("text-transform"),uc("display")),_c=(uc("opacity"),uc("width")),lc=(uc("max-width"),uc("min-width"),uc("height")),sc=(uc("min-height"),uc("max-height"),uc("padding")),fc=(uc("padding-block-start"),uc("padding-block-end"),uc("padding-inline-start"),uc("padding-inline-end"),uc("padding-top"),uc("padding-bottom"),uc("padding-right"),uc("padding-left"),uc("margin"),uc("margin-top"),uc("margin-bottom"),uc("margin-right"),uc("margin-left"),uc("margin-block-start"),uc("margin-block-end"),uc("margin-inline-start"),uc("margin-inline-end"),uc("top")),dc=(uc("bottom"),uc("left")),hc=uc("right"),pc=(uc("border"),uc("border-top"),uc("border-bottom"),uc("border-left"),uc("border-right"),uc("border-block-start"),uc("border-block-end"),uc("border-block-start"),uc("border-block-end"),uc("border-image-outset"),uc("border-image-width"),uc("border-block-end-style"),uc("border-block-start-style"),uc("border-inline-end-style"),uc("border-bottom-style"),uc("border-inline-start-style"),uc("border-left-style"),uc("border-right-style"),uc("border-top-style"),uc("border-style"),uc("border-collapse"),uc("border-width"),uc("border-bottom-width"),uc("border-inline-end-width"),uc("border-left-width"),uc("border-right-width"),uc("border-top-width"),uc("border-bottom-left-radius"),uc("border-bottom-right-radius"),uc("border-top-left-radius"),uc("border-top-right-radius"),uc("border-radius")),gc=(uc("border-spacing"),uc("outline"),uc("outline-width"),uc("outline-style"),uc("outline-offset"),uc("resize"),uc("fill"),uc("visibility"),uc("overflow"),uc("overflow-x"),uc("overflow-y"),uc("overflow-wrap"),uc("white-space"),uc("background-repeat"),uc("background-attachment"),uc("background-clip"),uc("background-origin"),uc("background-image"),uc("background-size"),uc("line-height")),vc=(uc("letter-spacing"),uc("font-family"),uc("font-size")),mc=(uc("font-style"),uc("font-variant"),uc("font-variant-ligatures"),uc("font-variant-caps"),uc("font-variant-numeric"),uc("cursor"),uc("text-decoration")),bc=(uc("text-decoration-line"),uc("text-decoration-style"),uc("z-index"),uc("touch-action"),uc("table-layout"),uc("pointer-events"),uc("position")),yc=(uc("text-bottom"),uc("text-top"),uc("super"),uc("sub"),uc("baseline"),uc("middle"),{value:"auto",cursor:to,flexBasis:to,overflow:to,textRendering:to,lengthOrAuto:to,lengthOrNumberOrAutoOrNoneOrContent:to,alignItemsOrAuto:to,lengthOrAutoOrCoverOrContain:to,justifyContentOrAuto:to,intOrAuto:to,pointerEvents:to,touchAction:to,tableLayout:to}),kc={value:"none",cursor:to,none:to,lengthOrNone:to,lengthOrNoneOrMinMaxDimension:to,lengthOrNumberOrAutoOrNoneOrContent:to,textDecorationLine:to,listStyleType:to,listStyleTypeOrPositionOrImage:to,display:to,outline:to,pointerEvents:to,resize:to,transform:to,borderStyle:to,backgroundImage:to,textTransform:to,touchAction:to,updateFrequency:to,blockAxisOverflow:to,inlineAxisOverflow:to,pointerDevice:to,hoverCapability:to,scriptingSupport:to},wc={value:"block",display:to},xc=(E(function(t,r){return{ctor:"_Tuple2",_0:t,_1:C(r)}}),X(function(t){var r=t;return z(Et,r._0.value,z(N,"",z(M,function(t){return z(Ot,W.chr(" "),t.value)},r._1)))})),Tc={value:"row",flexDirection:to,flexDirectionOrWrap:to},Sc=(W.update(Tc,{value:"row-reverse"}),W.update(Tc,{value:"column"}),W.update(Tc,{value:"column-reverse"}),uc("stretch"),uc("space-between"),uc("space-around"),uc("flex-end"),uc("flex-start"),{value:"wrap",flexWrap:to,flexDirectionOrWrap:to}),Rc=(W.update(Sc,{value:"wrap-reverse"}),uc("order"),oc("flex-flow"),uc("flex-flow"),uc("flex-direction"),uc("flex-wrap"),uc("flex-shrink"),uc("flex-grow"),uc("flex-basis"),ec("flex"),oc("flex"),uc("flex"),ec("list-style"),oc("list-style"),uc("list-style"),uc("list-style-type"),uc("list-style-position"),uc("transform-style"),uc("box-sizing"),uc("transform-box"),E(function(t,r){return{value:z(w["++"],Jo(r),t),angle:to,angleOrDirection:to}})),Bc=(Rc("deg"),Rc("grad"),Rc("rad"),Rc("turn"),O(function(t,r,e){return{value:z(w["++"],Jo(e),r),numericValue:e,units:t,unitLabel:r,length:to,lengthOrAuto:to,lengthOrNumber:to,lengthOrNone:to,lengthOrMinMaxDimension:to,lengthOrNoneOrMinMaxDimension:to,textIndent:to,flexBasis:to,lengthOrNumberOrAutoOrNoneOrContent:to,fontSize:to,absoluteLength:to,lengthOrAutoOrCoverOrContain:to,calc:to}})),Nc=(uc("true"),uc("match-parent"),uc("end"),uc("start"),uc("justify-all"),uc("justify"),uc("center")),Ec={value:"solid",borderStyle:to,textDecorationStyle:to},Oc=t(function(t,r,e,n,o,c){var i=function(t){var r=t;if("RGBA"===r.ctor)return{red:r._0,green:r._1,blue:r._2,alpha:r._3};var e=j(rr,r._0,r._1,r._2),n=e._0,o=e._1,c=e._2;return{red:d(255*n),green:d(255*o),blue:d(255*c),alpha:r._3}}(b(nr,e,n,o,c)),u=i.red,a=i.green,_=i.blue,l=i.alpha;return{value:t,color:to,red:u,green:a,blue:_,alpha:l,warnings:r}}),Ac=function(t){return z(yt,"#",t)?t:z(Ot,W.chr("#"),t)},Cc=function(t){return{value:Ac(t),color:to,red:0,green:0,blue:0,alpha:1,warnings:D(z(Tt," ",{ctor:"::",_0:'Hex color strings must contain exactly 3, 4, 6, or 8 hexadecimal digits, optionally preceded by "#".',_1:{ctor:"::",_0:k(t),_1:{ctor:"::",_0:"is an invalid hex color string.",_1:{ctor:"::",_0:"Please see: https://drafts.csswg.org/css-color/#hex-notation",_1:{ctor:"[]"}}}}}))}},Mc=c(function(t,r,e,n,o){var c=r,i=e,u=n,a=o,_=function(t){return function(r){if(At(r))return ft("Empty strings are not valid hexadecimal strings.");var t=function(){if(z(yt,"-",r)){var t=z(N,{ctor:"[]"},K(mt(r)));return z(ht,m,j(Wo,H(t)-1,t,0))}return j(Wo,Bt(r)-1,mt(r),0)}();return z(pt,function(t){return z(Tt," ",{ctor:"::",_0:k(r),_1:{ctor:"::",_0:"is not a valid hexadecimal string because",_1:{ctor:"::",_0:t,_1:{ctor:"[]"}}}})},t)}(kt(vt(t)))},l={ctor:"_Tuple4",_0:_({ctor:"::",_0:c._0,_1:{ctor:"::",_0:c._1,_1:{ctor:"[]"}}}),_1:_({ctor:"::",_0:i._0,_1:{ctor:"::",_0:i._1,_1:{ctor:"[]"}}}),_2:_({ctor:"::",_0:u._0,_1:{ctor:"::",_0:u._1,_1:{ctor:"[]"}}}),_3:_({ctor:"::",_0:a._0,_1:{ctor:"::",_0:a._1,_1:{ctor:"[]"}}})};return"_Tuple4"===l.ctor&&"Ok"===l._0.ctor&&"Ok"===l._1.ctor&&"Ok"===l._2.ctor&&"Ok"===l._3.ctor?{value:Ac(t),color:to,red:l._0._0,green:l._1._0,blue:l._2._0,alpha:s(l._3._0)/255,warnings:{ctor:"[]"}}:Cc(t)}),Lc=function(t){var r=z(yt,"#",t)?z(xt,1,t):t,e=mt(r);t:do{if("::"===e.ctor&&"::"===e._1.ctor&&"::"===e._1._1.ctor){if("[]"===e._1._1._1.ctor){var n=e._0,o=e._1._0,c=e._1._1._0;return y(Mc,t,{ctor:"_Tuple2",_0:n,_1:n},{ctor:"_Tuple2",_0:o,_1:o},{ctor:"_Tuple2",_0:c,_1:c},{ctor:"_Tuple2",_0:W.chr("f"),_1:W.chr("f")})}if("[]"===e._1._1._1._1.ctor){var i=e._0,u=e._1._0,a=e._1._1._0,_=e._1._1._1._0;return y(Mc,t,{ctor:"_Tuple2",_0:i,_1:i},{ctor:"_Tuple2",_0:u,_1:u},{ctor:"_Tuple2",_0:a,_1:a},{ctor:"_Tuple2",_0:_,_1:_})}if("::"===e._1._1._1._1._1.ctor){if("[]"===e._1._1._1._1._1._1.ctor)return y(Mc,t,{ctor:"_Tuple2",_0:e._0,_1:e._1._0},{ctor:"_Tuple2",_0:e._1._1._0,_1:e._1._1._1._0},{ctor:"_Tuple2",_0:e._1._1._1._1._0,_1:e._1._1._1._1._1._0},{ctor:"_Tuple2",_0:W.chr("f"),_1:W.chr("f")});if("::"===e._1._1._1._1._1._1._1.ctor&&"[]"===e._1._1._1._1._1._1._1._1.ctor)return y(Mc,t,{ctor:"_Tuple2",_0:e._0,_1:e._1._0},{ctor:"_Tuple2",_0:e._1._1._0,_1:e._1._1._1._0},{ctor:"_Tuple2",_0:e._1._1._1._1._0,_1:e._1._1._1._1._1._0},{ctor:"_Tuple2",_0:e._1._1._1._1._1._1._0,_1:e._1._1._1._1._1._1._1._0});break t}break t}break t}while(0);return Cc(t)},Pc=(uc("luminosity"),uc("saturation"),uc("hue"),uc("exclusion"),uc("difference"),uc("soft-light"),uc("hard-light"),uc("color-burn"),uc("color-dodge"),uc("lighten"),uc("darken"),uc("overlay"),uc("screen"),uc("multiply"),Po(function(t){return W.update(t,{important:!0})}),uc("all"),O(function(t,r,e){var n=z(t,r.numericValue,e.numericValue),o=z(Tt,"",z(Z,function(t){return!At(t)},{ctor:"::",_0:k(n),_1:{ctor:"::",_0:r.unitLabel,_1:{ctor:"[]"}}}));return W.update(r,{value:o,numericValue:n})}));(Kn=Kn||{})["|*|"]=Pc(E(function(t,r){return t*r})),(Kn=Kn||{})["|/|"]=Pc(E(function(t,r){return t/r})),(Kn=Kn||{})["|-|"]=Pc(E(function(t,r){return t-r})),(Kn=Kn||{})["|+|"]=Pc(E(function(t,r){return t+r}));var Dc,Ic,Fc,qc,Uc,$c=O(function(t,r,e){t:for(;;){var n=e;switch(n.ctor){case"AppendProperty":return z(Go,r,n._0.key);case"ExtendSelector":return j(Qo,{ctor:"::",_0:z(w["++"],"Cannot apply ",z(w["++"],t,z(w["++"]," with inapplicable Style for selector ",k(n._0)))),_1:{ctor:"[]"}},r,"");case"NestSnippet":return j(Qo,{ctor:"::",_0:z(w["++"],"Cannot apply ",z(w["++"],t,z(w["++"]," with inapplicable Style for combinator ",k(n._0)))),_1:{ctor:"[]"}},r,"");case"WithPseudoElement":return j(Qo,{ctor:"::",_0:z(w["++"],"Cannot apply ",z(w["++"],t,z(w["++"]," with inapplicable Style for pseudo-element setter ",k(n._0)))),_1:{ctor:"[]"}},r,"");case"WithMedia":return j(Qo,{ctor:"::",_0:z(w["++"],"Cannot apply ",z(w["++"],t,z(w["++"]," with inapplicable Style for media query ",k(n._0)))),_1:{ctor:"[]"}},r,"");default:if("[]"===n._0.ctor)return j(Qo,{ctor:"::",_0:z(w["++"],"Cannot apply ",z(w["++"],t," with empty Style. ")),_1:{ctor:"[]"}},r,"");if("[]"===n._0._1.ctor){t=t,r=r,e=n._0._0;continue t}t=t,r=r,e=Oo(n._0._1);continue t}}}),zc=E(function(t,r){return z(w["++"],t,z(w["++"],"(",z(w["++"],z(Tt,", ",r),")")))}),jc=(O(function(t,r,e){var n,o=function(t){return z(yt,"calc(",t.value)?z(xt,4,t.value):t.value},c=z(Tt," ",{ctor:"::",_0:o(t),_1:{ctor:"::",_0:(n=r,"Addition"===n.ctor?"+":"-"),_1:{ctor:"::",_0:o(e),_1:{ctor:"[]"}}}});return{value:z(zc,"calc",{ctor:"::",_0:c,_1:{ctor:"[]"}}),length:to,lengthOrAuto:to,lengthOrNumber:to,lengthOrNone:to,lengthOrMinMaxDimension:to,lengthOrNoneOrMinMaxDimension:to,textIndent:to,flexBasis:to,lengthOrNumberOrAutoOrNoneOrContent:to,fontSize:to,lengthOrAutoOrCoverOrContain:to,calc:to}}),O(function(t,r,e){var n=W.cmp(t,0)<0||0<W.cmp(t,255)||W.cmp(r,0)<0||0<W.cmp(r,255)||W.cmp(e,0)<0||0<W.cmp(e,255)?{ctor:"::",_0:z(w["++"],"RGB color values must be between 0 and 255. rgb(",z(w["++"],k(t),z(w["++"],", ",z(w["++"],k(r),z(w["++"],", ",z(w["++"],k(e),") is not valid.")))))),_1:{ctor:"[]"}}:{ctor:"[]"};return{value:z(zc,"rgb",z(X,Jo,{ctor:"::",_0:t,_1:{ctor:"::",_0:r,_1:{ctor:"::",_0:e,_1:{ctor:"[]"}}}})),color:to,warnings:n,red:t,green:r,blue:e,alpha:1}}),$(function(t,r,e,n){var o=W.cmp(t,0)<0||0<W.cmp(t,255)||W.cmp(r,0)<0||0<W.cmp(r,255)||W.cmp(e,0)<0||0<W.cmp(e,255)||W.cmp(n,0)<0||0<W.cmp(n,1)?{ctor:"::",_0:z(w["++"],"RGB color values must be between 0 and 255, and the alpha in RGBA must be between 0 and 1. rgba(",z(w["++"],k(t),z(w["++"],", ",z(w["++"],k(r),z(w["++"],", ",z(w["++"],k(e),z(w["++"],", ",z(w["++"],k(n),") is not valid.")))))))),_1:{ctor:"[]"}}:{ctor:"[]"};return{value:z(zc,"rgba",z(w["++"],z(X,Jo,{ctor:"::",_0:t,_1:{ctor:"::",_0:r,_1:{ctor:"::",_0:e,_1:{ctor:"[]"}}}}),{ctor:"::",_0:Jo(n),_1:{ctor:"[]"}})),color:to,warnings:o,red:t,green:r,blue:e,alpha:n}})),Wc=(O(function(t,r,e){var n={ctor:"::",_0:Jo(t),_1:{ctor:"::",_0:Ho(r),_1:{ctor:"::",_0:Ho(e),_1:{ctor:"[]"}}}},o=z(zc,"hsl",n),c=0<W.cmp(t,360)||W.cmp(t,0)<0||0<W.cmp(r,1)||W.cmp(r,0)<0||0<W.cmp(e,1)||W.cmp(e,0)<0?{ctor:"::",_0:z(w["++"],"HSL color values must have an H value between 0 and 360 (as in degrees) and S and L values between 0 and 1. ",z(w["++"],o," is not valid.")),_1:{ctor:"[]"}}:{ctor:"[]"};return f(Oc,o,c,t,r,e,1)}),$(function(t,r,e,n){var o={ctor:"::",_0:Jo(t),_1:{ctor:"::",_0:Ho(r),_1:{ctor:"::",_0:Ho(e),_1:{ctor:"::",_0:Jo(n),_1:{ctor:"[]"}}}}},c=z(zc,"hsla",o),i=0<W.cmp(t,360)||W.cmp(t,0)<0||0<W.cmp(r,1)||W.cmp(r,0)<0||0<W.cmp(e,1)||W.cmp(e,0)<0||0<W.cmp(n,1)||W.cmp(n,0)<0?{ctor:"::",_0:z(w["++"],"HSLA color values must have an H value between 0 and 360 (as in degrees) and S, L, and A values between 0 and 1. ",z(w["++"],c," is not valid.")),_1:{ctor:"[]"}}:{ctor:"[]"};return f(Oc,c,i,t,r,e,n)}),t(function(t,r,e,n,o,c){return{value:z(zc,"matrix",z(X,Jo,{ctor:"::",_0:t,_1:{ctor:"::",_0:r,_1:{ctor:"::",_0:e,_1:{ctor:"::",_0:n,_1:{ctor:"::",_0:o,_1:{ctor:"::",_0:c,_1:{ctor:"[]"}}}}}}})),transform:to}}),$(function(t,r,e,n){var o=n,c=z(X,Jo,{ctor:"::",_0:t,_1:{ctor:"::",_0:r,_1:{ctor:"::",_0:e,_1:{ctor:"[]"}}}});return{value:z(zc,"rotate3d",z(w["++"],c,{ctor:"::",_0:o.value,_1:{ctor:"[]"}})),transform:to}}),E(function(t,r){return{value:z(zc,"scale",z(X,Jo,{ctor:"::",_0:t,_1:{ctor:"::",_0:r,_1:{ctor:"[]"}}})),transform:to}}),O(function(t,r,e){return{value:z(zc,"scale3d",z(X,Jo,{ctor:"::",_0:t,_1:{ctor:"::",_0:r,_1:{ctor:"::",_0:e,_1:{ctor:"[]"}}}})),transform:to}}),E(function(t,r){return{value:z(zc,"skew",{ctor:"::",_0:t.value,_1:{ctor:"::",_0:r.value,_1:{ctor:"[]"}}}),transform:to}}),E(function(t,r){return{value:z(zc,"translate",{ctor:"::",_0:t.value,_1:{ctor:"::",_0:r.value,_1:{ctor:"[]"}}}),transform:to}}),O(function(t,r,e){return{value:z(zc,"translate3d",{ctor:"::",_0:t.value,_1:{ctor:"::",_0:r.value,_1:{ctor:"::",_0:e.value,_1:{ctor:"[]"}}}}),transform:to}}),O(function(t,r,e){return{value:z(zc,"linear-gradient",xc(z(w["++"],{ctor:"::",_0:t,_1:{ctor:"::",_0:r,_1:{ctor:"[]"}}},e))),backgroundImage:to,listStyleTypeOrPositionOrImage:to}}),$(function(t,r,e,n){return{value:z(zc,"linear-gradient",z(E(function(t,r){return{ctor:"::",_0:t,_1:r}}),t.value,xc(z(w["++"],{ctor:"::",_0:r,_1:{ctor:"::",_0:e,_1:{ctor:"[]"}}},n)))),backgroundImage:to,listStyleTypeOrPositionOrImage:to}}),r(function(t,r,e,n,o,c,i){return{value:t,warnings:r,fontStyle:e,fontWeight:n,featureTagValue:o,overflowWrap:c,whiteSpace:i}}),z(Bc,{ctor:"PercentageUnits"},"%")),Jc=z(Bc,{ctor:"EmUnits"},"em"),Hc=(z(Bc,{ctor:"ExUnits"},"ex"),z(Bc,{ctor:"ChUnits"},"ch"),z(Bc,{ctor:"RemUnits"},"rem"),z(Bc,{ctor:"VhUnits"},"vh"),z(Bc,{ctor:"VwUnits"},"vw"),z(Bc,{ctor:"VMinUnits"},"vmin"),z(Bc,{ctor:"VMaxUnits"},"vmax"),z(Bc,{ctor:"PxUnits"},"px")),Vc=(z(Bc,{ctor:"MMUnits"},"mm"),z(Bc,{ctor:"CMUnits"},"cm"),z(Bc,{ctor:"InchUnits"},"in"),z(Bc,{ctor:"PtUnits"},"pt"),z(Bc,{ctor:"PcUnits"},"pc"),{ctor:"UnitlessInteger"}),Kc={value:"0",length:to,lengthOrNumber:to,lengthOrNone:to,lengthOrAuto:to,lengthOrMinMaxDimension:to,lengthOrNoneOrMinMaxDimension:to,number:to,outline:to,units:Vc,unitLabel:"",numericValue:0,lengthOrAutoOrCoverOrContain:to},Qc={ctor:"IncompatibleUnits"},Gc={value:"initial",overflow:to,visibility:to,none:to,number:to,textDecorationLine:to,textRendering:to,textIndent:to,textDecorationStyle:to,textTransform:to,borderStyle:to,boxSizing:to,color:to,cursor:to,display:to,all:to,alignItems:to,justifyContent:to,length:to,lengthOrAuto:to,lengthOrNone:to,lengthOrNumber:to,lengthOrMinMaxDimension:to,lengthOrNoneOrMinMaxDimension:to,listStyleType:to,listStylePosition:to,listStyleTypeOrPositionOrImage:to,flexBasis:to,flexWrap:to,flexDirection:to,flexDirectionOrWrap:to,lengthOrNumberOrAutoOrNoneOrContent:to,fontFamily:to,fontSize:to,fontStyle:to,fontWeight:to,fontVariant:to,outline:to,pointerEvents:to,units:Qc,numericValue:0,unitLabel:"",warnings:{ctor:"[]"},backgroundRepeat:to,backgroundRepeatShorthand:to,backgroundAttachment:to,backgroundBlendMode:to,backgroundOrigin:to,backgroundImage:to,lengthOrAutoOrCoverOrContain:to,intOrAuto:to,touchAction:to,whiteSpace:to,tableLayout:to},Xc=(W.update(Gc,{value:"unset"}),W.update(Gc,{value:"inherit"}),j(Bc,Qc,"",0)),Zc=function(t){return j($c,"textAlign","text-align",t(Xc))},Yc=function(t){return{feature:t,value:A}},ti=(E(function(t,r){return{feature:t,value:C(r.value)}}),Yc("monochrome"),Yc("color"),Yc("grid"),E(function(t,r){return{value:z(w["++"],k(t),z(w["++"],"/",k(r))),ratio:to}}),E(function(t,r){var e=r;if("[]"===e.ctor)return A;var n=e._0,o=z(ti,t,e._1);return"Nothing"===o.ctor?C(n):C(z(t,n,o._0))})),ri=(E(function(t,r){return{value:t,ratio:r}}),E(function(t,r){return{value:t,orientation:r}}),E(function(t,r){return{value:t,orientation:r}}),E(function(t,r){return{value:t,resolution:r}}),E(function(t,r){return{value:t,scanningProcess:r}}),E(function(t,r){return{value:t,scanningProcess:r}}),E(function(t,r){return{value:t,updateFrequency:r}}),E(function(t,r){return{value:t,updateFrequency:r}}),E(function(t,r){return{value:t,blockAxisOverflow:r}}),E(function(t,r){return{value:t,blockAxisOverflow:r}}),E(function(t,r){return{value:t,bits:r}}),E(function(t,r){return{value:t,colorGamut:r}}),E(function(t,r){return{value:t,colorGamut:r}}),E(function(t,r){return{value:t,colorGamut:r}}),E(function(t,r){return{value:t,pointerDevice:r}}),E(function(t,r){return{value:t,pointerDevice:r}}),E(function(t,r){return{value:t,hoverCapability:r}}),E(function(t,r){return{value:t,scriptingSupport:r}}),E(function(t,r){return{value:t,scriptingSupport:r}}),function(t){return z(w["++"],"    ",t)}),ei=function(t){return z(Tt,"\n",z(X,function(t){return ri((e=(r=t).important?" !important;":";",z(w["++"],r.key,z(w["++"],": ",z(w["++"],r.value,e)))));var r,e},t))},ni=function(t){var r=t;return z(w["++"],"::",r._0)},oi=function(t){var r=t;switch(r.ctor){case"ClassSelector":return z(w["++"],".",r._0);case"IdSelector":return z(w["++"],"#",r._0);default:return z(w["++"],":",r._0)}},ci=function(t){var r=t;switch(r.ctor){case"TypeSelectorSequence":return z(Tt,"",{ctor:"::",_0:r._0._0,_1:z(X,oi,r._1)});case"UniversalSelectorSequence":var e=r._0;return V(e)?"*":z(Tt,"",z(X,oi,e));default:return z(Tt,"",{ctor:"::",_0:r._0,_1:z(X,oi,r._1)})}},ii=function(t){var r=t;return z(Tt," ",{ctor:"::",_0:function(t){switch(t.ctor){case"AdjacentSibling":return"+";case"GeneralSibling":return"~";case"Child":return">";default:return""}}(r._0),_1:{ctor:"::",_0:ci(r._1),_1:{ctor:"[]"}}})},ui=function(t){var r=t,e=z(Tt,"",{ctor:"::",_0:z(N,"",z(M,ni,r._2)),_1:{ctor:"[]"}}),n=z(w["++"],{ctor:"::",_0:ci(r._0),_1:{ctor:"[]"}},z(X,ii,r._1));return j(i,E(function(t,r){return z(w["++"],t,r)}),e,z(Tt," ",z(Z,function(t){return!At(t)},n)))},ai=function(t){return z(w["++"],"(",z(w["++"],t.feature,z(w["++"],z(N,"",z(M,E(function(t,r){return z(w["++"],t,r)})(": "),t.value)),")")))},_i=function(t){var r=O(function(t,r,e){return z(w["++"],t,z(w["++"]," ",z(Tt," and ",{ctor:"::",_0:function(t){switch(t.ctor){case"Print":return"print";case"Screen":return"screen";default:return"speech"}}(r),_1:z(X,ai,e)})))}),e=t;switch(e.ctor){case"AllQuery":return z(Tt," and ",z(X,ai,e._0));case"OnlyQuery":return j(r,"only",e._0,e._1);case"NotQuery":return j(r,"not",e._0,e._1);default:return e._0}},li=E(function(t,r){var e=r,n=z(Tt,", ",z(X,ui,{ctor:"::",_0:e._0,_1:e._1}));return z(Tt,"",{ctor:"::",_0:n,_1:{ctor:"::",_0:" {\n",_1:{ctor:"::",_0:t,_1:{ctor:"::",_0:ei(e._2),_1:{ctor:"::",_0:"\n",_1:{ctor:"::",_0:t,_1:{ctor:"::",_0:"}",_1:{ctor:"[]"}}}}}}}})}),si=function(t){var r=t;switch(r.ctor){case"StyleBlockDeclaration":return z(li,"",r._0);case"MediaRule":var e=z(Tt,",\n",z(X,_i,r._0)),n=z(Tt,"\n\n",z(X,function(t){return ri(z(li,"    ",t))},r._1));return z(w["++"],"@media ",z(w["++"],e,z(w["++"]," {\n",z(w["++"],n,"\n}"))));default:return W.crashCase("Css.Structure.Output",{start:{line:61,column:5},end:{line:78,column:49}},r)("not yet implemented :x")}},fi=function(t){var r=t;return z(w["++"],"@namespace ",z(w["++"],r._0,z(w["++"],'"',z(w["++"],r._1,'"'))))},di=function(t){var r=t;return z(w["++"],'@import "',z(w["++"],r._0,z(w["++"],k(r._1),'"')))},hi=function(t){var r,e=t;return z(Tt,"\n\n",z(Z,function(t){return!At(t)},{ctor:"::",_0:(r=e.charset,z(N,"",z(M,function(t){return z(w["++"],'@charset "',z(w["++"],t,'"'))},r))),_1:{ctor:"::",_0:z(Tt,"\n",z(X,di,e.imports)),_1:{ctor:"::",_0:z(Tt,"\n",z(X,fi,e.namespaces)),_1:{ctor:"::",_0:z(Tt,"\n\n",z(X,si,e.declarations)),_1:{ctor:"[]"}}}}}))},pi=function(t){for(;;){var r=t;if("[]"===r.ctor)return A;var e=r._0;if("Nothing"!==e.ctor)return e;t=r._1}},gi=function(t){for(;;){var r=t;if("[]"===r.ctor)return{ctor:"[]"};if("StyleBlockDeclaration"===r._0.ctor)return z(w["++"],{ctor:"::",_0:r._0._0._0,_1:r._0._0._1},gi(r._1));t=r._1}},vi=function(t){var r=t;return{ctor:"_Tuple2",_0:r.warnings,_1:{key:r.key,value:r.value,important:r.important}}},mi=function(t){return{ctor:"_Tuple2",_0:z(ot,function(t){return t.warnings},t),_1:z(X,function(t){return Ct(vi(t))},t)}},bi=c(function(t,r,e,n,o){var c=o;return"StyleBlockDeclaration"===c.ctor?y(oo,t,r,e,n,c._0):o}),yi=function(t){for(;;){var r=t;if("[]"===r.ctor)return A;if("[]"===r._1.ctor)return C({ctor:"::",_0:r._0,_1:{ctor:"[]"}});t=r._1}},ki=function(t){var r=t;if("[]"===r.ctor)return{declarations:{ctor:"[]"},warnings:{ctor:"[]"}};var e=ki(r._1);return{declarations:z(w["++"],r._0.declarations,e.declarations),warnings:z(w["++"],r._0.warnings,e.warnings)}},wi=function(t){var r,a=function(t){var r=t;if("[]"===r.ctor)return{ctor:"_Tuple2",_0:{ctor:"[]"},_1:{ctor:"[]"}};var e=a(r._1),n=e._0,o=e._1,c=mi(r._0._1),i=c._0,u=c._1;return{ctor:"_Tuple2",_0:z(w["++"],i,n),_1:{ctor:"::",_0:{ctor:"_Tuple2",_0:r._0._0,_1:u},_1:o}}},e=a(t),n=e._0,o=e._1;return{declarations:{ctor:"::",_0:(r=o,{ctor:"FontFeatureValues",_0:r}),_1:{ctor:"[]"}},warnings:n}},xi=function(t){var r=mi(t),e=r._0,n=r._1;return{declarations:{ctor:"::",_0:ro(n),_1:{ctor:"[]"}},warnings:e}},Ti=function(t){var r=mi(t),e=r._0,n=r._1;return{declarations:{ctor:"::",_0:ro(n),_1:{ctor:"[]"}},warnings:e}},Si=E(function(t,r){return{declarations:{ctor:"::",_0:z(eo,t,r),_1:{ctor:"[]"}},warnings:{ctor:"[]"}}}),Ri=function(t){var r,e=mi(t),n=e._0,o=e._1;return{declarations:{ctor:"::",_0:(r=o,{ctor:"FontFace",_0:r}),_1:{ctor:"[]"}},warnings:n}},Bi=E(function(t,r){var e=mi(r),n=e._0,o=e._1;return{declarations:{ctor:"::",_0:z(no,t,o),_1:{ctor:"[]"}},warnings:n}}),Ni=E(function(t,r){var e=r;switch(e.ctor){case"StyleBlockDeclaration":return z(io,t,{ctor:"::",_0:e._0,_1:{ctor:"[]"}});case"MediaRule":return z(io,z(w["++"],t,e._0),e._1);case"SupportsRule":return z(co,e._0,z(X,Ni(t),e._1));case"DocumentRule":return y(oo,e._0,e._1,e._2,e._3,e._4);case"PageRule":case"FontFace":case"Keyframes":case"Viewport":case"CounterStyle":default:return r}}),Ei=E(function(o,t){var r=z(X,function(t){var r=Oi(t),e=r.declarations,n=r.warnings;return{declarations:z(X,Ni(o),e),warnings:n}},t);return{warnings:z(ot,function(t){return t.warnings},r),declarations:z(ot,function(t){return t.declarations},r)}}),Oi=function(t){var r=t;return z(Ai,r._2,{ctor:"::",_0:uo(j(_o,r._0,r._1,{ctor:"[]"})),_1:{ctor:"[]"}})},Ai=E(function(t,c){t:for(;;){var o=t;if("[]"===o.ctor)return{declarations:c,warnings:{ctor:"[]"}};switch(o._0.ctor){case"AppendProperty":var r=vi(o._0._0),e=r._0,n=r._1,i=z(Ai,o._1,z(so,n,c));return{declarations:i.declarations,warnings:z(w["++"],e,i.warnings)};case"ExtendSelector":return b(Ci,o._0._1,o._1,So(o._0._0),c);case"NestSnippet":var u=E(function(t,r){var e=t,n=r;return j(po,e._0,z(w["++"],e._1,{ctor:"::",_0:{ctor:"_Tuple2",_0:o._0._0,_1:n._0},_1:n._1}),pi({ctor:"::",_0:n._2,_1:{ctor:"::",_0:e._2,_1:{ctor:"[]"}}}))});return ki(z(E(function(t,r){return z(w["++"],t,r)}),{ctor:"::",_0:z(Ai,o._1,c),_1:{ctor:"[]"}},z(X,function(t){var r,e=t;switch(e.ctor){case"StyleBlockDeclaration":var n=z(ot,function(t){return z(X,u(t),{ctor:"::",_0:e._0._0,_1:e._0._1})},gi(c)),o="[]"===(r=n).ctor?{ctor:"[]"}:{ctor:"::",_0:uo(j(_o,r._0,r._1,{ctor:"[]"})),_1:{ctor:"[]"}};return ki({ctor:"::",_0:z(Ai,e._0._2,o),_1:{ctor:"[]"}});case"MediaRule":return z(Ei,e._0,e._1);case"SupportsRule":return z(Li,e._0,e._1);case"DocumentRule":return y(Mi,e._0,e._1,e._2,e._3,e._4);case"PageRule":return z(Bi,e._0,e._1);case"FontFace":return Ri(e._0);case"Keyframes":return z(Si,e._0,e._1);case"Viewport":return Ti(e._0);case"CounterStyle":return xi(e._0);default:return wi(e._0)}},z(ot,Bo,o._0._1))));case"WithPseudoElement":return b(Ci,o._0._1,o._1,vo(o._0._0),c);case"WithMedia":var a=(void 0,"[]"===(_=gi(c)).ctor?{ctor:"[]"}:{ctor:"::",_0:z(io,o._0._0,{ctor:"::",_0:j(_o,_._0,_._1,{ctor:"[]"}),_1:{ctor:"[]"}}),_1:{ctor:"[]"}});return ki({ctor:"::",_0:z(Ai,o._1,c),_1:{ctor:"::",_0:z(Ai,o._0._1,a),_1:{ctor:"[]"}}});default:t=z(w["++"],o._0._0,o._1),c=c;continue t}}var _}),Ci=$(function(e,t,r,n){var o=function(t){return z(N,{ctor:"[]"},K(t))},c=z(Ai,t,z(N,{ctor:"[]"},yi(n))),i=function(){var t={ctor:"_Tuple2",_0:Q(c.declarations),_1:Q(rt(n))};if("_Tuple2"===t.ctor&&"Just"===t._0.ctor&&"Just"===t._1.ctor){var r=t._1._0,e=t._0._0;return z(w["++"],z(at,H(n)-1,n),{ctor:"::",_0:W.eq(r,e)?r:e,_1:{ctor:"[]"}})}return n}(),u=function(t){var r=z(Ai,e,t.declarations);return{warnings:z(w["++"],t.warnings,r.warnings),declarations:r.declarations}},a=z(N,{warnings:{ctor:"[]"},declarations:{ctor:"[]"}},z(M,function(t){return ki(z(Yn,u,z(X,function(t){return{declarations:{ctor:"::",_0:t,_1:{ctor:"[]"}},warnings:{ctor:"[]"}}},z(ao,r,t))))},yi(n)));return{warnings:z(w["++"],a.warnings,c.warnings),declarations:z(w["++"],i,z(w["++"],o(a.declarations),o(c.declarations)))}}),Mi=c(function(t,r,e,n,o){var c=Oi(o),i=c.declarations,u=c.warnings;return{declarations:z(X,b(bi,t,r,e,n),i),warnings:u}}),Li=E(function(t,r){var e=Pi(z(ot,Bo,r)),n=e.declarations,o=e.warnings;return{declarations:{ctor:"::",_0:z(co,t,n),_1:{ctor:"[]"}},warnings:o}}),Pi=function(t){var r=t;if("[]"===r.ctor)return{declarations:{ctor:"[]"},warnings:{ctor:"[]"}};var e=Di(r._0),n=e.declarations,o=e.warnings,c=Pi(r._1);return{declarations:z(w["++"],n,c.declarations),warnings:z(w["++"],o,c.warnings)}},Di=function(t){var r=t;switch(r.ctor){case"StyleBlockDeclaration":return Oi(r._0);case"MediaRule":return z(Ei,r._0,r._1);case"SupportsRule":return z(Li,r._0,r._1);case"DocumentRule":return y(Mi,r._0,r._1,r._2,r._3,r._4);case"PageRule":return z(Bi,r._0,r._1);case"FontFace":return Ri(r._0);case"Keyframes":return z(Si,r._0,r._1);case"Viewport":return Ti(r._0);case"CounterStyle":return xi(r._0);default:return wi(r._0)}},Ii=function(t){var r,e,n,o,c,i,u=(e=Pi(z(ot,Bo,(r=t).snippets)),n=e.warnings,o=e.declarations,{ctor:"_Tuple2",_0:{charset:r.charset,imports:r.imports,namespaces:r.namespaces,declarations:o},_1:n});return{warnings:u._1,css:hi((c=u._0,i=c,{charset:i.charset,imports:i.imports,namespaces:i.namespaces,declarations:Xn(i.declarations)}))}},Fi=function(t){var r=z(X,Ii,t);return{warnings:z(ot,function(t){return t.warnings},r),css:z(Tt,"\n\n",z(X,function(t){return t.css},r))}},qi=(E(function(t,r){return{declarations:t,warnings:r}}),E(function(t,r){for(;;){var e=r;if("[]"===e.ctor)return!1;if(W.eq(t,e._0._0))return!0;t=t,r=e._1}})),Ui=E(function(t,r){for(;;){var e=r;if("[]"===e.ctor)return t;var n=e._1,o=z(w["++"],"_",e._0._0);if(!z(qi,o,n))return o;t=o,r=n}}),$i=function(t){return t._0},zi=E(function(t,r){for(;;){var e=r;if("[]"===e.ctor)return t;var n=e._1,o=e._0._2;if(At(o))t=t,r=n;else t=C({ctor:"_Tuple2",_0:o,_1:e._0._1}),r=n}}),ji=function(t){var r=z(zi,A,t);return"Nothing"===r.ctor?Fr:z(Yr,r._0._0,r._0._1)},Wi=E(function(t,r){var e=t,n=e._1;return V(n)?r:j(Zr,e._2,n,r)}),Ji=E(function(t,r){var e=t,n=e._0,o=r,c=o._1,i=o._0,u=e._1;switch(u.ctor){case"Unstyled":return{ctor:"_Tuple2",_0:{ctor:"::",_0:{ctor:"_Tuple2",_0:n,_1:u._0},_1:i},_1:c};case"Element":var a=u._1,_=j(J,Wi,c,a),l=j(J,Hi,{ctor:"_Tuple2",_0:{ctor:"[]"},_1:_},u._2),s=l._0,f=l._1;return{ctor:"_Tuple2",_0:{ctor:"::",_0:{ctor:"_Tuple2",_0:n,_1:j(Ke,u._0,z(X,$i,a),rt(s))},_1:i},_1:f};default:var d=u._1,h=(_=j(J,Wi,c,d),j(J,Ji,{ctor:"_Tuple2",_0:{ctor:"[]"},_1:_},u._2));s=h._0,f=h._1;return{ctor:"_Tuple2",_0:{ctor:"::",_0:{ctor:"_Tuple2",_0:n,_1:j(Pe,u._0,z(X,$i,d),rt(s))},_1:i},_1:f}}}),Hi=E(function(t,r){var e=r,n=e._1,o=e._0,c=t;switch(c.ctor){case"Unstyled":return{ctor:"_Tuple2",_0:{ctor:"::",_0:c._0,_1:o},_1:n};case"Element":var i=c._1,u=j(J,Wi,n,i),a=j(J,Hi,{ctor:"_Tuple2",_0:{ctor:"[]"},_1:u},c._2),_=a._0,l=a._1;return{ctor:"_Tuple2",_0:{ctor:"::",_0:j(Ke,c._0,z(X,$i,i),rt(_)),_1:o},_1:l};default:var s=c._1,f=(u=j(J,Wi,n,s),j(J,Ji,{ctor:"_Tuple2",_0:{ctor:"[]"},_1:u},c._2));_=f._0,l=f._1;return{ctor:"_Tuple2",_0:{ctor:"::",_0:j(Pe,c._0,z(X,$i,s),rt(_)),_1:o},_1:l}}}),Vi=E(function(t,r){var e=j(po,r,{ctor:"[]"},A);return Io({ctor:"::",_0:qo(j(Uo,e,{ctor:"[]"},t)),_1:{ctor:"[]"}})}),Ki=function(t){var r=t;return z(Vi,r._1,bo({ctor:"::",_0:Ro(r._0),_1:{ctor:"[]"}}))},Qi=function(t){return j(Ke,"style",{ctor:"[]"},D(Ve(Fi(D(Eo(z(X,Ki,kr(t))))).css)))},Gi=O(function(t,r,e){var n=z(X,$i,r),o=ji(r),c=j(J,Hi,{ctor:"_Tuple2",_0:{ctor:"[]"},_1:o},e),i=c._0,u=c._1,a=Qi(u);return j(Ke,t,n,{ctor:"::",_0:a,_1:rt(i)})}),Xi=E(function(t,r){var e=Qi(t);return{ctor:"_Tuple2",_0:z(Ui,"_",r),_1:e}}),Zi=O(function(t,r,e){var n=z(X,$i,r),o=ji(r),c=j(J,Ji,{ctor:"_Tuple2",_0:{ctor:"[]"},_1:o},e),i=c._0,u=c._1,a=z(Xi,u,i);return j(Pe,t,n,{ctor:"::",_0:a,_1:rt(i)})}),Yi=function(t){return{ctor:"Unstyled",_0:t}},tu=Yi,ru=(E(function(t,r){return Yi(z(Fe,t,r))}),O(function(t,r,e){return Yi(j(Ie,t,r,e))}),$(function(t,r,e,n){return Yi(b(De,t,r,e,n))}),O(function(t,r,e){return{ctor:"KeyedElement",_0:t,_1:r,_2:e}})),eu=O(function(t,r,e){return{ctor:"Element",_0:t,_1:r,_2:e}}),nu=eu,ou=O(function(t,r,e){return{ctor:"Property",_0:t,_1:r,_2:e}}),cu=E(function(t,r){return j(ou,z(Je,t,r),{ctor:"[]"},"")}),iu=(E(function(t,r){return j(ou,z(We,t,r),{ctor:"[]"},"")}),O(function(t,r,e){return j(ou,j(je,t,r,e),{ctor:"[]"},"")}),E(function(t,r){return j(ou,z($e,t,r),{ctor:"[]"},"")}),O(function(t,r,e){return j(ou,j(Ue,t,r,e),{ctor:"[]"},"")}),E(function(t,r){var e=r;return j(ou,z(ze,t,e._0),e._1,e._2)})),uu=E(function(e,t){var r=t;switch(r.ctor){case"Element":return j(eu,r._0,z(X,iu(e),r._1),z(X,uu(e),r._2));case"KeyedElement":return j(ru,r._0,z(X,iu(e),r._1),z(X,function(t){var r=t;return{ctor:"_Tuple2",_0:r._0,_1:z(uu,e,r._1)}},r._2));default:return Yi(z(He,e,r._0))}}),au=function(t){var r,e=V(r=t)?"unstyled":z(Ot,W.chr("_"),$o(z(Gt,15739,Fi(D(Eo(D(z(Vi,r,bo({ctor:"[]"})))))).css))),n=z(Je,"className",ve(e));return j(ou,n,t,e)},_u=tu,lu=function(t){var r=t;switch(r.ctor){case"Unstyled":return r._0;case"Element":return j(Gi,r._0,r._1,r._2);default:return j(Zi,r._0,r._1,r._2)}},su=$(function(t,r,e,n){return z(t,{ctor:"::",_0:au(r),_1:e},n)}),fu=uu,du=function(t){return Yi(Ve(t))},hu=nu,pu=(hu("body"),hu("section"),hu("nav"),hu("article"),hu("aside"),hu("h1")),gu=(hu("h2"),hu("h3"),hu("h4"),hu("h5"),hu("h6"),hu("header"),hu("footer"),hu("address"),hu("main"),hu("p"),hu("hr"),hu("pre"),hu("blockquote"),hu("ol"),hu("ul"),hu("li"),hu("dl"),hu("dt"),hu("dd"),hu("figure"),hu("figcaption"),hu("div")),vu=hu("a"),mu=(hu("em"),hu("strong"),hu("small"),hu("s"),hu("cite"),hu("q"),hu("dfn"),hu("abbr"),hu("time"),hu("code"),hu("var"),hu("samp"),hu("kbd"),hu("sub"),hu("sup"),hu("i"),hu("b"),hu("u"),hu("mark"),hu("ruby"),hu("rt"),hu("rp"),hu("bdi"),hu("bdo"),hu("span")),bu=(hu("br"),hu("wbr"),hu("ins"),hu("del"),hu("img")),yu=(hu("iframe"),hu("embed"),hu("object"),hu("param"),hu("video"),hu("audio"),hu("source"),hu("track"),hu("canvas"),hu("math"),hu("table"),hu("caption"),hu("colgroup"),hu("col"),hu("tbody"),hu("thead"),hu("tfoot"),hu("tr"),hu("td"),hu("th"),hu("form"),hu("fieldset"),hu("legend"),hu("label"),hu("input"),hu("button"),hu("select"),hu("datalist"),hu("optgroup"),hu("option"),hu("textarea"),hu("keygen"),hu("output"),hu("progress"),hu("meter"),hu("details"),hu("summary"),hu("menuitem"),hu("menu"),function(t){for(;;){var r=t;if("[]"===r.ctor)return{ctor:"[]"};if("StyleBlockDeclaration"===r._0.ctor)return z(w["++"],{ctor:"::",_0:z(ku,r._0._0._0,r._0._0._2),_1:r._0._0._1},yu(r._1));t=r._1}}),ku=E(function(t,r){var e=t,n=E(function(t,r){var e=t;return"NestSnippet"===e.ctor?z(et,r,z(X,function(t){var r=t;return{ctor:"_Tuple2",_0:e._0,_1:r._0}},z(ot,function(t){return yu(Bo(t))},e._1))):r}),o=E(function(t,r){var e=t;return"ExtendSelector"===e.ctor?j(U,o,z(ko,e._0,r),e._1):r});return j(po,j(U,o,e._0,r),j(U,n,e._1,r),e._2)}),wu=E(function(t,r){var e=z(yo,{ctor:"TypeSelector",_0:t},{ctor:"[]"}),n=j(po,e,{ctor:"[]"},A);return Io({ctor:"::",_0:qo(j(Uo,n,{ctor:"[]"},r)),_1:{ctor:"[]"}})}),xu=wu("html"),Tu=wu("body"),Su=(wu("article"),wu("header"),wu("footer"),wu("h1"),wu("h2"),wu("h3"),wu("h4"),wu("h5"),wu("h6"),wu("nav"),wu("menu"),wu("section"),wu("aside"),wu("time"),wu("div"),wu("hr"),wu("li"),wu("main"),wu("ol"),wu("p"),wu("ul"),wu("pre"),wu("dl"),wu("dt"),wu("dd"),wu("a"),wu("code"),wu("small"),wu("span"),wu("strong"),wu("i"),wu("em"),wu("q"),wu("img")),Ru=(wu("audio"),wu("video"),wu("canvas"),wu("caption"),wu("col"),wu("colgroup"),wu("table"),wu("tbody"),wu("td"),wu("tfoot"),wu("th"),wu("thead"),wu("tr"),wu("button"),wu("fieldset"),wu("form"),wu("input"),wu("label"),wu("legend"),wu("optgroup"),wu("option"),wu("progress"),wu("select"),wu("textarea"),wu("blockquote"),wu("svg"),wu("path"),wu("rect"),wu("circle"),wu("ellipse"),wu("line"),wu("polyline"),wu("polygon"),E(function(t,r){var e,n;return e=yu(z(ot,Bo,z(X,E(function(t,r){return r(t)})({ctor:"[]"}),t))),"[]"===(n=e).ctor?Io({ctor:"[]"}):Io({ctor:"::",_0:qo(j(Uo,n._0,n._1,r)),_1:{ctor:"[]"}})}),Co({ctor:"GeneralSibling"}),Co({ctor:"AdjacentSibling"}),Co({ctor:"Descendant"}),Co({ctor:"Child"}),E(function(e,t){var n=function(t){t:for(;;){var r=t;if("[]"===r.ctor)return{ctor:"[]"};switch(r._0.ctor){case"StyleBlockDeclaration":t=r._1;continue t;case"MediaRule":return{ctor:"::",_0:z(Fo,z(et,e,r._0._0),r._0._1),_1:n(r._1)};default:return{ctor:"::",_0:r._0,_1:n(r._1)}}}},o=function(t){for(;;){var r=t;if("[]"===r.ctor)return{ctor:"[]"};if("StyleBlockDeclaration"===r._0.ctor)return{ctor:"::",_0:r._0._0,_1:o(r._1)};t=r._1}},r=z(ot,Bo,t),c=z(Fo,e,o(r));return Io({ctor:"::",_0:c,_1:n(r)})})),Bu=(E(function(t,r){return z(Ru,z(X,ho,t),r)}),E(function(t,r){return z(Vi,r,z(mo,t,{ctor:"[]"}))}),E(function(t,r){return z(Vi,r,bo({ctor:"::",_0:Ro(z(Gn,"",t)),_1:{ctor:"[]"}}))}),E(function(t,r){return z(Vi,r,bo({ctor:"::",_0:(e=z(Gn,"",t),{ctor:"IdSelector",_0:e}),_1:{ctor:"[]"}}));var e}),au),Nu=cu,Eu=E(function(t,r){return z(Nu,t,ve(r))}),Ou=function(t){return z(Eu,"className",t)},Au=function(t){return z(Eu,"href",t)},Cu=(E(function(t,r){return z(Nu,t,ge(r))}),function(t){return on({method:"GET",headers:{ctor:"[]"},url:"https://raw.githubusercontent.com/allo-media/elm-kitchen/master/README.md",body:nn,expect:en,timeout:A,withCredentials:!1})}),Mu=E(function(t,r){return z(gu,{ctor:"[]"},{ctor:"::",_0:_u(z(Dn,{ctor:"[]"},r.readme)),_1:{ctor:"[]"}})}),Lu=O(function(t,r,e){var n,o=r;return"Ok"===o._0.ctor?z(Ft["!"],W.update(e,{readme:o._0._0}),{ctor:"[]"}):z(Ft["!"],W.update(e,{readme:(n=o._0._0,z(w["++"],"\n    ## Error\n\n    There was an error attempting to retrieve README information:\n\n        ",k(n)))}),{ctor:"[]"})}),Pu=function(t){return{ctor:"ReadmeReceived",_0:t}},Du={ctor:"Home"},Iu=(Dc={ctor:"::",_0:z(Hn,Du,Vn),_1:{ctor:"[]"}},jn(function(r){return z(ot,function(t){return t._0(r)},Dc)})),Fu=function(t){return At(t.hash)?C(Du):z(Un,Iu,t)},qu={primaryColor:Lc("333"),primaryBgColor:Lc("b01246"),secondaryBgColor:Lc("fafafa"),fonts:{ctor:"::",_0:"Lato",_1:{ctor:"::",_0:Zo.value,_1:{ctor:"[]"}}}},Uu=(Ic={ctor:"::",_0:xu({ctor:"::",_0:(Uc=qu.secondaryBgColor,j(Qo,Uc.warnings,"background-color",Uc.value)),_1:{ctor:"::",_0:_c(Wc(100)),_1:{ctor:"::",_0:lc(Wc(100)),_1:{ctor:"[]"}}}}),_1:{ctor:"::",_0:Tu({ctor:"::",_0:Xo(qu.primaryColor),_1:{ctor:"::",_0:z(ic,Wc(0),yc),_1:{ctor:"::",_0:_c(Hc(640)),_1:{ctor:"::",_0:(Fc=qu.fonts,z(uc,"font-family",V(qc=Fc)?{value:"none"}:{value:z(Tt,", ",z(X,function(t){return t},qc))})),_1:{ctor:"[]"}}}}}),_1:{ctor:"::",_0:Su({ctor:"::",_0:_c(Hc(640)),_1:{ctor:"[]"}}),_1:{ctor:"[]"}}}},tu(j(Ke,"style",{ctor:"[]"},D(Ve(Fi(D(Eo(Ic))).css))))),$u=($(function(t,r,e,n){return{primaryColor:t,primaryBgColor:r,secondaryBgColor:e,fonts:n}}),z(su,pu,{ctor:"::",_0:Zc(Nc),_1:{ctor:"::",_0:z(ic,Jc(1),Kc),_1:{ctor:"::",_0:Xo(Lc("000")),_1:{ctor:"::",_0:vc(Hc(60)),_1:{ctor:"::",_0:gc(Hc(1)),_1:{ctor:"[]"}}}}}})),zu=z(su,vu,{ctor:"::",_0:bc(Yo),_1:{ctor:"::",_0:fc(Hc(15)),_1:{ctor:"::",_0:hc(Hc(15)),_1:{ctor:"::",_0:j(nc,Hc(1),Ec,b(jc,255,255,255,.3)),_1:{ctor:"::",_0:sc(Hc(10)),_1:{ctor:"::",_0:pc(Hc(4)),_1:{ctor:"::",_0:Xo(Lc("999")),_1:{ctor:"::",_0:mc(kc),_1:{ctor:"[]"}}}}}}}}}),ju=function(t){return z(gu,{ctor:"::",_0:Ou("header"),_1:{ctor:"[]"}},{ctor:"::",_0:z($u,{ctor:"[]"},{ctor:"::",_0:du("elm-kitchen"),_1:{ctor:"[]"}}),_1:{ctor:"::",_0:z(zu,{ctor:"::",_0:(n="_blank",z(Eu,"target",n)),_1:{ctor:"::",_0:Au("https://github.com/allo-media/elm-kitchen"),_1:{ctor:"[]"}}},{ctor:"::",_0:z(bu,{ctor:"::",_0:(e="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ei-sc-github.svg/768px-Ei-sc-github.svg.png",z(Eu,"src",e)),_1:{ctor:"::",_0:Bu({ctor:"::",_0:_c(Hc(96)),_1:{ctor:"::",_0:lc(Hc(96)),_1:{ctor:"::",_0:(r=dc,j($c,"float","float",r(Xc))),_1:{ctor:"[]"}}}}),_1:{ctor:"[]"}}},{ctor:"[]"}),_1:{ctor:"::",_0:z(mu,{ctor:"::",_0:Bu({ctor:"::",_0:Xo(Lc("000")),_1:{ctor:"::",_0:ac(wc),_1:{ctor:"::",_0:Zc(Nc),_1:{ctor:"[]"}}}}),_1:{ctor:"[]"}},{ctor:"::",_0:du("Github"),_1:{ctor:"[]"}}),_1:{ctor:"[]"}}}),_1:{ctor:"[]"}}});var r,e,n},Wu=E(function(t,r){return z(gu,{ctor:"[]"},{ctor:"::",_0:Uu,_1:{ctor:"::",_0:ju(),_1:{ctor:"::",_0:z(gu,{ctor:"::",_0:Bu({ctor:"::",_0:z(cc,Jc(1),Kc),_1:{ctor:"[]"}}),_1:{ctor:"[]"}},{ctor:"::",_0:r,_1:{ctor:"[]"}}),_1:{ctor:"[]"}}}})}),Ju=E(function(t,r){return{session:t,activePage:r}}),Hu={ctor:"Other"},Vu={ctor:"Home"},Ku=(E(function(t,r){return{page:t,session:r}}),{ctor:"NotFound"}),Qu=function(t){return{ctor:"HomePage",_0:t}},Gu={ctor:"Blank"},Xu=function(t){return{ctor:"HomeMsg",_0:t}},Zu=E(function(t,r){if("Nothing"===t.ctor)return z(Ft["!"],W.update(r,{page:Ku}),{ctor:"[]"});var e=(r.session,z(Ft["!"],{readme:"Retrieving README from github"},{ctor:"::",_0:z(mr,Pu,cn(Cu())),_1:{ctor:"[]"}})),n=e._0,o=e._1;return z(Ft["!"],W.update(r,{page:Qu(n)}),{ctor:"::",_0:z(qt,Xu,o),_1:{ctor:"[]"}})}),Yu=E(function(t,r){return z(Zu,Fu(r),{page:Gu,session:{}})}),ta=E(function(t,r){var e=r,a=e,n=c(function(t,r,e,n,o){var c=z(e,n,o),i=c._0,u=c._1;return z(Ft["!"],W.update(a,{page:t(i)}),{ctor:"::",_0:z(qt,r,u),_1:{ctor:"[]"}})}),o={ctor:"_Tuple2",_0:t,_1:e.page};if("SetRoute"===o._0.ctor)return z(Zu,o._0._0,a);switch(o._1.ctor){case"HomePage":return y(n,Qu,Xu,Lu(e.session),o._0._0,o._1._0);case"NotFound":return z(Ft["!"],W.update(a,{page:Ku}),{ctor:"[]"});default:return z(Ft["!"],a,{ctor:"[]"})}}),ra=z(Nn,function(t){return{ctor:"SetRoute",_0:Fu(t)}},{init:Yu,view:function(t){return lu(function(t){var r=Ju(t.session),e=t.page;switch(e.ctor){case"HomePage":return z(Wu,r(Vu),z(fu,Xu,z(Mu,t.session,e._0)));case"NotFound":return z(Wu,r(Hu),z(gu,{ctor:"[]"},{ctor:"::",_0:du("Not found"),_1:{ctor:"[]"}}));default:return z(Wu,r(Hu),du(""))}}(t))},update:ta,subscriptions:function(t){switch(t.page.ctor){case"HomePage":case"NotFound":default:return $t}}})(be({})),ea={};if(ea.Main=ea.Main||{},void 0!==ra&&ra(ea.Main,"Main",void 0),"function"==typeof define&&define.amd)define([],function(){return ea});else if("object"!=typeof module){var na=this.Elm;if(void 0!==na)for(var oa in ea){if(oa in na)throw new Error("There are two Elm modules called `"+oa+"` on this page! Rename one of them.");na[oa]=ea[oa]}else this.Elm=ea}else module.exports=ea}).call(this);
+(function(scope){
+'use strict';
+
+function F(arity, fun, wrapper) {
+  wrapper.a = arity;
+  wrapper.f = fun;
+  return wrapper;
+}
+
+function F2(fun) {
+  return F(2, fun, function(a) { return function(b) { return fun(a,b); }; })
+}
+function F3(fun) {
+  return F(3, fun, function(a) {
+    return function(b) { return function(c) { return fun(a, b, c); }; };
+  });
+}
+function F4(fun) {
+  return F(4, fun, function(a) { return function(b) { return function(c) {
+    return function(d) { return fun(a, b, c, d); }; }; };
+  });
+}
+function F5(fun) {
+  return F(5, fun, function(a) { return function(b) { return function(c) {
+    return function(d) { return function(e) { return fun(a, b, c, d, e); }; }; }; };
+  });
+}
+function F6(fun) {
+  return F(6, fun, function(a) { return function(b) { return function(c) {
+    return function(d) { return function(e) { return function(f) {
+    return fun(a, b, c, d, e, f); }; }; }; }; };
+  });
+}
+function F7(fun) {
+  return F(7, fun, function(a) { return function(b) { return function(c) {
+    return function(d) { return function(e) { return function(f) {
+    return function(g) { return fun(a, b, c, d, e, f, g); }; }; }; }; }; };
+  });
+}
+function F8(fun) {
+  return F(8, fun, function(a) { return function(b) { return function(c) {
+    return function(d) { return function(e) { return function(f) {
+    return function(g) { return function(h) {
+    return fun(a, b, c, d, e, f, g, h); }; }; }; }; }; }; };
+  });
+}
+function F9(fun) {
+  return F(9, fun, function(a) { return function(b) { return function(c) {
+    return function(d) { return function(e) { return function(f) {
+    return function(g) { return function(h) { return function(i) {
+    return fun(a, b, c, d, e, f, g, h, i); }; }; }; }; }; }; }; };
+  });
+}
+
+function A2(fun, a, b) {
+  return fun.a === 2 ? fun.f(a, b) : fun(a)(b);
+}
+function A3(fun, a, b, c) {
+  return fun.a === 3 ? fun.f(a, b, c) : fun(a)(b)(c);
+}
+function A4(fun, a, b, c, d) {
+  return fun.a === 4 ? fun.f(a, b, c, d) : fun(a)(b)(c)(d);
+}
+function A5(fun, a, b, c, d, e) {
+  return fun.a === 5 ? fun.f(a, b, c, d, e) : fun(a)(b)(c)(d)(e);
+}
+function A6(fun, a, b, c, d, e, f) {
+  return fun.a === 6 ? fun.f(a, b, c, d, e, f) : fun(a)(b)(c)(d)(e)(f);
+}
+function A7(fun, a, b, c, d, e, f, g) {
+  return fun.a === 7 ? fun.f(a, b, c, d, e, f, g) : fun(a)(b)(c)(d)(e)(f)(g);
+}
+function A8(fun, a, b, c, d, e, f, g, h) {
+  return fun.a === 8 ? fun.f(a, b, c, d, e, f, g, h) : fun(a)(b)(c)(d)(e)(f)(g)(h);
+}
+function A9(fun, a, b, c, d, e, f, g, h, i) {
+  return fun.a === 9 ? fun.f(a, b, c, d, e, f, g, h, i) : fun(a)(b)(c)(d)(e)(f)(g)(h)(i);
+}
+
+
+
+
+var _JsArray_empty = [];
+
+function _JsArray_singleton(value)
+{
+    return [value];
+}
+
+function _JsArray_length(array)
+{
+    return array.length;
+}
+
+var _JsArray_initialize = F3(function(size, offset, func)
+{
+    var result = new Array(size);
+
+    for (var i = 0; i < size; i++)
+    {
+        result[i] = func(offset + i);
+    }
+
+    return result;
+});
+
+var _JsArray_initializeFromList = F2(function (max, ls)
+{
+    var result = new Array(max);
+
+    for (var i = 0; i < max && ls.b; i++)
+    {
+        result[i] = ls.a;
+        ls = ls.b;
+    }
+
+    result.length = i;
+    return _Utils_Tuple2(result, ls);
+});
+
+var _JsArray_unsafeGet = F2(function(index, array)
+{
+    return array[index];
+});
+
+var _JsArray_unsafeSet = F3(function(index, value, array)
+{
+    var length = array.length;
+    var result = new Array(length);
+
+    for (var i = 0; i < length; i++)
+    {
+        result[i] = array[i];
+    }
+
+    result[index] = value;
+    return result;
+});
+
+var _JsArray_push = F2(function(value, array)
+{
+    var length = array.length;
+    var result = new Array(length + 1);
+
+    for (var i = 0; i < length; i++)
+    {
+        result[i] = array[i];
+    }
+
+    result[length] = value;
+    return result;
+});
+
+var _JsArray_foldl = F3(function(func, acc, array)
+{
+    var length = array.length;
+
+    for (var i = 0; i < length; i++)
+    {
+        acc = A2(func, array[i], acc);
+    }
+
+    return acc;
+});
+
+var _JsArray_foldr = F3(function(func, acc, array)
+{
+    for (var i = array.length - 1; i >= 0; i--)
+    {
+        acc = A2(func, array[i], acc);
+    }
+
+    return acc;
+});
+
+var _JsArray_map = F2(function(func, array)
+{
+    var length = array.length;
+    var result = new Array(length);
+
+    for (var i = 0; i < length; i++)
+    {
+        result[i] = func(array[i]);
+    }
+
+    return result;
+});
+
+var _JsArray_indexedMap = F3(function(func, offset, array)
+{
+    var length = array.length;
+    var result = new Array(length);
+
+    for (var i = 0; i < length; i++)
+    {
+        result[i] = A2(func, offset + i, array[i]);
+    }
+
+    return result;
+});
+
+var _JsArray_slice = F3(function(from, to, array)
+{
+    return array.slice(from, to);
+});
+
+var _JsArray_appendN = F3(function(n, dest, source)
+{
+    var destLen = dest.length;
+    var itemsToCopy = n - destLen;
+
+    if (itemsToCopy > source.length)
+    {
+        itemsToCopy = source.length;
+    }
+
+    var size = destLen + itemsToCopy;
+    var result = new Array(size);
+
+    for (var i = 0; i < destLen; i++)
+    {
+        result[i] = dest[i];
+    }
+
+    for (var i = 0; i < itemsToCopy; i++)
+    {
+        result[i + destLen] = source[i];
+    }
+
+    return result;
+});
+
+
+
+var _List_Nil = { $: 0 };
+var _List_Nil_UNUSED = { $: '[]' };
+
+function _List_Cons(hd, tl) { return { $: 1, a: hd, b: tl }; }
+function _List_Cons_UNUSED(hd, tl) { return { $: '::', a: hd, b: tl }; }
+
+
+var _List_cons = F2(_List_Cons);
+
+function _List_fromArray(arr)
+{
+	var out = _List_Nil;
+	for (var i = arr.length; i--; )
+	{
+		out = _List_Cons(arr[i], out);
+	}
+	return out;
+}
+
+function _List_toArray(xs)
+{
+	for (var out = []; xs.b; xs = xs.b) // WHILE_CONS
+	{
+		out.push(xs.a);
+	}
+	return out;
+}
+
+var _List_map2 = F3(function(f, xs, ys)
+{
+	for (var arr = []; xs.b && ys.b; xs = xs.b, ys = ys.b) // WHILE_CONSES
+	{
+		arr.push(A2(f, xs.a, ys.a));
+	}
+	return _List_fromArray(arr);
+});
+
+var _List_map3 = F4(function(f, xs, ys, zs)
+{
+	for (var arr = []; xs.b && ys.b && zs.b; xs = xs.b, ys = ys.b, zs = zs.b) // WHILE_CONSES
+	{
+		arr.push(A3(f, xs.a, ys.a, zs.a));
+	}
+	return _List_fromArray(arr);
+});
+
+var _List_map4 = F5(function(f, ws, xs, ys, zs)
+{
+	for (var arr = []; ws.b && xs.b && ys.b && zs.b; ws = ws.b, xs = xs.b, ys = ys.b, zs = zs.b) // WHILE_CONSES
+	{
+		arr.push(A4(f, ws.a, xs.a, ys.a, zs.a));
+	}
+	return _List_fromArray(arr);
+});
+
+var _List_map5 = F6(function(f, vs, ws, xs, ys, zs)
+{
+	for (var arr = []; vs.b && ws.b && xs.b && ys.b && zs.b; vs = vs.b, ws = ws.b, xs = xs.b, ys = ys.b, zs = zs.b) // WHILE_CONSES
+	{
+		arr.push(A5(f, vs.a, ws.a, xs.a, ys.a, zs.a));
+	}
+	return _List_fromArray(arr);
+});
+
+var _List_sortBy = F2(function(f, xs)
+{
+	return _List_fromArray(_List_toArray(xs).sort(function(a, b) {
+		return _Utils_cmp(f(a), f(b));
+	}));
+});
+
+var _List_sortWith = F2(function(f, xs)
+{
+	return _List_fromArray(_List_toArray(xs).sort(function(a, b) {
+		var ord = A2(f, a, b);
+		return ord === elm$core$Basics$EQ ? 0 : ord === elm$core$Basics$LT ? -1 : 1;
+	}));
+});
+
+
+
+// LOG
+
+var _Debug_log = F2(function(tag, value)
+{
+	return value;
+});
+
+var _Debug_log_UNUSED = F2(function(tag, value)
+{
+	console.log(tag + ': ' + _Debug_toString(value));
+	return value;
+});
+
+
+// TODOS
+
+function _Debug_todo(moduleName, region)
+{
+	return function(message) {
+		_Debug_crash(8, moduleName, region, message);
+	};
+}
+
+function _Debug_todoCase(moduleName, region, value)
+{
+	return function(message) {
+		_Debug_crash(9, moduleName, region, value, message);
+	};
+}
+
+
+// TO STRING
+
+function _Debug_toString(value)
+{
+	return '<internals>';
+}
+
+function _Debug_toString_UNUSED(value)
+{
+	return _Debug_toAnsiString(false, value);
+}
+
+function _Debug_toAnsiString(ansi, value)
+{
+	if (typeof value === 'function')
+	{
+		return _Debug_internalColor(ansi, '<function>');
+	}
+
+	if (typeof value === 'boolean')
+	{
+		return _Debug_ctorColor(ansi, value ? 'True' : 'False');
+	}
+
+	if (typeof value === 'number')
+	{
+		return _Debug_numberColor(ansi, value + '');
+	}
+
+	if (value instanceof String)
+	{
+		return _Debug_charColor(ansi, "'" + _Debug_addSlashes(value, true) + "'");
+	}
+
+	if (typeof value === 'string')
+	{
+		return _Debug_stringColor(ansi, '"' + _Debug_addSlashes(value, false) + '"');
+	}
+
+	if (typeof value === 'object' && '$' in value)
+	{
+		var tag = value.$;
+
+		if (typeof tag === 'number')
+		{
+			return _Debug_internalColor(ansi, '<internals>');
+		}
+
+		if (tag[0] === '#')
+		{
+			var output = [];
+			for (var k in value)
+			{
+				if (k === '$') continue;
+				output.push(_Debug_toAnsiString(ansi, value[k]));
+			}
+			return '(' + output.join(',') + ')';
+		}
+
+		if (tag === 'Set_elm_builtin')
+		{
+			return _Debug_ctorColor(ansi, 'Set')
+				+ _Debug_fadeColor(ansi, '.fromList') + ' '
+				+ _Debug_toAnsiString(ansi, elm$core$Set$toList(value));
+		}
+
+		if (tag === 'RBNode_elm_builtin' || tag === 'RBEmpty_elm_builtin')
+		{
+			return _Debug_ctorColor(ansi, 'Dict')
+				+ _Debug_fadeColor(ansi, '.fromList') + ' '
+				+ _Debug_toAnsiString(ansi, elm$core$Dict$toList(value));
+		}
+
+		if (tag === 'Array_elm_builtin')
+		{
+			return _Debug_ctorColor(ansi, 'Array')
+				+ _Debug_fadeColor(ansi, '.fromList') + ' '
+				+ _Debug_toAnsiString(ansi, elm$core$Array$toList(value));
+		}
+
+		if (tag === '::' || tag === '[]')
+		{
+			var output = '[';
+
+			value.b && (output += _Debug_toAnsiString(ansi, value.a), value = value.b)
+
+			for (; value.b; value = value.b) // WHILE_CONS
+			{
+				output += ',' + _Debug_toAnsiString(ansi, value.a);
+			}
+			return output + ']';
+		}
+
+		var output = '';
+		for (var i in value)
+		{
+			if (i === '$') continue;
+			var str = _Debug_toAnsiString(ansi, value[i]);
+			var c0 = str[0];
+			var parenless = c0 === '{' || c0 === '(' || c0 === '[' || c0 === '<' || c0 === '"' || str.indexOf(' ') < 0;
+			output += ' ' + (parenless ? str : '(' + str + ')');
+		}
+		return _Debug_ctorColor(ansi, tag) + output;
+	}
+
+	if (typeof value === 'object')
+	{
+		var output = [];
+		for (var key in value)
+		{
+			var field = key[0] === '_' ? key.slice(1) : key;
+			output.push(_Debug_fadeColor(ansi, field) + ' = ' + _Debug_toAnsiString(ansi, value[key]));
+		}
+		if (output.length === 0)
+		{
+			return '{}';
+		}
+		return '{ ' + output.join(', ') + ' }';
+	}
+
+	return _Debug_internalColor(ansi, '<internals>');
+}
+
+function _Debug_addSlashes(str, isChar)
+{
+	var s = str
+		.replace(/\\/g, '\\\\')
+		.replace(/\n/g, '\\n')
+		.replace(/\t/g, '\\t')
+		.replace(/\r/g, '\\r')
+		.replace(/\v/g, '\\v')
+		.replace(/\0/g, '\\0');
+
+	if (isChar)
+	{
+		return s.replace(/\'/g, '\\\'');
+	}
+	else
+	{
+		return s.replace(/\"/g, '\\"');
+	}
+}
+
+function _Debug_ctorColor(ansi, string)
+{
+	return ansi ? '\x1b[96m' + string + '\x1b[0m' : string;
+}
+
+function _Debug_numberColor(ansi, string)
+{
+	return ansi ? '\x1b[95m' + string + '\x1b[0m' : string;
+}
+
+function _Debug_stringColor(ansi, string)
+{
+	return ansi ? '\x1b[93m' + string + '\x1b[0m' : string;
+}
+
+function _Debug_charColor(ansi, string)
+{
+	return ansi ? '\x1b[92m' + string + '\x1b[0m' : string;
+}
+
+function _Debug_fadeColor(ansi, string)
+{
+	return ansi ? '\x1b[37m' + string + '\x1b[0m' : string;
+}
+
+function _Debug_internalColor(ansi, string)
+{
+	return ansi ? '\x1b[94m' + string + '\x1b[0m' : string;
+}
+
+
+
+// CRASH
+
+
+function _Debug_crash(identifier)
+{
+	throw new Error('https://github.com/elm/core/blob/1.0.0/hints/' + identifier + '.md');
+}
+
+
+function _Debug_crash_UNUSED(identifier, fact1, fact2, fact3, fact4)
+{
+	switch(identifier)
+	{
+		case 0:
+			throw new Error('What node should I take over? In JavaScript I need something like:\n\n    Elm.Main.init({\n        node: document.getElementById("elm-node")\n    })\n\nYou need to do this with any Browser.sandbox or Browser.element program.');
+
+		case 1:
+			throw new Error('Browser.application programs cannot handle URLs like this:\n\n    ' + document.location.href + '\n\nWhat is the root? The root of your file system? Try looking at this program with `elm reactor` or some other server.');
+
+		case 2:
+			var jsonErrorString = fact1;
+			throw new Error('Problem with the flags given to your Elm program on initialization.\n\n' + jsonErrorString);
+
+		case 3:
+			var portName = fact1;
+			throw new Error('There can only be one port named `' + portName + '`, but your program has multiple.');
+
+		case 4:
+			var portName = fact1;
+			var problem = fact2;
+			throw new Error('Trying to send an unexpected type of value through port `' + portName + '`:\n' + problem);
+
+		case 5:
+			throw new Error('Trying to use `(==)` on functions.\nThere is no way to know if functions are "the same" in the Elm sense.\nRead more about this at https://package.elm-lang.org/packages/elm/core/latest/Basics#== which describes why it is this way and what the better version will look like.');
+
+		case 6:
+			var moduleName = fact1;
+			throw new Error('Your page is loading multiple Elm scripts with a module named ' + moduleName + '. Maybe a duplicate script is getting loaded accidentally? If not, rename one of them so I know which is which!');
+
+		case 8:
+			var moduleName = fact1;
+			var region = fact2;
+			var message = fact3;
+			throw new Error('TODO in module `' + moduleName + '` ' + _Debug_regionToString(region) + '\n\n' + message);
+
+		case 9:
+			var moduleName = fact1;
+			var region = fact2;
+			var value = fact3;
+			var message = fact4;
+			throw new Error(
+				'TODO in module `' + moduleName + '` from the `case` expression '
+				+ _Debug_regionToString(region) + '\n\nIt received the following value:\n\n    '
+				+ _Debug_toString(value).replace('\n', '\n    ')
+				+ '\n\nBut the branch that handles it says:\n\n    ' + message.replace('\n', '\n    ')
+			);
+
+		case 10:
+			throw new Error('Bug in https://github.com/elm/virtual-dom/issues');
+
+		case 11:
+			throw new Error('Cannot perform mod 0. Division by zero error.');
+	}
+}
+
+function _Debug_regionToString(region)
+{
+	if (region.bp.aC === region.bI.aC)
+	{
+		return 'on line ' + region.bp.aC;
+	}
+	return 'on lines ' + region.bp.aC + ' through ' + region.bI.aC;
+}
+
+
+
+// EQUALITY
+
+function _Utils_eq(x, y)
+{
+	for (
+		var pair, stack = [], isEqual = _Utils_eqHelp(x, y, 0, stack);
+		isEqual && (pair = stack.pop());
+		isEqual = _Utils_eqHelp(pair.a, pair.b, 0, stack)
+		)
+	{}
+
+	return isEqual;
+}
+
+function _Utils_eqHelp(x, y, depth, stack)
+{
+	if (depth > 100)
+	{
+		stack.push(_Utils_Tuple2(x,y));
+		return true;
+	}
+
+	if (x === y)
+	{
+		return true;
+	}
+
+	if (typeof x !== 'object' || x === null || y === null)
+	{
+		typeof x === 'function' && _Debug_crash(5);
+		return false;
+	}
+
+	/**_UNUSED/
+	if (x.$ === 'Set_elm_builtin')
+	{
+		x = elm$core$Set$toList(x);
+		y = elm$core$Set$toList(y);
+	}
+	if (x.$ === 'RBNode_elm_builtin' || x.$ === 'RBEmpty_elm_builtin')
+	{
+		x = elm$core$Dict$toList(x);
+		y = elm$core$Dict$toList(y);
+	}
+	//*/
+
+	/**/
+	if (x.$ < 0)
+	{
+		x = elm$core$Dict$toList(x);
+		y = elm$core$Dict$toList(y);
+	}
+	//*/
+
+	for (var key in x)
+	{
+		if (!_Utils_eqHelp(x[key], y[key], depth + 1, stack))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+var _Utils_equal = F2(_Utils_eq);
+var _Utils_notEqual = F2(function(a, b) { return !_Utils_eq(a,b); });
+
+
+
+// COMPARISONS
+
+// Code in Generate/JavaScript.hs, Basics.js, and List.js depends on
+// the particular integer values assigned to LT, EQ, and GT.
+
+function _Utils_cmp(x, y, ord)
+{
+	if (typeof x !== 'object')
+	{
+		return x === y ? /*EQ*/ 0 : x < y ? /*LT*/ -1 : /*GT*/ 1;
+	}
+
+	/**_UNUSED/
+	if (x instanceof String)
+	{
+		var a = x.valueOf();
+		var b = y.valueOf();
+		return a === b ? 0 : a < b ? -1 : 1;
+	}
+	//*/
+
+	/**/
+	if (!x.$)
+	//*/
+	/**_UNUSED/
+	if (x.$[0] === '#')
+	//*/
+	{
+		return (ord = _Utils_cmp(x.a, y.a))
+			? ord
+			: (ord = _Utils_cmp(x.b, y.b))
+				? ord
+				: _Utils_cmp(x.c, y.c);
+	}
+
+	// traverse conses until end of a list or a mismatch
+	for (; x.b && y.b && !(ord = _Utils_cmp(x.a, y.a)); x = x.b, y = y.b) {} // WHILE_CONSES
+	return ord || (x.b ? /*GT*/ 1 : y.b ? /*LT*/ -1 : /*EQ*/ 0);
+}
+
+var _Utils_lt = F2(function(a, b) { return _Utils_cmp(a, b) < 0; });
+var _Utils_le = F2(function(a, b) { return _Utils_cmp(a, b) < 1; });
+var _Utils_gt = F2(function(a, b) { return _Utils_cmp(a, b) > 0; });
+var _Utils_ge = F2(function(a, b) { return _Utils_cmp(a, b) >= 0; });
+
+var _Utils_compare = F2(function(x, y)
+{
+	var n = _Utils_cmp(x, y);
+	return n < 0 ? elm$core$Basics$LT : n ? elm$core$Basics$GT : elm$core$Basics$EQ;
+});
+
+
+// COMMON VALUES
+
+var _Utils_Tuple0 = 0;
+var _Utils_Tuple0_UNUSED = { $: '#0' };
+
+function _Utils_Tuple2(a, b) { return { a: a, b: b }; }
+function _Utils_Tuple2_UNUSED(a, b) { return { $: '#2', a: a, b: b }; }
+
+function _Utils_Tuple3(a, b, c) { return { a: a, b: b, c: c }; }
+function _Utils_Tuple3_UNUSED(a, b, c) { return { $: '#3', a: a, b: b, c: c }; }
+
+function _Utils_chr(c) { return c; }
+function _Utils_chr_UNUSED(c) { return new String(c); }
+
+
+// RECORDS
+
+function _Utils_update(oldRecord, updatedFields)
+{
+	var newRecord = {};
+
+	for (var key in oldRecord)
+	{
+		newRecord[key] = oldRecord[key];
+	}
+
+	for (var key in updatedFields)
+	{
+		newRecord[key] = updatedFields[key];
+	}
+
+	return newRecord;
+}
+
+
+// APPEND
+
+var _Utils_append = F2(_Utils_ap);
+
+function _Utils_ap(xs, ys)
+{
+	// append Strings
+	if (typeof xs === 'string')
+	{
+		return xs + ys;
+	}
+
+	// append Lists
+	if (!xs.b)
+	{
+		return ys;
+	}
+	var root = _List_Cons(xs.a, ys);
+	xs = xs.b
+	for (var curr = root; xs.b; xs = xs.b) // WHILE_CONS
+	{
+		curr = curr.b = _List_Cons(xs.a, ys);
+	}
+	return root;
+}
+
+
+
+// TASKS
+
+function _Scheduler_succeed(value)
+{
+	return {
+		$: 0,
+		a: value
+	};
+}
+
+function _Scheduler_fail(error)
+{
+	return {
+		$: 1,
+		a: error
+	};
+}
+
+function _Scheduler_binding(callback)
+{
+	return {
+		$: 2,
+		b: callback,
+		c: null
+	};
+}
+
+var _Scheduler_andThen = F2(function(callback, task)
+{
+	return {
+		$: 3,
+		b: callback,
+		d: task
+	};
+});
+
+var _Scheduler_onError = F2(function(callback, task)
+{
+	return {
+		$: 4,
+		b: callback,
+		d: task
+	};
+});
+
+function _Scheduler_receive(callback)
+{
+	return {
+		$: 5,
+		b: callback
+	};
+}
+
+
+// PROCESSES
+
+var _Scheduler_guid = 0;
+
+function _Scheduler_rawSpawn(task)
+{
+	var proc = {
+		$: 0,
+		e: _Scheduler_guid++,
+		f: task,
+		g: null,
+		h: []
+	};
+
+	_Scheduler_enqueue(proc);
+
+	return proc;
+}
+
+function _Scheduler_spawn(task)
+{
+	return _Scheduler_binding(function(callback) {
+		callback(_Scheduler_succeed(_Scheduler_rawSpawn(task)));
+	});
+}
+
+function _Scheduler_rawSend(proc, msg)
+{
+	proc.h.push(msg);
+	_Scheduler_enqueue(proc);
+}
+
+var _Scheduler_send = F2(function(proc, msg)
+{
+	return _Scheduler_binding(function(callback) {
+		_Scheduler_rawSend(proc, msg);
+		callback(_Scheduler_succeed(_Utils_Tuple0));
+	});
+});
+
+function _Scheduler_kill(proc)
+{
+	return _Scheduler_binding(function(callback) {
+		var task = proc.f;
+		if (task.$ === 2 && task.c)
+		{
+			task.c();
+		}
+
+		proc.f = null;
+
+		callback(_Scheduler_succeed(_Utils_Tuple0));
+	});
+}
+
+
+/* STEP PROCESSES
+
+type alias Process =
+  { $ : tag
+  , id : unique_id
+  , root : Task
+  , stack : null | { $: SUCCEED | FAIL, a: callback, b: stack }
+  , mailbox : [msg]
+  }
+
+*/
+
+
+var _Scheduler_working = false;
+var _Scheduler_queue = [];
+
+
+function _Scheduler_enqueue(proc)
+{
+	_Scheduler_queue.push(proc);
+	if (_Scheduler_working)
+	{
+		return;
+	}
+	_Scheduler_working = true;
+	while (proc = _Scheduler_queue.shift())
+	{
+		_Scheduler_step(proc);
+	}
+	_Scheduler_working = false;
+}
+
+
+function _Scheduler_step(proc)
+{
+	while (proc.f)
+	{
+		var rootTag = proc.f.$;
+		if (rootTag === 0 || rootTag === 1)
+		{
+			while (proc.g && proc.g.$ !== rootTag)
+			{
+				proc.g = proc.g.i;
+			}
+			if (!proc.g)
+			{
+				return;
+			}
+			proc.f = proc.g.b(proc.f.a);
+			proc.g = proc.g.i;
+		}
+		else if (rootTag === 2)
+		{
+			proc.f.c = proc.f.b(function(newRoot) {
+				proc.f = newRoot;
+				_Scheduler_enqueue(proc);
+			});
+			return;
+		}
+		else if (rootTag === 5)
+		{
+			if (proc.h.length === 0)
+			{
+				return;
+			}
+			proc.f = proc.f.b(proc.h.shift());
+		}
+		else // if (rootTag === 3 || rootTag === 4)
+		{
+			proc.g = {
+				$: rootTag === 3 ? 0 : 1,
+				b: proc.f.b,
+				i: proc.g
+			};
+			proc.f = proc.f.d;
+		}
+	}
+}
+
+
+
+// SEND REQUEST
+
+var _Http_toTask = F2(function(request, maybeProgress)
+{
+	return _Scheduler_binding(function(callback)
+	{
+		var xhr = new XMLHttpRequest();
+
+		_Http_configureProgress(xhr, maybeProgress);
+
+		xhr.addEventListener('error', function() {
+			callback(_Scheduler_fail(elm$http$Http$NetworkError));
+		});
+		xhr.addEventListener('timeout', function() {
+			callback(_Scheduler_fail(elm$http$Http$Timeout));
+		});
+		xhr.addEventListener('load', function() {
+			callback(_Http_handleResponse(xhr, request.bb.a));
+		});
+
+		try
+		{
+			xhr.open(request.bh, request.cU, true);
+		}
+		catch (e)
+		{
+			return callback(_Scheduler_fail(elm$http$Http$BadUrl(request.cU)));
+		}
+
+		_Http_configureRequest(xhr, request);
+
+		var body = request.cl;
+		xhr.send(elm$http$Http$Internal$isStringBody(body)
+			? (xhr.setRequestHeader('Content-Type', body.a), body.b)
+			: body.a
+		);
+
+		return function() { xhr.abort(); };
+	});
+});
+
+function _Http_configureProgress(xhr, maybeProgress)
+{
+	if (!elm$core$Maybe$isJust(maybeProgress))
+	{
+		return;
+	}
+
+	xhr.addEventListener('progress', function(event) {
+		if (!event.lengthComputable)
+		{
+			return;
+		}
+		_Scheduler_rawSpawn(maybeProgress.a({
+			cn: event.loaded,
+			co: event.total
+		}));
+	});
+}
+
+function _Http_configureRequest(xhr, request)
+{
+	for (var headers = request.aY; headers.b; headers = headers.b) // WHILE_CONS
+	{
+		xhr.setRequestHeader(headers.a.a, headers.a.b);
+	}
+
+	xhr.responseType = request.bb.b;
+	xhr.withCredentials = request.bt;
+
+	elm$core$Maybe$isJust(request.bs) && (xhr.timeout = request.bs.a);
+}
+
+
+// RESPONSES
+
+function _Http_handleResponse(xhr, responseToResult)
+{
+	var response = _Http_toResponse(xhr);
+
+	if (xhr.status < 200 || 300 <= xhr.status)
+	{
+		response.body = xhr.responseText;
+		return _Scheduler_fail(elm$http$Http$BadStatus(response));
+	}
+
+	var result = responseToResult(response);
+
+	if (elm$core$Result$isOk(result))
+	{
+		return _Scheduler_succeed(result.a);
+	}
+	else
+	{
+		response.body = xhr.responseText;
+		return _Scheduler_fail(A2(elm$http$Http$BadPayload, result.a, response));
+	}
+}
+
+function _Http_toResponse(xhr)
+{
+	return {
+		cU: xhr.responseURL,
+		cO: { cq: xhr.status, H: xhr.statusText },
+		aY: _Http_parseHeaders(xhr.getAllResponseHeaders()),
+		cl: xhr.response
+	};
+}
+
+function _Http_parseHeaders(rawHeaders)
+{
+	var headers = elm$core$Dict$empty;
+
+	if (!rawHeaders)
+	{
+		return headers;
+	}
+
+	var headerPairs = rawHeaders.split('\u000d\u000a');
+	for (var i = headerPairs.length; i--; )
+	{
+		var headerPair = headerPairs[i];
+		var index = headerPair.indexOf('\u003a\u0020');
+		if (index > 0)
+		{
+			var key = headerPair.substring(0, index);
+			var value = headerPair.substring(index + 2);
+
+			headers = A3(elm$core$Dict$update, key, function(oldValue) {
+				return elm$core$Maybe$Just(elm$core$Maybe$isJust(oldValue)
+					? value + ', ' + oldValue.a
+					: value
+				);
+			}, headers);
+		}
+	}
+
+	return headers;
+}
+
+
+// EXPECTORS
+
+function _Http_expectStringResponse(responseToResult)
+{
+	return {
+		$: 0,
+		b: 'text',
+		a: responseToResult
+	};
+}
+
+var _Http_mapExpect = F2(function(func, expect)
+{
+	return {
+		$: 0,
+		b: expect.b,
+		a: function(response) {
+			var convertedResponse = expect.a(response);
+			return A2(elm$core$Result$map, func, convertedResponse);
+		}
+	};
+});
+
+
+// BODY
+
+function _Http_multipart(parts)
+{
+
+
+	for (var formData = new FormData(); parts.b; parts = parts.b) // WHILE_CONS
+	{
+		var part = parts.a;
+		formData.append(part.a, part.b);
+	}
+
+	return elm$http$Http$Internal$FormDataBody(formData);
+}
+
+
+
+// MATH
+
+var _Basics_add = F2(function(a, b) { return a + b; });
+var _Basics_sub = F2(function(a, b) { return a - b; });
+var _Basics_mul = F2(function(a, b) { return a * b; });
+var _Basics_fdiv = F2(function(a, b) { return a / b; });
+var _Basics_idiv = F2(function(a, b) { return (a / b) | 0; });
+var _Basics_pow = F2(Math.pow);
+
+var _Basics_remainderBy = F2(function(b, a) { return a % b; });
+
+// https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/divmodnote-letter.pdf
+var _Basics_modBy = F2(function(modulus, x)
+{
+	var answer = x % modulus;
+	return modulus === 0
+		? _Debug_crash(11)
+		:
+	((answer > 0 && modulus < 0) || (answer < 0 && modulus > 0))
+		? answer + modulus
+		: answer;
+});
+
+
+// TRIGONOMETRY
+
+var _Basics_pi = Math.PI;
+var _Basics_e = Math.E;
+var _Basics_cos = Math.cos;
+var _Basics_sin = Math.sin;
+var _Basics_tan = Math.tan;
+var _Basics_acos = Math.acos;
+var _Basics_asin = Math.asin;
+var _Basics_atan = Math.atan;
+var _Basics_atan2 = F2(Math.atan2);
+
+
+// MORE MATH
+
+function _Basics_toFloat(x) { return x; }
+function _Basics_truncate(n) { return n | 0; }
+function _Basics_isInfinite(n) { return n === Infinity || n === -Infinity; }
+
+var _Basics_ceiling = Math.ceil;
+var _Basics_floor = Math.floor;
+var _Basics_round = Math.round;
+var _Basics_sqrt = Math.sqrt;
+var _Basics_log = Math.log;
+var _Basics_isNaN = isNaN;
+
+
+// BOOLEANS
+
+function _Basics_not(bool) { return !bool; }
+var _Basics_and = F2(function(a, b) { return a && b; });
+var _Basics_or  = F2(function(a, b) { return a || b; });
+var _Basics_xor = F2(function(a, b) { return a !== b; });
+
+
+
+function _Char_toCode(char)
+{
+	var code = char.charCodeAt(0);
+	if (0xD800 <= code && code <= 0xDBFF)
+	{
+		return (code - 0xD800) * 0x400 + char.charCodeAt(1) - 0xDC00 + 0x10000
+	}
+	return code;
+}
+
+function _Char_fromCode(code)
+{
+	return _Utils_chr(
+		(code < 0 || 0x10FFFF < code)
+			? '\uFFFD'
+			:
+		(code <= 0xFFFF)
+			? String.fromCharCode(code)
+			:
+		(code -= 0x10000,
+			String.fromCharCode(Math.floor(code / 0x400) + 0xD800)
+			+
+			String.fromCharCode(code % 0x400 + 0xDC00)
+		)
+	);
+}
+
+function _Char_toUpper(char)
+{
+	return _Utils_chr(char.toUpperCase());
+}
+
+function _Char_toLower(char)
+{
+	return _Utils_chr(char.toLowerCase());
+}
+
+function _Char_toLocaleUpper(char)
+{
+	return _Utils_chr(char.toLocaleUpperCase());
+}
+
+function _Char_toLocaleLower(char)
+{
+	return _Utils_chr(char.toLocaleLowerCase());
+}
+
+
+
+var _String_cons = F2(function(chr, str)
+{
+	return chr + str;
+});
+
+function _String_uncons(string)
+{
+	var word = string.charCodeAt(0);
+	return word
+		? elm$core$Maybe$Just(
+			0xD800 <= word && word <= 0xDBFF
+				? _Utils_Tuple2(_Utils_chr(string[0] + string[1]), string.slice(2))
+				: _Utils_Tuple2(_Utils_chr(string[0]), string.slice(1))
+		)
+		: elm$core$Maybe$Nothing;
+}
+
+var _String_append = F2(function(a, b)
+{
+	return a + b;
+});
+
+function _String_length(str)
+{
+	return str.length;
+}
+
+var _String_map = F2(function(func, string)
+{
+	var len = string.length;
+	var array = new Array(len);
+	var i = 0;
+	while (i < len)
+	{
+		var word = string.charCodeAt(i);
+		if (0xD800 <= word && word <= 0xDBFF)
+		{
+			array[i] = func(_Utils_chr(string[i] + string[i+1]));
+			i += 2;
+			continue;
+		}
+		array[i] = func(_Utils_chr(string[i]));
+		i++;
+	}
+	return array.join('');
+});
+
+var _String_filter = F2(function(isGood, str)
+{
+	var arr = [];
+	var len = str.length;
+	var i = 0;
+	while (i < len)
+	{
+		var char = str[i];
+		var word = str.charCodeAt(i);
+		i++;
+		if (0xD800 <= word && word <= 0xDBFF)
+		{
+			char += str[i];
+			i++;
+		}
+
+		if (isGood(_Utils_chr(char)))
+		{
+			arr.push(char);
+		}
+	}
+	return arr.join('');
+});
+
+function _String_reverse(str)
+{
+	var len = str.length;
+	var arr = new Array(len);
+	var i = 0;
+	while (i < len)
+	{
+		var word = str.charCodeAt(i);
+		if (0xD800 <= word && word <= 0xDBFF)
+		{
+			arr[len - i] = str[i + 1];
+			i++;
+			arr[len - i] = str[i - 1];
+			i++;
+		}
+		else
+		{
+			arr[len - i] = str[i];
+			i++;
+		}
+	}
+	return arr.join('');
+}
+
+var _String_foldl = F3(function(func, state, string)
+{
+	var len = string.length;
+	var i = 0;
+	while (i < len)
+	{
+		var char = string[i];
+		var word = string.charCodeAt(i);
+		i++;
+		if (0xD800 <= word && word <= 0xDBFF)
+		{
+			char += string[i];
+			i++;
+		}
+		state = A2(func, _Utils_chr(char), state);
+	}
+	return state;
+});
+
+var _String_foldr = F3(function(func, state, string)
+{
+	var i = string.length;
+	while (i--)
+	{
+		var char = string[i];
+		var word = string.charCodeAt(i);
+		if (0xDC00 <= word && word <= 0xDFFF)
+		{
+			i--;
+			char = string[i] + char;
+		}
+		state = A2(func, _Utils_chr(char), state);
+	}
+	return state;
+});
+
+var _String_split = F2(function(sep, str)
+{
+	return str.split(sep);
+});
+
+var _String_join = F2(function(sep, strs)
+{
+	return strs.join(sep);
+});
+
+var _String_slice = F3(function(start, end, str) {
+	return str.slice(start, end);
+});
+
+function _String_trim(str)
+{
+	return str.trim();
+}
+
+function _String_trimLeft(str)
+{
+	return str.replace(/^\s+/, '');
+}
+
+function _String_trimRight(str)
+{
+	return str.replace(/\s+$/, '');
+}
+
+function _String_words(str)
+{
+	return _List_fromArray(str.trim().split(/\s+/g));
+}
+
+function _String_lines(str)
+{
+	return _List_fromArray(str.split(/\r\n|\r|\n/g));
+}
+
+function _String_toUpper(str)
+{
+	return str.toUpperCase();
+}
+
+function _String_toLower(str)
+{
+	return str.toLowerCase();
+}
+
+var _String_any = F2(function(isGood, string)
+{
+	var i = string.length;
+	while (i--)
+	{
+		var char = string[i];
+		var word = string.charCodeAt(i);
+		if (0xDC00 <= word && word <= 0xDFFF)
+		{
+			i--;
+			char = string[i] + char;
+		}
+		if (isGood(_Utils_chr(char)))
+		{
+			return true;
+		}
+	}
+	return false;
+});
+
+var _String_all = F2(function(isGood, string)
+{
+	var i = string.length;
+	while (i--)
+	{
+		var char = string[i];
+		var word = string.charCodeAt(i);
+		if (0xDC00 <= word && word <= 0xDFFF)
+		{
+			i--;
+			char = string[i] + char;
+		}
+		if (!isGood(_Utils_chr(char)))
+		{
+			return false;
+		}
+	}
+	return true;
+});
+
+var _String_contains = F2(function(sub, str)
+{
+	return str.indexOf(sub) > -1;
+});
+
+var _String_startsWith = F2(function(sub, str)
+{
+	return str.indexOf(sub) === 0;
+});
+
+var _String_endsWith = F2(function(sub, str)
+{
+	return str.length >= sub.length &&
+		str.lastIndexOf(sub) === str.length - sub.length;
+});
+
+var _String_indexes = F2(function(sub, str)
+{
+	var subLen = sub.length;
+
+	if (subLen < 1)
+	{
+		return _List_Nil;
+	}
+
+	var i = 0;
+	var is = [];
+
+	while ((i = str.indexOf(sub, i)) > -1)
+	{
+		is.push(i);
+		i = i + subLen;
+	}
+
+	return _List_fromArray(is);
+});
+
+
+// TO STRING
+
+function _String_fromNumber(number)
+{
+	return number + '';
+}
+
+
+// INT CONVERSIONS
+
+function _String_toInt(str)
+{
+	var total = 0;
+	var code0 = str.charCodeAt(0);
+	var start = code0 == 0x2B /* + */ || code0 == 0x2D /* - */ ? 1 : 0;
+
+	for (var i = start; i < str.length; ++i)
+	{
+		var code = str.charCodeAt(i);
+		if (code < 0x30 || 0x39 < code)
+		{
+			return elm$core$Maybe$Nothing;
+		}
+		total = 10 * total + code - 0x30;
+	}
+
+	return i == start
+		? elm$core$Maybe$Nothing
+		: elm$core$Maybe$Just(code0 == 0x2D ? -total : total);
+}
+
+
+// FLOAT CONVERSIONS
+
+function _String_toFloat(s)
+{
+	// check if it is a hex, octal, or binary number
+	if (s.length === 0 || /[\sxbo]/.test(s))
+	{
+		return elm$core$Maybe$Nothing;
+	}
+	var n = +s;
+	// faster isNaN check
+	return n === n ? elm$core$Maybe$Just(n) : elm$core$Maybe$Nothing;
+}
+
+function _String_fromList(chars)
+{
+	return _List_toArray(chars).join('');
+}
+
+
+
+
+/**_UNUSED/
+function _Json_errorToString(error)
+{
+	return elm$json$Json$Decode$errorToString(error);
+}
+//*/
+
+
+// CORE DECODERS
+
+function _Json_succeed(msg)
+{
+	return {
+		$: 0,
+		a: msg
+	};
+}
+
+function _Json_fail(msg)
+{
+	return {
+		$: 1,
+		a: msg
+	};
+}
+
+var _Json_decodeInt = { $: 2 };
+var _Json_decodeBool = { $: 3 };
+var _Json_decodeFloat = { $: 4 };
+var _Json_decodeValue = { $: 5 };
+var _Json_decodeString = { $: 6 };
+
+function _Json_decodeList(decoder) { return { $: 7, b: decoder }; }
+function _Json_decodeArray(decoder) { return { $: 8, b: decoder }; }
+
+function _Json_decodeNull(value) { return { $: 9, c: value }; }
+
+var _Json_decodeField = F2(function(field, decoder)
+{
+	return {
+		$: 10,
+		d: field,
+		b: decoder
+	};
+});
+
+var _Json_decodeIndex = F2(function(index, decoder)
+{
+	return {
+		$: 11,
+		e: index,
+		b: decoder
+	};
+});
+
+function _Json_decodeKeyValuePairs(decoder)
+{
+	return {
+		$: 12,
+		b: decoder
+	};
+}
+
+function _Json_mapMany(f, decoders)
+{
+	return {
+		$: 13,
+		f: f,
+		g: decoders
+	};
+}
+
+var _Json_andThen = F2(function(callback, decoder)
+{
+	return {
+		$: 14,
+		b: decoder,
+		h: callback
+	};
+});
+
+function _Json_oneOf(decoders)
+{
+	return {
+		$: 15,
+		g: decoders
+	};
+}
+
+
+// DECODING OBJECTS
+
+var _Json_map1 = F2(function(f, d1)
+{
+	return _Json_mapMany(f, [d1]);
+});
+
+var _Json_map2 = F3(function(f, d1, d2)
+{
+	return _Json_mapMany(f, [d1, d2]);
+});
+
+var _Json_map3 = F4(function(f, d1, d2, d3)
+{
+	return _Json_mapMany(f, [d1, d2, d3]);
+});
+
+var _Json_map4 = F5(function(f, d1, d2, d3, d4)
+{
+	return _Json_mapMany(f, [d1, d2, d3, d4]);
+});
+
+var _Json_map5 = F6(function(f, d1, d2, d3, d4, d5)
+{
+	return _Json_mapMany(f, [d1, d2, d3, d4, d5]);
+});
+
+var _Json_map6 = F7(function(f, d1, d2, d3, d4, d5, d6)
+{
+	return _Json_mapMany(f, [d1, d2, d3, d4, d5, d6]);
+});
+
+var _Json_map7 = F8(function(f, d1, d2, d3, d4, d5, d6, d7)
+{
+	return _Json_mapMany(f, [d1, d2, d3, d4, d5, d6, d7]);
+});
+
+var _Json_map8 = F9(function(f, d1, d2, d3, d4, d5, d6, d7, d8)
+{
+	return _Json_mapMany(f, [d1, d2, d3, d4, d5, d6, d7, d8]);
+});
+
+
+// DECODE
+
+var _Json_runOnString = F2(function(decoder, string)
+{
+	try
+	{
+		var value = JSON.parse(string);
+		return _Json_runHelp(decoder, value);
+	}
+	catch (e)
+	{
+		return elm$core$Result$Err(A2(elm$json$Json$Decode$Failure, 'This is not valid JSON! ' + e.message, _Json_wrap(string)));
+	}
+});
+
+var _Json_run = F2(function(decoder, value)
+{
+	return _Json_runHelp(decoder, _Json_unwrap(value));
+});
+
+function _Json_runHelp(decoder, value)
+{
+	switch (decoder.$)
+	{
+		case 3:
+			return (typeof value === 'boolean')
+				? elm$core$Result$Ok(value)
+				: _Json_expecting('a BOOL', value);
+
+		case 2:
+			if (typeof value !== 'number') {
+				return _Json_expecting('an INT', value);
+			}
+
+			if (-2147483647 < value && value < 2147483647 && (value | 0) === value) {
+				return elm$core$Result$Ok(value);
+			}
+
+			if (isFinite(value) && !(value % 1)) {
+				return elm$core$Result$Ok(value);
+			}
+
+			return _Json_expecting('an INT', value);
+
+		case 4:
+			return (typeof value === 'number')
+				? elm$core$Result$Ok(value)
+				: _Json_expecting('a FLOAT', value);
+
+		case 6:
+			return (typeof value === 'string')
+				? elm$core$Result$Ok(value)
+				: (value instanceof String)
+					? elm$core$Result$Ok(value + '')
+					: _Json_expecting('a STRING', value);
+
+		case 9:
+			return (value === null)
+				? elm$core$Result$Ok(decoder.c)
+				: _Json_expecting('null', value);
+
+		case 5:
+			return elm$core$Result$Ok(_Json_wrap(value));
+
+		case 7:
+			if (!Array.isArray(value))
+			{
+				return _Json_expecting('a LIST', value);
+			}
+			return _Json_runArrayDecoder(decoder.b, value, _List_fromArray);
+
+		case 8:
+			if (!Array.isArray(value))
+			{
+				return _Json_expecting('an ARRAY', value);
+			}
+			return _Json_runArrayDecoder(decoder.b, value, _Json_toElmArray);
+
+		case 10:
+			var field = decoder.d;
+			if (typeof value !== 'object' || value === null || !(field in value))
+			{
+				return _Json_expecting('an OBJECT with a field named `' + field + '`', value);
+			}
+			var result = _Json_runHelp(decoder.b, value[field]);
+			return (elm$core$Result$isOk(result)) ? result : elm$core$Result$Err(A2(elm$json$Json$Decode$Field, field, result.a));
+
+		case 11:
+			var index = decoder.e;
+			if (!Array.isArray(value))
+			{
+				return _Json_expecting('an ARRAY', value);
+			}
+			if (index >= value.length)
+			{
+				return _Json_expecting('a LONGER array. Need index ' + index + ' but only see ' + value.length + ' entries', value);
+			}
+			var result = _Json_runHelp(decoder.b, value[index]);
+			return (elm$core$Result$isOk(result)) ? result : elm$core$Result$Err(A2(elm$json$Json$Decode$Index, index, result.a));
+
+		case 12:
+			if (typeof value !== 'object' || value === null || Array.isArray(value))
+			{
+				return _Json_expecting('an OBJECT', value);
+			}
+
+			var keyValuePairs = _List_Nil;
+			// TODO test perf of Object.keys and switch when support is good enough
+			for (var key in value)
+			{
+				if (value.hasOwnProperty(key))
+				{
+					var result = _Json_runHelp(decoder.b, value[key]);
+					if (!elm$core$Result$isOk(result))
+					{
+						return elm$core$Result$Err(A2(elm$json$Json$Decode$Field, key, result.a));
+					}
+					keyValuePairs = _List_Cons(_Utils_Tuple2(key, result.a), keyValuePairs);
+				}
+			}
+			return elm$core$Result$Ok(elm$core$List$reverse(keyValuePairs));
+
+		case 13:
+			var answer = decoder.f;
+			var decoders = decoder.g;
+			for (var i = 0; i < decoders.length; i++)
+			{
+				var result = _Json_runHelp(decoders[i], value);
+				if (!elm$core$Result$isOk(result))
+				{
+					return result;
+				}
+				answer = answer(result.a);
+			}
+			return elm$core$Result$Ok(answer);
+
+		case 14:
+			var result = _Json_runHelp(decoder.b, value);
+			return (!elm$core$Result$isOk(result))
+				? result
+				: _Json_runHelp(decoder.h(result.a), value);
+
+		case 15:
+			var errors = _List_Nil;
+			for (var temp = decoder.g; temp.b; temp = temp.b) // WHILE_CONS
+			{
+				var result = _Json_runHelp(temp.a, value);
+				if (elm$core$Result$isOk(result))
+				{
+					return result;
+				}
+				errors = _List_Cons(result.a, errors);
+			}
+			return elm$core$Result$Err(elm$json$Json$Decode$OneOf(elm$core$List$reverse(errors)));
+
+		case 1:
+			return elm$core$Result$Err(A2(elm$json$Json$Decode$Failure, decoder.a, _Json_wrap(value)));
+
+		case 0:
+			return elm$core$Result$Ok(decoder.a);
+	}
+}
+
+function _Json_runArrayDecoder(decoder, value, toElmValue)
+{
+	var len = value.length;
+	var array = new Array(len);
+	for (var i = 0; i < len; i++)
+	{
+		var result = _Json_runHelp(decoder, value[i]);
+		if (!elm$core$Result$isOk(result))
+		{
+			return elm$core$Result$Err(A2(elm$json$Json$Decode$Index, i, result.a));
+		}
+		array[i] = result.a;
+	}
+	return elm$core$Result$Ok(toElmValue(array));
+}
+
+function _Json_toElmArray(array)
+{
+	return A2(elm$core$Array$initialize, array.length, function(i) { return array[i]; });
+}
+
+function _Json_expecting(type, value)
+{
+	return elm$core$Result$Err(A2(elm$json$Json$Decode$Failure, 'Expecting ' + type, _Json_wrap(value)));
+}
+
+
+// EQUALITY
+
+function _Json_equality(x, y)
+{
+	if (x === y)
+	{
+		return true;
+	}
+
+	if (x.$ !== y.$)
+	{
+		return false;
+	}
+
+	switch (x.$)
+	{
+		case 0:
+		case 1:
+			return x.a === y.a;
+
+		case 3:
+		case 2:
+		case 4:
+		case 6:
+		case 5:
+			return true;
+
+		case 9:
+			return x.c === y.c;
+
+		case 7:
+		case 8:
+		case 12:
+			return _Json_equality(x.b, y.b);
+
+		case 10:
+			return x.d === y.d && _Json_equality(x.b, y.b);
+
+		case 11:
+			return x.e === y.e && _Json_equality(x.b, y.b);
+
+		case 13:
+			return x.f === y.f && _Json_listEquality(x.g, y.g);
+
+		case 14:
+			return x.h === y.h && _Json_equality(x.b, y.b);
+
+		case 15:
+			return _Json_listEquality(x.g, y.g);
+	}
+}
+
+function _Json_listEquality(aDecoders, bDecoders)
+{
+	var len = aDecoders.length;
+	if (len !== bDecoders.length)
+	{
+		return false;
+	}
+	for (var i = 0; i < len; i++)
+	{
+		if (!_Json_equality(aDecoders[i], bDecoders[i]))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+
+// ENCODE
+
+var _Json_encode = F2(function(indentLevel, value)
+{
+	return JSON.stringify(_Json_unwrap(value), null, indentLevel) + '';
+});
+
+function _Json_wrap_UNUSED(value) { return { $: 0, a: value }; }
+function _Json_unwrap_UNUSED(value) { return value.a; }
+
+function _Json_wrap(value) { return value; }
+function _Json_unwrap(value) { return value; }
+
+function _Json_emptyArray() { return []; }
+function _Json_emptyObject() { return {}; }
+
+var _Json_addField = F3(function(key, value, object)
+{
+	object[key] = _Json_unwrap(value);
+	return object;
+});
+
+function _Json_addEntry(func)
+{
+	return F2(function(entry, array)
+	{
+		array.push(_Json_unwrap(func(entry)));
+		return array;
+	});
+}
+
+var _Json_encodeNull = _Json_wrap(null);
+
+
+
+function _Process_sleep(time)
+{
+	return _Scheduler_binding(function(callback) {
+		var id = setTimeout(function() {
+			callback(_Scheduler_succeed(_Utils_Tuple0));
+		}, time);
+
+		return function() { clearTimeout(id); };
+	});
+}
+
+
+
+
+// PROGRAMS
+
+
+var _Platform_worker = F4(function(impl, flagDecoder, debugMetadata, args)
+{
+	return _Platform_initialize(
+		flagDecoder,
+		args,
+		impl.cB,
+		impl.cS,
+		impl.cP,
+		function() { return function() {} }
+	);
+});
+
+
+
+// INITIALIZE A PROGRAM
+
+
+function _Platform_initialize(flagDecoder, args, init, update, subscriptions, stepperBuilder)
+{
+	var result = A2(_Json_run, flagDecoder, _Json_wrap(args ? args['flags'] : undefined));
+	elm$core$Result$isOk(result) || _Debug_crash(2 /**_UNUSED/, _Json_errorToString(result.a) /**/);
+	var managers = {};
+	result = init(result.a);
+	var model = result.a;
+	var stepper = stepperBuilder(sendToApp, model);
+	var ports = _Platform_setupEffects(managers, sendToApp);
+
+	function sendToApp(msg, viewMetadata)
+	{
+		result = A2(update, msg, model);
+		stepper(model = result.a, viewMetadata);
+		_Platform_dispatchEffects(managers, result.b, subscriptions(model));
+	}
+
+	_Platform_dispatchEffects(managers, result.b, subscriptions(model));
+
+	return ports ? { ports: ports } : {};
+}
+
+
+
+// TRACK PRELOADS
+//
+// This is used by code in elm/browser and elm/http
+// to register any HTTP requests that are triggered by init.
+//
+
+
+var _Platform_preload;
+
+
+function _Platform_registerPreload(url)
+{
+	_Platform_preload.add(url);
+}
+
+
+
+// EFFECT MANAGERS
+
+
+var _Platform_effectManagers = {};
+
+
+function _Platform_setupEffects(managers, sendToApp)
+{
+	var ports;
+
+	// setup all necessary effect managers
+	for (var key in _Platform_effectManagers)
+	{
+		var manager = _Platform_effectManagers[key];
+
+		if (manager.a)
+		{
+			ports = ports || {};
+			ports[key] = manager.a(key, sendToApp);
+		}
+
+		managers[key] = _Platform_instantiateManager(manager, sendToApp);
+	}
+
+	return ports;
+}
+
+
+function _Platform_createManager(init, onEffects, onSelfMsg, cmdMap, subMap)
+{
+	return {
+		b: init,
+		c: onEffects,
+		d: onSelfMsg,
+		e: cmdMap,
+		f: subMap
+	};
+}
+
+
+function _Platform_instantiateManager(info, sendToApp)
+{
+	var router = {
+		g: sendToApp,
+		h: undefined
+	};
+
+	var onEffects = info.c;
+	var onSelfMsg = info.d;
+	var cmdMap = info.e;
+	var subMap = info.f;
+
+	function loop(state)
+	{
+		return A2(_Scheduler_andThen, loop, _Scheduler_receive(function(msg)
+		{
+			var value = msg.a;
+
+			if (msg.$ === 0)
+			{
+				return A3(onSelfMsg, router, value, state);
+			}
+
+			return cmdMap && subMap
+				? A4(onEffects, router, value.i, value.j, state)
+				: A3(onEffects, router, cmdMap ? value.i : value.j, state);
+		}));
+	}
+
+	return router.h = _Scheduler_rawSpawn(A2(_Scheduler_andThen, loop, info.b));
+}
+
+
+
+// ROUTING
+
+
+var _Platform_sendToApp = F2(function(router, msg)
+{
+	return _Scheduler_binding(function(callback)
+	{
+		router.g(msg);
+		callback(_Scheduler_succeed(_Utils_Tuple0));
+	});
+});
+
+
+var _Platform_sendToSelf = F2(function(router, msg)
+{
+	return A2(_Scheduler_send, router.h, {
+		$: 0,
+		a: msg
+	});
+});
+
+
+
+// BAGS
+
+
+function _Platform_leaf(home)
+{
+	return function(value)
+	{
+		return {
+			$: 1,
+			k: home,
+			l: value
+		};
+	};
+}
+
+
+function _Platform_batch(list)
+{
+	return {
+		$: 2,
+		m: list
+	};
+}
+
+
+var _Platform_map = F2(function(tagger, bag)
+{
+	return {
+		$: 3,
+		n: tagger,
+		o: bag
+	}
+});
+
+
+
+// PIPE BAGS INTO EFFECT MANAGERS
+
+
+function _Platform_dispatchEffects(managers, cmdBag, subBag)
+{
+	var effectsDict = {};
+	_Platform_gatherEffects(true, cmdBag, effectsDict, null);
+	_Platform_gatherEffects(false, subBag, effectsDict, null);
+
+	for (var home in managers)
+	{
+		_Scheduler_rawSend(managers[home], {
+			$: 'fx',
+			a: effectsDict[home] || { i: _List_Nil, j: _List_Nil }
+		});
+	}
+}
+
+
+function _Platform_gatherEffects(isCmd, bag, effectsDict, taggers)
+{
+	switch (bag.$)
+	{
+		case 1:
+			var home = bag.k;
+			var effect = _Platform_toEffect(isCmd, home, taggers, bag.l);
+			effectsDict[home] = _Platform_insert(isCmd, effect, effectsDict[home]);
+			return;
+
+		case 2:
+			for (var list = bag.m; list.b; list = list.b) // WHILE_CONS
+			{
+				_Platform_gatherEffects(isCmd, list.a, effectsDict, taggers);
+			}
+			return;
+
+		case 3:
+			_Platform_gatherEffects(isCmd, bag.o, effectsDict, {
+				p: bag.n,
+				q: taggers
+			});
+			return;
+	}
+}
+
+
+function _Platform_toEffect(isCmd, home, taggers, value)
+{
+	function applyTaggers(x)
+	{
+		for (var temp = taggers; temp; temp = temp.q)
+		{
+			x = temp.p(x);
+		}
+		return x;
+	}
+
+	var map = isCmd
+		? _Platform_effectManagers[home].e
+		: _Platform_effectManagers[home].f;
+
+	return A2(map, applyTaggers, value)
+}
+
+
+function _Platform_insert(isCmd, newEffect, effects)
+{
+	effects = effects || { i: _List_Nil, j: _List_Nil };
+
+	isCmd
+		? (effects.i = _List_Cons(newEffect, effects.i))
+		: (effects.j = _List_Cons(newEffect, effects.j));
+
+	return effects;
+}
+
+
+
+// PORTS
+
+
+function _Platform_checkPortName(name)
+{
+	if (_Platform_effectManagers[name])
+	{
+		_Debug_crash(3, name)
+	}
+}
+
+
+
+// OUTGOING PORTS
+
+
+function _Platform_outgoingPort(name, converter)
+{
+	_Platform_checkPortName(name);
+	_Platform_effectManagers[name] = {
+		e: _Platform_outgoingPortMap,
+		r: converter,
+		a: _Platform_setupOutgoingPort
+	};
+	return _Platform_leaf(name);
+}
+
+
+var _Platform_outgoingPortMap = F2(function(tagger, value) { return value; });
+
+
+function _Platform_setupOutgoingPort(name)
+{
+	var subs = [];
+	var converter = _Platform_effectManagers[name].r;
+
+	// CREATE MANAGER
+
+	var init = _Process_sleep(0);
+
+	_Platform_effectManagers[name].b = init;
+	_Platform_effectManagers[name].c = F3(function(router, cmdList, state)
+	{
+		for ( ; cmdList.b; cmdList = cmdList.b) // WHILE_CONS
+		{
+			// grab a separate reference to subs in case unsubscribe is called
+			var currentSubs = subs;
+			var value = _Json_unwrap(converter(cmdList.a));
+			for (var i = 0; i < currentSubs.length; i++)
+			{
+				currentSubs[i](value);
+			}
+		}
+		return init;
+	});
+
+	// PUBLIC API
+
+	function subscribe(callback)
+	{
+		subs.push(callback);
+	}
+
+	function unsubscribe(callback)
+	{
+		// copy subs into a new array in case unsubscribe is called within a
+		// subscribed callback
+		subs = subs.slice();
+		var index = subs.indexOf(callback);
+		if (index >= 0)
+		{
+			subs.splice(index, 1);
+		}
+	}
+
+	return {
+		subscribe: subscribe,
+		unsubscribe: unsubscribe
+	};
+}
+
+
+
+// INCOMING PORTS
+
+
+function _Platform_incomingPort(name, converter)
+{
+	_Platform_checkPortName(name);
+	_Platform_effectManagers[name] = {
+		f: _Platform_incomingPortMap,
+		r: converter,
+		a: _Platform_setupIncomingPort
+	};
+	return _Platform_leaf(name);
+}
+
+
+var _Platform_incomingPortMap = F2(function(tagger, finalTagger)
+{
+	return function(value)
+	{
+		return tagger(finalTagger(value));
+	};
+});
+
+
+function _Platform_setupIncomingPort(name, sendToApp)
+{
+	var subs = _List_Nil;
+	var converter = _Platform_effectManagers[name].r;
+
+	// CREATE MANAGER
+
+	var init = _Scheduler_succeed(null);
+
+	_Platform_effectManagers[name].b = init;
+	_Platform_effectManagers[name].c = F3(function(router, subList, state)
+	{
+		subs = subList;
+		return init;
+	});
+
+	// PUBLIC API
+
+	function send(incomingValue)
+	{
+		var result = A2(_Json_run, converter, _Json_wrap(incomingValue));
+
+		elm$core$Result$isOk(result) || _Debug_crash(4, name, result.a);
+
+		var value = result.a;
+		for (var temp = subs; temp.b; temp = temp.b) // WHILE_CONS
+		{
+			sendToApp(temp.a(value));
+		}
+	}
+
+	return { send: send };
+}
+
+
+
+// EXPORT ELM MODULES
+//
+// Have DEBUG and PROD versions so that we can (1) give nicer errors in
+// debug mode and (2) not pay for the bits needed for that in prod mode.
+//
+
+
+function _Platform_export(exports)
+{
+	scope['Elm']
+		? _Platform_mergeExportsProd(scope['Elm'], exports)
+		: scope['Elm'] = exports;
+}
+
+
+function _Platform_mergeExportsProd(obj, exports)
+{
+	for (var name in exports)
+	{
+		(name in obj)
+			? (name == 'init')
+				? _Debug_crash(6)
+				: _Platform_mergeExportsProd(obj[name], exports[name])
+			: (obj[name] = exports[name]);
+	}
+}
+
+
+function _Platform_export_UNUSED(exports)
+{
+	scope['Elm']
+		? _Platform_mergeExportsDebug('Elm', scope['Elm'], exports)
+		: scope['Elm'] = exports;
+}
+
+
+function _Platform_mergeExportsDebug(moduleName, obj, exports)
+{
+	for (var name in exports)
+	{
+		(name in obj)
+			? (name == 'init')
+				? _Debug_crash(6, moduleName)
+				: _Platform_mergeExportsDebug(moduleName + '.' + name, obj[name], exports[name])
+			: (obj[name] = exports[name]);
+	}
+}
+
+
+function _Url_percentEncode(string)
+{
+	return encodeURIComponent(string);
+}
+
+function _Url_percentDecode(string)
+{
+	try
+	{
+		return elm$core$Maybe$Just(decodeURIComponent(string));
+	}
+	catch (e)
+	{
+		return elm$core$Maybe$Nothing;
+	}
+}
+
+
+
+// HELPERS
+
+
+var _VirtualDom_divertHrefToApp;
+
+var _VirtualDom_doc = typeof document !== 'undefined' ? document : {};
+
+
+function _VirtualDom_appendChild(parent, child)
+{
+	parent.appendChild(child);
+}
+
+var _VirtualDom_init = F4(function(virtualNode, flagDecoder, debugMetadata, args)
+{
+	// NOTE: this function needs _Platform_export available to work
+
+	/**/
+	var node = args['node'];
+	//*/
+	/**_UNUSED/
+	var node = args && args['node'] ? args['node'] : _Debug_crash(0);
+	//*/
+
+	node.parentNode.replaceChild(
+		_VirtualDom_render(virtualNode, function() {}),
+		node
+	);
+
+	return {};
+});
+
+
+
+// TEXT
+
+
+function _VirtualDom_text(string)
+{
+	return {
+		$: 0,
+		a: string
+	};
+}
+
+
+
+// NODE
+
+
+var _VirtualDom_nodeNS = F2(function(namespace, tag)
+{
+	return F2(function(factList, kidList)
+	{
+		for (var kids = [], descendantsCount = 0; kidList.b; kidList = kidList.b) // WHILE_CONS
+		{
+			var kid = kidList.a;
+			descendantsCount += (kid.b || 0);
+			kids.push(kid);
+		}
+		descendantsCount += kids.length;
+
+		return {
+			$: 1,
+			c: tag,
+			d: _VirtualDom_organizeFacts(factList),
+			e: kids,
+			f: namespace,
+			b: descendantsCount
+		};
+	});
+});
+
+
+var _VirtualDom_node = _VirtualDom_nodeNS(undefined);
+
+
+
+// KEYED NODE
+
+
+var _VirtualDom_keyedNodeNS = F2(function(namespace, tag)
+{
+	return F2(function(factList, kidList)
+	{
+		for (var kids = [], descendantsCount = 0; kidList.b; kidList = kidList.b) // WHILE_CONS
+		{
+			var kid = kidList.a;
+			descendantsCount += (kid.b.b || 0);
+			kids.push(kid);
+		}
+		descendantsCount += kids.length;
+
+		return {
+			$: 2,
+			c: tag,
+			d: _VirtualDom_organizeFacts(factList),
+			e: kids,
+			f: namespace,
+			b: descendantsCount
+		};
+	});
+});
+
+
+var _VirtualDom_keyedNode = _VirtualDom_keyedNodeNS(undefined);
+
+
+
+// CUSTOM
+
+
+function _VirtualDom_custom(factList, model, render, diff)
+{
+	return {
+		$: 3,
+		d: _VirtualDom_organizeFacts(factList),
+		g: model,
+		h: render,
+		i: diff
+	};
+}
+
+
+
+// MAP
+
+
+var _VirtualDom_map = F2(function(tagger, node)
+{
+	return {
+		$: 4,
+		j: tagger,
+		k: node,
+		b: 1 + (node.b || 0)
+	};
+});
+
+
+
+// LAZY
+
+
+function _VirtualDom_thunk(refs, thunk)
+{
+	return {
+		$: 5,
+		l: refs,
+		m: thunk,
+		k: undefined
+	};
+}
+
+var _VirtualDom_lazy = F2(function(func, a)
+{
+	return _VirtualDom_thunk([func, a], function() {
+		return func(a);
+	});
+});
+
+var _VirtualDom_lazy2 = F3(function(func, a, b)
+{
+	return _VirtualDom_thunk([func, a, b], function() {
+		return A2(func, a, b);
+	});
+});
+
+var _VirtualDom_lazy3 = F4(function(func, a, b, c)
+{
+	return _VirtualDom_thunk([func, a, b, c], function() {
+		return A3(func, a, b, c);
+	});
+});
+
+var _VirtualDom_lazy4 = F5(function(func, a, b, c, d)
+{
+	return _VirtualDom_thunk([func, a, b, c, d], function() {
+		return A4(func, a, b, c, d);
+	});
+});
+
+var _VirtualDom_lazy5 = F6(function(func, a, b, c, d, e)
+{
+	return _VirtualDom_thunk([func, a, b, c, d, e], function() {
+		return A5(func, a, b, c, d, e);
+	});
+});
+
+var _VirtualDom_lazy6 = F7(function(func, a, b, c, d, e, f)
+{
+	return _VirtualDom_thunk([func, a, b, c, d, e, f], function() {
+		return A6(func, a, b, c, d, e, f);
+	});
+});
+
+var _VirtualDom_lazy7 = F8(function(func, a, b, c, d, e, f, g)
+{
+	return _VirtualDom_thunk([func, a, b, c, d, e, f, g], function() {
+		return A7(func, a, b, c, d, e, f, g);
+	});
+});
+
+var _VirtualDom_lazy8 = F9(function(func, a, b, c, d, e, f, g, h)
+{
+	return _VirtualDom_thunk([func, a, b, c, d, e, f, g, h], function() {
+		return A8(func, a, b, c, d, e, f, g, h);
+	});
+});
+
+
+
+// FACTS
+
+
+var _VirtualDom_on = F2(function(key, handler)
+{
+	return {
+		$: 'a0',
+		n: key,
+		o: handler
+	};
+});
+var _VirtualDom_style = F2(function(key, value)
+{
+	return {
+		$: 'a1',
+		n: key,
+		o: value
+	};
+});
+var _VirtualDom_property = F2(function(key, value)
+{
+	return {
+		$: 'a2',
+		n: key,
+		o: value
+	};
+});
+var _VirtualDom_attribute = F2(function(key, value)
+{
+	return {
+		$: 'a3',
+		n: key,
+		o: value
+	};
+});
+var _VirtualDom_attributeNS = F3(function(namespace, key, value)
+{
+	return {
+		$: 'a4',
+		n: key,
+		o: { f: namespace, o: value }
+	};
+});
+
+
+
+// XSS ATTACK VECTOR CHECKS
+
+
+function _VirtualDom_noScript(tag)
+{
+	return tag == 'script' ? 'p' : tag;
+}
+
+function _VirtualDom_noOnOrFormAction(key)
+{
+	return /^(on|formAction$)/i.test(key) ? 'data-' + key : key;
+}
+
+function _VirtualDom_noInnerHtmlOrFormAction(key)
+{
+	return key == 'innerHTML' || key == 'formAction' ? 'data-' + key : key;
+}
+
+function _VirtualDom_noJavaScriptUri(value)
+{
+	return /^javascript:/i.test(value.replace(/\s/g,'')) ? '' : value;
+}
+
+function _VirtualDom_noJavaScriptUri_UNUSED(value)
+{
+	return /^javascript:/i.test(value.replace(/\s/g,''))
+		? 'javascript:alert("This is an XSS vector. Please use ports or web components instead.")'
+		: value;
+}
+
+function _VirtualDom_noJavaScriptOrHtmlUri(value)
+{
+	return /^\s*(javascript:|data:text\/html)/i.test(value) ? '' : value;
+}
+
+function _VirtualDom_noJavaScriptOrHtmlUri_UNUSED(value)
+{
+	return /^\s*(javascript:|data:text\/html)/i.test(value)
+		? 'javascript:alert("This is an XSS vector. Please use ports or web components instead.")'
+		: value;
+}
+
+
+
+// MAP FACTS
+
+
+var _VirtualDom_mapAttribute = F2(function(func, attr)
+{
+	return (attr.$ === 'a0')
+		? A2(_VirtualDom_on, attr.n, _VirtualDom_mapHandler(func, attr.o))
+		: attr;
+});
+
+function _VirtualDom_mapHandler(func, handler)
+{
+	var tag = elm$virtual_dom$VirtualDom$toHandlerInt(handler);
+
+	// 0 = Normal
+	// 1 = MayStopPropagation
+	// 2 = MayPreventDefault
+	// 3 = Custom
+
+	return {
+		$: handler.$,
+		a:
+			!tag
+				? A2(elm$json$Json$Decode$map, func, handler.a)
+				:
+			A3(elm$json$Json$Decode$map2,
+				tag < 3
+					? _VirtualDom_mapEventTuple
+					: _VirtualDom_mapEventRecord,
+				elm$json$Json$Decode$succeed(func),
+				handler.a
+			)
+	};
+}
+
+var _VirtualDom_mapEventTuple = F2(function(func, tuple)
+{
+	return _Utils_Tuple2(func(tuple.a), tuple.b);
+});
+
+var _VirtualDom_mapEventRecord = F2(function(func, record)
+{
+	return {
+		H: func(record.H),
+		bq: record.bq,
+		bm: record.bm
+	}
+});
+
+
+
+// ORGANIZE FACTS
+
+
+function _VirtualDom_organizeFacts(factList)
+{
+	for (var facts = {}; factList.b; factList = factList.b) // WHILE_CONS
+	{
+		var entry = factList.a;
+
+		var tag = entry.$;
+		var key = entry.n;
+		var value = entry.o;
+
+		if (tag === 'a2')
+		{
+			(key === 'className')
+				? _VirtualDom_addClass(facts, key, _Json_unwrap(value))
+				: facts[key] = _Json_unwrap(value);
+
+			continue;
+		}
+
+		var subFacts = facts[tag] || (facts[tag] = {});
+		(tag === 'a3' && key === 'class')
+			? _VirtualDom_addClass(subFacts, key, value)
+			: subFacts[key] = value;
+	}
+
+	return facts;
+}
+
+function _VirtualDom_addClass(object, key, newClass)
+{
+	var classes = object[key];
+	object[key] = classes ? classes + ' ' + newClass : newClass;
+}
+
+
+
+// RENDER
+
+
+function _VirtualDom_render(vNode, eventNode)
+{
+	var tag = vNode.$;
+
+	if (tag === 5)
+	{
+		return _VirtualDom_render(vNode.k || (vNode.k = vNode.m()), eventNode);
+	}
+
+	if (tag === 0)
+	{
+		return _VirtualDom_doc.createTextNode(vNode.a);
+	}
+
+	if (tag === 4)
+	{
+		var subNode = vNode.k;
+		var tagger = vNode.j;
+
+		while (subNode.$ === 4)
+		{
+			typeof tagger !== 'object'
+				? tagger = [tagger, subNode.j]
+				: tagger.push(subNode.j);
+
+			subNode = subNode.k;
+		}
+
+		var subEventRoot = { j: tagger, p: eventNode };
+		var domNode = _VirtualDom_render(subNode, subEventRoot);
+		domNode.elm_event_node_ref = subEventRoot;
+		return domNode;
+	}
+
+	if (tag === 3)
+	{
+		var domNode = vNode.h(vNode.g);
+		_VirtualDom_applyFacts(domNode, eventNode, vNode.d);
+		return domNode;
+	}
+
+	// at this point `tag` must be 1 or 2
+
+	var domNode = vNode.f
+		? _VirtualDom_doc.createElementNS(vNode.f, vNode.c)
+		: _VirtualDom_doc.createElement(vNode.c);
+
+	if (_VirtualDom_divertHrefToApp && vNode.c == 'a')
+	{
+		domNode.addEventListener('click', _VirtualDom_divertHrefToApp(domNode));
+	}
+
+	_VirtualDom_applyFacts(domNode, eventNode, vNode.d);
+
+	for (var kids = vNode.e, i = 0; i < kids.length; i++)
+	{
+		_VirtualDom_appendChild(domNode, _VirtualDom_render(tag === 1 ? kids[i] : kids[i].b, eventNode));
+	}
+
+	return domNode;
+}
+
+
+
+// APPLY FACTS
+
+
+function _VirtualDom_applyFacts(domNode, eventNode, facts)
+{
+	for (var key in facts)
+	{
+		var value = facts[key];
+
+		key === 'a1'
+			? _VirtualDom_applyStyles(domNode, value)
+			:
+		key === 'a0'
+			? _VirtualDom_applyEvents(domNode, eventNode, value)
+			:
+		key === 'a3'
+			? _VirtualDom_applyAttrs(domNode, value)
+			:
+		key === 'a4'
+			? _VirtualDom_applyAttrsNS(domNode, value)
+			:
+		(key !== 'value' || key !== 'checked' || domNode[key] !== value) && (domNode[key] = value);
+	}
+}
+
+
+
+// APPLY STYLES
+
+
+function _VirtualDom_applyStyles(domNode, styles)
+{
+	var domNodeStyle = domNode.style;
+
+	for (var key in styles)
+	{
+		domNodeStyle[key] = styles[key];
+	}
+}
+
+
+
+// APPLY ATTRS
+
+
+function _VirtualDom_applyAttrs(domNode, attrs)
+{
+	for (var key in attrs)
+	{
+		var value = attrs[key];
+		value
+			? domNode.setAttribute(key, value)
+			: domNode.removeAttribute(key);
+	}
+}
+
+
+
+// APPLY NAMESPACED ATTRS
+
+
+function _VirtualDom_applyAttrsNS(domNode, nsAttrs)
+{
+	for (var key in nsAttrs)
+	{
+		var pair = nsAttrs[key];
+		var namespace = pair.f;
+		var value = pair.o;
+
+		value
+			? domNode.setAttributeNS(namespace, key, value)
+			: domNode.removeAttributeNS(namespace, key);
+	}
+}
+
+
+
+// APPLY EVENTS
+
+
+function _VirtualDom_applyEvents(domNode, eventNode, events)
+{
+	var allCallbacks = domNode.elmFs || (domNode.elmFs = {});
+
+	for (var key in events)
+	{
+		var newHandler = events[key];
+		var oldCallback = allCallbacks[key];
+
+		if (!newHandler)
+		{
+			domNode.removeEventListener(key, oldCallback);
+			allCallbacks[key] = undefined;
+			continue;
+		}
+
+		if (oldCallback)
+		{
+			var oldHandler = oldCallback.q;
+			if (oldHandler.$ === newHandler.$)
+			{
+				oldCallback.q = newHandler;
+				continue;
+			}
+			domNode.removeEventListener(key, oldCallback);
+		}
+
+		oldCallback = _VirtualDom_makeCallback(eventNode, newHandler);
+		domNode.addEventListener(key, oldCallback,
+			_VirtualDom_passiveSupported
+			&& { passive: elm$virtual_dom$VirtualDom$toHandlerInt(newHandler) < 2 }
+		);
+		allCallbacks[key] = oldCallback;
+	}
+}
+
+
+
+// PASSIVE EVENTS
+
+
+var _VirtualDom_passiveSupported;
+
+try
+{
+	window.addEventListener('t', null, Object.defineProperty({}, 'passive', {
+		get: function() { _VirtualDom_passiveSupported = true; }
+	}));
+}
+catch(e) {}
+
+
+
+// EVENT HANDLERS
+
+
+function _VirtualDom_makeCallback(eventNode, initialHandler)
+{
+	function callback(event)
+	{
+		var handler = callback.q;
+		var result = _Json_runHelp(handler.a, event);
+
+		if (!elm$core$Result$isOk(result))
+		{
+			return;
+		}
+
+		var tag = elm$virtual_dom$VirtualDom$toHandlerInt(handler);
+
+		// 0 = Normal
+		// 1 = MayStopPropagation
+		// 2 = MayPreventDefault
+		// 3 = Custom
+
+		var value = result.a;
+		var message = !tag ? value : tag < 3 ? value.a : value.H;
+		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.bq;
+		var currentEventNode = (
+			stopPropagation && event.stopPropagation(),
+			(tag == 2 ? value.b : tag == 3 && value.bm) && event.preventDefault(),
+			eventNode
+		);
+		var tagger;
+		var i;
+		while (tagger = currentEventNode.j)
+		{
+			if (typeof tagger == 'function')
+			{
+				message = tagger(message);
+			}
+			else
+			{
+				for (var i = tagger.length; i--; )
+				{
+					message = tagger[i](message);
+				}
+			}
+			currentEventNode = currentEventNode.p;
+		}
+		currentEventNode(message, stopPropagation); // stopPropagation implies isSync
+	}
+
+	callback.q = initialHandler;
+
+	return callback;
+}
+
+function _VirtualDom_equalEvents(x, y)
+{
+	return x.$ == y.$ && _Json_equality(x.a, y.a);
+}
+
+
+
+// DIFF
+
+
+// TODO: Should we do patches like in iOS?
+//
+// type Patch
+//   = At Int Patch
+//   | Batch (List Patch)
+//   | Change ...
+//
+// How could it not be better?
+//
+function _VirtualDom_diff(x, y)
+{
+	var patches = [];
+	_VirtualDom_diffHelp(x, y, patches, 0);
+	return patches;
+}
+
+
+function _VirtualDom_pushPatch(patches, type, index, data)
+{
+	var patch = {
+		$: type,
+		r: index,
+		s: data,
+		t: undefined,
+		u: undefined
+	};
+	patches.push(patch);
+	return patch;
+}
+
+
+function _VirtualDom_diffHelp(x, y, patches, index)
+{
+	if (x === y)
+	{
+		return;
+	}
+
+	var xType = x.$;
+	var yType = y.$;
+
+	// Bail if you run into different types of nodes. Implies that the
+	// structure has changed significantly and it's not worth a diff.
+	if (xType !== yType)
+	{
+		if (xType === 1 && yType === 2)
+		{
+			y = _VirtualDom_dekey(y);
+			yType = 1;
+		}
+		else
+		{
+			_VirtualDom_pushPatch(patches, 0, index, y);
+			return;
+		}
+	}
+
+	// Now we know that both nodes are the same $.
+	switch (yType)
+	{
+		case 5:
+			var xRefs = x.l;
+			var yRefs = y.l;
+			var i = xRefs.length;
+			var same = i === yRefs.length;
+			while (same && i--)
+			{
+				same = xRefs[i] === yRefs[i];
+			}
+			if (same)
+			{
+				y.k = x.k;
+				return;
+			}
+			y.k = y.m();
+			var subPatches = [];
+			_VirtualDom_diffHelp(x.k, y.k, subPatches, 0);
+			subPatches.length > 0 && _VirtualDom_pushPatch(patches, 1, index, subPatches);
+			return;
+
+		case 4:
+			// gather nested taggers
+			var xTaggers = x.j;
+			var yTaggers = y.j;
+			var nesting = false;
+
+			var xSubNode = x.k;
+			while (xSubNode.$ === 4)
+			{
+				nesting = true;
+
+				typeof xTaggers !== 'object'
+					? xTaggers = [xTaggers, xSubNode.j]
+					: xTaggers.push(xSubNode.j);
+
+				xSubNode = xSubNode.k;
+			}
+
+			var ySubNode = y.k;
+			while (ySubNode.$ === 4)
+			{
+				nesting = true;
+
+				typeof yTaggers !== 'object'
+					? yTaggers = [yTaggers, ySubNode.j]
+					: yTaggers.push(ySubNode.j);
+
+				ySubNode = ySubNode.k;
+			}
+
+			// Just bail if different numbers of taggers. This implies the
+			// structure of the virtual DOM has changed.
+			if (nesting && xTaggers.length !== yTaggers.length)
+			{
+				_VirtualDom_pushPatch(patches, 0, index, y);
+				return;
+			}
+
+			// check if taggers are "the same"
+			if (nesting ? !_VirtualDom_pairwiseRefEqual(xTaggers, yTaggers) : xTaggers !== yTaggers)
+			{
+				_VirtualDom_pushPatch(patches, 2, index, yTaggers);
+			}
+
+			// diff everything below the taggers
+			_VirtualDom_diffHelp(xSubNode, ySubNode, patches, index + 1);
+			return;
+
+		case 0:
+			if (x.a !== y.a)
+			{
+				_VirtualDom_pushPatch(patches, 3, index, y.a);
+			}
+			return;
+
+		case 1:
+			_VirtualDom_diffNodes(x, y, patches, index, _VirtualDom_diffKids);
+			return;
+
+		case 2:
+			_VirtualDom_diffNodes(x, y, patches, index, _VirtualDom_diffKeyedKids);
+			return;
+
+		case 3:
+			if (x.h !== y.h)
+			{
+				_VirtualDom_pushPatch(patches, 0, index, y);
+				return;
+			}
+
+			var factsDiff = _VirtualDom_diffFacts(x.d, y.d);
+			factsDiff && _VirtualDom_pushPatch(patches, 4, index, factsDiff);
+
+			var patch = y.i(x.g, y.g);
+			patch && _VirtualDom_pushPatch(patches, 5, index, patch);
+
+			return;
+	}
+}
+
+// assumes the incoming arrays are the same length
+function _VirtualDom_pairwiseRefEqual(as, bs)
+{
+	for (var i = 0; i < as.length; i++)
+	{
+		if (as[i] !== bs[i])
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+function _VirtualDom_diffNodes(x, y, patches, index, diffKids)
+{
+	// Bail if obvious indicators have changed. Implies more serious
+	// structural changes such that it's not worth it to diff.
+	if (x.c !== y.c || x.f !== y.f)
+	{
+		_VirtualDom_pushPatch(patches, 0, index, y);
+		return;
+	}
+
+	var factsDiff = _VirtualDom_diffFacts(x.d, y.d);
+	factsDiff && _VirtualDom_pushPatch(patches, 4, index, factsDiff);
+
+	diffKids(x, y, patches, index);
+}
+
+
+
+// DIFF FACTS
+
+
+// TODO Instead of creating a new diff object, it's possible to just test if
+// there *is* a diff. During the actual patch, do the diff again and make the
+// modifications directly. This way, there's no new allocations. Worth it?
+function _VirtualDom_diffFacts(x, y, category)
+{
+	var diff;
+
+	// look for changes and removals
+	for (var xKey in x)
+	{
+		if (xKey === 'a1' || xKey === 'a0' || xKey === 'a3' || xKey === 'a4')
+		{
+			var subDiff = _VirtualDom_diffFacts(x[xKey], y[xKey] || {}, xKey);
+			if (subDiff)
+			{
+				diff = diff || {};
+				diff[xKey] = subDiff;
+			}
+			continue;
+		}
+
+		// remove if not in the new facts
+		if (!(xKey in y))
+		{
+			diff = diff || {};
+			diff[xKey] =
+				!category
+					? (typeof x[xKey] === 'string' ? '' : null)
+					:
+				(category === 'a1')
+					? ''
+					:
+				(category === 'a0' || category === 'a3')
+					? undefined
+					:
+				{ f: x[xKey].f, o: undefined };
+
+			continue;
+		}
+
+		var xValue = x[xKey];
+		var yValue = y[xKey];
+
+		// reference equal, so don't worry about it
+		if (xValue === yValue && xKey !== 'value' && xKey !== 'checked'
+			|| category === 'a0' && _VirtualDom_equalEvents(xValue, yValue))
+		{
+			continue;
+		}
+
+		diff = diff || {};
+		diff[xKey] = yValue;
+	}
+
+	// add new stuff
+	for (var yKey in y)
+	{
+		if (!(yKey in x))
+		{
+			diff = diff || {};
+			diff[yKey] = y[yKey];
+		}
+	}
+
+	return diff;
+}
+
+
+
+// DIFF KIDS
+
+
+function _VirtualDom_diffKids(xParent, yParent, patches, index)
+{
+	var xKids = xParent.e;
+	var yKids = yParent.e;
+
+	var xLen = xKids.length;
+	var yLen = yKids.length;
+
+	// FIGURE OUT IF THERE ARE INSERTS OR REMOVALS
+
+	if (xLen > yLen)
+	{
+		_VirtualDom_pushPatch(patches, 6, index, {
+			v: yLen,
+			i: xLen - yLen
+		});
+	}
+	else if (xLen < yLen)
+	{
+		_VirtualDom_pushPatch(patches, 7, index, {
+			v: xLen,
+			e: yKids
+		});
+	}
+
+	// PAIRWISE DIFF EVERYTHING ELSE
+
+	for (var minLen = xLen < yLen ? xLen : yLen, i = 0; i < minLen; i++)
+	{
+		var xKid = xKids[i];
+		_VirtualDom_diffHelp(xKid, yKids[i], patches, ++index);
+		index += xKid.b || 0;
+	}
+}
+
+
+
+// KEYED DIFF
+
+
+function _VirtualDom_diffKeyedKids(xParent, yParent, patches, rootIndex)
+{
+	var localPatches = [];
+
+	var changes = {}; // Dict String Entry
+	var inserts = []; // Array { index : Int, entry : Entry }
+	// type Entry = { tag : String, vnode : VNode, index : Int, data : _ }
+
+	var xKids = xParent.e;
+	var yKids = yParent.e;
+	var xLen = xKids.length;
+	var yLen = yKids.length;
+	var xIndex = 0;
+	var yIndex = 0;
+
+	var index = rootIndex;
+
+	while (xIndex < xLen && yIndex < yLen)
+	{
+		var x = xKids[xIndex];
+		var y = yKids[yIndex];
+
+		var xKey = x.a;
+		var yKey = y.a;
+		var xNode = x.b;
+		var yNode = y.b;
+
+		// check if keys match
+
+		if (xKey === yKey)
+		{
+			index++;
+			_VirtualDom_diffHelp(xNode, yNode, localPatches, index);
+			index += xNode.b || 0;
+
+			xIndex++;
+			yIndex++;
+			continue;
+		}
+
+		// look ahead 1 to detect insertions and removals.
+
+		var xNext = xKids[xIndex + 1];
+		var yNext = yKids[yIndex + 1];
+
+		if (xNext)
+		{
+			var xNextKey = xNext.a;
+			var xNextNode = xNext.b;
+			var oldMatch = yKey === xNextKey;
+		}
+
+		if (yNext)
+		{
+			var yNextKey = yNext.a;
+			var yNextNode = yNext.b;
+			var newMatch = xKey === yNextKey;
+		}
+
+
+		// swap x and y
+		if (newMatch && oldMatch)
+		{
+			index++;
+			_VirtualDom_diffHelp(xNode, yNextNode, localPatches, index);
+			_VirtualDom_insertNode(changes, localPatches, xKey, yNode, yIndex, inserts);
+			index += xNode.b || 0;
+
+			index++;
+			_VirtualDom_removeNode(changes, localPatches, xKey, xNextNode, index);
+			index += xNextNode.b || 0;
+
+			xIndex += 2;
+			yIndex += 2;
+			continue;
+		}
+
+		// insert y
+		if (newMatch)
+		{
+			index++;
+			_VirtualDom_insertNode(changes, localPatches, yKey, yNode, yIndex, inserts);
+			_VirtualDom_diffHelp(xNode, yNextNode, localPatches, index);
+			index += xNode.b || 0;
+
+			xIndex += 1;
+			yIndex += 2;
+			continue;
+		}
+
+		// remove x
+		if (oldMatch)
+		{
+			index++;
+			_VirtualDom_removeNode(changes, localPatches, xKey, xNode, index);
+			index += xNode.b || 0;
+
+			index++;
+			_VirtualDom_diffHelp(xNextNode, yNode, localPatches, index);
+			index += xNextNode.b || 0;
+
+			xIndex += 2;
+			yIndex += 1;
+			continue;
+		}
+
+		// remove x, insert y
+		if (xNext && xNextKey === yNextKey)
+		{
+			index++;
+			_VirtualDom_removeNode(changes, localPatches, xKey, xNode, index);
+			_VirtualDom_insertNode(changes, localPatches, yKey, yNode, yIndex, inserts);
+			index += xNode.b || 0;
+
+			index++;
+			_VirtualDom_diffHelp(xNextNode, yNextNode, localPatches, index);
+			index += xNextNode.b || 0;
+
+			xIndex += 2;
+			yIndex += 2;
+			continue;
+		}
+
+		break;
+	}
+
+	// eat up any remaining nodes with removeNode and insertNode
+
+	while (xIndex < xLen)
+	{
+		index++;
+		var x = xKids[xIndex];
+		var xNode = x.b;
+		_VirtualDom_removeNode(changes, localPatches, x.a, xNode, index);
+		index += xNode.b || 0;
+		xIndex++;
+	}
+
+	while (yIndex < yLen)
+	{
+		var endInserts = endInserts || [];
+		var y = yKids[yIndex];
+		_VirtualDom_insertNode(changes, localPatches, y.a, y.b, undefined, endInserts);
+		yIndex++;
+	}
+
+	if (localPatches.length > 0 || inserts.length > 0 || endInserts)
+	{
+		_VirtualDom_pushPatch(patches, 8, rootIndex, {
+			w: localPatches,
+			x: inserts,
+			y: endInserts
+		});
+	}
+}
+
+
+
+// CHANGES FROM KEYED DIFF
+
+
+var _VirtualDom_POSTFIX = '_elmW6BL';
+
+
+function _VirtualDom_insertNode(changes, localPatches, key, vnode, yIndex, inserts)
+{
+	var entry = changes[key];
+
+	// never seen this key before
+	if (!entry)
+	{
+		entry = {
+			c: 0,
+			z: vnode,
+			r: yIndex,
+			s: undefined
+		};
+
+		inserts.push({ r: yIndex, A: entry });
+		changes[key] = entry;
+
+		return;
+	}
+
+	// this key was removed earlier, a match!
+	if (entry.c === 1)
+	{
+		inserts.push({ r: yIndex, A: entry });
+
+		entry.c = 2;
+		var subPatches = [];
+		_VirtualDom_diffHelp(entry.z, vnode, subPatches, entry.r);
+		entry.r = yIndex;
+		entry.s.s = {
+			w: subPatches,
+			A: entry
+		};
+
+		return;
+	}
+
+	// this key has already been inserted or moved, a duplicate!
+	_VirtualDom_insertNode(changes, localPatches, key + _VirtualDom_POSTFIX, vnode, yIndex, inserts);
+}
+
+
+function _VirtualDom_removeNode(changes, localPatches, key, vnode, index)
+{
+	var entry = changes[key];
+
+	// never seen this key before
+	if (!entry)
+	{
+		var patch = _VirtualDom_pushPatch(localPatches, 9, index, undefined);
+
+		changes[key] = {
+			c: 1,
+			z: vnode,
+			r: index,
+			s: patch
+		};
+
+		return;
+	}
+
+	// this key was inserted earlier, a match!
+	if (entry.c === 0)
+	{
+		entry.c = 2;
+		var subPatches = [];
+		_VirtualDom_diffHelp(vnode, entry.z, subPatches, index);
+
+		_VirtualDom_pushPatch(localPatches, 9, index, {
+			w: subPatches,
+			A: entry
+		});
+
+		return;
+	}
+
+	// this key has already been removed or moved, a duplicate!
+	_VirtualDom_removeNode(changes, localPatches, key + _VirtualDom_POSTFIX, vnode, index);
+}
+
+
+
+// ADD DOM NODES
+//
+// Each DOM node has an "index" assigned in order of traversal. It is important
+// to minimize our crawl over the actual DOM, so these indexes (along with the
+// descendantsCount of virtual nodes) let us skip touching entire subtrees of
+// the DOM if we know there are no patches there.
+
+
+function _VirtualDom_addDomNodes(domNode, vNode, patches, eventNode)
+{
+	_VirtualDom_addDomNodesHelp(domNode, vNode, patches, 0, 0, vNode.b, eventNode);
+}
+
+
+// assumes `patches` is non-empty and indexes increase monotonically.
+function _VirtualDom_addDomNodesHelp(domNode, vNode, patches, i, low, high, eventNode)
+{
+	var patch = patches[i];
+	var index = patch.r;
+
+	while (index === low)
+	{
+		var patchType = patch.$;
+
+		if (patchType === 1)
+		{
+			_VirtualDom_addDomNodes(domNode, vNode.k, patch.s, eventNode);
+		}
+		else if (patchType === 8)
+		{
+			patch.t = domNode;
+			patch.u = eventNode;
+
+			var subPatches = patch.s.w;
+			if (subPatches.length > 0)
+			{
+				_VirtualDom_addDomNodesHelp(domNode, vNode, subPatches, 0, low, high, eventNode);
+			}
+		}
+		else if (patchType === 9)
+		{
+			patch.t = domNode;
+			patch.u = eventNode;
+
+			var data = patch.s;
+			if (data)
+			{
+				data.A.s = domNode;
+				var subPatches = data.w;
+				if (subPatches.length > 0)
+				{
+					_VirtualDom_addDomNodesHelp(domNode, vNode, subPatches, 0, low, high, eventNode);
+				}
+			}
+		}
+		else
+		{
+			patch.t = domNode;
+			patch.u = eventNode;
+		}
+
+		i++;
+
+		if (!(patch = patches[i]) || (index = patch.r) > high)
+		{
+			return i;
+		}
+	}
+
+	var tag = vNode.$;
+
+	if (tag === 4)
+	{
+		var subNode = vNode.k;
+
+		while (subNode.$ === 4)
+		{
+			subNode = subNode.k;
+		}
+
+		return _VirtualDom_addDomNodesHelp(domNode, subNode, patches, i, low + 1, high, domNode.elm_event_node_ref);
+	}
+
+	// tag must be 1 or 2 at this point
+
+	var vKids = vNode.e;
+	var childNodes = domNode.childNodes;
+	for (var j = 0; j < vKids.length; j++)
+	{
+		low++;
+		var vKid = tag === 1 ? vKids[j] : vKids[j].b;
+		var nextLow = low + (vKid.b || 0);
+		if (low <= index && index <= nextLow)
+		{
+			i = _VirtualDom_addDomNodesHelp(childNodes[j], vKid, patches, i, low, nextLow, eventNode);
+			if (!(patch = patches[i]) || (index = patch.r) > high)
+			{
+				return i;
+			}
+		}
+		low = nextLow;
+	}
+	return i;
+}
+
+
+
+// APPLY PATCHES
+
+
+function _VirtualDom_applyPatches(rootDomNode, oldVirtualNode, patches, eventNode)
+{
+	if (patches.length === 0)
+	{
+		return rootDomNode;
+	}
+
+	_VirtualDom_addDomNodes(rootDomNode, oldVirtualNode, patches, eventNode);
+	return _VirtualDom_applyPatchesHelp(rootDomNode, patches);
+}
+
+function _VirtualDom_applyPatchesHelp(rootDomNode, patches)
+{
+	for (var i = 0; i < patches.length; i++)
+	{
+		var patch = patches[i];
+		var localDomNode = patch.t
+		var newNode = _VirtualDom_applyPatch(localDomNode, patch);
+		if (localDomNode === rootDomNode)
+		{
+			rootDomNode = newNode;
+		}
+	}
+	return rootDomNode;
+}
+
+function _VirtualDom_applyPatch(domNode, patch)
+{
+	switch (patch.$)
+	{
+		case 0:
+			return _VirtualDom_applyPatchRedraw(domNode, patch.s, patch.u);
+
+		case 4:
+			_VirtualDom_applyFacts(domNode, patch.u, patch.s);
+			return domNode;
+
+		case 3:
+			domNode.replaceData(0, domNode.length, patch.s);
+			return domNode;
+
+		case 1:
+			return _VirtualDom_applyPatchesHelp(domNode, patch.s);
+
+		case 2:
+			if (domNode.elm_event_node_ref)
+			{
+				domNode.elm_event_node_ref.j = patch.s;
+			}
+			else
+			{
+				domNode.elm_event_node_ref = { j: patch.s, p: patch.u };
+			}
+			return domNode;
+
+		case 6:
+			var data = patch.s;
+			for (var i = 0; i < data.i; i++)
+			{
+				domNode.removeChild(domNode.childNodes[data.v]);
+			}
+			return domNode;
+
+		case 7:
+			var data = patch.s;
+			var kids = data.e;
+			var i = data.v;
+			var theEnd = domNode.childNodes[i];
+			for (; i < kids.length; i++)
+			{
+				domNode.insertBefore(_VirtualDom_render(kids[i], patch.u), theEnd);
+			}
+			return domNode;
+
+		case 9:
+			var data = patch.s;
+			if (!data)
+			{
+				domNode.parentNode.removeChild(domNode);
+				return domNode;
+			}
+			var entry = data.A;
+			if (typeof entry.r !== 'undefined')
+			{
+				domNode.parentNode.removeChild(domNode);
+			}
+			entry.s = _VirtualDom_applyPatchesHelp(domNode, data.w);
+			return domNode;
+
+		case 8:
+			return _VirtualDom_applyPatchReorder(domNode, patch);
+
+		case 5:
+			return patch.s(domNode);
+
+		default:
+			_Debug_crash(10); // 'Ran into an unknown patch!'
+	}
+}
+
+
+function _VirtualDom_applyPatchRedraw(domNode, vNode, eventNode)
+{
+	var parentNode = domNode.parentNode;
+	var newNode = _VirtualDom_render(vNode, eventNode);
+
+	if (!newNode.elm_event_node_ref)
+	{
+		newNode.elm_event_node_ref = domNode.elm_event_node_ref;
+	}
+
+	if (parentNode && newNode !== domNode)
+	{
+		parentNode.replaceChild(newNode, domNode);
+	}
+	return newNode;
+}
+
+
+function _VirtualDom_applyPatchReorder(domNode, patch)
+{
+	var data = patch.s;
+
+	// remove end inserts
+	var frag = _VirtualDom_applyPatchReorderEndInsertsHelp(data.y, patch);
+
+	// removals
+	domNode = _VirtualDom_applyPatchesHelp(domNode, data.w);
+
+	// inserts
+	var inserts = data.x;
+	for (var i = 0; i < inserts.length; i++)
+	{
+		var insert = inserts[i];
+		var entry = insert.A;
+		var node = entry.c === 2
+			? entry.s
+			: _VirtualDom_render(entry.z, patch.u);
+		domNode.insertBefore(node, domNode.childNodes[insert.r]);
+	}
+
+	// add end inserts
+	if (frag)
+	{
+		_VirtualDom_appendChild(domNode, frag);
+	}
+
+	return domNode;
+}
+
+
+function _VirtualDom_applyPatchReorderEndInsertsHelp(endInserts, patch)
+{
+	if (!endInserts)
+	{
+		return;
+	}
+
+	var frag = _VirtualDom_doc.createDocumentFragment();
+	for (var i = 0; i < endInserts.length; i++)
+	{
+		var insert = endInserts[i];
+		var entry = insert.A;
+		_VirtualDom_appendChild(frag, entry.c === 2
+			? entry.s
+			: _VirtualDom_render(entry.z, patch.u)
+		);
+	}
+	return frag;
+}
+
+
+function _VirtualDom_virtualize(node)
+{
+	// TEXT NODES
+
+	if (node.nodeType === 3)
+	{
+		return _VirtualDom_text(node.textContent);
+	}
+
+
+	// WEIRD NODES
+
+	if (node.nodeType !== 1)
+	{
+		return _VirtualDom_text('');
+	}
+
+
+	// ELEMENT NODES
+
+	var attrList = _List_Nil;
+	var attrs = node.attributes;
+	for (var i = attrs.length; i--; )
+	{
+		var attr = attrs[i];
+		var name = attr.name;
+		var value = attr.value;
+		attrList = _List_Cons( A2(_VirtualDom_attribute, name, value), attrList );
+	}
+
+	var tag = node.tagName.toLowerCase();
+	var kidList = _List_Nil;
+	var kids = node.childNodes;
+
+	for (var i = kids.length; i--; )
+	{
+		kidList = _List_Cons(_VirtualDom_virtualize(kids[i]), kidList);
+	}
+	return A3(_VirtualDom_node, tag, attrList, kidList);
+}
+
+function _VirtualDom_dekey(keyedNode)
+{
+	var keyedKids = keyedNode.e;
+	var len = keyedKids.length;
+	var kids = new Array(len);
+	for (var i = 0; i < len; i++)
+	{
+		kids[i] = keyedKids[i].b;
+	}
+
+	return {
+		$: 1,
+		c: keyedNode.c,
+		d: keyedNode.d,
+		e: kids,
+		f: keyedNode.f,
+		b: keyedNode.b
+	};
+}
+
+
+
+// ELEMENT
+
+
+var _Debugger_element;
+
+var _Browser_element = _Debugger_element || F4(function(impl, flagDecoder, debugMetadata, args)
+{
+	return _Platform_initialize(
+		flagDecoder,
+		args,
+		impl.cB,
+		impl.cS,
+		impl.cP,
+		function(sendToApp, initialModel) {
+			var view = impl.cW;
+			/**/
+			var domNode = args['node'];
+			//*/
+			/**_UNUSED/
+			var domNode = args && args['node'] ? args['node'] : _Debug_crash(0);
+			//*/
+			var currNode = _VirtualDom_virtualize(domNode);
+
+			return _Browser_makeAnimator(initialModel, function(model)
+			{
+				var nextNode = view(model);
+				var patches = _VirtualDom_diff(currNode, nextNode);
+				domNode = _VirtualDom_applyPatches(domNode, currNode, patches, sendToApp);
+				currNode = nextNode;
+			});
+		}
+	);
+});
+
+
+
+// DOCUMENT
+
+
+var _Debugger_document;
+
+var _Browser_document = _Debugger_document || F4(function(impl, flagDecoder, debugMetadata, args)
+{
+	return _Platform_initialize(
+		flagDecoder,
+		args,
+		impl.cB,
+		impl.cS,
+		impl.cP,
+		function(sendToApp, initialModel) {
+			var divertHrefToApp = impl.aJ && impl.aJ(sendToApp)
+			var view = impl.cW;
+			var title = _VirtualDom_doc.title;
+			var bodyNode = _VirtualDom_doc.body;
+			var currNode = _VirtualDom_virtualize(bodyNode);
+			return _Browser_makeAnimator(initialModel, function(model)
+			{
+				_VirtualDom_divertHrefToApp = divertHrefToApp;
+				var doc = view(model);
+				var nextNode = _VirtualDom_node('body')(_List_Nil)(doc.cl);
+				var patches = _VirtualDom_diff(currNode, nextNode);
+				bodyNode = _VirtualDom_applyPatches(bodyNode, currNode, patches, sendToApp);
+				currNode = nextNode;
+				_VirtualDom_divertHrefToApp = 0;
+				(title !== doc.cR) && (_VirtualDom_doc.title = title = doc.cR);
+			});
+		}
+	);
+});
+
+
+
+// ANIMATION
+
+
+var _Browser_requestAnimationFrame =
+	typeof requestAnimationFrame !== 'undefined'
+		? requestAnimationFrame
+		: function(callback) { setTimeout(callback, 1000 / 60); };
+
+
+function _Browser_makeAnimator(model, draw)
+{
+	draw(model);
+
+	var state = 0;
+
+	function updateIfNeeded()
+	{
+		state = state === 1
+			? 0
+			: ( _Browser_requestAnimationFrame(updateIfNeeded), draw(model), 1 );
+	}
+
+	return function(nextModel, isSync)
+	{
+		model = nextModel;
+
+		isSync
+			? ( draw(model),
+				state === 2 && (state = 1)
+				)
+			: ( state === 0 && _Browser_requestAnimationFrame(updateIfNeeded),
+				state = 2
+				);
+	};
+}
+
+
+
+// APPLICATION
+
+
+function _Browser_application(impl)
+{
+	var onUrlChange = impl.cG;
+	var onUrlRequest = impl.cH;
+	var key = function() { key.a(onUrlChange(_Browser_getUrl())); };
+
+	return _Browser_document({
+		aJ: function(sendToApp)
+		{
+			key.a = sendToApp;
+			_Browser_window.addEventListener('popstate', key);
+			_Browser_window.navigator.userAgent.indexOf('Trident') < 0 || _Browser_window.addEventListener('hashchange', key);
+
+			return F2(function(domNode, event)
+			{
+				if (!event.ctrlKey && !event.metaKey && !event.shiftKey && event.button < 1 && !domNode.target && !domNode.download)
+				{
+					event.preventDefault();
+					var href = domNode.href;
+					var curr = _Browser_getUrl();
+					var next = elm$url$Url$fromString(href).a;
+					sendToApp(onUrlRequest(
+						(next
+							&& curr.b0 === next.b0
+							&& curr.bO === next.bO
+							&& curr.bY.a === next.bY.a
+						)
+							? elm$browser$Browser$Internal(next)
+							: elm$browser$Browser$External(href)
+					));
+				}
+			});
+		},
+		cB: function(flags)
+		{
+			return A3(impl.cB, flags, _Browser_getUrl(), key);
+		},
+		cW: impl.cW,
+		cS: impl.cS,
+		cP: impl.cP
+	});
+}
+
+function _Browser_getUrl()
+{
+	return elm$url$Url$fromString(_VirtualDom_doc.location.href).a || _Debug_crash(1);
+}
+
+var _Browser_go = F2(function(key, n)
+{
+	return A2(elm$core$Task$perform, elm$core$Basics$never, _Scheduler_binding(function() {
+		n && history.go(n);
+		key();
+	}));
+});
+
+var _Browser_pushUrl = F2(function(key, url)
+{
+	return A2(elm$core$Task$perform, elm$core$Basics$never, _Scheduler_binding(function() {
+		history.pushState({}, '', url);
+		key();
+	}));
+});
+
+var _Browser_replaceUrl = F2(function(key, url)
+{
+	return A2(elm$core$Task$perform, elm$core$Basics$never, _Scheduler_binding(function() {
+		history.replaceState({}, '', url);
+		key();
+	}));
+});
+
+
+
+// GLOBAL EVENTS
+
+
+var _Browser_fakeNode = { addEventListener: function() {}, removeEventListener: function() {} };
+var _Browser_doc = typeof document !== 'undefined' ? document : _Browser_fakeNode;
+var _Browser_window = typeof window !== 'undefined' ? window : _Browser_fakeNode;
+
+var _Browser_on = F3(function(node, eventName, sendToSelf)
+{
+	return _Scheduler_spawn(_Scheduler_binding(function(callback)
+	{
+		function handler(event)	{ _Scheduler_rawSpawn(sendToSelf(event)); }
+		node.addEventListener(eventName, handler, _VirtualDom_passiveSupported && { passive: true });
+		return function() { node.removeEventListener(eventName, handler); };
+	}));
+});
+
+var _Browser_decodeEvent = F2(function(decoder, event)
+{
+	var result = _Json_runHelp(decoder, event);
+	return elm$core$Result$isOk(result) ? elm$core$Maybe$Just(result.a) : elm$core$Maybe$Nothing;
+});
+
+
+
+// PAGE VISIBILITY
+
+
+function _Browser_visibilityInfo()
+{
+	return (typeof _VirtualDom_doc.hidden !== 'undefined')
+		? { cy: 'hidden', ay: 'visibilitychange' }
+		:
+	(typeof _VirtualDom_doc.mozHidden !== 'undefined')
+		? { cy: 'mozHidden', ay: 'mozvisibilitychange' }
+		:
+	(typeof _VirtualDom_doc.msHidden !== 'undefined')
+		? { cy: 'msHidden', ay: 'msvisibilitychange' }
+		:
+	(typeof _VirtualDom_doc.webkitHidden !== 'undefined')
+		? { cy: 'webkitHidden', ay: 'webkitvisibilitychange' }
+		: { cy: 'hidden', ay: 'visibilitychange' };
+}
+
+
+
+// ANIMATION FRAMES
+
+
+function _Browser_rAF()
+{
+	return _Scheduler_binding(function(callback)
+	{
+		var id = requestAnimationFrame(function() {
+			callback(_Scheduler_succeed(Date.now()));
+		});
+
+		return function() {
+			cancelAnimationFrame(id);
+		};
+	});
+}
+
+
+function _Browser_now()
+{
+	return _Scheduler_binding(function(callback)
+	{
+		callback(_Scheduler_succeed(Date.now()));
+	});
+}
+
+
+
+// DOM STUFF
+
+
+function _Browser_withNode(id, doStuff)
+{
+	return _Scheduler_binding(function(callback)
+	{
+		_Browser_requestAnimationFrame(function() {
+			var node = document.getElementById(id);
+			callback(node
+				? _Scheduler_succeed(doStuff(node))
+				: _Scheduler_fail(elm$browser$Browser$Dom$NotFound(id))
+			);
+		});
+	});
+}
+
+
+function _Browser_withWindow(doStuff)
+{
+	return _Scheduler_binding(function(callback)
+	{
+		_Browser_requestAnimationFrame(function() {
+			callback(_Scheduler_succeed(doStuff()));
+		});
+	});
+}
+
+
+// FOCUS and BLUR
+
+
+var _Browser_call = F2(function(functionName, id)
+{
+	return _Browser_withNode(id, function(node) {
+		node[functionName]();
+		return _Utils_Tuple0;
+	});
+});
+
+
+
+// WINDOW VIEWPORT
+
+
+function _Browser_getViewport()
+{
+	return {
+		b7: _Browser_getScene(),
+		cf: {
+			a8: _Browser_window.pageXOffset,
+			a9: _Browser_window.pageYOffset,
+			at: _Browser_doc.documentElement.clientWidth,
+			af: _Browser_doc.documentElement.clientHeight
+		}
+	};
+}
+
+function _Browser_getScene()
+{
+	var body = _Browser_doc.body;
+	var elem = _Browser_doc.documentElement;
+	return {
+		at: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
+		af: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
+	};
+}
+
+var _Browser_setViewport = F2(function(x, y)
+{
+	return _Browser_withWindow(function()
+	{
+		_Browser_window.scroll(x, y);
+		return _Utils_Tuple0;
+	});
+});
+
+
+
+// ELEMENT VIEWPORT
+
+
+function _Browser_getViewportOf(id)
+{
+	return _Browser_withNode(id, function(node)
+	{
+		return {
+			b7: {
+				at: node.scrollWidth,
+				af: node.scrollHeight
+			},
+			cf: {
+				a8: node.scrollLeft,
+				a9: node.scrollTop,
+				at: node.clientWidth,
+				af: node.clientHeight
+			}
+		};
+	});
+}
+
+
+var _Browser_setViewportOf = F3(function(id, x, y)
+{
+	return _Browser_withNode(id, function(node)
+	{
+		node.scrollLeft = x;
+		node.scrollTop = y;
+		return _Utils_Tuple0;
+	});
+});
+
+
+
+// ELEMENT
+
+
+function _Browser_getElement(id)
+{
+	return _Browser_withNode(id, function(node)
+	{
+		var rect = node.getBoundingClientRect();
+		var x = _Browser_window.pageXOffset;
+		var y = _Browser_window.pageYOffset;
+		return {
+			b7: _Browser_getScene(),
+			cf: {
+				a8: x,
+				a9: y,
+				at: _Browser_doc.documentElement.clientWidth,
+				af: _Browser_doc.documentElement.clientHeight
+			},
+			ct: {
+				a8: x + rect.left,
+				a9: y + rect.top,
+				at: rect.width,
+				af: rect.height
+			}
+		};
+	});
+}
+
+
+
+// LOAD and RELOAD
+
+
+function _Browser_reload(skipCache)
+{
+	return A2(elm$core$Task$perform, elm$core$Basics$never, _Scheduler_binding(function(callback)
+	{
+		_VirtualDom_doc.location.reload(skipCache);
+	}));
+}
+
+function _Browser_load(url)
+{
+	return A2(elm$core$Task$perform, elm$core$Basics$never, _Scheduler_binding(function(callback)
+	{
+		try
+		{
+			_Browser_window.location = url;
+		}
+		catch(err)
+		{
+			// Only Firefox can throw a NS_ERROR_MALFORMED_URI exception here.
+			// Other browsers reload the page, so let's be consistent about that.
+			_VirtualDom_doc.location.reload(false);
+		}
+	}));
+}
+
+
+
+
+// VIRTUAL-DOM WIDGETS
+
+
+var _Markdown_toHtml = F3(function(options, factList, rawMarkdown)
+{
+	return _VirtualDom_custom(
+		factList,
+		{
+			a: options,
+			b: rawMarkdown
+		},
+		_Markdown_render,
+		_Markdown_diff
+	);
+});
+
+
+
+// WIDGET IMPLEMENTATION
+
+
+function _Markdown_render(model)
+{
+	return A2(_Markdown_replace, model, _VirtualDom_doc.createElement('div'));
+}
+
+
+function _Markdown_diff(x, y)
+{
+	return x.b === y.b && x.a === y.a
+		? false
+		: _Markdown_replace(y);
+}
+
+
+var _Markdown_replace = F2(function(model, div)
+{
+	div.innerHTML = _Markdown_marked(model.b, _Markdown_formatOptions(model.a));
+	return div;
+});
+
+
+
+// ACTUAL MARKDOWN PARSER
+
+
+var _Markdown_marked = function() {
+	// catch the `marked` object regardless of the outer environment.
+	// (ex. a CommonJS module compatible environment.)
+	// note that this depends on marked's implementation of environment detection.
+	var module = {};
+	var exports = module.exports = {};
+
+	/**
+	 * marked - a markdown parser
+	 * Copyright (c) 2011-2014, Christopher Jeffrey. (MIT Licensed)
+	 * https://github.com/chjj/marked
+	 * commit cd2f6f5b7091154c5526e79b5f3bfb4d15995a51
+	 */
+	(function(){var block={newline:/^\n+/,code:/^( {4}[^\n]+\n*)+/,fences:noop,hr:/^( *[-*_]){3,} *(?:\n+|$)/,heading:/^ *(#{1,6}) *([^\n]+?) *#* *(?:\n+|$)/,nptable:noop,lheading:/^([^\n]+)\n *(=|-){2,} *(?:\n+|$)/,blockquote:/^( *>[^\n]+(\n(?!def)[^\n]+)*\n*)+/,list:/^( *)(bull) [\s\S]+?(?:hr|def|\n{2,}(?! )(?!\1bull )\n*|\s*$)/,html:/^ *(?:comment *(?:\n|\s*$)|closed *(?:\n{2,}|\s*$)|closing *(?:\n{2,}|\s*$))/,def:/^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$)/,table:noop,paragraph:/^((?:[^\n]+\n?(?!hr|heading|lheading|blockquote|tag|def))+)\n*/,text:/^[^\n]+/};block.bullet=/(?:[*+-]|\d+\.)/;block.item=/^( *)(bull) [^\n]*(?:\n(?!\1bull )[^\n]*)*/;block.item=replace(block.item,"gm")(/bull/g,block.bullet)();block.list=replace(block.list)(/bull/g,block.bullet)("hr","\\n+(?=\\1?(?:[-*_] *){3,}(?:\\n+|$))")("def","\\n+(?="+block.def.source+")")();block.blockquote=replace(block.blockquote)("def",block.def)();block._tag="(?!(?:"+"a|em|strong|small|s|cite|q|dfn|abbr|data|time|code"+"|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo"+"|span|br|wbr|ins|del|img)\\b)\\w+(?!:/|[^\\w\\s@]*@)\\b";block.html=replace(block.html)("comment",/<!--[\s\S]*?-->/)("closed",/<(tag)[\s\S]+?<\/\1>/)("closing",/<tag(?:"[^"]*"|'[^']*'|[^'">])*?>/)(/tag/g,block._tag)();block.paragraph=replace(block.paragraph)("hr",block.hr)("heading",block.heading)("lheading",block.lheading)("blockquote",block.blockquote)("tag","<"+block._tag)("def",block.def)();block.normal=merge({},block);block.gfm=merge({},block.normal,{fences:/^ *(`{3,}|~{3,})[ \.]*(\S+)? *\n([\s\S]*?)\s*\1 *(?:\n+|$)/,paragraph:/^/,heading:/^ *(#{1,6}) +([^\n]+?) *#* *(?:\n+|$)/});block.gfm.paragraph=replace(block.paragraph)("(?!","(?!"+block.gfm.fences.source.replace("\\1","\\2")+"|"+block.list.source.replace("\\1","\\3")+"|")();block.tables=merge({},block.gfm,{nptable:/^ *(\S.*\|.*)\n *([-:]+ *\|[-| :]*)\n((?:.*\|.*(?:\n|$))*)\n*/,table:/^ *\|(.+)\n *\|( *[-:]+[-| :]*)\n((?: *\|.*(?:\n|$))*)\n*/});function Lexer(options){this.tokens=[];this.tokens.links={};this.options=options||marked.defaults;this.rules=block.normal;if(this.options.gfm){if(this.options.tables){this.rules=block.tables}else{this.rules=block.gfm}}}Lexer.rules=block;Lexer.lex=function(src,options){var lexer=new Lexer(options);return lexer.lex(src)};Lexer.prototype.lex=function(src){src=src.replace(/\r\n|\r/g,"\n").replace(/\t/g,"    ").replace(/\u00a0/g," ").replace(/\u2424/g,"\n");return this.token(src,true)};Lexer.prototype.token=function(src,top,bq){var src=src.replace(/^ +$/gm,""),next,loose,cap,bull,b,item,space,i,l;while(src){if(cap=this.rules.newline.exec(src)){src=src.substring(cap[0].length);if(cap[0].length>1){this.tokens.push({type:"space"})}}if(cap=this.rules.code.exec(src)){src=src.substring(cap[0].length);cap=cap[0].replace(/^ {4}/gm,"");this.tokens.push({type:"code",text:!this.options.pedantic?cap.replace(/\n+$/,""):cap});continue}if(cap=this.rules.fences.exec(src)){src=src.substring(cap[0].length);this.tokens.push({type:"code",lang:cap[2],text:cap[3]||""});continue}if(cap=this.rules.heading.exec(src)){src=src.substring(cap[0].length);this.tokens.push({type:"heading",depth:cap[1].length,text:cap[2]});continue}if(top&&(cap=this.rules.nptable.exec(src))){src=src.substring(cap[0].length);item={type:"table",header:cap[1].replace(/^ *| *\| *$/g,"").split(/ *\| */),align:cap[2].replace(/^ *|\| *$/g,"").split(/ *\| */),cells:cap[3].replace(/\n$/,"").split("\n")};for(i=0;i<item.align.length;i++){if(/^ *-+: *$/.test(item.align[i])){item.align[i]="right"}else if(/^ *:-+: *$/.test(item.align[i])){item.align[i]="center"}else if(/^ *:-+ *$/.test(item.align[i])){item.align[i]="left"}else{item.align[i]=null}}for(i=0;i<item.cells.length;i++){item.cells[i]=item.cells[i].split(/ *\| */)}this.tokens.push(item);continue}if(cap=this.rules.lheading.exec(src)){src=src.substring(cap[0].length);this.tokens.push({type:"heading",depth:cap[2]==="="?1:2,text:cap[1]});continue}if(cap=this.rules.hr.exec(src)){src=src.substring(cap[0].length);this.tokens.push({type:"hr"});continue}if(cap=this.rules.blockquote.exec(src)){src=src.substring(cap[0].length);this.tokens.push({type:"blockquote_start"});cap=cap[0].replace(/^ *> ?/gm,"");this.token(cap,top,true);this.tokens.push({type:"blockquote_end"});continue}if(cap=this.rules.list.exec(src)){src=src.substring(cap[0].length);bull=cap[2];this.tokens.push({type:"list_start",ordered:bull.length>1});cap=cap[0].match(this.rules.item);next=false;l=cap.length;i=0;for(;i<l;i++){item=cap[i];space=item.length;item=item.replace(/^ *([*+-]|\d+\.) +/,"");if(~item.indexOf("\n ")){space-=item.length;item=!this.options.pedantic?item.replace(new RegExp("^ {1,"+space+"}","gm"),""):item.replace(/^ {1,4}/gm,"")}if(this.options.smartLists&&i!==l-1){b=block.bullet.exec(cap[i+1])[0];if(bull!==b&&!(bull.length>1&&b.length>1)){src=cap.slice(i+1).join("\n")+src;i=l-1}}loose=next||/\n\n(?!\s*$)/.test(item);if(i!==l-1){next=item.charAt(item.length-1)==="\n";if(!loose)loose=next}this.tokens.push({type:loose?"loose_item_start":"list_item_start"});this.token(item,false,bq);this.tokens.push({type:"list_item_end"})}this.tokens.push({type:"list_end"});continue}if(cap=this.rules.html.exec(src)){src=src.substring(cap[0].length);this.tokens.push({type:this.options.sanitize?"paragraph":"html",pre:!this.options.sanitizer&&(cap[1]==="pre"||cap[1]==="script"||cap[1]==="style"),text:cap[0]});continue}if(!bq&&top&&(cap=this.rules.def.exec(src))){src=src.substring(cap[0].length);this.tokens.links[cap[1].toLowerCase()]={href:cap[2],title:cap[3]};continue}if(top&&(cap=this.rules.table.exec(src))){src=src.substring(cap[0].length);item={type:"table",header:cap[1].replace(/^ *| *\| *$/g,"").split(/ *\| */),align:cap[2].replace(/^ *|\| *$/g,"").split(/ *\| */),cells:cap[3].replace(/(?: *\| *)?\n$/,"").split("\n")};for(i=0;i<item.align.length;i++){if(/^ *-+: *$/.test(item.align[i])){item.align[i]="right"}else if(/^ *:-+: *$/.test(item.align[i])){item.align[i]="center"}else if(/^ *:-+ *$/.test(item.align[i])){item.align[i]="left"}else{item.align[i]=null}}for(i=0;i<item.cells.length;i++){item.cells[i]=item.cells[i].replace(/^ *\| *| *\| *$/g,"").split(/ *\| */)}this.tokens.push(item);continue}if(top&&(cap=this.rules.paragraph.exec(src))){src=src.substring(cap[0].length);this.tokens.push({type:"paragraph",text:cap[1].charAt(cap[1].length-1)==="\n"?cap[1].slice(0,-1):cap[1]});continue}if(cap=this.rules.text.exec(src)){src=src.substring(cap[0].length);this.tokens.push({type:"text",text:cap[0]});continue}if(src){throw new Error("Infinite loop on byte: "+src.charCodeAt(0))}}return this.tokens};var inline={escape:/^\\([\\`*{}\[\]()#+\-.!_>])/,autolink:/^<([^ >]+(@|:\/)[^ >]+)>/,url:noop,tag:/^<!--[\s\S]*?-->|^<\/?\w+(?:"[^"]*"|'[^']*'|[^'">])*?>/,link:/^!?\[(inside)\]\(href\)/,reflink:/^!?\[(inside)\]\s*\[([^\]]*)\]/,nolink:/^!?\[((?:\[[^\]]*\]|[^\[\]])*)\]/,strong:/^_\_([\s\S]+?)_\_(?!_)|^\*\*([\s\S]+?)\*\*(?!\*)/,em:/^\b_((?:[^_]|_\_)+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,code:/^(`+)\s*([\s\S]*?[^`])\s*\1(?!`)/,br:/^ {2,}\n(?!\s*$)/,del:noop,text:/^[\s\S]+?(?=[\\<!\[_*`]| {2,}\n|$)/};inline._inside=/(?:\[[^\]]*\]|[^\[\]]|\](?=[^\[]*\]))*/;inline._href=/\s*<?([\s\S]*?)>?(?:\s+['"]([\s\S]*?)['"])?\s*/;inline.link=replace(inline.link)("inside",inline._inside)("href",inline._href)();inline.reflink=replace(inline.reflink)("inside",inline._inside)();inline.normal=merge({},inline);inline.pedantic=merge({},inline.normal,{strong:/^_\_(?=\S)([\s\S]*?\S)_\_(?!_)|^\*\*(?=\S)([\s\S]*?\S)\*\*(?!\*)/,em:/^_(?=\S)([\s\S]*?\S)_(?!_)|^\*(?=\S)([\s\S]*?\S)\*(?!\*)/});inline.gfm=merge({},inline.normal,{escape:replace(inline.escape)("])","~|])")(),url:/^(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/,del:/^~~(?=\S)([\s\S]*?\S)~~/,text:replace(inline.text)("]|","~]|")("|","|https?://|")()});inline.breaks=merge({},inline.gfm,{br:replace(inline.br)("{2,}","*")(),text:replace(inline.gfm.text)("{2,}","*")()});function InlineLexer(links,options){this.options=options||marked.defaults;this.links=links;this.rules=inline.normal;this.renderer=this.options.renderer||new Renderer;this.renderer.options=this.options;if(!this.links){throw new Error("Tokens array requires a `links` property.")}if(this.options.gfm){if(this.options.breaks){this.rules=inline.breaks}else{this.rules=inline.gfm}}else if(this.options.pedantic){this.rules=inline.pedantic}}InlineLexer.rules=inline;InlineLexer.output=function(src,links,options){var inline=new InlineLexer(links,options);return inline.output(src)};InlineLexer.prototype.output=function(src){var out="",link,text,href,cap;while(src){if(cap=this.rules.escape.exec(src)){src=src.substring(cap[0].length);out+=cap[1];continue}if(cap=this.rules.autolink.exec(src)){src=src.substring(cap[0].length);if(cap[2]==="@"){text=cap[1].charAt(6)===":"?this.mangle(cap[1].substring(7)):this.mangle(cap[1]);href=this.mangle("mailto:")+text}else{text=escape(cap[1]);href=text}out+=this.renderer.link(href,null,text);continue}if(!this.inLink&&(cap=this.rules.url.exec(src))){src=src.substring(cap[0].length);text=escape(cap[1]);href=text;out+=this.renderer.link(href,null,text);continue}if(cap=this.rules.tag.exec(src)){if(!this.inLink&&/^<a /i.test(cap[0])){this.inLink=true}else if(this.inLink&&/^<\/a>/i.test(cap[0])){this.inLink=false}src=src.substring(cap[0].length);out+=this.options.sanitize?this.options.sanitizer?this.options.sanitizer(cap[0]):escape(cap[0]):cap[0];continue}if(cap=this.rules.link.exec(src)){src=src.substring(cap[0].length);this.inLink=true;out+=this.outputLink(cap,{href:cap[2],title:cap[3]});this.inLink=false;continue}if((cap=this.rules.reflink.exec(src))||(cap=this.rules.nolink.exec(src))){src=src.substring(cap[0].length);link=(cap[2]||cap[1]).replace(/\s+/g," ");link=this.links[link.toLowerCase()];if(!link||!link.href){out+=cap[0].charAt(0);src=cap[0].substring(1)+src;continue}this.inLink=true;out+=this.outputLink(cap,link);this.inLink=false;continue}if(cap=this.rules.strong.exec(src)){src=src.substring(cap[0].length);out+=this.renderer.strong(this.output(cap[2]||cap[1]));continue}if(cap=this.rules.em.exec(src)){src=src.substring(cap[0].length);out+=this.renderer.em(this.output(cap[2]||cap[1]));continue}if(cap=this.rules.code.exec(src)){src=src.substring(cap[0].length);out+=this.renderer.codespan(escape(cap[2],true));continue}if(cap=this.rules.br.exec(src)){src=src.substring(cap[0].length);out+=this.renderer.br();continue}if(cap=this.rules.del.exec(src)){src=src.substring(cap[0].length);out+=this.renderer.del(this.output(cap[1]));continue}if(cap=this.rules.text.exec(src)){src=src.substring(cap[0].length);out+=this.renderer.text(escape(this.smartypants(cap[0])));continue}if(src){throw new Error("Infinite loop on byte: "+src.charCodeAt(0))}}return out};InlineLexer.prototype.outputLink=function(cap,link){var href=escape(link.href),title=link.title?escape(link.title):null;return cap[0].charAt(0)!=="!"?this.renderer.link(href,title,this.output(cap[1])):this.renderer.image(href,title,escape(cap[1]))};InlineLexer.prototype.smartypants=function(text){if(!this.options.smartypants)return text;return text.replace(/---/g,"—").replace(/--/g,"–").replace(/(^|[-\u2014\/(\[{"\s])'/g,"$1‘").replace(/'/g,"’").replace(/(^|[-\u2014\/(\[{\u2018\s])"/g,"$1“").replace(/"/g,"”").replace(/\.{3}/g,"…")};InlineLexer.prototype.mangle=function(text){if(!this.options.mangle)return text;var out="",l=text.length,i=0,ch;for(;i<l;i++){ch=text.charCodeAt(i);if(Math.random()>.5){ch="x"+ch.toString(16)}out+="&#"+ch+";"}return out};function Renderer(options){this.options=options||{}}Renderer.prototype.code=function(code,lang,escaped){if(this.options.highlight){var out=this.options.highlight(code,lang);if(out!=null&&out!==code){escaped=true;code=out}}if(!lang){return"<pre><code>"+(escaped?code:escape(code,true))+"\n</code></pre>"}return'<pre><code class="'+this.options.langPrefix+escape(lang,true)+'">'+(escaped?code:escape(code,true))+"\n</code></pre>\n"};Renderer.prototype.blockquote=function(quote){return"<blockquote>\n"+quote+"</blockquote>\n"};Renderer.prototype.html=function(html){return html};Renderer.prototype.heading=function(text,level,raw){return"<h"+level+' id="'+this.options.headerPrefix+raw.toLowerCase().replace(/[^\w]+/g,"-")+'">'+text+"</h"+level+">\n"};Renderer.prototype.hr=function(){return this.options.xhtml?"<hr/>\n":"<hr>\n"};Renderer.prototype.list=function(body,ordered){var type=ordered?"ol":"ul";return"<"+type+">\n"+body+"</"+type+">\n"};Renderer.prototype.listitem=function(text){return"<li>"+text+"</li>\n"};Renderer.prototype.paragraph=function(text){return"<p>"+text+"</p>\n"};Renderer.prototype.table=function(header,body){return"<table>\n"+"<thead>\n"+header+"</thead>\n"+"<tbody>\n"+body+"</tbody>\n"+"</table>\n"};Renderer.prototype.tablerow=function(content){return"<tr>\n"+content+"</tr>\n"};Renderer.prototype.tablecell=function(content,flags){var type=flags.header?"th":"td";var tag=flags.align?"<"+type+' style="text-align:'+flags.align+'">':"<"+type+">";return tag+content+"</"+type+">\n"};Renderer.prototype.strong=function(text){return"<strong>"+text+"</strong>"};Renderer.prototype.em=function(text){return"<em>"+text+"</em>"};Renderer.prototype.codespan=function(text){return"<code>"+text+"</code>"};Renderer.prototype.br=function(){return this.options.xhtml?"<br/>":"<br>"};Renderer.prototype.del=function(text){return"<del>"+text+"</del>"};Renderer.prototype.link=function(href,title,text){if(this.options.sanitize){try{var prot=decodeURIComponent(unescape(href)).replace(/[^\w:]/g,"").toLowerCase()}catch(e){return""}if(prot.indexOf("javascript:")===0||prot.indexOf("vbscript:")===0||prot.indexOf("data:")===0){return""}}var out='<a href="'+href+'"';if(title){out+=' title="'+title+'"'}out+=">"+text+"</a>";return out};Renderer.prototype.image=function(href,title,text){var out='<img src="'+href+'" alt="'+text+'"';if(title){out+=' title="'+title+'"'}out+=this.options.xhtml?"/>":">";return out};Renderer.prototype.text=function(text){return text};function Parser(options){this.tokens=[];this.token=null;this.options=options||marked.defaults;this.options.renderer=this.options.renderer||new Renderer;this.renderer=this.options.renderer;this.renderer.options=this.options}Parser.parse=function(src,options,renderer){var parser=new Parser(options,renderer);return parser.parse(src)};Parser.prototype.parse=function(src){this.inline=new InlineLexer(src.links,this.options,this.renderer);this.tokens=src.reverse();var out="";while(this.next()){out+=this.tok()}return out};Parser.prototype.next=function(){return this.token=this.tokens.pop()};Parser.prototype.peek=function(){return this.tokens[this.tokens.length-1]||0};Parser.prototype.parseText=function(){var body=this.token.text;while(this.peek().type==="text"){body+="\n"+this.next().text}return this.inline.output(body)};Parser.prototype.tok=function(){switch(this.token.type){case"space":{return""}case"hr":{return this.renderer.hr()}case"heading":{return this.renderer.heading(this.inline.output(this.token.text),this.token.depth,this.token.text)}case"code":{return this.renderer.code(this.token.text,this.token.lang,this.token.escaped)}case"table":{var header="",body="",i,row,cell,flags,j;cell="";for(i=0;i<this.token.header.length;i++){flags={header:true,align:this.token.align[i]};cell+=this.renderer.tablecell(this.inline.output(this.token.header[i]),{header:true,align:this.token.align[i]})}header+=this.renderer.tablerow(cell);for(i=0;i<this.token.cells.length;i++){row=this.token.cells[i];cell="";for(j=0;j<row.length;j++){cell+=this.renderer.tablecell(this.inline.output(row[j]),{header:false,align:this.token.align[j]})}body+=this.renderer.tablerow(cell)}return this.renderer.table(header,body)}case"blockquote_start":{var body="";while(this.next().type!=="blockquote_end"){body+=this.tok()}return this.renderer.blockquote(body)}case"list_start":{var body="",ordered=this.token.ordered;while(this.next().type!=="list_end"){body+=this.tok()}return this.renderer.list(body,ordered)}case"list_item_start":{var body="";while(this.next().type!=="list_item_end"){body+=this.token.type==="text"?this.parseText():this.tok()}return this.renderer.listitem(body)}case"loose_item_start":{var body="";while(this.next().type!=="list_item_end"){body+=this.tok()}return this.renderer.listitem(body)}case"html":{var html=!this.token.pre&&!this.options.pedantic?this.inline.output(this.token.text):this.token.text;return this.renderer.html(html)}case"paragraph":{return this.renderer.paragraph(this.inline.output(this.token.text))}case"text":{return this.renderer.paragraph(this.parseText())}}};function escape(html,encode){return html.replace(!encode?/&(?!#?\w+;)/g:/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")}function unescape(html){return html.replace(/&(#(?:\d+)|(?:#x[0-9A-Fa-f]+)|(?:\w+));?/g,function(_,n){n=n.toLowerCase();if(n==="colon")return":";if(n.charAt(0)==="#"){return n.charAt(1)==="x"?String.fromCharCode(parseInt(n.substring(2),16)):String.fromCharCode(+n.substring(1))}return""})}function replace(regex,opt){regex=regex.source;opt=opt||"";return function self(name,val){if(!name)return new RegExp(regex,opt);val=val.source||val;val=val.replace(/(^|[^\[])\^/g,"$1");regex=regex.replace(name,val);return self}}function noop(){}noop.exec=noop;function merge(obj){var i=1,target,key;for(;i<arguments.length;i++){target=arguments[i];for(key in target){if(Object.prototype.hasOwnProperty.call(target,key)){obj[key]=target[key]}}}return obj}function marked(src,opt,callback){if(callback||typeof opt==="function"){if(!callback){callback=opt;opt=null}opt=merge({},marked.defaults,opt||{});var highlight=opt.highlight,tokens,pending,i=0;try{tokens=Lexer.lex(src,opt)}catch(e){return callback(e)}pending=tokens.length;var done=function(err){if(err){opt.highlight=highlight;return callback(err)}var out;try{out=Parser.parse(tokens,opt)}catch(e){err=e}opt.highlight=highlight;return err?callback(err):callback(null,out)};if(!highlight||highlight.length<3){return done()}delete opt.highlight;if(!pending)return done();for(;i<tokens.length;i++){(function(token){if(token.type!=="code"){return--pending||done()}return highlight(token.text,token.lang,function(err,code){if(err)return done(err);if(code==null||code===token.text){return--pending||done()}token.text=code;token.escaped=true;--pending||done()})})(tokens[i])}return}try{if(opt)opt=merge({},marked.defaults,opt);return Parser.parse(Lexer.lex(src,opt),opt)}catch(e){e.message+="\nPlease report this to https://github.com/chjj/marked.";if((opt||marked.defaults).silent){return"<p>An error occured:</p><pre>"+escape(e.message+"",true)+"</pre>"}throw e}}marked.options=marked.setOptions=function(opt){merge(marked.defaults,opt);return marked};marked.defaults={gfm:true,tables:true,breaks:false,pedantic:false,sanitize:false,sanitizer:null,mangle:true,smartLists:false,silent:false,highlight:null,langPrefix:"lang-",smartypants:false,headerPrefix:"",renderer:new Renderer,xhtml:false};marked.Parser=Parser;marked.parser=Parser.parse;marked.Renderer=Renderer;marked.Lexer=Lexer;marked.lexer=Lexer.lex;marked.InlineLexer=InlineLexer;marked.inlineLexer=InlineLexer.output;marked.parse=marked;if(typeof module!=="undefined"&&typeof exports==="object"){module.exports=marked}else if(typeof define==="function"&&define.amd){define(function(){return marked})}else{this.marked=marked}}).call(function(){return this||(typeof window!=="undefined"?window:global)}());
+
+	return module.exports;
+}();
+
+
+// FORMAT OPTIONS FOR MARKED IMPLEMENTATION
+
+function _Markdown_formatOptions(options)
+{
+	function toHighlight(code, lang)
+	{
+		if (!lang && elm$core$Maybe$isJust(options.bH))
+		{
+			lang = options.bH.a;
+		}
+
+		if (typeof hljs !== 'undefined' && lang && hljs.listLanguages().indexOf(lang) >= 0)
+		{
+			return hljs.highlight(lang, code, true).value;
+		}
+
+		return code;
+	}
+
+	var gfm = options.bM.a;
+
+	return {
+		highlight: toHighlight,
+		gfm: gfm,
+		tables: gfm && gfm.cQ,
+		breaks: gfm && gfm.cm,
+		sanitize: options.b6,
+		smartypants: options.b8
+	};
+}
+
+
+
+var _Bitwise_and = F2(function(a, b)
+{
+	return a & b;
+});
+
+var _Bitwise_or = F2(function(a, b)
+{
+	return a | b;
+});
+
+var _Bitwise_xor = F2(function(a, b)
+{
+	return a ^ b;
+});
+
+function _Bitwise_complement(a)
+{
+	return ~a;
+};
+
+var _Bitwise_shiftLeftBy = F2(function(offset, a)
+{
+	return a << offset;
+});
+
+var _Bitwise_shiftRightBy = F2(function(offset, a)
+{
+	return a >> offset;
+});
+
+var _Bitwise_shiftRightZfBy = F2(function(offset, a)
+{
+	return a >>> offset;
+});
+var author$project$Main$UrlChanged = function (a) {
+	return {$: 2, a: a};
+};
+var author$project$Main$UrlRequested = function (a) {
+	return {$: 3, a: a};
+};
+var author$project$Main$Blank = {$: 0};
+var author$project$Main$HomeMsg = function (a) {
+	return {$: 0, a: a};
+};
+var author$project$Main$HomePage = function (a) {
+	return {$: 1, a: a};
+};
+var author$project$Main$NotFound = {$: 3};
+var author$project$Main$SecondPage = {$: 2};
+var author$project$Page$Home$ReadmeReceived = elm$core$Basics$identity;
+var elm$core$Basics$False = 1;
+var elm$core$Maybe$Nothing = {$: 1};
+var elm$http$Http$Internal$EmptyBody = {$: 0};
+var elm$http$Http$emptyBody = elm$http$Http$Internal$EmptyBody;
+var elm$core$Result$Ok = function (a) {
+	return {$: 0, a: a};
+};
+var elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
+var elm$core$Dict$empty = elm$core$Dict$RBEmpty_elm_builtin;
+var elm$core$Elm$JsArray$foldr = _JsArray_foldr;
+var elm$core$Array$foldr = F3(
+	function (func, baseCase, _n0) {
+		var tree = _n0.c;
+		var tail = _n0.d;
+		var helper = F2(
+			function (node, acc) {
+				if (!node.$) {
+					var subTree = node.a;
+					return A3(elm$core$Elm$JsArray$foldr, helper, acc, subTree);
+				} else {
+					var values = node.a;
+					return A3(elm$core$Elm$JsArray$foldr, func, acc, values);
+				}
+			});
+		return A3(
+			elm$core$Elm$JsArray$foldr,
+			helper,
+			A3(elm$core$Elm$JsArray$foldr, func, baseCase, tail),
+			tree);
+	});
+var elm$core$Basics$EQ = 1;
+var elm$core$Basics$LT = 0;
+var elm$core$List$cons = _List_cons;
+var elm$core$Array$toList = function (array) {
+	return A3(elm$core$Array$foldr, elm$core$List$cons, _List_Nil, array);
+};
+var elm$core$Basics$GT = 2;
+var elm$core$Dict$foldr = F3(
+	function (func, acc, t) {
+		foldr:
+		while (true) {
+			if (t.$ === -2) {
+				return acc;
+			} else {
+				var key = t.b;
+				var value = t.c;
+				var left = t.d;
+				var right = t.e;
+				var $temp$func = func,
+					$temp$acc = A3(
+					func,
+					key,
+					value,
+					A3(elm$core$Dict$foldr, func, acc, right)),
+					$temp$t = left;
+				func = $temp$func;
+				acc = $temp$acc;
+				t = $temp$t;
+				continue foldr;
+			}
+		}
+	});
+var elm$core$Dict$toList = function (dict) {
+	return A3(
+		elm$core$Dict$foldr,
+		F3(
+			function (key, value, list) {
+				return A2(
+					elm$core$List$cons,
+					_Utils_Tuple2(key, value),
+					list);
+			}),
+		_List_Nil,
+		dict);
+};
+var elm$core$Dict$keys = function (dict) {
+	return A3(
+		elm$core$Dict$foldr,
+		F3(
+			function (key, value, keyList) {
+				return A2(elm$core$List$cons, key, keyList);
+			}),
+		_List_Nil,
+		dict);
+};
+var elm$core$Set$toList = function (_n0) {
+	var dict = _n0;
+	return elm$core$Dict$keys(dict);
+};
+var elm$core$Basics$compare = _Utils_compare;
+var elm$core$Maybe$Just = function (a) {
+	return {$: 0, a: a};
+};
+var elm$core$Dict$get = F2(
+	function (targetKey, dict) {
+		get:
+		while (true) {
+			if (dict.$ === -2) {
+				return elm$core$Maybe$Nothing;
+			} else {
+				var key = dict.b;
+				var value = dict.c;
+				var left = dict.d;
+				var right = dict.e;
+				var _n1 = A2(elm$core$Basics$compare, targetKey, key);
+				switch (_n1) {
+					case 0:
+						var $temp$targetKey = targetKey,
+							$temp$dict = left;
+						targetKey = $temp$targetKey;
+						dict = $temp$dict;
+						continue get;
+					case 1:
+						return elm$core$Maybe$Just(value);
+					default:
+						var $temp$targetKey = targetKey,
+							$temp$dict = right;
+						targetKey = $temp$targetKey;
+						dict = $temp$dict;
+						continue get;
+				}
+			}
+		}
+	});
+var elm$core$Dict$Black = 1;
+var elm$core$Dict$RBNode_elm_builtin = F5(
+	function (a, b, c, d, e) {
+		return {$: -1, a: a, b: b, c: c, d: d, e: e};
+	});
+var elm$core$Dict$Red = 0;
+var elm$core$Dict$balance = F5(
+	function (color, key, value, left, right) {
+		if ((right.$ === -1) && (!right.a)) {
+			var _n1 = right.a;
+			var rK = right.b;
+			var rV = right.c;
+			var rLeft = right.d;
+			var rRight = right.e;
+			if ((left.$ === -1) && (!left.a)) {
+				var _n3 = left.a;
+				var lK = left.b;
+				var lV = left.c;
+				var lLeft = left.d;
+				var lRight = left.e;
+				return A5(
+					elm$core$Dict$RBNode_elm_builtin,
+					0,
+					key,
+					value,
+					A5(elm$core$Dict$RBNode_elm_builtin, 1, lK, lV, lLeft, lRight),
+					A5(elm$core$Dict$RBNode_elm_builtin, 1, rK, rV, rLeft, rRight));
+			} else {
+				return A5(
+					elm$core$Dict$RBNode_elm_builtin,
+					color,
+					rK,
+					rV,
+					A5(elm$core$Dict$RBNode_elm_builtin, 0, key, value, left, rLeft),
+					rRight);
+			}
+		} else {
+			if ((((left.$ === -1) && (!left.a)) && (left.d.$ === -1)) && (!left.d.a)) {
+				var _n5 = left.a;
+				var lK = left.b;
+				var lV = left.c;
+				var _n6 = left.d;
+				var _n7 = _n6.a;
+				var llK = _n6.b;
+				var llV = _n6.c;
+				var llLeft = _n6.d;
+				var llRight = _n6.e;
+				var lRight = left.e;
+				return A5(
+					elm$core$Dict$RBNode_elm_builtin,
+					0,
+					lK,
+					lV,
+					A5(elm$core$Dict$RBNode_elm_builtin, 1, llK, llV, llLeft, llRight),
+					A5(elm$core$Dict$RBNode_elm_builtin, 1, key, value, lRight, right));
+			} else {
+				return A5(elm$core$Dict$RBNode_elm_builtin, color, key, value, left, right);
+			}
+		}
+	});
+var elm$core$Dict$insertHelp = F3(
+	function (key, value, dict) {
+		if (dict.$ === -2) {
+			return A5(elm$core$Dict$RBNode_elm_builtin, 0, key, value, elm$core$Dict$RBEmpty_elm_builtin, elm$core$Dict$RBEmpty_elm_builtin);
+		} else {
+			var nColor = dict.a;
+			var nKey = dict.b;
+			var nValue = dict.c;
+			var nLeft = dict.d;
+			var nRight = dict.e;
+			var _n1 = A2(elm$core$Basics$compare, key, nKey);
+			switch (_n1) {
+				case 0:
+					return A5(
+						elm$core$Dict$balance,
+						nColor,
+						nKey,
+						nValue,
+						A3(elm$core$Dict$insertHelp, key, value, nLeft),
+						nRight);
+				case 1:
+					return A5(elm$core$Dict$RBNode_elm_builtin, nColor, nKey, value, nLeft, nRight);
+				default:
+					return A5(
+						elm$core$Dict$balance,
+						nColor,
+						nKey,
+						nValue,
+						nLeft,
+						A3(elm$core$Dict$insertHelp, key, value, nRight));
+			}
+		}
+	});
+var elm$core$Dict$insert = F3(
+	function (key, value, dict) {
+		var _n0 = A3(elm$core$Dict$insertHelp, key, value, dict);
+		if ((_n0.$ === -1) && (!_n0.a)) {
+			var _n1 = _n0.a;
+			var k = _n0.b;
+			var v = _n0.c;
+			var l = _n0.d;
+			var r = _n0.e;
+			return A5(elm$core$Dict$RBNode_elm_builtin, 1, k, v, l, r);
+		} else {
+			var x = _n0;
+			return x;
+		}
+	});
+var elm$core$Basics$eq = _Utils_equal;
+var elm$core$Basics$lt = _Utils_lt;
+var elm$core$Dict$getMin = function (dict) {
+	getMin:
+	while (true) {
+		if ((dict.$ === -1) && (dict.d.$ === -1)) {
+			var left = dict.d;
+			var $temp$dict = left;
+			dict = $temp$dict;
+			continue getMin;
+		} else {
+			return dict;
+		}
+	}
+};
+var elm$core$Dict$moveRedLeft = function (dict) {
+	if (((dict.$ === -1) && (dict.d.$ === -1)) && (dict.e.$ === -1)) {
+		if ((dict.e.d.$ === -1) && (!dict.e.d.a)) {
+			var clr = dict.a;
+			var k = dict.b;
+			var v = dict.c;
+			var _n1 = dict.d;
+			var lClr = _n1.a;
+			var lK = _n1.b;
+			var lV = _n1.c;
+			var lLeft = _n1.d;
+			var lRight = _n1.e;
+			var _n2 = dict.e;
+			var rClr = _n2.a;
+			var rK = _n2.b;
+			var rV = _n2.c;
+			var rLeft = _n2.d;
+			var _n3 = rLeft.a;
+			var rlK = rLeft.b;
+			var rlV = rLeft.c;
+			var rlL = rLeft.d;
+			var rlR = rLeft.e;
+			var rRight = _n2.e;
+			return A5(
+				elm$core$Dict$RBNode_elm_builtin,
+				0,
+				rlK,
+				rlV,
+				A5(
+					elm$core$Dict$RBNode_elm_builtin,
+					1,
+					k,
+					v,
+					A5(elm$core$Dict$RBNode_elm_builtin, 0, lK, lV, lLeft, lRight),
+					rlL),
+				A5(elm$core$Dict$RBNode_elm_builtin, 1, rK, rV, rlR, rRight));
+		} else {
+			var clr = dict.a;
+			var k = dict.b;
+			var v = dict.c;
+			var _n4 = dict.d;
+			var lClr = _n4.a;
+			var lK = _n4.b;
+			var lV = _n4.c;
+			var lLeft = _n4.d;
+			var lRight = _n4.e;
+			var _n5 = dict.e;
+			var rClr = _n5.a;
+			var rK = _n5.b;
+			var rV = _n5.c;
+			var rLeft = _n5.d;
+			var rRight = _n5.e;
+			if (clr === 1) {
+				return A5(
+					elm$core$Dict$RBNode_elm_builtin,
+					1,
+					k,
+					v,
+					A5(elm$core$Dict$RBNode_elm_builtin, 0, lK, lV, lLeft, lRight),
+					A5(elm$core$Dict$RBNode_elm_builtin, 0, rK, rV, rLeft, rRight));
+			} else {
+				return A5(
+					elm$core$Dict$RBNode_elm_builtin,
+					1,
+					k,
+					v,
+					A5(elm$core$Dict$RBNode_elm_builtin, 0, lK, lV, lLeft, lRight),
+					A5(elm$core$Dict$RBNode_elm_builtin, 0, rK, rV, rLeft, rRight));
+			}
+		}
+	} else {
+		return dict;
+	}
+};
+var elm$core$Dict$moveRedRight = function (dict) {
+	if (((dict.$ === -1) && (dict.d.$ === -1)) && (dict.e.$ === -1)) {
+		if ((dict.d.d.$ === -1) && (!dict.d.d.a)) {
+			var clr = dict.a;
+			var k = dict.b;
+			var v = dict.c;
+			var _n1 = dict.d;
+			var lClr = _n1.a;
+			var lK = _n1.b;
+			var lV = _n1.c;
+			var _n2 = _n1.d;
+			var _n3 = _n2.a;
+			var llK = _n2.b;
+			var llV = _n2.c;
+			var llLeft = _n2.d;
+			var llRight = _n2.e;
+			var lRight = _n1.e;
+			var _n4 = dict.e;
+			var rClr = _n4.a;
+			var rK = _n4.b;
+			var rV = _n4.c;
+			var rLeft = _n4.d;
+			var rRight = _n4.e;
+			return A5(
+				elm$core$Dict$RBNode_elm_builtin,
+				0,
+				lK,
+				lV,
+				A5(elm$core$Dict$RBNode_elm_builtin, 1, llK, llV, llLeft, llRight),
+				A5(
+					elm$core$Dict$RBNode_elm_builtin,
+					1,
+					k,
+					v,
+					lRight,
+					A5(elm$core$Dict$RBNode_elm_builtin, 0, rK, rV, rLeft, rRight)));
+		} else {
+			var clr = dict.a;
+			var k = dict.b;
+			var v = dict.c;
+			var _n5 = dict.d;
+			var lClr = _n5.a;
+			var lK = _n5.b;
+			var lV = _n5.c;
+			var lLeft = _n5.d;
+			var lRight = _n5.e;
+			var _n6 = dict.e;
+			var rClr = _n6.a;
+			var rK = _n6.b;
+			var rV = _n6.c;
+			var rLeft = _n6.d;
+			var rRight = _n6.e;
+			if (clr === 1) {
+				return A5(
+					elm$core$Dict$RBNode_elm_builtin,
+					1,
+					k,
+					v,
+					A5(elm$core$Dict$RBNode_elm_builtin, 0, lK, lV, lLeft, lRight),
+					A5(elm$core$Dict$RBNode_elm_builtin, 0, rK, rV, rLeft, rRight));
+			} else {
+				return A5(
+					elm$core$Dict$RBNode_elm_builtin,
+					1,
+					k,
+					v,
+					A5(elm$core$Dict$RBNode_elm_builtin, 0, lK, lV, lLeft, lRight),
+					A5(elm$core$Dict$RBNode_elm_builtin, 0, rK, rV, rLeft, rRight));
+			}
+		}
+	} else {
+		return dict;
+	}
+};
+var elm$core$Dict$removeHelpPrepEQGT = F7(
+	function (targetKey, dict, color, key, value, left, right) {
+		if ((left.$ === -1) && (!left.a)) {
+			var _n1 = left.a;
+			var lK = left.b;
+			var lV = left.c;
+			var lLeft = left.d;
+			var lRight = left.e;
+			return A5(
+				elm$core$Dict$RBNode_elm_builtin,
+				color,
+				lK,
+				lV,
+				lLeft,
+				A5(elm$core$Dict$RBNode_elm_builtin, 0, key, value, lRight, right));
+		} else {
+			_n2$2:
+			while (true) {
+				if ((right.$ === -1) && (right.a === 1)) {
+					if (right.d.$ === -1) {
+						if (right.d.a === 1) {
+							var _n3 = right.a;
+							var _n4 = right.d;
+							var _n5 = _n4.a;
+							return elm$core$Dict$moveRedRight(dict);
+						} else {
+							break _n2$2;
+						}
+					} else {
+						var _n6 = right.a;
+						var _n7 = right.d;
+						return elm$core$Dict$moveRedRight(dict);
+					}
+				} else {
+					break _n2$2;
+				}
+			}
+			return dict;
+		}
+	});
+var elm$core$Dict$removeMin = function (dict) {
+	if ((dict.$ === -1) && (dict.d.$ === -1)) {
+		var color = dict.a;
+		var key = dict.b;
+		var value = dict.c;
+		var left = dict.d;
+		var lColor = left.a;
+		var lLeft = left.d;
+		var right = dict.e;
+		if (lColor === 1) {
+			if ((lLeft.$ === -1) && (!lLeft.a)) {
+				var _n3 = lLeft.a;
+				return A5(
+					elm$core$Dict$RBNode_elm_builtin,
+					color,
+					key,
+					value,
+					elm$core$Dict$removeMin(left),
+					right);
+			} else {
+				var _n4 = elm$core$Dict$moveRedLeft(dict);
+				if (_n4.$ === -1) {
+					var nColor = _n4.a;
+					var nKey = _n4.b;
+					var nValue = _n4.c;
+					var nLeft = _n4.d;
+					var nRight = _n4.e;
+					return A5(
+						elm$core$Dict$balance,
+						nColor,
+						nKey,
+						nValue,
+						elm$core$Dict$removeMin(nLeft),
+						nRight);
+				} else {
+					return elm$core$Dict$RBEmpty_elm_builtin;
+				}
+			}
+		} else {
+			return A5(
+				elm$core$Dict$RBNode_elm_builtin,
+				color,
+				key,
+				value,
+				elm$core$Dict$removeMin(left),
+				right);
+		}
+	} else {
+		return elm$core$Dict$RBEmpty_elm_builtin;
+	}
+};
+var elm$core$Dict$removeHelp = F2(
+	function (targetKey, dict) {
+		if (dict.$ === -2) {
+			return elm$core$Dict$RBEmpty_elm_builtin;
+		} else {
+			var color = dict.a;
+			var key = dict.b;
+			var value = dict.c;
+			var left = dict.d;
+			var right = dict.e;
+			if (_Utils_cmp(targetKey, key) < 0) {
+				if ((left.$ === -1) && (left.a === 1)) {
+					var _n4 = left.a;
+					var lLeft = left.d;
+					if ((lLeft.$ === -1) && (!lLeft.a)) {
+						var _n6 = lLeft.a;
+						return A5(
+							elm$core$Dict$RBNode_elm_builtin,
+							color,
+							key,
+							value,
+							A2(elm$core$Dict$removeHelp, targetKey, left),
+							right);
+					} else {
+						var _n7 = elm$core$Dict$moveRedLeft(dict);
+						if (_n7.$ === -1) {
+							var nColor = _n7.a;
+							var nKey = _n7.b;
+							var nValue = _n7.c;
+							var nLeft = _n7.d;
+							var nRight = _n7.e;
+							return A5(
+								elm$core$Dict$balance,
+								nColor,
+								nKey,
+								nValue,
+								A2(elm$core$Dict$removeHelp, targetKey, nLeft),
+								nRight);
+						} else {
+							return elm$core$Dict$RBEmpty_elm_builtin;
+						}
+					}
+				} else {
+					return A5(
+						elm$core$Dict$RBNode_elm_builtin,
+						color,
+						key,
+						value,
+						A2(elm$core$Dict$removeHelp, targetKey, left),
+						right);
+				}
+			} else {
+				return A2(
+					elm$core$Dict$removeHelpEQGT,
+					targetKey,
+					A7(elm$core$Dict$removeHelpPrepEQGT, targetKey, dict, color, key, value, left, right));
+			}
+		}
+	});
+var elm$core$Dict$removeHelpEQGT = F2(
+	function (targetKey, dict) {
+		if (dict.$ === -1) {
+			var color = dict.a;
+			var key = dict.b;
+			var value = dict.c;
+			var left = dict.d;
+			var right = dict.e;
+			if (_Utils_eq(targetKey, key)) {
+				var _n1 = elm$core$Dict$getMin(right);
+				if (_n1.$ === -1) {
+					var minKey = _n1.b;
+					var minValue = _n1.c;
+					return A5(
+						elm$core$Dict$balance,
+						color,
+						minKey,
+						minValue,
+						left,
+						elm$core$Dict$removeMin(right));
+				} else {
+					return elm$core$Dict$RBEmpty_elm_builtin;
+				}
+			} else {
+				return A5(
+					elm$core$Dict$balance,
+					color,
+					key,
+					value,
+					left,
+					A2(elm$core$Dict$removeHelp, targetKey, right));
+			}
+		} else {
+			return elm$core$Dict$RBEmpty_elm_builtin;
+		}
+	});
+var elm$core$Dict$remove = F2(
+	function (key, dict) {
+		var _n0 = A2(elm$core$Dict$removeHelp, key, dict);
+		if ((_n0.$ === -1) && (!_n0.a)) {
+			var _n1 = _n0.a;
+			var k = _n0.b;
+			var v = _n0.c;
+			var l = _n0.d;
+			var r = _n0.e;
+			return A5(elm$core$Dict$RBNode_elm_builtin, 1, k, v, l, r);
+		} else {
+			var x = _n0;
+			return x;
+		}
+	});
+var elm$core$Dict$update = F3(
+	function (targetKey, alter, dictionary) {
+		var _n0 = alter(
+			A2(elm$core$Dict$get, targetKey, dictionary));
+		if (!_n0.$) {
+			var value = _n0.a;
+			return A3(elm$core$Dict$insert, targetKey, value, dictionary);
+		} else {
+			return A2(elm$core$Dict$remove, targetKey, dictionary);
+		}
+	});
+var elm$core$Basics$True = 0;
+var elm$core$Maybe$isJust = function (maybe) {
+	if (!maybe.$) {
+		return true;
+	} else {
+		return false;
+	}
+};
+var elm$core$Result$isOk = function (result) {
+	if (!result.$) {
+		return true;
+	} else {
+		return false;
+	}
+};
+var elm$core$Result$Err = function (a) {
+	return {$: 1, a: a};
+};
+var elm$core$Result$map = F2(
+	function (func, ra) {
+		if (!ra.$) {
+			var a = ra.a;
+			return elm$core$Result$Ok(
+				func(a));
+		} else {
+			var e = ra.a;
+			return elm$core$Result$Err(e);
+		}
+	});
+var elm$http$Http$BadPayload = F2(
+	function (a, b) {
+		return {$: 4, a: a, b: b};
+	});
+var elm$http$Http$BadStatus = function (a) {
+	return {$: 3, a: a};
+};
+var elm$http$Http$BadUrl = function (a) {
+	return {$: 0, a: a};
+};
+var elm$http$Http$NetworkError = {$: 2};
+var elm$http$Http$Timeout = {$: 1};
+var elm$http$Http$Internal$FormDataBody = function (a) {
+	return {$: 2, a: a};
+};
+var elm$http$Http$Internal$isStringBody = function (body) {
+	if (body.$ === 1) {
+		return true;
+	} else {
+		return false;
+	}
+};
+var elm$http$Http$expectStringResponse = _Http_expectStringResponse;
+var elm$http$Http$expectString = elm$http$Http$expectStringResponse(
+	function (response) {
+		return elm$core$Result$Ok(response.cl);
+	});
+var elm$core$Basics$identity = function (x) {
+	return x;
+};
+var elm$http$Http$Internal$Request = elm$core$Basics$identity;
+var elm$http$Http$request = elm$core$Basics$identity;
+var elm$http$Http$getString = function (url) {
+	return elm$http$Http$request(
+		{cl: elm$http$Http$emptyBody, bb: elm$http$Http$expectString, aY: _List_Nil, bh: 'GET', bs: elm$core$Maybe$Nothing, cU: url, bt: false});
+};
+var author$project$Request$Github$getReadme = function (_n0) {
+	return elm$http$Http$getString('README.md');
+};
+var elm$core$Basics$apR = F2(
+	function (x, f) {
+		return f(x);
+	});
+var elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
+var elm$core$Task$Perform = elm$core$Basics$identity;
+var elm$core$Task$andThen = _Scheduler_andThen;
+var elm$core$Task$succeed = _Scheduler_succeed;
+var elm$core$Task$init = elm$core$Task$succeed(0);
+var elm$core$Basics$add = _Basics_add;
+var elm$core$Basics$gt = _Utils_gt;
+var elm$core$List$foldl = F3(
+	function (func, acc, list) {
+		foldl:
+		while (true) {
+			if (!list.b) {
+				return acc;
+			} else {
+				var x = list.a;
+				var xs = list.b;
+				var $temp$func = func,
+					$temp$acc = A2(func, x, acc),
+					$temp$list = xs;
+				func = $temp$func;
+				acc = $temp$acc;
+				list = $temp$list;
+				continue foldl;
+			}
+		}
+	});
+var elm$core$List$reverse = function (list) {
+	return A3(elm$core$List$foldl, elm$core$List$cons, _List_Nil, list);
+};
+var elm$core$List$foldrHelper = F4(
+	function (fn, acc, ctr, ls) {
+		if (!ls.b) {
+			return acc;
+		} else {
+			var a = ls.a;
+			var r1 = ls.b;
+			if (!r1.b) {
+				return A2(fn, a, acc);
+			} else {
+				var b = r1.a;
+				var r2 = r1.b;
+				if (!r2.b) {
+					return A2(
+						fn,
+						a,
+						A2(fn, b, acc));
+				} else {
+					var c = r2.a;
+					var r3 = r2.b;
+					if (!r3.b) {
+						return A2(
+							fn,
+							a,
+							A2(
+								fn,
+								b,
+								A2(fn, c, acc)));
+					} else {
+						var d = r3.a;
+						var r4 = r3.b;
+						var res = (ctr > 500) ? A3(
+							elm$core$List$foldl,
+							fn,
+							acc,
+							elm$core$List$reverse(r4)) : A4(elm$core$List$foldrHelper, fn, acc, ctr + 1, r4);
+						return A2(
+							fn,
+							a,
+							A2(
+								fn,
+								b,
+								A2(
+									fn,
+									c,
+									A2(fn, d, res))));
+					}
+				}
+			}
+		}
+	});
+var elm$core$List$foldr = F3(
+	function (fn, acc, ls) {
+		return A4(elm$core$List$foldrHelper, fn, acc, 0, ls);
+	});
+var elm$core$List$map = F2(
+	function (f, xs) {
+		return A3(
+			elm$core$List$foldr,
+			F2(
+				function (x, acc) {
+					return A2(
+						elm$core$List$cons,
+						f(x),
+						acc);
+				}),
+			_List_Nil,
+			xs);
+	});
+var elm$core$Task$map = F2(
+	function (func, taskA) {
+		return A2(
+			elm$core$Task$andThen,
+			function (a) {
+				return elm$core$Task$succeed(
+					func(a));
+			},
+			taskA);
+	});
+var elm$core$Task$map2 = F3(
+	function (func, taskA, taskB) {
+		return A2(
+			elm$core$Task$andThen,
+			function (a) {
+				return A2(
+					elm$core$Task$andThen,
+					function (b) {
+						return elm$core$Task$succeed(
+							A2(func, a, b));
+					},
+					taskB);
+			},
+			taskA);
+	});
+var elm$core$Task$sequence = function (tasks) {
+	return A3(
+		elm$core$List$foldr,
+		elm$core$Task$map2(elm$core$List$cons),
+		elm$core$Task$succeed(_List_Nil),
+		tasks);
+};
+var elm$core$Array$branchFactor = 32;
+var elm$core$Array$Array_elm_builtin = F4(
+	function (a, b, c, d) {
+		return {$: 0, a: a, b: b, c: c, d: d};
+	});
+var elm$core$Basics$ceiling = _Basics_ceiling;
+var elm$core$Basics$fdiv = _Basics_fdiv;
+var elm$core$Basics$logBase = F2(
+	function (base, number) {
+		return _Basics_log(number) / _Basics_log(base);
+	});
+var elm$core$Basics$toFloat = _Basics_toFloat;
+var elm$core$Array$shiftStep = elm$core$Basics$ceiling(
+	A2(elm$core$Basics$logBase, 2, elm$core$Array$branchFactor));
+var elm$core$Elm$JsArray$empty = _JsArray_empty;
+var elm$core$Array$empty = A4(elm$core$Array$Array_elm_builtin, 0, elm$core$Array$shiftStep, elm$core$Elm$JsArray$empty, elm$core$Elm$JsArray$empty);
+var elm$core$Array$Leaf = function (a) {
+	return {$: 1, a: a};
+};
+var elm$core$Array$SubTree = function (a) {
+	return {$: 0, a: a};
+};
+var elm$core$Elm$JsArray$initializeFromList = _JsArray_initializeFromList;
+var elm$core$Array$compressNodes = F2(
+	function (nodes, acc) {
+		compressNodes:
+		while (true) {
+			var _n0 = A2(elm$core$Elm$JsArray$initializeFromList, elm$core$Array$branchFactor, nodes);
+			var node = _n0.a;
+			var remainingNodes = _n0.b;
+			var newAcc = A2(
+				elm$core$List$cons,
+				elm$core$Array$SubTree(node),
+				acc);
+			if (!remainingNodes.b) {
+				return elm$core$List$reverse(newAcc);
+			} else {
+				var $temp$nodes = remainingNodes,
+					$temp$acc = newAcc;
+				nodes = $temp$nodes;
+				acc = $temp$acc;
+				continue compressNodes;
+			}
+		}
+	});
+var elm$core$Tuple$first = function (_n0) {
+	var x = _n0.a;
+	return x;
+};
+var elm$core$Array$treeFromBuilder = F2(
+	function (nodeList, nodeListSize) {
+		treeFromBuilder:
+		while (true) {
+			var newNodeSize = elm$core$Basics$ceiling(nodeListSize / elm$core$Array$branchFactor);
+			if (newNodeSize === 1) {
+				return A2(elm$core$Elm$JsArray$initializeFromList, elm$core$Array$branchFactor, nodeList).a;
+			} else {
+				var $temp$nodeList = A2(elm$core$Array$compressNodes, nodeList, _List_Nil),
+					$temp$nodeListSize = newNodeSize;
+				nodeList = $temp$nodeList;
+				nodeListSize = $temp$nodeListSize;
+				continue treeFromBuilder;
+			}
+		}
+	});
+var elm$core$Basics$apL = F2(
+	function (f, x) {
+		return f(x);
+	});
+var elm$core$Basics$floor = _Basics_floor;
+var elm$core$Basics$max = F2(
+	function (x, y) {
+		return (_Utils_cmp(x, y) > 0) ? x : y;
+	});
+var elm$core$Basics$mul = _Basics_mul;
+var elm$core$Basics$sub = _Basics_sub;
+var elm$core$Elm$JsArray$length = _JsArray_length;
+var elm$core$Array$builderToArray = F2(
+	function (reverseNodeList, builder) {
+		if (!builder.g) {
+			return A4(
+				elm$core$Array$Array_elm_builtin,
+				elm$core$Elm$JsArray$length(builder.i),
+				elm$core$Array$shiftStep,
+				elm$core$Elm$JsArray$empty,
+				builder.i);
+		} else {
+			var treeLen = builder.g * elm$core$Array$branchFactor;
+			var depth = elm$core$Basics$floor(
+				A2(elm$core$Basics$logBase, elm$core$Array$branchFactor, treeLen - 1));
+			var correctNodeList = reverseNodeList ? elm$core$List$reverse(builder.j) : builder.j;
+			var tree = A2(elm$core$Array$treeFromBuilder, correctNodeList, builder.g);
+			return A4(
+				elm$core$Array$Array_elm_builtin,
+				elm$core$Elm$JsArray$length(builder.i) + treeLen,
+				A2(elm$core$Basics$max, 5, depth * elm$core$Array$shiftStep),
+				tree,
+				builder.i);
+		}
+	});
+var elm$core$Basics$idiv = _Basics_idiv;
+var elm$core$Elm$JsArray$initialize = _JsArray_initialize;
+var elm$core$Array$initializeHelp = F5(
+	function (fn, fromIndex, len, nodeList, tail) {
+		initializeHelp:
+		while (true) {
+			if (fromIndex < 0) {
+				return A2(
+					elm$core$Array$builderToArray,
+					false,
+					{j: nodeList, g: (len / elm$core$Array$branchFactor) | 0, i: tail});
+			} else {
+				var leaf = elm$core$Array$Leaf(
+					A3(elm$core$Elm$JsArray$initialize, elm$core$Array$branchFactor, fromIndex, fn));
+				var $temp$fn = fn,
+					$temp$fromIndex = fromIndex - elm$core$Array$branchFactor,
+					$temp$len = len,
+					$temp$nodeList = A2(elm$core$List$cons, leaf, nodeList),
+					$temp$tail = tail;
+				fn = $temp$fn;
+				fromIndex = $temp$fromIndex;
+				len = $temp$len;
+				nodeList = $temp$nodeList;
+				tail = $temp$tail;
+				continue initializeHelp;
+			}
+		}
+	});
+var elm$core$Basics$le = _Utils_le;
+var elm$core$Basics$remainderBy = _Basics_remainderBy;
+var elm$core$Array$initialize = F2(
+	function (len, fn) {
+		if (len <= 0) {
+			return elm$core$Array$empty;
+		} else {
+			var tailLen = len % elm$core$Array$branchFactor;
+			var tail = A3(elm$core$Elm$JsArray$initialize, tailLen, len - tailLen, fn);
+			var initialFromIndex = (len - tailLen) - elm$core$Array$branchFactor;
+			return A5(elm$core$Array$initializeHelp, fn, initialFromIndex, len, _List_Nil, tail);
+		}
+	});
+var elm$json$Json$Decode$Failure = F2(
+	function (a, b) {
+		return {$: 3, a: a, b: b};
+	});
+var elm$json$Json$Decode$Field = F2(
+	function (a, b) {
+		return {$: 0, a: a, b: b};
+	});
+var elm$json$Json$Decode$Index = F2(
+	function (a, b) {
+		return {$: 1, a: a, b: b};
+	});
+var elm$json$Json$Decode$OneOf = function (a) {
+	return {$: 2, a: a};
+};
+var elm$core$Basics$and = _Basics_and;
+var elm$core$Basics$append = _Utils_append;
+var elm$core$Basics$or = _Basics_or;
+var elm$core$Char$toCode = _Char_toCode;
+var elm$core$Char$isLower = function (_char) {
+	var code = elm$core$Char$toCode(_char);
+	return (97 <= code) && (code <= 122);
+};
+var elm$core$Char$isUpper = function (_char) {
+	var code = elm$core$Char$toCode(_char);
+	return (code <= 90) && (65 <= code);
+};
+var elm$core$Char$isAlpha = function (_char) {
+	return elm$core$Char$isLower(_char) || elm$core$Char$isUpper(_char);
+};
+var elm$core$Char$isDigit = function (_char) {
+	var code = elm$core$Char$toCode(_char);
+	return (code <= 57) && (48 <= code);
+};
+var elm$core$Char$isAlphaNum = function (_char) {
+	return elm$core$Char$isLower(_char) || (elm$core$Char$isUpper(_char) || elm$core$Char$isDigit(_char));
+};
+var elm$core$List$length = function (xs) {
+	return A3(
+		elm$core$List$foldl,
+		F2(
+			function (_n0, i) {
+				return i + 1;
+			}),
+		0,
+		xs);
+};
+var elm$core$List$map2 = _List_map2;
+var elm$core$List$rangeHelp = F3(
+	function (lo, hi, list) {
+		rangeHelp:
+		while (true) {
+			if (_Utils_cmp(lo, hi) < 1) {
+				var $temp$lo = lo,
+					$temp$hi = hi - 1,
+					$temp$list = A2(elm$core$List$cons, hi, list);
+				lo = $temp$lo;
+				hi = $temp$hi;
+				list = $temp$list;
+				continue rangeHelp;
+			} else {
+				return list;
+			}
+		}
+	});
+var elm$core$List$range = F2(
+	function (lo, hi) {
+		return A3(elm$core$List$rangeHelp, lo, hi, _List_Nil);
+	});
+var elm$core$List$indexedMap = F2(
+	function (f, xs) {
+		return A3(
+			elm$core$List$map2,
+			f,
+			A2(
+				elm$core$List$range,
+				0,
+				elm$core$List$length(xs) - 1),
+			xs);
+	});
+var elm$core$String$all = _String_all;
+var elm$core$String$fromInt = _String_fromNumber;
+var elm$core$String$join = F2(
+	function (sep, chunks) {
+		return A2(
+			_String_join,
+			sep,
+			_List_toArray(chunks));
+	});
+var elm$core$String$uncons = _String_uncons;
+var elm$core$String$split = F2(
+	function (sep, string) {
+		return _List_fromArray(
+			A2(_String_split, sep, string));
+	});
+var elm$json$Json$Decode$indent = function (str) {
+	return A2(
+		elm$core$String$join,
+		'\n    ',
+		A2(elm$core$String$split, '\n', str));
+};
+var elm$json$Json$Encode$encode = _Json_encode;
+var elm$json$Json$Decode$errorOneOf = F2(
+	function (i, error) {
+		return '\n\n(' + (elm$core$String$fromInt(i + 1) + (') ' + elm$json$Json$Decode$indent(
+			elm$json$Json$Decode$errorToString(error))));
+	});
+var elm$json$Json$Decode$errorToString = function (error) {
+	return A2(elm$json$Json$Decode$errorToStringHelp, error, _List_Nil);
+};
+var elm$json$Json$Decode$errorToStringHelp = F2(
+	function (error, context) {
+		errorToStringHelp:
+		while (true) {
+			switch (error.$) {
+				case 0:
+					var f = error.a;
+					var err = error.b;
+					var isSimple = function () {
+						var _n1 = elm$core$String$uncons(f);
+						if (_n1.$ === 1) {
+							return false;
+						} else {
+							var _n2 = _n1.a;
+							var _char = _n2.a;
+							var rest = _n2.b;
+							return elm$core$Char$isAlpha(_char) && A2(elm$core$String$all, elm$core$Char$isAlphaNum, rest);
+						}
+					}();
+					var fieldName = isSimple ? ('.' + f) : ('[\'' + (f + '\']'));
+					var $temp$error = err,
+						$temp$context = A2(elm$core$List$cons, fieldName, context);
+					error = $temp$error;
+					context = $temp$context;
+					continue errorToStringHelp;
+				case 1:
+					var i = error.a;
+					var err = error.b;
+					var indexName = '[' + (elm$core$String$fromInt(i) + ']');
+					var $temp$error = err,
+						$temp$context = A2(elm$core$List$cons, indexName, context);
+					error = $temp$error;
+					context = $temp$context;
+					continue errorToStringHelp;
+				case 2:
+					var errors = error.a;
+					if (!errors.b) {
+						return 'Ran into a Json.Decode.oneOf with no possibilities' + function () {
+							if (!context.b) {
+								return '!';
+							} else {
+								return ' at json' + A2(
+									elm$core$String$join,
+									'',
+									elm$core$List$reverse(context));
+							}
+						}();
+					} else {
+						if (!errors.b.b) {
+							var err = errors.a;
+							var $temp$error = err,
+								$temp$context = context;
+							error = $temp$error;
+							context = $temp$context;
+							continue errorToStringHelp;
+						} else {
+							var starter = function () {
+								if (!context.b) {
+									return 'Json.Decode.oneOf';
+								} else {
+									return 'The Json.Decode.oneOf at json' + A2(
+										elm$core$String$join,
+										'',
+										elm$core$List$reverse(context));
+								}
+							}();
+							var introduction = starter + (' failed in the following ' + (elm$core$String$fromInt(
+								elm$core$List$length(errors)) + ' ways:'));
+							return A2(
+								elm$core$String$join,
+								'\n\n',
+								A2(
+									elm$core$List$cons,
+									introduction,
+									A2(elm$core$List$indexedMap, elm$json$Json$Decode$errorOneOf, errors)));
+						}
+					}
+				default:
+					var msg = error.a;
+					var json = error.b;
+					var introduction = function () {
+						if (!context.b) {
+							return 'Problem with the given value:\n\n';
+						} else {
+							return 'Problem with the value at json' + (A2(
+								elm$core$String$join,
+								'',
+								elm$core$List$reverse(context)) + ':\n\n    ');
+						}
+					}();
+					return introduction + (elm$json$Json$Decode$indent(
+						A2(elm$json$Json$Encode$encode, 4, json)) + ('\n\n' + msg));
+			}
+		}
+	});
+var elm$core$Platform$sendToApp = _Platform_sendToApp;
+var elm$core$Task$spawnCmd = F2(
+	function (router, _n0) {
+		var task = _n0;
+		return _Scheduler_spawn(
+			A2(
+				elm$core$Task$andThen,
+				elm$core$Platform$sendToApp(router),
+				task));
+	});
+var elm$core$Task$onEffects = F3(
+	function (router, commands, state) {
+		return A2(
+			elm$core$Task$map,
+			function (_n0) {
+				return 0;
+			},
+			elm$core$Task$sequence(
+				A2(
+					elm$core$List$map,
+					elm$core$Task$spawnCmd(router),
+					commands)));
+	});
+var elm$core$Task$onSelfMsg = F3(
+	function (_n0, _n1, _n2) {
+		return elm$core$Task$succeed(0);
+	});
+var elm$core$Task$cmdMap = F2(
+	function (tagger, _n0) {
+		var task = _n0;
+		return A2(elm$core$Task$map, tagger, task);
+	});
+_Platform_effectManagers['Task'] = _Platform_createManager(elm$core$Task$init, elm$core$Task$onEffects, elm$core$Task$onSelfMsg, elm$core$Task$cmdMap);
+var elm$core$Task$command = _Platform_leaf('Task');
+var elm$core$Task$onError = _Scheduler_onError;
+var elm$core$Task$attempt = F2(
+	function (resultToMessage, task) {
+		return elm$core$Task$command(
+			A2(
+				elm$core$Task$onError,
+				A2(
+					elm$core$Basics$composeL,
+					A2(elm$core$Basics$composeL, elm$core$Task$succeed, resultToMessage),
+					elm$core$Result$Err),
+				A2(
+					elm$core$Task$andThen,
+					A2(
+						elm$core$Basics$composeL,
+						A2(elm$core$Basics$composeL, elm$core$Task$succeed, resultToMessage),
+						elm$core$Result$Ok),
+					task)));
+	});
+var elm$http$Http$toTask = function (_n0) {
+	var request_ = _n0;
+	return A2(_Http_toTask, request_, elm$core$Maybe$Nothing);
+};
+var elm$http$Http$send = F2(
+	function (resultToMessage, request_) {
+		return A2(
+			elm$core$Task$attempt,
+			resultToMessage,
+			elm$http$Http$toTask(request_));
+	});
+var author$project$Page$Home$init = function (session) {
+	return _Utils_Tuple2(
+		{aH: 'Retrieving README from github'},
+		A2(
+			elm$http$Http$send,
+			elm$core$Basics$identity,
+			author$project$Request$Github$getReadme(session)));
+};
+var elm$core$Platform$Cmd$map = _Platform_map;
+var elm$core$Platform$Cmd$batch = _Platform_batch;
+var elm$core$Platform$Cmd$none = elm$core$Platform$Cmd$batch(_List_Nil);
+var author$project$Main$setRoute = F2(
+	function (maybeRoute, model) {
+		if (maybeRoute.$ === 1) {
+			return _Utils_Tuple2(
+				_Utils_update(
+					model,
+					{v: author$project$Main$NotFound}),
+				elm$core$Platform$Cmd$none);
+		} else {
+			if (!maybeRoute.a) {
+				var _n1 = maybeRoute.a;
+				var _n2 = author$project$Page$Home$init(model.T);
+				var homeModel = _n2.a;
+				var homeCmds = _n2.b;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{
+							v: author$project$Main$HomePage(homeModel)
+						}),
+					A2(elm$core$Platform$Cmd$map, author$project$Main$HomeMsg, homeCmds));
+			} else {
+				var _n3 = maybeRoute.a;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{v: author$project$Main$SecondPage}),
+					elm$core$Platform$Cmd$none);
+			}
+		}
+	});
+var author$project$Route$Home = 0;
+var author$project$Route$SecondPage = 1;
+var elm$url$Url$Parser$Parser = elm$core$Basics$identity;
+var elm$url$Url$Parser$State = F5(
+	function (visited, unvisited, params, frag, value) {
+		return {N: frag, R: params, K: unvisited, cV: value, W: visited};
+	});
+var elm$url$Url$Parser$mapState = F2(
+	function (func, _n0) {
+		var visited = _n0.W;
+		var unvisited = _n0.K;
+		var params = _n0.R;
+		var frag = _n0.N;
+		var value = _n0.cV;
+		return A5(
+			elm$url$Url$Parser$State,
+			visited,
+			unvisited,
+			params,
+			frag,
+			func(value));
+	});
+var elm$url$Url$Parser$map = F2(
+	function (subValue, _n0) {
+		var parseArg = _n0;
+		return function (_n1) {
+			var visited = _n1.W;
+			var unvisited = _n1.K;
+			var params = _n1.R;
+			var frag = _n1.N;
+			var value = _n1.cV;
+			return A2(
+				elm$core$List$map,
+				elm$url$Url$Parser$mapState(value),
+				parseArg(
+					A5(elm$url$Url$Parser$State, visited, unvisited, params, frag, subValue)));
+		};
+	});
+var elm$core$List$append = F2(
+	function (xs, ys) {
+		if (!ys.b) {
+			return xs;
+		} else {
+			return A3(elm$core$List$foldr, elm$core$List$cons, ys, xs);
+		}
+	});
+var elm$core$List$concat = function (lists) {
+	return A3(elm$core$List$foldr, elm$core$List$append, _List_Nil, lists);
+};
+var elm$core$List$concatMap = F2(
+	function (f, list) {
+		return elm$core$List$concat(
+			A2(elm$core$List$map, f, list));
+	});
+var elm$url$Url$Parser$oneOf = function (parsers) {
+	return function (state) {
+		return A2(
+			elm$core$List$concatMap,
+			function (_n0) {
+				var parser = _n0;
+				return parser(state);
+			},
+			parsers);
+	};
+};
+var elm$url$Url$Parser$s = function (str) {
+	return function (_n0) {
+		var visited = _n0.W;
+		var unvisited = _n0.K;
+		var params = _n0.R;
+		var frag = _n0.N;
+		var value = _n0.cV;
+		if (!unvisited.b) {
+			return _List_Nil;
+		} else {
+			var next = unvisited.a;
+			var rest = unvisited.b;
+			return _Utils_eq(next, str) ? _List_fromArray(
+				[
+					A5(
+					elm$url$Url$Parser$State,
+					A2(elm$core$List$cons, next, visited),
+					rest,
+					params,
+					frag,
+					value)
+				]) : _List_Nil;
+		}
+	};
+};
+var elm$url$Url$Parser$top = function (state) {
+	return _List_fromArray(
+		[state]);
+};
+var author$project$Route$parser = elm$url$Url$Parser$oneOf(
+	_List_fromArray(
+		[
+			A2(elm$url$Url$Parser$map, 0, elm$url$Url$Parser$top),
+			A2(
+			elm$url$Url$Parser$map,
+			1,
+			elm$url$Url$Parser$s('second-page'))
+		]));
+var elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (!maybe.$) {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var elm$url$Url$Parser$getFirstMatch = function (states) {
+	getFirstMatch:
+	while (true) {
+		if (!states.b) {
+			return elm$core$Maybe$Nothing;
+		} else {
+			var state = states.a;
+			var rest = states.b;
+			var _n1 = state.K;
+			if (!_n1.b) {
+				return elm$core$Maybe$Just(state.cV);
+			} else {
+				if ((_n1.a === '') && (!_n1.b.b)) {
+					return elm$core$Maybe$Just(state.cV);
+				} else {
+					var $temp$states = rest;
+					states = $temp$states;
+					continue getFirstMatch;
+				}
+			}
+		}
+	}
+};
+var elm$url$Url$Parser$removeFinalEmpty = function (segments) {
+	if (!segments.b) {
+		return _List_Nil;
+	} else {
+		if ((segments.a === '') && (!segments.b.b)) {
+			return _List_Nil;
+		} else {
+			var segment = segments.a;
+			var rest = segments.b;
+			return A2(
+				elm$core$List$cons,
+				segment,
+				elm$url$Url$Parser$removeFinalEmpty(rest));
+		}
+	}
+};
+var elm$url$Url$Parser$preparePath = function (path) {
+	var _n0 = A2(elm$core$String$split, '/', path);
+	if (_n0.b && (_n0.a === '')) {
+		var segments = _n0.b;
+		return elm$url$Url$Parser$removeFinalEmpty(segments);
+	} else {
+		var segments = _n0;
+		return elm$url$Url$Parser$removeFinalEmpty(segments);
+	}
+};
+var elm$url$Url$percentDecode = _Url_percentDecode;
+var elm$url$Url$Parser$addToParametersHelp = F2(
+	function (value, maybeList) {
+		if (maybeList.$ === 1) {
+			return elm$core$Maybe$Just(
+				_List_fromArray(
+					[value]));
+		} else {
+			var list = maybeList.a;
+			return elm$core$Maybe$Just(
+				A2(elm$core$List$cons, value, list));
+		}
+	});
+var elm$url$Url$Parser$addParam = F2(
+	function (segment, dict) {
+		var _n0 = A2(elm$core$String$split, '=', segment);
+		if ((_n0.b && _n0.b.b) && (!_n0.b.b.b)) {
+			var rawKey = _n0.a;
+			var _n1 = _n0.b;
+			var rawValue = _n1.a;
+			var _n2 = elm$url$Url$percentDecode(rawKey);
+			if (_n2.$ === 1) {
+				return dict;
+			} else {
+				var key = _n2.a;
+				var _n3 = elm$url$Url$percentDecode(rawValue);
+				if (_n3.$ === 1) {
+					return dict;
+				} else {
+					var value = _n3.a;
+					return A3(
+						elm$core$Dict$update,
+						key,
+						elm$url$Url$Parser$addToParametersHelp(value),
+						dict);
+				}
+			}
+		} else {
+			return dict;
+		}
+	});
+var elm$url$Url$Parser$prepareQuery = function (maybeQuery) {
+	if (maybeQuery.$ === 1) {
+		return elm$core$Dict$empty;
+	} else {
+		var qry = maybeQuery.a;
+		return A3(
+			elm$core$List$foldr,
+			elm$url$Url$Parser$addParam,
+			elm$core$Dict$empty,
+			A2(elm$core$String$split, '&', qry));
+	}
+};
+var elm$url$Url$Parser$parse = F2(
+	function (_n0, url) {
+		var parser = _n0;
+		return elm$url$Url$Parser$getFirstMatch(
+			parser(
+				A5(
+					elm$url$Url$Parser$State,
+					_List_Nil,
+					elm$url$Url$Parser$preparePath(url.cJ),
+					elm$url$Url$Parser$prepareQuery(url.b1),
+					url.bL,
+					elm$core$Basics$identity)));
+	});
+var author$project$Route$fromUrl = function (url) {
+	return A2(
+		elm$url$Url$Parser$parse,
+		author$project$Route$parser,
+		_Utils_update(
+			url,
+			{
+				bL: elm$core$Maybe$Nothing,
+				cJ: A2(elm$core$Maybe$withDefault, '', url.bL)
+			}));
+};
+var author$project$Main$init = F3(
+	function (flags, url, navKey) {
+		var session = {};
+		return A2(
+			author$project$Main$setRoute,
+			author$project$Route$fromUrl(url),
+			{bi: navKey, v: author$project$Main$Blank, T: session});
+	});
+var elm$core$Platform$Sub$batch = _Platform_batch;
+var elm$core$Platform$Sub$none = elm$core$Platform$Sub$batch(_List_Nil);
+var author$project$Main$subscriptions = function (model) {
+	var _n0 = model.v;
+	switch (_n0.$) {
+		case 1:
+			return elm$core$Platform$Sub$none;
+		case 2:
+			return elm$core$Platform$Sub$none;
+		case 3:
+			return elm$core$Platform$Sub$none;
+		default:
+			return elm$core$Platform$Sub$none;
+	}
+};
+var author$project$Request$Github$errorToString = function (error) {
+	switch (error.$) {
+		case 0:
+			return 'Bad url.';
+		case 1:
+			return 'Request timed out.';
+		case 2:
+			return 'Network error. Are you online?';
+		case 3:
+			var response = error.a;
+			return 'HTTP error ' + elm$core$String$fromInt(response.cO.cq);
+		default:
+			return 'Unable to parse response body.';
+	}
+};
+var author$project$Page$Home$errorToMarkdown = function (error) {
+	return '## Error\n\nThere was an error attempting to retrieve README information:\n\n> *' + (author$project$Request$Github$errorToString(error) + '*');
+};
+var author$project$Page$Home$update = F3(
+	function (_n0, msg, model) {
+		if (!msg.$) {
+			var readme = msg.a;
+			return _Utils_Tuple2(
+				_Utils_update(
+					model,
+					{aH: readme}),
+				elm$core$Platform$Cmd$none);
+		} else {
+			var error = msg.a;
+			return _Utils_Tuple2(
+				_Utils_update(
+					model,
+					{
+						aH: author$project$Page$Home$errorToMarkdown(error)
+					}),
+				elm$core$Platform$Cmd$none);
+		}
+	});
+var elm$browser$Browser$External = function (a) {
+	return {$: 1, a: a};
+};
+var elm$browser$Browser$Internal = function (a) {
+	return {$: 0, a: a};
+};
+var elm$browser$Browser$Dom$NotFound = elm$core$Basics$identity;
+var elm$core$Basics$never = function (_n0) {
+	never:
+	while (true) {
+		var nvr = _n0;
+		var $temp$_n0 = nvr;
+		_n0 = $temp$_n0;
+		continue never;
+	}
+};
+var elm$core$Task$perform = F2(
+	function (toMessage, task) {
+		return elm$core$Task$command(
+			A2(elm$core$Task$map, toMessage, task));
+	});
+var elm$json$Json$Decode$map = _Json_map1;
+var elm$json$Json$Decode$map2 = _Json_map2;
+var elm$json$Json$Decode$succeed = _Json_succeed;
+var elm$virtual_dom$VirtualDom$toHandlerInt = function (handler) {
+	switch (handler.$) {
+		case 0:
+			return 0;
+		case 1:
+			return 1;
+		case 2:
+			return 2;
+		default:
+			return 3;
+	}
+};
+var elm$core$String$length = _String_length;
+var elm$core$String$slice = _String_slice;
+var elm$core$String$dropLeft = F2(
+	function (n, string) {
+		return (n < 1) ? string : A3(
+			elm$core$String$slice,
+			n,
+			elm$core$String$length(string),
+			string);
+	});
+var elm$core$String$startsWith = _String_startsWith;
+var elm$url$Url$Http = 0;
+var elm$url$Url$Https = 1;
+var elm$core$String$indexes = _String_indexes;
+var elm$core$String$isEmpty = function (string) {
+	return string === '';
+};
+var elm$core$String$left = F2(
+	function (n, string) {
+		return (n < 1) ? '' : A3(elm$core$String$slice, 0, n, string);
+	});
+var elm$core$String$contains = _String_contains;
+var elm$core$String$toInt = _String_toInt;
+var elm$url$Url$Url = F6(
+	function (protocol, host, port_, path, query, fragment) {
+		return {bL: fragment, bO: host, cJ: path, bY: port_, b0: protocol, b1: query};
+	});
+var elm$url$Url$chompBeforePath = F5(
+	function (protocol, path, params, frag, str) {
+		if (elm$core$String$isEmpty(str) || A2(elm$core$String$contains, '@', str)) {
+			return elm$core$Maybe$Nothing;
+		} else {
+			var _n0 = A2(elm$core$String$indexes, ':', str);
+			if (!_n0.b) {
+				return elm$core$Maybe$Just(
+					A6(elm$url$Url$Url, protocol, str, elm$core$Maybe$Nothing, path, params, frag));
+			} else {
+				if (!_n0.b.b) {
+					var i = _n0.a;
+					var _n1 = elm$core$String$toInt(
+						A2(elm$core$String$dropLeft, i + 1, str));
+					if (_n1.$ === 1) {
+						return elm$core$Maybe$Nothing;
+					} else {
+						var port_ = _n1;
+						return elm$core$Maybe$Just(
+							A6(
+								elm$url$Url$Url,
+								protocol,
+								A2(elm$core$String$left, i, str),
+								port_,
+								path,
+								params,
+								frag));
+					}
+				} else {
+					return elm$core$Maybe$Nothing;
+				}
+			}
+		}
+	});
+var elm$url$Url$chompBeforeQuery = F4(
+	function (protocol, params, frag, str) {
+		if (elm$core$String$isEmpty(str)) {
+			return elm$core$Maybe$Nothing;
+		} else {
+			var _n0 = A2(elm$core$String$indexes, '/', str);
+			if (!_n0.b) {
+				return A5(elm$url$Url$chompBeforePath, protocol, '/', params, frag, str);
+			} else {
+				var i = _n0.a;
+				return A5(
+					elm$url$Url$chompBeforePath,
+					protocol,
+					A2(elm$core$String$dropLeft, i, str),
+					params,
+					frag,
+					A2(elm$core$String$left, i, str));
+			}
+		}
+	});
+var elm$url$Url$chompBeforeFragment = F3(
+	function (protocol, frag, str) {
+		if (elm$core$String$isEmpty(str)) {
+			return elm$core$Maybe$Nothing;
+		} else {
+			var _n0 = A2(elm$core$String$indexes, '?', str);
+			if (!_n0.b) {
+				return A4(elm$url$Url$chompBeforeQuery, protocol, elm$core$Maybe$Nothing, frag, str);
+			} else {
+				var i = _n0.a;
+				return A4(
+					elm$url$Url$chompBeforeQuery,
+					protocol,
+					elm$core$Maybe$Just(
+						A2(elm$core$String$dropLeft, i + 1, str)),
+					frag,
+					A2(elm$core$String$left, i, str));
+			}
+		}
+	});
+var elm$url$Url$chompAfterProtocol = F2(
+	function (protocol, str) {
+		if (elm$core$String$isEmpty(str)) {
+			return elm$core$Maybe$Nothing;
+		} else {
+			var _n0 = A2(elm$core$String$indexes, '#', str);
+			if (!_n0.b) {
+				return A3(elm$url$Url$chompBeforeFragment, protocol, elm$core$Maybe$Nothing, str);
+			} else {
+				var i = _n0.a;
+				return A3(
+					elm$url$Url$chompBeforeFragment,
+					protocol,
+					elm$core$Maybe$Just(
+						A2(elm$core$String$dropLeft, i + 1, str)),
+					A2(elm$core$String$left, i, str));
+			}
+		}
+	});
+var elm$url$Url$fromString = function (str) {
+	return A2(elm$core$String$startsWith, 'http://', str) ? A2(
+		elm$url$Url$chompAfterProtocol,
+		0,
+		A2(elm$core$String$dropLeft, 7, str)) : (A2(elm$core$String$startsWith, 'https://', str) ? A2(
+		elm$url$Url$chompAfterProtocol,
+		1,
+		A2(elm$core$String$dropLeft, 8, str)) : elm$core$Maybe$Nothing);
+};
+var elm$browser$Browser$Navigation$load = _Browser_load;
+var elm$browser$Browser$Navigation$pushUrl = _Browser_pushUrl;
+var elm$url$Url$addPort = F2(
+	function (maybePort, starter) {
+		if (maybePort.$ === 1) {
+			return starter;
+		} else {
+			var port_ = maybePort.a;
+			return starter + (':' + elm$core$String$fromInt(port_));
+		}
+	});
+var elm$url$Url$addPrefixed = F3(
+	function (prefix, maybeSegment, starter) {
+		if (maybeSegment.$ === 1) {
+			return starter;
+		} else {
+			var segment = maybeSegment.a;
+			return _Utils_ap(
+				starter,
+				_Utils_ap(prefix, segment));
+		}
+	});
+var elm$url$Url$toString = function (url) {
+	var http = function () {
+		var _n0 = url.b0;
+		if (!_n0) {
+			return 'http://';
+		} else {
+			return 'https://';
+		}
+	}();
+	return A3(
+		elm$url$Url$addPrefixed,
+		'#',
+		url.bL,
+		A3(
+			elm$url$Url$addPrefixed,
+			'?',
+			url.b1,
+			_Utils_ap(
+				A2(
+					elm$url$Url$addPort,
+					url.bY,
+					_Utils_ap(http, url.bO)),
+				url.cJ)));
+};
+var author$project$Main$update = F2(
+	function (msg, model) {
+		var page = model.v;
+		var session = model.T;
+		var toPage = F5(
+			function (toModel, toMsg, subUpdate, subMsg, subModel) {
+				var _n3 = A2(subUpdate, subMsg, subModel);
+				var newModel = _n3.a;
+				var newCmd = _n3.b;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{
+							v: toModel(newModel)
+						}),
+					A2(elm$core$Platform$Cmd$map, toMsg, newCmd));
+			});
+		var _n0 = _Utils_Tuple2(msg, page);
+		switch (_n0.a.$) {
+			case 0:
+				switch (_n0.b.$) {
+					case 1:
+						var homeMsg = _n0.a.a;
+						var homeModel = _n0.b.a;
+						return A5(
+							toPage,
+							author$project$Main$HomePage,
+							author$project$Main$HomeMsg,
+							author$project$Page$Home$update(session),
+							homeMsg,
+							homeModel);
+					case 3:
+						var _n2 = _n0.b;
+						return _Utils_Tuple2(
+							_Utils_update(
+								model,
+								{v: author$project$Main$NotFound}),
+							elm$core$Platform$Cmd$none);
+					default:
+						return _Utils_Tuple2(model, elm$core$Platform$Cmd$none);
+				}
+			case 1:
+				var route = _n0.a.a;
+				return A2(author$project$Main$setRoute, route, model);
+			case 3:
+				var urlRequest = _n0.a.a;
+				if (!urlRequest.$) {
+					var url = urlRequest.a;
+					return _Utils_Tuple2(
+						model,
+						A2(
+							elm$browser$Browser$Navigation$pushUrl,
+							model.bi,
+							elm$url$Url$toString(url)));
+				} else {
+					var href = urlRequest.a;
+					return _Utils_Tuple2(
+						model,
+						elm$browser$Browser$Navigation$load(href));
+				}
+			default:
+				var url = _n0.a.a;
+				return A2(
+					author$project$Main$setRoute,
+					author$project$Route$fromUrl(url),
+					model);
+		}
+	});
+var elm_explorations$markdown$Markdown$defaultOptions = {
+	bH: elm$core$Maybe$Nothing,
+	bM: elm$core$Maybe$Just(
+		{cm: false, cQ: false}),
+	b6: true,
+	b8: false
+};
+var elm_explorations$markdown$Markdown$toHtmlWith = _Markdown_toHtml;
+var elm_explorations$markdown$Markdown$toHtml = elm_explorations$markdown$Markdown$toHtmlWith(elm_explorations$markdown$Markdown$defaultOptions);
+var rtfeldman$elm_css$VirtualDom$Styled$Unstyled = function (a) {
+	return {$: 4, a: a};
+};
+var rtfeldman$elm_css$VirtualDom$Styled$unstyledNode = rtfeldman$elm_css$VirtualDom$Styled$Unstyled;
+var rtfeldman$elm_css$Html$Styled$fromUnstyled = rtfeldman$elm_css$VirtualDom$Styled$unstyledNode;
+var author$project$Page$Home$view = F2(
+	function (_n0, model) {
+		return _Utils_Tuple2(
+			'Home',
+			_List_fromArray(
+				[
+					rtfeldman$elm_css$Html$Styled$fromUnstyled(
+					A2(elm_explorations$markdown$Markdown$toHtml, _List_Nil, model.aH))
+				]));
+	});
+var author$project$Route$toString = function (route) {
+	var pieces = function () {
+		if (!route) {
+			return _List_Nil;
+		} else {
+			return _List_fromArray(
+				['second-page']);
+		}
+	}();
+	return '#/' + A2(elm$core$String$join, '/', pieces);
+};
+var elm$json$Json$Encode$string = _Json_wrap;
+var elm$virtual_dom$VirtualDom$property = F2(
+	function (key, value) {
+		return A2(
+			_VirtualDom_property,
+			_VirtualDom_noInnerHtmlOrFormAction(key),
+			_VirtualDom_noJavaScriptOrHtmlUri(value));
+	});
+var rtfeldman$elm_css$VirtualDom$Styled$Attribute = F3(
+	function (a, b, c) {
+		return {$: 0, a: a, b: b, c: c};
+	});
+var rtfeldman$elm_css$VirtualDom$Styled$property = F2(
+	function (key, value) {
+		return A3(
+			rtfeldman$elm_css$VirtualDom$Styled$Attribute,
+			A2(elm$virtual_dom$VirtualDom$property, key, value),
+			_List_Nil,
+			'');
+	});
+var rtfeldman$elm_css$Html$Styled$Attributes$stringProperty = F2(
+	function (key, string) {
+		return A2(
+			rtfeldman$elm_css$VirtualDom$Styled$property,
+			key,
+			elm$json$Json$Encode$string(string));
+	});
+var rtfeldman$elm_css$Html$Styled$Attributes$href = function (url) {
+	return A2(rtfeldman$elm_css$Html$Styled$Attributes$stringProperty, 'href', url);
+};
+var author$project$Route$href = function (route) {
+	return rtfeldman$elm_css$Html$Styled$Attributes$href(
+		author$project$Route$toString(route));
+};
+var rtfeldman$elm_css$VirtualDom$Styled$Node = F3(
+	function (a, b, c) {
+		return {$: 0, a: a, b: b, c: c};
+	});
+var rtfeldman$elm_css$VirtualDom$Styled$node = rtfeldman$elm_css$VirtualDom$Styled$Node;
+var rtfeldman$elm_css$Html$Styled$node = rtfeldman$elm_css$VirtualDom$Styled$node;
+var rtfeldman$elm_css$Html$Styled$a = rtfeldman$elm_css$Html$Styled$node('a');
+var rtfeldman$elm_css$Html$Styled$h1 = rtfeldman$elm_css$Html$Styled$node('h1');
+var rtfeldman$elm_css$Html$Styled$p = rtfeldman$elm_css$Html$Styled$node('p');
+var elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
+var rtfeldman$elm_css$VirtualDom$Styled$text = function (str) {
+	return rtfeldman$elm_css$VirtualDom$Styled$Unstyled(
+		elm$virtual_dom$VirtualDom$text(str));
+};
+var rtfeldman$elm_css$Html$Styled$text = rtfeldman$elm_css$VirtualDom$Styled$text;
+var author$project$Page$SecondPage$view = function (session) {
+	return _Utils_Tuple2(
+		'Second Page',
+		_List_fromArray(
+			[
+				A2(
+				rtfeldman$elm_css$Html$Styled$h1,
+				_List_Nil,
+				_List_fromArray(
+					[
+						rtfeldman$elm_css$Html$Styled$text('Second page')
+					])),
+				A2(
+				rtfeldman$elm_css$Html$Styled$p,
+				_List_Nil,
+				_List_fromArray(
+					[
+						rtfeldman$elm_css$Html$Styled$text('This is the second page.')
+					])),
+				A2(
+				rtfeldman$elm_css$Html$Styled$p,
+				_List_Nil,
+				_List_fromArray(
+					[
+						A2(
+						rtfeldman$elm_css$Html$Styled$a,
+						_List_fromArray(
+							[
+								author$project$Route$href(0)
+							]),
+						_List_fromArray(
+							[
+								rtfeldman$elm_css$Html$Styled$text('Back home')
+							]))
+					]))
+			]));
+};
+var author$project$Views$Page$Config = F2(
+	function (session, activePage) {
+		return {bv: activePage, T: session};
+	});
+var author$project$Views$Page$Home = 0;
+var author$project$Views$Page$Other = 2;
+var author$project$Views$Page$SecondPage = 1;
+var rtfeldman$elm_css$Css$Structure$Compatible = 0;
+var rtfeldman$elm_css$Css$absolute = {aG: 0, cV: 'absolute'};
+var rtfeldman$elm_css$Css$Preprocess$AppendProperty = function (a) {
+	return {$: 0, a: a};
+};
+var rtfeldman$elm_css$Css$property = F2(
+	function (key, value) {
+		return rtfeldman$elm_css$Css$Preprocess$AppendProperty(key + (':' + value));
+	});
+var rtfeldman$elm_css$Css$prop3 = F4(
+	function (key, argA, argB, argC) {
+		return A2(
+			rtfeldman$elm_css$Css$property,
+			key,
+			A2(
+				elm$core$String$join,
+				' ',
+				_List_fromArray(
+					[argA.cV, argB.cV, argC.cV])));
+	});
+var rtfeldman$elm_css$Css$border3 = rtfeldman$elm_css$Css$prop3('border');
+var rtfeldman$elm_css$Css$prop1 = F2(
+	function (key, arg) {
+		return A2(rtfeldman$elm_css$Css$property, key, arg.cV);
+	});
+var rtfeldman$elm_css$Css$borderRadius = rtfeldman$elm_css$Css$prop1('border-radius');
+var rtfeldman$elm_css$Css$color = function (c) {
+	return A2(rtfeldman$elm_css$Css$property, 'color', c.cV);
+};
+var elm$core$String$foldr = _String_foldr;
+var elm$core$String$toList = function (string) {
+	return A3(elm$core$String$foldr, elm$core$List$cons, _List_Nil, string);
+};
+var elm$core$String$cons = _String_cons;
+var rtfeldman$elm_css$Css$withPrecedingHash = function (str) {
+	return A2(elm$core$String$startsWith, '#', str) ? str : A2(elm$core$String$cons, '#', str);
+};
+var rtfeldman$elm_css$Css$erroneousHex = function (str) {
+	return {
+		av: 1,
+		ax: 0,
+		y: 0,
+		aA: 0,
+		aI: 0,
+		cV: rtfeldman$elm_css$Css$withPrecedingHash(str)
+	};
+};
+var elm$core$Basics$composeR = F3(
+	function (f, g, x) {
+		return g(
+			f(x));
+	});
+var elm$core$String$fromList = _String_fromList;
+var elm$core$String$toLower = _String_toLower;
+var elm$core$Basics$negate = function (n) {
+	return -n;
+};
+var elm$core$List$tail = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return elm$core$Maybe$Just(xs);
+	} else {
+		return elm$core$Maybe$Nothing;
+	}
+};
+var elm$core$Result$mapError = F2(
+	function (f, result) {
+		if (!result.$) {
+			var v = result.a;
+			return elm$core$Result$Ok(v);
+		} else {
+			var e = result.a;
+			return elm$core$Result$Err(
+				f(e));
+		}
+	});
+var elm$core$Basics$pow = _Basics_pow;
+var elm$core$String$fromChar = function (_char) {
+	return A2(elm$core$String$cons, _char, '');
+};
+var rtfeldman$elm_hex$Hex$fromStringHelp = F3(
+	function (position, chars, accumulated) {
+		fromStringHelp:
+		while (true) {
+			if (!chars.b) {
+				return elm$core$Result$Ok(accumulated);
+			} else {
+				var _char = chars.a;
+				var rest = chars.b;
+				switch (_char) {
+					case '0':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated;
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case '1':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + A2(elm$core$Basics$pow, 16, position);
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case '2':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (2 * A2(elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case '3':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (3 * A2(elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case '4':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (4 * A2(elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case '5':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (5 * A2(elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case '6':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (6 * A2(elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case '7':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (7 * A2(elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case '8':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (8 * A2(elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case '9':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (9 * A2(elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case 'a':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (10 * A2(elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case 'b':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (11 * A2(elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case 'c':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (12 * A2(elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case 'd':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (13 * A2(elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case 'e':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (14 * A2(elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					case 'f':
+						var $temp$position = position - 1,
+							$temp$chars = rest,
+							$temp$accumulated = accumulated + (15 * A2(elm$core$Basics$pow, 16, position));
+						position = $temp$position;
+						chars = $temp$chars;
+						accumulated = $temp$accumulated;
+						continue fromStringHelp;
+					default:
+						var nonHex = _char;
+						return elm$core$Result$Err(
+							elm$core$String$fromChar(nonHex) + ' is not a valid hexadecimal character.');
+				}
+			}
+		}
+	});
+var rtfeldman$elm_hex$Hex$fromString = function (str) {
+	if (elm$core$String$isEmpty(str)) {
+		return elm$core$Result$Err('Empty strings are not valid hexadecimal strings.');
+	} else {
+		var result = function () {
+			if (A2(elm$core$String$startsWith, '-', str)) {
+				var list = A2(
+					elm$core$Maybe$withDefault,
+					_List_Nil,
+					elm$core$List$tail(
+						elm$core$String$toList(str)));
+				return A2(
+					elm$core$Result$map,
+					elm$core$Basics$negate,
+					A3(
+						rtfeldman$elm_hex$Hex$fromStringHelp,
+						elm$core$List$length(list) - 1,
+						list,
+						0));
+			} else {
+				return A3(
+					rtfeldman$elm_hex$Hex$fromStringHelp,
+					elm$core$String$length(str) - 1,
+					elm$core$String$toList(str),
+					0);
+			}
+		}();
+		var formatError = function (err) {
+			return A2(
+				elm$core$String$join,
+				' ',
+				_List_fromArray(
+					['\"' + (str + '\"'), 'is not a valid hexadecimal string because', err]));
+		};
+		return A2(elm$core$Result$mapError, formatError, result);
+	}
+};
+var rtfeldman$elm_css$Css$validHex = F5(
+	function (str, _n0, _n1, _n2, _n3) {
+		var r1 = _n0.a;
+		var r2 = _n0.b;
+		var g1 = _n1.a;
+		var g2 = _n1.b;
+		var b1 = _n2.a;
+		var b2 = _n2.b;
+		var a1 = _n3.a;
+		var a2 = _n3.b;
+		var toResult = A2(
+			elm$core$Basics$composeR,
+			elm$core$String$fromList,
+			A2(elm$core$Basics$composeR, elm$core$String$toLower, rtfeldman$elm_hex$Hex$fromString));
+		var results = _Utils_Tuple2(
+			_Utils_Tuple2(
+				toResult(
+					_List_fromArray(
+						[r1, r2])),
+				toResult(
+					_List_fromArray(
+						[g1, g2]))),
+			_Utils_Tuple2(
+				toResult(
+					_List_fromArray(
+						[b1, b2])),
+				toResult(
+					_List_fromArray(
+						[a1, a2]))));
+		if ((((!results.a.a.$) && (!results.a.b.$)) && (!results.b.a.$)) && (!results.b.b.$)) {
+			var _n5 = results.a;
+			var red = _n5.a.a;
+			var green = _n5.b.a;
+			var _n6 = results.b;
+			var blue = _n6.a.a;
+			var alpha = _n6.b.a;
+			return {
+				av: alpha / 255,
+				ax: blue,
+				y: 0,
+				aA: green,
+				aI: red,
+				cV: rtfeldman$elm_css$Css$withPrecedingHash(str)
+			};
+		} else {
+			return rtfeldman$elm_css$Css$erroneousHex(str);
+		}
+	});
+var rtfeldman$elm_css$Css$hex = function (str) {
+	var withoutHash = A2(elm$core$String$startsWith, '#', str) ? A2(elm$core$String$dropLeft, 1, str) : str;
+	var _n0 = elm$core$String$toList(withoutHash);
+	_n0$4:
+	while (true) {
+		if ((_n0.b && _n0.b.b) && _n0.b.b.b) {
+			if (!_n0.b.b.b.b) {
+				var r = _n0.a;
+				var _n1 = _n0.b;
+				var g = _n1.a;
+				var _n2 = _n1.b;
+				var b = _n2.a;
+				return A5(
+					rtfeldman$elm_css$Css$validHex,
+					str,
+					_Utils_Tuple2(r, r),
+					_Utils_Tuple2(g, g),
+					_Utils_Tuple2(b, b),
+					_Utils_Tuple2('f', 'f'));
+			} else {
+				if (!_n0.b.b.b.b.b) {
+					var r = _n0.a;
+					var _n3 = _n0.b;
+					var g = _n3.a;
+					var _n4 = _n3.b;
+					var b = _n4.a;
+					var _n5 = _n4.b;
+					var a = _n5.a;
+					return A5(
+						rtfeldman$elm_css$Css$validHex,
+						str,
+						_Utils_Tuple2(r, r),
+						_Utils_Tuple2(g, g),
+						_Utils_Tuple2(b, b),
+						_Utils_Tuple2(a, a));
+				} else {
+					if (_n0.b.b.b.b.b.b) {
+						if (!_n0.b.b.b.b.b.b.b) {
+							var r1 = _n0.a;
+							var _n6 = _n0.b;
+							var r2 = _n6.a;
+							var _n7 = _n6.b;
+							var g1 = _n7.a;
+							var _n8 = _n7.b;
+							var g2 = _n8.a;
+							var _n9 = _n8.b;
+							var b1 = _n9.a;
+							var _n10 = _n9.b;
+							var b2 = _n10.a;
+							return A5(
+								rtfeldman$elm_css$Css$validHex,
+								str,
+								_Utils_Tuple2(r1, r2),
+								_Utils_Tuple2(g1, g2),
+								_Utils_Tuple2(b1, b2),
+								_Utils_Tuple2('f', 'f'));
+						} else {
+							if (_n0.b.b.b.b.b.b.b.b && (!_n0.b.b.b.b.b.b.b.b.b)) {
+								var r1 = _n0.a;
+								var _n11 = _n0.b;
+								var r2 = _n11.a;
+								var _n12 = _n11.b;
+								var g1 = _n12.a;
+								var _n13 = _n12.b;
+								var g2 = _n13.a;
+								var _n14 = _n13.b;
+								var b1 = _n14.a;
+								var _n15 = _n14.b;
+								var b2 = _n15.a;
+								var _n16 = _n15.b;
+								var a1 = _n16.a;
+								var _n17 = _n16.b;
+								var a2 = _n17.a;
+								return A5(
+									rtfeldman$elm_css$Css$validHex,
+									str,
+									_Utils_Tuple2(r1, r2),
+									_Utils_Tuple2(g1, g2),
+									_Utils_Tuple2(b1, b2),
+									_Utils_Tuple2(a1, a2));
+							} else {
+								break _n0$4;
+							}
+						}
+					} else {
+						break _n0$4;
+					}
+				}
+			}
+		} else {
+			break _n0$4;
+		}
+	}
+	return rtfeldman$elm_css$Css$erroneousHex(str);
+};
+var rtfeldman$elm_css$Css$none = {X: 0, bB: 0, p: 0, a: 0, f: 0, cz: 0, bQ: 0, bf: 0, ai: 0, O: 0, z: 0, c: 0, b: 0, bj: 0, a0: 0, cK: 0, w: 0, a2: 0, cM: 0, ao: 0, V: 0, t: 0, e: 0, cT: 0, cV: 'none'};
+var rtfeldman$elm_css$Css$padding = rtfeldman$elm_css$Css$prop1('padding');
+var rtfeldman$elm_css$Css$position = rtfeldman$elm_css$Css$prop1('position');
+var rtfeldman$elm_css$Css$PxUnits = 0;
+var elm$core$String$fromFloat = _String_fromNumber;
+var rtfeldman$elm_css$Css$Internal$lengthConverter = F3(
+	function (units, unitLabel, numericValue) {
+		return {
+			bu: 0,
+			bD: 0,
+			ab: 0,
+			m: 0,
+			aB: 0,
+			ag: 0,
+			G: 0,
+			ah: 0,
+			ai: 0,
+			O: 0,
+			P: 0,
+			z: 0,
+			J: numericValue,
+			ap: 0,
+			ar: unitLabel,
+			aQ: units,
+			cV: _Utils_ap(
+				elm$core$String$fromFloat(numericValue),
+				unitLabel)
+		};
+	});
+var rtfeldman$elm_css$Css$px = A2(rtfeldman$elm_css$Css$Internal$lengthConverter, 0, 'px');
+var rtfeldman$elm_css$Css$cssFunction = F2(
+	function (funcName, args) {
+		return funcName + ('(' + (A2(elm$core$String$join, ', ', args) + ')'));
+	});
+var rtfeldman$elm_css$Css$rgba = F4(
+	function (r, g, b, alpha) {
+		return {
+			av: alpha,
+			ax: b,
+			y: 0,
+			aA: g,
+			aI: r,
+			cV: A2(
+				rtfeldman$elm_css$Css$cssFunction,
+				'rgba',
+				_Utils_ap(
+					A2(
+						elm$core$List$map,
+						elm$core$String$fromInt,
+						_List_fromArray(
+							[r, g, b])),
+					_List_fromArray(
+						[
+							elm$core$String$fromFloat(alpha)
+						])))
+		};
+	});
+var rtfeldman$elm_css$Css$right = rtfeldman$elm_css$Css$prop1('right');
+var rtfeldman$elm_css$Css$solid = {p: 0, U: 0, cV: 'solid'};
+var rtfeldman$elm_css$Css$textDecoration = rtfeldman$elm_css$Css$prop1('text-decoration');
+var rtfeldman$elm_css$Css$top = rtfeldman$elm_css$Css$prop1('top');
+var Skinney$murmur3$Murmur3$HashData = F4(
+	function (shift, seed, hash, charsProcessed) {
+		return {Z: charsProcessed, ae: hash, S: seed, am: shift};
+	});
+var elm$core$Bitwise$and = _Bitwise_and;
+var elm$core$Bitwise$shiftLeftBy = _Bitwise_shiftLeftBy;
+var elm$core$Bitwise$shiftRightZfBy = _Bitwise_shiftRightZfBy;
+var Skinney$murmur3$Murmur3$mur = F2(
+	function (c, h) {
+		return 4294967295 & (((h & 65535) * c) + ((65535 & ((h >>> 16) * c)) << 16));
+	});
+var elm$core$Bitwise$or = _Bitwise_or;
+var elm$core$Bitwise$xor = _Bitwise_xor;
+var Skinney$murmur3$Murmur3$mix = F2(
+	function (h1, h2) {
+		var k1 = A2(Skinney$murmur3$Murmur3$mur, 3432918353, h2);
+		return h1 ^ A2(Skinney$murmur3$Murmur3$mur, 461845907, (k1 >>> 17) | (k1 << 15));
+	});
+var elm$core$Basics$neq = _Utils_notEqual;
+var Skinney$murmur3$Murmur3$finalize = function (data) {
+	var acc = data.ae ? A2(Skinney$murmur3$Murmur3$mix, data.S, data.ae) : data.S;
+	var h1 = acc ^ data.Z;
+	var h2 = A2(Skinney$murmur3$Murmur3$mur, 2246822507, h1 ^ (h1 >>> 16));
+	var h3 = A2(Skinney$murmur3$Murmur3$mur, 3266489909, h2 ^ (h2 >>> 13));
+	return (h3 ^ (h3 >>> 16)) >>> 0;
+};
+var Skinney$murmur3$Murmur3$step = function (acc) {
+	var h1 = A2(Skinney$murmur3$Murmur3$mur, 5, (acc >>> 19) | (acc << 13));
+	return ((h1 & 65535) + 27492) + ((65535 & ((h1 >>> 16) + 58964)) << 16);
+};
+var Skinney$murmur3$Murmur3$hashFold = F2(
+	function (c, data) {
+		var res = data.ae | (c << data.am);
+		var _n0 = data.am;
+		if (_n0 === 24) {
+			var newHash = Skinney$murmur3$Murmur3$step(
+				A2(Skinney$murmur3$Murmur3$mix, data.S, res));
+			return {Z: data.Z + 1, ae: 0, S: newHash, am: 0};
+		} else {
+			return {Z: data.Z + 1, ae: res, S: data.S, am: data.am + 8};
+		}
+	});
+var elm$core$Basics$ge = _Utils_ge;
+var Skinney$murmur3$UTF8$accumulate = F3(
+	function (add, _char, _n0) {
+		var acc = _n0.a;
+		var combine = _n0.b;
+		if (combine.$ === 1) {
+			return (_char < 128) ? _Utils_Tuple2(
+				A2(add, _char, acc),
+				elm$core$Maybe$Nothing) : ((_char < 2048) ? _Utils_Tuple2(
+				A2(
+					add,
+					128 | (63 & _char),
+					A2(add, 192 | (_char >>> 6), acc)),
+				elm$core$Maybe$Nothing) : (((_char < 55296) || (_char >= 57344)) ? _Utils_Tuple2(
+				A2(
+					add,
+					128 | (63 & _char),
+					A2(
+						add,
+						128 | (63 & (_char >>> 6)),
+						A2(add, 224 | (_char >>> 12), acc))),
+				elm$core$Maybe$Nothing) : _Utils_Tuple2(
+				acc,
+				elm$core$Maybe$Just(_char))));
+		} else {
+			var prev = combine.a;
+			var combined = ((1023 & _char) | ((1023 & prev) << 10)) + 65536;
+			return _Utils_Tuple2(
+				A2(
+					add,
+					128 | (63 & combined),
+					A2(
+						add,
+						128 | (63 & (combined >>> 6)),
+						A2(
+							add,
+							128 | (63 & (combined >>> 12)),
+							A2(add, 240 | (combined >>> 18), acc)))),
+				elm$core$Maybe$Nothing);
+		}
+	});
+var elm$core$String$foldl = _String_foldl;
+var Skinney$murmur3$UTF8$foldl = F3(
+	function (op, acc, input) {
+		var helper = F2(
+			function (_char, res) {
+				return A3(
+					Skinney$murmur3$UTF8$accumulate,
+					op,
+					elm$core$Char$toCode(_char),
+					res);
+			});
+		return A3(
+			elm$core$String$foldl,
+			helper,
+			_Utils_Tuple2(acc, elm$core$Maybe$Nothing),
+			input).a;
+	});
+var Skinney$murmur3$Murmur3$hashString = F2(
+	function (seed, str) {
+		return Skinney$murmur3$Murmur3$finalize(
+			A3(
+				Skinney$murmur3$UTF8$foldl,
+				Skinney$murmur3$Murmur3$hashFold,
+				A4(Skinney$murmur3$Murmur3$HashData, 0, seed, 0, 0),
+				str));
+	});
+var elm$core$List$isEmpty = function (xs) {
+	if (!xs.b) {
+		return true;
+	} else {
+		return false;
+	}
+};
+var elm$core$List$singleton = function (value) {
+	return _List_fromArray(
+		[value]);
+};
+var rtfeldman$elm_css$Css$Preprocess$stylesheet = function (snippets) {
+	return {bF: elm$core$Maybe$Nothing, bP: _List_Nil, bV: _List_Nil, b9: snippets};
+};
+var rtfeldman$elm_css$Css$Preprocess$unwrapSnippet = function (_n0) {
+	var declarations = _n0;
+	return declarations;
+};
+var elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return elm$core$Maybe$Just(x);
+	} else {
+		return elm$core$Maybe$Nothing;
+	}
+};
+var elm$core$List$takeReverse = F3(
+	function (n, list, kept) {
+		takeReverse:
+		while (true) {
+			if (n <= 0) {
+				return kept;
+			} else {
+				if (!list.b) {
+					return kept;
+				} else {
+					var x = list.a;
+					var xs = list.b;
+					var $temp$n = n - 1,
+						$temp$list = xs,
+						$temp$kept = A2(elm$core$List$cons, x, kept);
+					n = $temp$n;
+					list = $temp$list;
+					kept = $temp$kept;
+					continue takeReverse;
+				}
+			}
+		}
+	});
+var elm$core$List$takeTailRec = F2(
+	function (n, list) {
+		return elm$core$List$reverse(
+			A3(elm$core$List$takeReverse, n, list, _List_Nil));
+	});
+var elm$core$List$takeFast = F3(
+	function (ctr, n, list) {
+		if (n <= 0) {
+			return _List_Nil;
+		} else {
+			var _n0 = _Utils_Tuple2(n, list);
+			_n0$1:
+			while (true) {
+				_n0$5:
+				while (true) {
+					if (!_n0.b.b) {
+						return list;
+					} else {
+						if (_n0.b.b.b) {
+							switch (_n0.a) {
+								case 1:
+									break _n0$1;
+								case 2:
+									var _n2 = _n0.b;
+									var x = _n2.a;
+									var _n3 = _n2.b;
+									var y = _n3.a;
+									return _List_fromArray(
+										[x, y]);
+								case 3:
+									if (_n0.b.b.b.b) {
+										var _n4 = _n0.b;
+										var x = _n4.a;
+										var _n5 = _n4.b;
+										var y = _n5.a;
+										var _n6 = _n5.b;
+										var z = _n6.a;
+										return _List_fromArray(
+											[x, y, z]);
+									} else {
+										break _n0$5;
+									}
+								default:
+									if (_n0.b.b.b.b && _n0.b.b.b.b.b) {
+										var _n7 = _n0.b;
+										var x = _n7.a;
+										var _n8 = _n7.b;
+										var y = _n8.a;
+										var _n9 = _n8.b;
+										var z = _n9.a;
+										var _n10 = _n9.b;
+										var w = _n10.a;
+										var tl = _n10.b;
+										return (ctr > 1000) ? A2(
+											elm$core$List$cons,
+											x,
+											A2(
+												elm$core$List$cons,
+												y,
+												A2(
+													elm$core$List$cons,
+													z,
+													A2(
+														elm$core$List$cons,
+														w,
+														A2(elm$core$List$takeTailRec, n - 4, tl))))) : A2(
+											elm$core$List$cons,
+											x,
+											A2(
+												elm$core$List$cons,
+												y,
+												A2(
+													elm$core$List$cons,
+													z,
+													A2(
+														elm$core$List$cons,
+														w,
+														A3(elm$core$List$takeFast, ctr + 1, n - 4, tl)))));
+									} else {
+										break _n0$5;
+									}
+							}
+						} else {
+							if (_n0.a === 1) {
+								break _n0$1;
+							} else {
+								break _n0$5;
+							}
+						}
+					}
+				}
+				return list;
+			}
+			var _n1 = _n0.b;
+			var x = _n1.a;
+			return _List_fromArray(
+				[x]);
+		}
+	});
+var elm$core$List$take = F2(
+	function (n, list) {
+		return A3(elm$core$List$takeFast, 0, n, list);
+	});
+var elm$core$Maybe$map = F2(
+	function (f, maybe) {
+		if (!maybe.$) {
+			var value = maybe.a;
+			return elm$core$Maybe$Just(
+				f(value));
+		} else {
+			return elm$core$Maybe$Nothing;
+		}
+	});
+var rtfeldman$elm_css$Css$Preprocess$Resolve$collectSelectors = function (declarations) {
+	collectSelectors:
+	while (true) {
+		if (!declarations.b) {
+			return _List_Nil;
+		} else {
+			if (!declarations.a.$) {
+				var _n1 = declarations.a.a;
+				var firstSelector = _n1.a;
+				var otherSelectors = _n1.b;
+				var rest = declarations.b;
+				return _Utils_ap(
+					A2(elm$core$List$cons, firstSelector, otherSelectors),
+					rtfeldman$elm_css$Css$Preprocess$Resolve$collectSelectors(rest));
+			} else {
+				var rest = declarations.b;
+				var $temp$declarations = rest;
+				declarations = $temp$declarations;
+				continue collectSelectors;
+			}
+		}
+	}
+};
+var rtfeldman$elm_css$Css$Preprocess$Resolve$last = function (list) {
+	last:
+	while (true) {
+		if (!list.b) {
+			return elm$core$Maybe$Nothing;
+		} else {
+			if (!list.b.b) {
+				var singleton = list.a;
+				return elm$core$Maybe$Just(singleton);
+			} else {
+				var rest = list.b;
+				var $temp$list = rest;
+				list = $temp$list;
+				continue last;
+			}
+		}
+	}
+};
+var rtfeldman$elm_css$Css$Preprocess$Resolve$lastDeclaration = function (declarations) {
+	lastDeclaration:
+	while (true) {
+		if (!declarations.b) {
+			return elm$core$Maybe$Nothing;
+		} else {
+			if (!declarations.b.b) {
+				var x = declarations.a;
+				return elm$core$Maybe$Just(
+					_List_fromArray(
+						[x]));
+			} else {
+				var xs = declarations.b;
+				var $temp$declarations = xs;
+				declarations = $temp$declarations;
+				continue lastDeclaration;
+			}
+		}
+	}
+};
+var rtfeldman$elm_css$Css$Preprocess$Resolve$oneOf = function (maybes) {
+	oneOf:
+	while (true) {
+		if (!maybes.b) {
+			return elm$core$Maybe$Nothing;
+		} else {
+			var maybe = maybes.a;
+			var rest = maybes.b;
+			if (maybe.$ === 1) {
+				var $temp$maybes = rest;
+				maybes = $temp$maybes;
+				continue oneOf;
+			} else {
+				return maybe;
+			}
+		}
+	}
+};
+var rtfeldman$elm_css$Css$Structure$FontFeatureValues = function (a) {
+	return {$: 9, a: a};
+};
+var rtfeldman$elm_css$Css$Preprocess$Resolve$resolveFontFeatureValues = function (tuples) {
+	var expandTuples = function (tuplesToExpand) {
+		if (!tuplesToExpand.b) {
+			return _List_Nil;
+		} else {
+			var properties = tuplesToExpand.a;
+			var rest = tuplesToExpand.b;
+			return A2(
+				elm$core$List$cons,
+				properties,
+				expandTuples(rest));
+		}
+	};
+	var newTuples = expandTuples(tuples);
+	return _List_fromArray(
+		[
+			rtfeldman$elm_css$Css$Structure$FontFeatureValues(newTuples)
+		]);
+};
+var rtfeldman$elm_css$Css$Structure$DocumentRule = F5(
+	function (a, b, c, d, e) {
+		return {$: 3, a: a, b: b, c: c, d: d, e: e};
+	});
+var rtfeldman$elm_css$Css$Preprocess$Resolve$toDocumentRule = F5(
+	function (str1, str2, str3, str4, declaration) {
+		if (!declaration.$) {
+			var structureStyleBlock = declaration.a;
+			return A5(rtfeldman$elm_css$Css$Structure$DocumentRule, str1, str2, str3, str4, structureStyleBlock);
+		} else {
+			return declaration;
+		}
+	});
+var rtfeldman$elm_css$Css$Structure$MediaRule = F2(
+	function (a, b) {
+		return {$: 1, a: a, b: b};
+	});
+var rtfeldman$elm_css$Css$Structure$SupportsRule = F2(
+	function (a, b) {
+		return {$: 2, a: a, b: b};
+	});
+var rtfeldman$elm_css$Css$Preprocess$Resolve$toMediaRule = F2(
+	function (mediaQueries, declaration) {
+		switch (declaration.$) {
+			case 0:
+				var structureStyleBlock = declaration.a;
+				return A2(
+					rtfeldman$elm_css$Css$Structure$MediaRule,
+					mediaQueries,
+					_List_fromArray(
+						[structureStyleBlock]));
+			case 1:
+				var newMediaQueries = declaration.a;
+				var structureStyleBlocks = declaration.b;
+				return A2(
+					rtfeldman$elm_css$Css$Structure$MediaRule,
+					_Utils_ap(mediaQueries, newMediaQueries),
+					structureStyleBlocks);
+			case 2:
+				var str = declaration.a;
+				var declarations = declaration.b;
+				return A2(
+					rtfeldman$elm_css$Css$Structure$SupportsRule,
+					str,
+					A2(
+						elm$core$List$map,
+						rtfeldman$elm_css$Css$Preprocess$Resolve$toMediaRule(mediaQueries),
+						declarations));
+			case 3:
+				var str1 = declaration.a;
+				var str2 = declaration.b;
+				var str3 = declaration.c;
+				var str4 = declaration.d;
+				var structureStyleBlock = declaration.e;
+				return A5(rtfeldman$elm_css$Css$Structure$DocumentRule, str1, str2, str3, str4, structureStyleBlock);
+			case 4:
+				return declaration;
+			case 5:
+				return declaration;
+			case 6:
+				return declaration;
+			case 7:
+				return declaration;
+			case 8:
+				return declaration;
+			default:
+				return declaration;
+		}
+	});
+var rtfeldman$elm_css$Css$Structure$CounterStyle = function (a) {
+	return {$: 8, a: a};
+};
+var rtfeldman$elm_css$Css$Structure$FontFace = function (a) {
+	return {$: 5, a: a};
+};
+var rtfeldman$elm_css$Css$Structure$Keyframes = function (a) {
+	return {$: 6, a: a};
+};
+var rtfeldman$elm_css$Css$Structure$PageRule = F2(
+	function (a, b) {
+		return {$: 4, a: a, b: b};
+	});
+var rtfeldman$elm_css$Css$Structure$Selector = F3(
+	function (a, b, c) {
+		return {$: 0, a: a, b: b, c: c};
+	});
+var rtfeldman$elm_css$Css$Structure$StyleBlock = F3(
+	function (a, b, c) {
+		return {$: 0, a: a, b: b, c: c};
+	});
+var rtfeldman$elm_css$Css$Structure$StyleBlockDeclaration = function (a) {
+	return {$: 0, a: a};
+};
+var rtfeldman$elm_css$Css$Structure$Viewport = function (a) {
+	return {$: 7, a: a};
+};
+var rtfeldman$elm_css$Css$Structure$mapLast = F2(
+	function (update, list) {
+		if (!list.b) {
+			return list;
+		} else {
+			if (!list.b.b) {
+				var only = list.a;
+				return _List_fromArray(
+					[
+						update(only)
+					]);
+			} else {
+				var first = list.a;
+				var rest = list.b;
+				return A2(
+					elm$core$List$cons,
+					first,
+					A2(rtfeldman$elm_css$Css$Structure$mapLast, update, rest));
+			}
+		}
+	});
+var rtfeldman$elm_css$Css$Structure$withPropertyAppended = F2(
+	function (property, _n0) {
+		var firstSelector = _n0.a;
+		var otherSelectors = _n0.b;
+		var properties = _n0.c;
+		return A3(
+			rtfeldman$elm_css$Css$Structure$StyleBlock,
+			firstSelector,
+			otherSelectors,
+			_Utils_ap(
+				properties,
+				_List_fromArray(
+					[property])));
+	});
+var rtfeldman$elm_css$Css$Structure$appendProperty = F2(
+	function (property, declarations) {
+		if (!declarations.b) {
+			return declarations;
+		} else {
+			if (!declarations.b.b) {
+				switch (declarations.a.$) {
+					case 0:
+						var styleBlock = declarations.a.a;
+						return _List_fromArray(
+							[
+								rtfeldman$elm_css$Css$Structure$StyleBlockDeclaration(
+								A2(rtfeldman$elm_css$Css$Structure$withPropertyAppended, property, styleBlock))
+							]);
+					case 1:
+						var _n1 = declarations.a;
+						var mediaQueries = _n1.a;
+						var styleBlocks = _n1.b;
+						return _List_fromArray(
+							[
+								A2(
+								rtfeldman$elm_css$Css$Structure$MediaRule,
+								mediaQueries,
+								A2(
+									rtfeldman$elm_css$Css$Structure$mapLast,
+									rtfeldman$elm_css$Css$Structure$withPropertyAppended(property),
+									styleBlocks))
+							]);
+					default:
+						return declarations;
+				}
+			} else {
+				var first = declarations.a;
+				var rest = declarations.b;
+				return A2(
+					elm$core$List$cons,
+					first,
+					A2(rtfeldman$elm_css$Css$Structure$appendProperty, property, rest));
+			}
+		}
+	});
+var rtfeldman$elm_css$Css$Structure$appendToLastSelector = F2(
+	function (f, styleBlock) {
+		if (!styleBlock.b.b) {
+			var only = styleBlock.a;
+			var properties = styleBlock.c;
+			return _List_fromArray(
+				[
+					A3(rtfeldman$elm_css$Css$Structure$StyleBlock, only, _List_Nil, properties),
+					A3(
+					rtfeldman$elm_css$Css$Structure$StyleBlock,
+					f(only),
+					_List_Nil,
+					_List_Nil)
+				]);
+		} else {
+			var first = styleBlock.a;
+			var rest = styleBlock.b;
+			var properties = styleBlock.c;
+			var newRest = A2(elm$core$List$map, f, rest);
+			var newFirst = f(first);
+			return _List_fromArray(
+				[
+					A3(rtfeldman$elm_css$Css$Structure$StyleBlock, first, rest, properties),
+					A3(rtfeldman$elm_css$Css$Structure$StyleBlock, newFirst, newRest, _List_Nil)
+				]);
+		}
+	});
+var rtfeldman$elm_css$Css$Structure$applyPseudoElement = F2(
+	function (pseudo, _n0) {
+		var sequence = _n0.a;
+		var selectors = _n0.b;
+		return A3(
+			rtfeldman$elm_css$Css$Structure$Selector,
+			sequence,
+			selectors,
+			elm$core$Maybe$Just(pseudo));
+	});
+var rtfeldman$elm_css$Css$Structure$appendPseudoElementToLastSelector = F2(
+	function (pseudo, styleBlock) {
+		return A2(
+			rtfeldman$elm_css$Css$Structure$appendToLastSelector,
+			rtfeldman$elm_css$Css$Structure$applyPseudoElement(pseudo),
+			styleBlock);
+	});
+var rtfeldman$elm_css$Css$Structure$CustomSelector = F2(
+	function (a, b) {
+		return {$: 2, a: a, b: b};
+	});
+var rtfeldman$elm_css$Css$Structure$TypeSelectorSequence = F2(
+	function (a, b) {
+		return {$: 0, a: a, b: b};
+	});
+var rtfeldman$elm_css$Css$Structure$UniversalSelectorSequence = function (a) {
+	return {$: 1, a: a};
+};
+var rtfeldman$elm_css$Css$Structure$appendRepeatable = F2(
+	function (selector, sequence) {
+		switch (sequence.$) {
+			case 0:
+				var typeSelector = sequence.a;
+				var list = sequence.b;
+				return A2(
+					rtfeldman$elm_css$Css$Structure$TypeSelectorSequence,
+					typeSelector,
+					_Utils_ap(
+						list,
+						_List_fromArray(
+							[selector])));
+			case 1:
+				var list = sequence.a;
+				return rtfeldman$elm_css$Css$Structure$UniversalSelectorSequence(
+					_Utils_ap(
+						list,
+						_List_fromArray(
+							[selector])));
+			default:
+				var str = sequence.a;
+				var list = sequence.b;
+				return A2(
+					rtfeldman$elm_css$Css$Structure$CustomSelector,
+					str,
+					_Utils_ap(
+						list,
+						_List_fromArray(
+							[selector])));
+		}
+	});
+var rtfeldman$elm_css$Css$Structure$appendRepeatableWithCombinator = F2(
+	function (selector, list) {
+		if (!list.b) {
+			return _List_Nil;
+		} else {
+			if (!list.b.b) {
+				var _n1 = list.a;
+				var combinator = _n1.a;
+				var sequence = _n1.b;
+				return _List_fromArray(
+					[
+						_Utils_Tuple2(
+						combinator,
+						A2(rtfeldman$elm_css$Css$Structure$appendRepeatable, selector, sequence))
+					]);
+			} else {
+				var first = list.a;
+				var rest = list.b;
+				return A2(
+					elm$core$List$cons,
+					first,
+					A2(rtfeldman$elm_css$Css$Structure$appendRepeatableWithCombinator, selector, rest));
+			}
+		}
+	});
+var rtfeldman$elm_css$Css$Structure$appendRepeatableSelector = F2(
+	function (repeatableSimpleSelector, selector) {
+		if (!selector.b.b) {
+			var sequence = selector.a;
+			var pseudoElement = selector.c;
+			return A3(
+				rtfeldman$elm_css$Css$Structure$Selector,
+				A2(rtfeldman$elm_css$Css$Structure$appendRepeatable, repeatableSimpleSelector, sequence),
+				_List_Nil,
+				pseudoElement);
+		} else {
+			var firstSelector = selector.a;
+			var tuples = selector.b;
+			var pseudoElement = selector.c;
+			return A3(
+				rtfeldman$elm_css$Css$Structure$Selector,
+				firstSelector,
+				A2(rtfeldman$elm_css$Css$Structure$appendRepeatableWithCombinator, repeatableSimpleSelector, tuples),
+				pseudoElement);
+		}
+	});
+var rtfeldman$elm_css$Css$Structure$appendRepeatableToLastSelector = F2(
+	function (selector, styleBlock) {
+		return A2(
+			rtfeldman$elm_css$Css$Structure$appendToLastSelector,
+			rtfeldman$elm_css$Css$Structure$appendRepeatableSelector(selector),
+			styleBlock);
+	});
+var rtfeldman$elm_css$Css$Structure$concatMapLastStyleBlock = F2(
+	function (update, declarations) {
+		_n0$12:
+		while (true) {
+			if (!declarations.b) {
+				return declarations;
+			} else {
+				if (!declarations.b.b) {
+					switch (declarations.a.$) {
+						case 0:
+							var styleBlock = declarations.a.a;
+							return A2(
+								elm$core$List$map,
+								rtfeldman$elm_css$Css$Structure$StyleBlockDeclaration,
+								update(styleBlock));
+						case 1:
+							if (declarations.a.b.b) {
+								if (!declarations.a.b.b.b) {
+									var _n1 = declarations.a;
+									var mediaQueries = _n1.a;
+									var _n2 = _n1.b;
+									var styleBlock = _n2.a;
+									return _List_fromArray(
+										[
+											A2(
+											rtfeldman$elm_css$Css$Structure$MediaRule,
+											mediaQueries,
+											update(styleBlock))
+										]);
+								} else {
+									var _n3 = declarations.a;
+									var mediaQueries = _n3.a;
+									var _n4 = _n3.b;
+									var first = _n4.a;
+									var rest = _n4.b;
+									var _n5 = A2(
+										rtfeldman$elm_css$Css$Structure$concatMapLastStyleBlock,
+										update,
+										_List_fromArray(
+											[
+												A2(rtfeldman$elm_css$Css$Structure$MediaRule, mediaQueries, rest)
+											]));
+									if ((_n5.b && (_n5.a.$ === 1)) && (!_n5.b.b)) {
+										var _n6 = _n5.a;
+										var newMediaQueries = _n6.a;
+										var newStyleBlocks = _n6.b;
+										return _List_fromArray(
+											[
+												A2(
+												rtfeldman$elm_css$Css$Structure$MediaRule,
+												newMediaQueries,
+												A2(elm$core$List$cons, first, newStyleBlocks))
+											]);
+									} else {
+										var newDeclarations = _n5;
+										return newDeclarations;
+									}
+								}
+							} else {
+								break _n0$12;
+							}
+						case 2:
+							var _n7 = declarations.a;
+							var str = _n7.a;
+							var nestedDeclarations = _n7.b;
+							return _List_fromArray(
+								[
+									A2(
+									rtfeldman$elm_css$Css$Structure$SupportsRule,
+									str,
+									A2(rtfeldman$elm_css$Css$Structure$concatMapLastStyleBlock, update, nestedDeclarations))
+								]);
+						case 3:
+							var _n8 = declarations.a;
+							var str1 = _n8.a;
+							var str2 = _n8.b;
+							var str3 = _n8.c;
+							var str4 = _n8.d;
+							var styleBlock = _n8.e;
+							return A2(
+								elm$core$List$map,
+								A4(rtfeldman$elm_css$Css$Structure$DocumentRule, str1, str2, str3, str4),
+								update(styleBlock));
+						case 4:
+							var _n9 = declarations.a;
+							return declarations;
+						case 5:
+							return declarations;
+						case 6:
+							return declarations;
+						case 7:
+							return declarations;
+						case 8:
+							return declarations;
+						default:
+							return declarations;
+					}
+				} else {
+					break _n0$12;
+				}
+			}
+		}
+		var first = declarations.a;
+		var rest = declarations.b;
+		return A2(
+			elm$core$List$cons,
+			first,
+			A2(rtfeldman$elm_css$Css$Structure$concatMapLastStyleBlock, update, rest));
+	});
+var rtfeldman$elm_css$Css$Structure$styleBlockToMediaRule = F2(
+	function (mediaQueries, declaration) {
+		if (!declaration.$) {
+			var styleBlock = declaration.a;
+			return A2(
+				rtfeldman$elm_css$Css$Structure$MediaRule,
+				mediaQueries,
+				_List_fromArray(
+					[styleBlock]));
+		} else {
+			return declaration;
+		}
+	});
+var rtfeldman$elm_css$Hash$murmurSeed = 15739;
+var elm$core$Basics$modBy = _Basics_modBy;
+var rtfeldman$elm_hex$Hex$unsafeToDigit = function (num) {
+	unsafeToDigit:
+	while (true) {
+		switch (num) {
+			case 0:
+				return '0';
+			case 1:
+				return '1';
+			case 2:
+				return '2';
+			case 3:
+				return '3';
+			case 4:
+				return '4';
+			case 5:
+				return '5';
+			case 6:
+				return '6';
+			case 7:
+				return '7';
+			case 8:
+				return '8';
+			case 9:
+				return '9';
+			case 10:
+				return 'a';
+			case 11:
+				return 'b';
+			case 12:
+				return 'c';
+			case 13:
+				return 'd';
+			case 14:
+				return 'e';
+			case 15:
+				return 'f';
+			default:
+				var $temp$num = num;
+				num = $temp$num;
+				continue unsafeToDigit;
+		}
+	}
+};
+var rtfeldman$elm_hex$Hex$unsafePositiveToDigits = F2(
+	function (digits, num) {
+		unsafePositiveToDigits:
+		while (true) {
+			if (num < 16) {
+				return A2(
+					elm$core$List$cons,
+					rtfeldman$elm_hex$Hex$unsafeToDigit(num),
+					digits);
+			} else {
+				var $temp$digits = A2(
+					elm$core$List$cons,
+					rtfeldman$elm_hex$Hex$unsafeToDigit(
+						A2(elm$core$Basics$modBy, 16, num)),
+					digits),
+					$temp$num = (num / 16) | 0;
+				digits = $temp$digits;
+				num = $temp$num;
+				continue unsafePositiveToDigits;
+			}
+		}
+	});
+var rtfeldman$elm_hex$Hex$toString = function (num) {
+	return elm$core$String$fromList(
+		(num < 0) ? A2(
+			elm$core$List$cons,
+			'-',
+			A2(rtfeldman$elm_hex$Hex$unsafePositiveToDigits, _List_Nil, -num)) : A2(rtfeldman$elm_hex$Hex$unsafePositiveToDigits, _List_Nil, num));
+};
+var rtfeldman$elm_css$Hash$fromString = function (str) {
+	return A2(
+		elm$core$String$cons,
+		'_',
+		rtfeldman$elm_hex$Hex$toString(
+			A2(Skinney$murmur3$Murmur3$hashString, rtfeldman$elm_css$Hash$murmurSeed, str)));
+};
+var rtfeldman$elm_css$Css$Preprocess$Resolve$applyNestedStylesToLast = F4(
+	function (nestedStyles, rest, f, declarations) {
+		var withoutParent = function (decls) {
+			return A2(
+				elm$core$Maybe$withDefault,
+				_List_Nil,
+				elm$core$List$tail(decls));
+		};
+		var nextResult = A2(
+			rtfeldman$elm_css$Css$Preprocess$Resolve$applyStyles,
+			rest,
+			A2(
+				elm$core$Maybe$withDefault,
+				_List_Nil,
+				rtfeldman$elm_css$Css$Preprocess$Resolve$lastDeclaration(declarations)));
+		var newDeclarations = function () {
+			var _n14 = _Utils_Tuple2(
+				elm$core$List$head(nextResult),
+				rtfeldman$elm_css$Css$Preprocess$Resolve$last(declarations));
+			if ((!_n14.a.$) && (!_n14.b.$)) {
+				var nextResultParent = _n14.a.a;
+				var originalParent = _n14.b.a;
+				return _Utils_ap(
+					A2(
+						elm$core$List$take,
+						elm$core$List$length(declarations) - 1,
+						declarations),
+					_List_fromArray(
+						[
+							(!_Utils_eq(originalParent, nextResultParent)) ? nextResultParent : originalParent
+						]));
+			} else {
+				return declarations;
+			}
+		}();
+		var insertStylesToNestedDecl = function (lastDecl) {
+			return elm$core$List$concat(
+				A2(
+					rtfeldman$elm_css$Css$Structure$mapLast,
+					rtfeldman$elm_css$Css$Preprocess$Resolve$applyStyles(nestedStyles),
+					A2(
+						elm$core$List$map,
+						elm$core$List$singleton,
+						A2(rtfeldman$elm_css$Css$Structure$concatMapLastStyleBlock, f, lastDecl))));
+		};
+		var initialResult = A2(
+			elm$core$Maybe$withDefault,
+			_List_Nil,
+			A2(
+				elm$core$Maybe$map,
+				insertStylesToNestedDecl,
+				rtfeldman$elm_css$Css$Preprocess$Resolve$lastDeclaration(declarations)));
+		return _Utils_ap(
+			newDeclarations,
+			_Utils_ap(
+				withoutParent(initialResult),
+				withoutParent(nextResult)));
+	});
+var rtfeldman$elm_css$Css$Preprocess$Resolve$applyStyles = F2(
+	function (styles, declarations) {
+		if (!styles.b) {
+			return declarations;
+		} else {
+			switch (styles.a.$) {
+				case 0:
+					var property = styles.a.a;
+					var rest = styles.b;
+					return A2(
+						rtfeldman$elm_css$Css$Preprocess$Resolve$applyStyles,
+						rest,
+						A2(rtfeldman$elm_css$Css$Structure$appendProperty, property, declarations));
+				case 1:
+					var _n4 = styles.a;
+					var selector = _n4.a;
+					var nestedStyles = _n4.b;
+					var rest = styles.b;
+					return A4(
+						rtfeldman$elm_css$Css$Preprocess$Resolve$applyNestedStylesToLast,
+						nestedStyles,
+						rest,
+						rtfeldman$elm_css$Css$Structure$appendRepeatableToLastSelector(selector),
+						declarations);
+				case 2:
+					var _n5 = styles.a;
+					var selectorCombinator = _n5.a;
+					var snippets = _n5.b;
+					var rest = styles.b;
+					var chain = F2(
+						function (_n9, _n10) {
+							var originalSequence = _n9.a;
+							var originalTuples = _n9.b;
+							var originalPseudoElement = _n9.c;
+							var newSequence = _n10.a;
+							var newTuples = _n10.b;
+							var newPseudoElement = _n10.c;
+							return A3(
+								rtfeldman$elm_css$Css$Structure$Selector,
+								originalSequence,
+								_Utils_ap(
+									originalTuples,
+									A2(
+										elm$core$List$cons,
+										_Utils_Tuple2(selectorCombinator, newSequence),
+										newTuples)),
+								rtfeldman$elm_css$Css$Preprocess$Resolve$oneOf(
+									_List_fromArray(
+										[newPseudoElement, originalPseudoElement])));
+						});
+					var expandDeclaration = function (declaration) {
+						switch (declaration.$) {
+							case 0:
+								var _n7 = declaration.a;
+								var firstSelector = _n7.a;
+								var otherSelectors = _n7.b;
+								var nestedStyles = _n7.c;
+								var newSelectors = A2(
+									elm$core$List$concatMap,
+									function (originalSelector) {
+										return A2(
+											elm$core$List$map,
+											chain(originalSelector),
+											A2(elm$core$List$cons, firstSelector, otherSelectors));
+									},
+									rtfeldman$elm_css$Css$Preprocess$Resolve$collectSelectors(declarations));
+								var newDeclarations = function () {
+									if (!newSelectors.b) {
+										return _List_Nil;
+									} else {
+										var first = newSelectors.a;
+										var remainder = newSelectors.b;
+										return _List_fromArray(
+											[
+												rtfeldman$elm_css$Css$Structure$StyleBlockDeclaration(
+												A3(rtfeldman$elm_css$Css$Structure$StyleBlock, first, remainder, _List_Nil))
+											]);
+									}
+								}();
+								return A2(rtfeldman$elm_css$Css$Preprocess$Resolve$applyStyles, nestedStyles, newDeclarations);
+							case 1:
+								var mediaQueries = declaration.a;
+								var styleBlocks = declaration.b;
+								return A2(rtfeldman$elm_css$Css$Preprocess$Resolve$resolveMediaRule, mediaQueries, styleBlocks);
+							case 2:
+								var str = declaration.a;
+								var otherSnippets = declaration.b;
+								return A2(rtfeldman$elm_css$Css$Preprocess$Resolve$resolveSupportsRule, str, otherSnippets);
+							case 3:
+								var str1 = declaration.a;
+								var str2 = declaration.b;
+								var str3 = declaration.c;
+								var str4 = declaration.d;
+								var styleBlock = declaration.e;
+								return A2(
+									elm$core$List$map,
+									A4(rtfeldman$elm_css$Css$Preprocess$Resolve$toDocumentRule, str1, str2, str3, str4),
+									rtfeldman$elm_css$Css$Preprocess$Resolve$expandStyleBlock(styleBlock));
+							case 4:
+								var str = declaration.a;
+								var properties = declaration.b;
+								return _List_fromArray(
+									[
+										A2(rtfeldman$elm_css$Css$Structure$PageRule, str, properties)
+									]);
+							case 5:
+								var properties = declaration.a;
+								return _List_fromArray(
+									[
+										rtfeldman$elm_css$Css$Structure$FontFace(properties)
+									]);
+							case 6:
+								var properties = declaration.a;
+								return _List_fromArray(
+									[
+										rtfeldman$elm_css$Css$Structure$Viewport(properties)
+									]);
+							case 7:
+								var properties = declaration.a;
+								return _List_fromArray(
+									[
+										rtfeldman$elm_css$Css$Structure$CounterStyle(properties)
+									]);
+							default:
+								var tuples = declaration.a;
+								return rtfeldman$elm_css$Css$Preprocess$Resolve$resolveFontFeatureValues(tuples);
+						}
+					};
+					return elm$core$List$concat(
+						_Utils_ap(
+							_List_fromArray(
+								[
+									A2(rtfeldman$elm_css$Css$Preprocess$Resolve$applyStyles, rest, declarations)
+								]),
+							A2(
+								elm$core$List$map,
+								expandDeclaration,
+								A2(elm$core$List$concatMap, rtfeldman$elm_css$Css$Preprocess$unwrapSnippet, snippets))));
+				case 3:
+					var _n11 = styles.a;
+					var pseudoElement = _n11.a;
+					var nestedStyles = _n11.b;
+					var rest = styles.b;
+					return A4(
+						rtfeldman$elm_css$Css$Preprocess$Resolve$applyNestedStylesToLast,
+						nestedStyles,
+						rest,
+						rtfeldman$elm_css$Css$Structure$appendPseudoElementToLastSelector(pseudoElement),
+						declarations);
+				case 5:
+					var str = styles.a.a;
+					var rest = styles.b;
+					var name = rtfeldman$elm_css$Hash$fromString(str);
+					var newProperty = 'animation-name:' + name;
+					var newDeclarations = A2(
+						rtfeldman$elm_css$Css$Preprocess$Resolve$applyStyles,
+						rest,
+						A2(rtfeldman$elm_css$Css$Structure$appendProperty, newProperty, declarations));
+					return A2(
+						elm$core$List$append,
+						newDeclarations,
+						_List_fromArray(
+							[
+								rtfeldman$elm_css$Css$Structure$Keyframes(
+								{cr: str, cF: name})
+							]));
+				case 4:
+					var _n12 = styles.a;
+					var mediaQueries = _n12.a;
+					var nestedStyles = _n12.b;
+					var rest = styles.b;
+					var extraDeclarations = function () {
+						var _n13 = rtfeldman$elm_css$Css$Preprocess$Resolve$collectSelectors(declarations);
+						if (!_n13.b) {
+							return _List_Nil;
+						} else {
+							var firstSelector = _n13.a;
+							var otherSelectors = _n13.b;
+							return A2(
+								elm$core$List$map,
+								rtfeldman$elm_css$Css$Structure$styleBlockToMediaRule(mediaQueries),
+								A2(
+									rtfeldman$elm_css$Css$Preprocess$Resolve$applyStyles,
+									nestedStyles,
+									elm$core$List$singleton(
+										rtfeldman$elm_css$Css$Structure$StyleBlockDeclaration(
+											A3(rtfeldman$elm_css$Css$Structure$StyleBlock, firstSelector, otherSelectors, _List_Nil)))));
+						}
+					}();
+					return _Utils_ap(
+						A2(rtfeldman$elm_css$Css$Preprocess$Resolve$applyStyles, rest, declarations),
+						extraDeclarations);
+				default:
+					var otherStyles = styles.a.a;
+					var rest = styles.b;
+					return A2(
+						rtfeldman$elm_css$Css$Preprocess$Resolve$applyStyles,
+						_Utils_ap(otherStyles, rest),
+						declarations);
+			}
+		}
+	});
+var rtfeldman$elm_css$Css$Preprocess$Resolve$expandStyleBlock = function (_n2) {
+	var firstSelector = _n2.a;
+	var otherSelectors = _n2.b;
+	var styles = _n2.c;
+	return A2(
+		rtfeldman$elm_css$Css$Preprocess$Resolve$applyStyles,
+		styles,
+		_List_fromArray(
+			[
+				rtfeldman$elm_css$Css$Structure$StyleBlockDeclaration(
+				A3(rtfeldman$elm_css$Css$Structure$StyleBlock, firstSelector, otherSelectors, _List_Nil))
+			]));
+};
+var rtfeldman$elm_css$Css$Preprocess$Resolve$extract = function (snippetDeclarations) {
+	if (!snippetDeclarations.b) {
+		return _List_Nil;
+	} else {
+		var first = snippetDeclarations.a;
+		var rest = snippetDeclarations.b;
+		return _Utils_ap(
+			rtfeldman$elm_css$Css$Preprocess$Resolve$toDeclarations(first),
+			rtfeldman$elm_css$Css$Preprocess$Resolve$extract(rest));
+	}
+};
+var rtfeldman$elm_css$Css$Preprocess$Resolve$resolveMediaRule = F2(
+	function (mediaQueries, styleBlocks) {
+		var handleStyleBlock = function (styleBlock) {
+			return A2(
+				elm$core$List$map,
+				rtfeldman$elm_css$Css$Preprocess$Resolve$toMediaRule(mediaQueries),
+				rtfeldman$elm_css$Css$Preprocess$Resolve$expandStyleBlock(styleBlock));
+		};
+		return A2(elm$core$List$concatMap, handleStyleBlock, styleBlocks);
+	});
+var rtfeldman$elm_css$Css$Preprocess$Resolve$resolveSupportsRule = F2(
+	function (str, snippets) {
+		var declarations = rtfeldman$elm_css$Css$Preprocess$Resolve$extract(
+			A2(elm$core$List$concatMap, rtfeldman$elm_css$Css$Preprocess$unwrapSnippet, snippets));
+		return _List_fromArray(
+			[
+				A2(rtfeldman$elm_css$Css$Structure$SupportsRule, str, declarations)
+			]);
+	});
+var rtfeldman$elm_css$Css$Preprocess$Resolve$toDeclarations = function (snippetDeclaration) {
+	switch (snippetDeclaration.$) {
+		case 0:
+			var styleBlock = snippetDeclaration.a;
+			return rtfeldman$elm_css$Css$Preprocess$Resolve$expandStyleBlock(styleBlock);
+		case 1:
+			var mediaQueries = snippetDeclaration.a;
+			var styleBlocks = snippetDeclaration.b;
+			return A2(rtfeldman$elm_css$Css$Preprocess$Resolve$resolveMediaRule, mediaQueries, styleBlocks);
+		case 2:
+			var str = snippetDeclaration.a;
+			var snippets = snippetDeclaration.b;
+			return A2(rtfeldman$elm_css$Css$Preprocess$Resolve$resolveSupportsRule, str, snippets);
+		case 3:
+			var str1 = snippetDeclaration.a;
+			var str2 = snippetDeclaration.b;
+			var str3 = snippetDeclaration.c;
+			var str4 = snippetDeclaration.d;
+			var styleBlock = snippetDeclaration.e;
+			return A2(
+				elm$core$List$map,
+				A4(rtfeldman$elm_css$Css$Preprocess$Resolve$toDocumentRule, str1, str2, str3, str4),
+				rtfeldman$elm_css$Css$Preprocess$Resolve$expandStyleBlock(styleBlock));
+		case 4:
+			var str = snippetDeclaration.a;
+			var properties = snippetDeclaration.b;
+			return _List_fromArray(
+				[
+					A2(rtfeldman$elm_css$Css$Structure$PageRule, str, properties)
+				]);
+		case 5:
+			var properties = snippetDeclaration.a;
+			return _List_fromArray(
+				[
+					rtfeldman$elm_css$Css$Structure$FontFace(properties)
+				]);
+		case 6:
+			var properties = snippetDeclaration.a;
+			return _List_fromArray(
+				[
+					rtfeldman$elm_css$Css$Structure$Viewport(properties)
+				]);
+		case 7:
+			var properties = snippetDeclaration.a;
+			return _List_fromArray(
+				[
+					rtfeldman$elm_css$Css$Structure$CounterStyle(properties)
+				]);
+		default:
+			var tuples = snippetDeclaration.a;
+			return rtfeldman$elm_css$Css$Preprocess$Resolve$resolveFontFeatureValues(tuples);
+	}
+};
+var rtfeldman$elm_css$Css$Preprocess$Resolve$toStructure = function (_n0) {
+	var charset = _n0.bF;
+	var imports = _n0.bP;
+	var namespaces = _n0.bV;
+	var snippets = _n0.b9;
+	var declarations = rtfeldman$elm_css$Css$Preprocess$Resolve$extract(
+		A2(elm$core$List$concatMap, rtfeldman$elm_css$Css$Preprocess$unwrapSnippet, snippets));
+	return {bF: charset, cs: declarations, bP: imports, bV: namespaces};
+};
+var elm$core$Basics$not = _Basics_not;
+var elm$core$List$any = F2(
+	function (isOkay, list) {
+		any:
+		while (true) {
+			if (!list.b) {
+				return false;
+			} else {
+				var x = list.a;
+				var xs = list.b;
+				if (isOkay(x)) {
+					return true;
+				} else {
+					var $temp$isOkay = isOkay,
+						$temp$list = xs;
+					isOkay = $temp$isOkay;
+					list = $temp$list;
+					continue any;
+				}
+			}
+		}
+	});
+var elm$core$List$all = F2(
+	function (isOkay, list) {
+		return !A2(
+			elm$core$List$any,
+			A2(elm$core$Basics$composeL, elm$core$Basics$not, isOkay),
+			list);
+	});
+var rtfeldman$elm_css$Css$Structure$compactHelp = F2(
+	function (declaration, _n0) {
+		var keyframesByName = _n0.a;
+		var declarations = _n0.b;
+		switch (declaration.$) {
+			case 0:
+				var _n2 = declaration.a;
+				var properties = _n2.c;
+				return elm$core$List$isEmpty(properties) ? _Utils_Tuple2(keyframesByName, declarations) : _Utils_Tuple2(
+					keyframesByName,
+					A2(elm$core$List$cons, declaration, declarations));
+			case 1:
+				var styleBlocks = declaration.b;
+				return A2(
+					elm$core$List$all,
+					function (_n3) {
+						var properties = _n3.c;
+						return elm$core$List$isEmpty(properties);
+					},
+					styleBlocks) ? _Utils_Tuple2(keyframesByName, declarations) : _Utils_Tuple2(
+					keyframesByName,
+					A2(elm$core$List$cons, declaration, declarations));
+			case 2:
+				var otherDeclarations = declaration.b;
+				return elm$core$List$isEmpty(otherDeclarations) ? _Utils_Tuple2(keyframesByName, declarations) : _Utils_Tuple2(
+					keyframesByName,
+					A2(elm$core$List$cons, declaration, declarations));
+			case 3:
+				return _Utils_Tuple2(
+					keyframesByName,
+					A2(elm$core$List$cons, declaration, declarations));
+			case 4:
+				var properties = declaration.b;
+				return elm$core$List$isEmpty(properties) ? _Utils_Tuple2(keyframesByName, declarations) : _Utils_Tuple2(
+					keyframesByName,
+					A2(elm$core$List$cons, declaration, declarations));
+			case 5:
+				var properties = declaration.a;
+				return elm$core$List$isEmpty(properties) ? _Utils_Tuple2(keyframesByName, declarations) : _Utils_Tuple2(
+					keyframesByName,
+					A2(elm$core$List$cons, declaration, declarations));
+			case 6:
+				var record = declaration.a;
+				return elm$core$String$isEmpty(record.cr) ? _Utils_Tuple2(keyframesByName, declarations) : _Utils_Tuple2(
+					A3(elm$core$Dict$insert, record.cF, record.cr, keyframesByName),
+					declarations);
+			case 7:
+				var properties = declaration.a;
+				return elm$core$List$isEmpty(properties) ? _Utils_Tuple2(keyframesByName, declarations) : _Utils_Tuple2(
+					keyframesByName,
+					A2(elm$core$List$cons, declaration, declarations));
+			case 8:
+				var properties = declaration.a;
+				return elm$core$List$isEmpty(properties) ? _Utils_Tuple2(keyframesByName, declarations) : _Utils_Tuple2(
+					keyframesByName,
+					A2(elm$core$List$cons, declaration, declarations));
+			default:
+				var tuples = declaration.a;
+				return A2(
+					elm$core$List$all,
+					function (_n4) {
+						var properties = _n4.b;
+						return elm$core$List$isEmpty(properties);
+					},
+					tuples) ? _Utils_Tuple2(keyframesByName, declarations) : _Utils_Tuple2(
+					keyframesByName,
+					A2(elm$core$List$cons, declaration, declarations));
+		}
+	});
+var rtfeldman$elm_css$Css$Structure$withKeyframeDeclarations = F2(
+	function (keyframesByName, compactedDeclarations) {
+		return A2(
+			elm$core$List$append,
+			A2(
+				elm$core$List$map,
+				function (_n0) {
+					var name = _n0.a;
+					var decl = _n0.b;
+					return rtfeldman$elm_css$Css$Structure$Keyframes(
+						{cr: decl, cF: name});
+				},
+				elm$core$Dict$toList(keyframesByName)),
+			compactedDeclarations);
+	});
+var rtfeldman$elm_css$Css$Structure$compactStylesheet = function (_n0) {
+	var charset = _n0.bF;
+	var imports = _n0.bP;
+	var namespaces = _n0.bV;
+	var declarations = _n0.cs;
+	var _n1 = A3(
+		elm$core$List$foldr,
+		rtfeldman$elm_css$Css$Structure$compactHelp,
+		_Utils_Tuple2(elm$core$Dict$empty, _List_Nil),
+		declarations);
+	var keyframesByName = _n1.a;
+	var compactedDeclarations = _n1.b;
+	var finalDeclarations = A2(rtfeldman$elm_css$Css$Structure$withKeyframeDeclarations, keyframesByName, compactedDeclarations);
+	return {bF: charset, cs: finalDeclarations, bP: imports, bV: namespaces};
+};
+var elm$core$List$filter = F2(
+	function (isGood, list) {
+		return A3(
+			elm$core$List$foldr,
+			F2(
+				function (x, xs) {
+					return isGood(x) ? A2(elm$core$List$cons, x, xs) : xs;
+				}),
+			_List_Nil,
+			list);
+	});
+var rtfeldman$elm_css$Css$Structure$Output$charsetToString = function (charset) {
+	return A2(
+		elm$core$Maybe$withDefault,
+		'',
+		A2(
+			elm$core$Maybe$map,
+			function (str) {
+				return '@charset \"' + (str + '\"');
+			},
+			charset));
+};
+var rtfeldman$elm_css$Css$Structure$Output$mediaExpressionToString = function (expression) {
+	return '(' + (expression.bK + (A2(
+		elm$core$Maybe$withDefault,
+		'',
+		A2(
+			elm$core$Maybe$map,
+			elm$core$Basics$append(': '),
+			expression.cV)) + ')'));
+};
+var rtfeldman$elm_css$Css$Structure$Output$mediaTypeToString = function (mediaType) {
+	switch (mediaType) {
+		case 0:
+			return 'print';
+		case 1:
+			return 'screen';
+		default:
+			return 'speech';
+	}
+};
+var rtfeldman$elm_css$Css$Structure$Output$mediaQueryToString = function (mediaQuery) {
+	var prefixWith = F3(
+		function (str, mediaType, expressions) {
+			return str + (' ' + A2(
+				elm$core$String$join,
+				' and ',
+				A2(
+					elm$core$List$cons,
+					rtfeldman$elm_css$Css$Structure$Output$mediaTypeToString(mediaType),
+					A2(elm$core$List$map, rtfeldman$elm_css$Css$Structure$Output$mediaExpressionToString, expressions))));
+		});
+	switch (mediaQuery.$) {
+		case 0:
+			var expressions = mediaQuery.a;
+			return A2(
+				elm$core$String$join,
+				' and ',
+				A2(elm$core$List$map, rtfeldman$elm_css$Css$Structure$Output$mediaExpressionToString, expressions));
+		case 1:
+			var mediaType = mediaQuery.a;
+			var expressions = mediaQuery.b;
+			return A3(prefixWith, 'only', mediaType, expressions);
+		case 2:
+			var mediaType = mediaQuery.a;
+			var expressions = mediaQuery.b;
+			return A3(prefixWith, 'not', mediaType, expressions);
+		default:
+			var str = mediaQuery.a;
+			return str;
+	}
+};
+var rtfeldman$elm_css$Css$Structure$Output$importMediaQueryToString = F2(
+	function (name, mediaQuery) {
+		return '@import \"' + (name + (rtfeldman$elm_css$Css$Structure$Output$mediaQueryToString(mediaQuery) + '\"'));
+	});
+var rtfeldman$elm_css$Css$Structure$Output$importToString = function (_n0) {
+	var name = _n0.a;
+	var mediaQueries = _n0.b;
+	return A2(
+		elm$core$String$join,
+		'\n',
+		A2(
+			elm$core$List$map,
+			rtfeldman$elm_css$Css$Structure$Output$importMediaQueryToString(name),
+			mediaQueries));
+};
+var rtfeldman$elm_css$Css$Structure$Output$namespaceToString = function (_n0) {
+	var prefix = _n0.a;
+	var str = _n0.b;
+	return '@namespace ' + (prefix + ('\"' + (str + '\"')));
+};
+var rtfeldman$elm_css$Css$Structure$Output$spaceIndent = '    ';
+var rtfeldman$elm_css$Css$Structure$Output$indent = function (str) {
+	return _Utils_ap(rtfeldman$elm_css$Css$Structure$Output$spaceIndent, str);
+};
+var rtfeldman$elm_css$Css$Structure$Output$noIndent = '';
+var rtfeldman$elm_css$Css$Structure$Output$emitProperty = function (str) {
+	return str + ';';
+};
+var rtfeldman$elm_css$Css$Structure$Output$emitProperties = function (properties) {
+	return A2(
+		elm$core$String$join,
+		'\n',
+		A2(
+			elm$core$List$map,
+			A2(elm$core$Basics$composeL, rtfeldman$elm_css$Css$Structure$Output$indent, rtfeldman$elm_css$Css$Structure$Output$emitProperty),
+			properties));
+};
+var elm$core$String$append = _String_append;
+var rtfeldman$elm_css$Css$Structure$Output$pseudoElementToString = function (_n0) {
+	var str = _n0;
+	return '::' + str;
+};
+var rtfeldman$elm_css$Css$Structure$Output$combinatorToString = function (combinator) {
+	switch (combinator) {
+		case 0:
+			return '+';
+		case 1:
+			return '~';
+		case 2:
+			return '>';
+		default:
+			return '';
+	}
+};
+var rtfeldman$elm_css$Css$Structure$Output$repeatableSimpleSelectorToString = function (repeatableSimpleSelector) {
+	switch (repeatableSimpleSelector.$) {
+		case 0:
+			var str = repeatableSimpleSelector.a;
+			return '.' + str;
+		case 1:
+			var str = repeatableSimpleSelector.a;
+			return '#' + str;
+		case 2:
+			var str = repeatableSimpleSelector.a;
+			return ':' + str;
+		default:
+			var str = repeatableSimpleSelector.a;
+			return '[' + (str + ']');
+	}
+};
+var rtfeldman$elm_css$Css$Structure$Output$simpleSelectorSequenceToString = function (simpleSelectorSequence) {
+	switch (simpleSelectorSequence.$) {
+		case 0:
+			var str = simpleSelectorSequence.a;
+			var repeatableSimpleSelectors = simpleSelectorSequence.b;
+			return A2(
+				elm$core$String$join,
+				'',
+				A2(
+					elm$core$List$cons,
+					str,
+					A2(elm$core$List$map, rtfeldman$elm_css$Css$Structure$Output$repeatableSimpleSelectorToString, repeatableSimpleSelectors)));
+		case 1:
+			var repeatableSimpleSelectors = simpleSelectorSequence.a;
+			return elm$core$List$isEmpty(repeatableSimpleSelectors) ? '*' : A2(
+				elm$core$String$join,
+				'',
+				A2(elm$core$List$map, rtfeldman$elm_css$Css$Structure$Output$repeatableSimpleSelectorToString, repeatableSimpleSelectors));
+		default:
+			var str = simpleSelectorSequence.a;
+			var repeatableSimpleSelectors = simpleSelectorSequence.b;
+			return A2(
+				elm$core$String$join,
+				'',
+				A2(
+					elm$core$List$cons,
+					str,
+					A2(elm$core$List$map, rtfeldman$elm_css$Css$Structure$Output$repeatableSimpleSelectorToString, repeatableSimpleSelectors)));
+	}
+};
+var rtfeldman$elm_css$Css$Structure$Output$selectorChainToString = function (_n0) {
+	var combinator = _n0.a;
+	var sequence = _n0.b;
+	return A2(
+		elm$core$String$join,
+		' ',
+		_List_fromArray(
+			[
+				rtfeldman$elm_css$Css$Structure$Output$combinatorToString(combinator),
+				rtfeldman$elm_css$Css$Structure$Output$simpleSelectorSequenceToString(sequence)
+			]));
+};
+var rtfeldman$elm_css$Css$Structure$Output$selectorToString = function (_n0) {
+	var simpleSelectorSequence = _n0.a;
+	var chain = _n0.b;
+	var pseudoElement = _n0.c;
+	var segments = A2(
+		elm$core$List$cons,
+		rtfeldman$elm_css$Css$Structure$Output$simpleSelectorSequenceToString(simpleSelectorSequence),
+		A2(elm$core$List$map, rtfeldman$elm_css$Css$Structure$Output$selectorChainToString, chain));
+	var pseudoElementsString = A2(
+		elm$core$String$join,
+		'',
+		_List_fromArray(
+			[
+				A2(
+				elm$core$Maybe$withDefault,
+				'',
+				A2(elm$core$Maybe$map, rtfeldman$elm_css$Css$Structure$Output$pseudoElementToString, pseudoElement))
+			]));
+	return A2(
+		elm$core$String$append,
+		A2(
+			elm$core$String$join,
+			' ',
+			A2(
+				elm$core$List$filter,
+				A2(elm$core$Basics$composeL, elm$core$Basics$not, elm$core$String$isEmpty),
+				segments)),
+		pseudoElementsString);
+};
+var rtfeldman$elm_css$Css$Structure$Output$prettyPrintStyleBlock = F2(
+	function (indentLevel, _n0) {
+		var firstSelector = _n0.a;
+		var otherSelectors = _n0.b;
+		var properties = _n0.c;
+		var selectorStr = A2(
+			elm$core$String$join,
+			', ',
+			A2(
+				elm$core$List$map,
+				rtfeldman$elm_css$Css$Structure$Output$selectorToString,
+				A2(elm$core$List$cons, firstSelector, otherSelectors)));
+		return A2(
+			elm$core$String$join,
+			'',
+			_List_fromArray(
+				[
+					selectorStr,
+					' {\n',
+					indentLevel,
+					rtfeldman$elm_css$Css$Structure$Output$emitProperties(properties),
+					'\n',
+					indentLevel,
+					'}'
+				]));
+	});
+var rtfeldman$elm_css$Css$Structure$Output$prettyPrintDeclaration = function (decl) {
+	switch (decl.$) {
+		case 0:
+			var styleBlock = decl.a;
+			return A2(rtfeldman$elm_css$Css$Structure$Output$prettyPrintStyleBlock, rtfeldman$elm_css$Css$Structure$Output$noIndent, styleBlock);
+		case 1:
+			var mediaQueries = decl.a;
+			var styleBlocks = decl.b;
+			var query = A2(
+				elm$core$String$join,
+				',\n',
+				A2(elm$core$List$map, rtfeldman$elm_css$Css$Structure$Output$mediaQueryToString, mediaQueries));
+			var blocks = A2(
+				elm$core$String$join,
+				'\n\n',
+				A2(
+					elm$core$List$map,
+					A2(
+						elm$core$Basics$composeL,
+						rtfeldman$elm_css$Css$Structure$Output$indent,
+						rtfeldman$elm_css$Css$Structure$Output$prettyPrintStyleBlock(rtfeldman$elm_css$Css$Structure$Output$spaceIndent)),
+					styleBlocks));
+			return '@media ' + (query + (' {\n' + (blocks + '\n}')));
+		case 2:
+			return 'TODO';
+		case 3:
+			return 'TODO';
+		case 4:
+			return 'TODO';
+		case 5:
+			return 'TODO';
+		case 6:
+			var name = decl.a.cF;
+			var declaration = decl.a.cr;
+			return '@keyframes ' + (name + (' {\n' + (declaration + '\n}')));
+		case 7:
+			return 'TODO';
+		case 8:
+			return 'TODO';
+		default:
+			return 'TODO';
+	}
+};
+var rtfeldman$elm_css$Css$Structure$Output$prettyPrint = function (_n0) {
+	var charset = _n0.bF;
+	var imports = _n0.bP;
+	var namespaces = _n0.bV;
+	var declarations = _n0.cs;
+	return A2(
+		elm$core$String$join,
+		'\n\n',
+		A2(
+			elm$core$List$filter,
+			A2(elm$core$Basics$composeL, elm$core$Basics$not, elm$core$String$isEmpty),
+			_List_fromArray(
+				[
+					rtfeldman$elm_css$Css$Structure$Output$charsetToString(charset),
+					A2(
+					elm$core$String$join,
+					'\n',
+					A2(elm$core$List$map, rtfeldman$elm_css$Css$Structure$Output$importToString, imports)),
+					A2(
+					elm$core$String$join,
+					'\n',
+					A2(elm$core$List$map, rtfeldman$elm_css$Css$Structure$Output$namespaceToString, namespaces)),
+					A2(
+					elm$core$String$join,
+					'\n\n',
+					A2(elm$core$List$map, rtfeldman$elm_css$Css$Structure$Output$prettyPrintDeclaration, declarations))
+				])));
+};
+var rtfeldman$elm_css$Css$Preprocess$Resolve$compileHelp = function (sheet) {
+	return rtfeldman$elm_css$Css$Structure$Output$prettyPrint(
+		rtfeldman$elm_css$Css$Structure$compactStylesheet(
+			rtfeldman$elm_css$Css$Preprocess$Resolve$toStructure(sheet)));
+};
+var rtfeldman$elm_css$Css$Preprocess$Resolve$compile = function (styles) {
+	return A2(
+		elm$core$String$join,
+		'\n\n',
+		A2(elm$core$List$map, rtfeldman$elm_css$Css$Preprocess$Resolve$compileHelp, styles));
+};
+var rtfeldman$elm_css$Css$Preprocess$Snippet = elm$core$Basics$identity;
+var rtfeldman$elm_css$Css$Preprocess$StyleBlock = F3(
+	function (a, b, c) {
+		return {$: 0, a: a, b: b, c: c};
+	});
+var rtfeldman$elm_css$Css$Preprocess$StyleBlockDeclaration = function (a) {
+	return {$: 0, a: a};
+};
+var rtfeldman$elm_css$VirtualDom$Styled$makeSnippet = F2(
+	function (styles, sequence) {
+		var selector = A3(rtfeldman$elm_css$Css$Structure$Selector, sequence, _List_Nil, elm$core$Maybe$Nothing);
+		return _List_fromArray(
+			[
+				rtfeldman$elm_css$Css$Preprocess$StyleBlockDeclaration(
+				A3(rtfeldman$elm_css$Css$Preprocess$StyleBlock, selector, _List_Nil, styles))
+			]);
+	});
+var rtfeldman$elm_css$VirtualDom$Styled$murmurSeed = 15739;
+var rtfeldman$elm_css$VirtualDom$Styled$getClassname = function (styles) {
+	return elm$core$List$isEmpty(styles) ? 'unstyled' : A2(
+		elm$core$String$cons,
+		'_',
+		rtfeldman$elm_hex$Hex$toString(
+			A2(
+				Skinney$murmur3$Murmur3$hashString,
+				rtfeldman$elm_css$VirtualDom$Styled$murmurSeed,
+				rtfeldman$elm_css$Css$Preprocess$Resolve$compile(
+					elm$core$List$singleton(
+						rtfeldman$elm_css$Css$Preprocess$stylesheet(
+							elm$core$List$singleton(
+								A2(
+									rtfeldman$elm_css$VirtualDom$Styled$makeSnippet,
+									styles,
+									rtfeldman$elm_css$Css$Structure$UniversalSelectorSequence(_List_Nil)))))))));
+};
+var rtfeldman$elm_css$Html$Styled$Internal$css = function (styles) {
+	var classname = rtfeldman$elm_css$VirtualDom$Styled$getClassname(styles);
+	var classProperty = A2(
+		elm$virtual_dom$VirtualDom$property,
+		'className',
+		elm$json$Json$Encode$string(classname));
+	return A3(rtfeldman$elm_css$VirtualDom$Styled$Attribute, classProperty, styles, classname);
+};
+var rtfeldman$elm_css$Html$Styled$styled = F4(
+	function (fn, styles, attrs, children) {
+		return A2(
+			fn,
+			A2(
+				elm$core$List$cons,
+				rtfeldman$elm_css$Html$Styled$Internal$css(styles),
+				attrs),
+			children);
+	});
+var author$project$Views$Page$githubIconStyle = A2(
+	rtfeldman$elm_css$Html$Styled$styled,
+	rtfeldman$elm_css$Html$Styled$a,
+	_List_fromArray(
+		[
+			rtfeldman$elm_css$Css$position(rtfeldman$elm_css$Css$absolute),
+			rtfeldman$elm_css$Css$top(
+			rtfeldman$elm_css$Css$px(15)),
+			rtfeldman$elm_css$Css$right(
+			rtfeldman$elm_css$Css$px(15)),
+			A3(
+			rtfeldman$elm_css$Css$border3,
+			rtfeldman$elm_css$Css$px(1),
+			rtfeldman$elm_css$Css$solid,
+			A4(rtfeldman$elm_css$Css$rgba, 255, 255, 255, 0.3)),
+			rtfeldman$elm_css$Css$padding(
+			rtfeldman$elm_css$Css$px(10)),
+			rtfeldman$elm_css$Css$borderRadius(
+			rtfeldman$elm_css$Css$px(4)),
+			rtfeldman$elm_css$Css$color(
+			rtfeldman$elm_css$Css$hex('999')),
+			rtfeldman$elm_css$Css$textDecoration(rtfeldman$elm_css$Css$none)
+		]));
+var rtfeldman$elm_css$Css$center = rtfeldman$elm_css$Css$prop1('center');
+var rtfeldman$elm_css$Css$EmUnits = 0;
+var rtfeldman$elm_css$Css$em = A2(rtfeldman$elm_css$Css$Internal$lengthConverter, 0, 'em');
+var rtfeldman$elm_css$Css$fontSize = rtfeldman$elm_css$Css$prop1('font-size');
+var rtfeldman$elm_css$Css$lineHeight = rtfeldman$elm_css$Css$prop1('line-height');
+var rtfeldman$elm_css$Css$prop2 = F3(
+	function (key, argA, argB) {
+		return A2(
+			rtfeldman$elm_css$Css$property,
+			key,
+			A2(
+				elm$core$String$join,
+				' ',
+				_List_fromArray(
+					[argA.cV, argB.cV])));
+	});
+var rtfeldman$elm_css$Css$margin2 = rtfeldman$elm_css$Css$prop2('margin');
+var rtfeldman$elm_css$Css$Internal$property = F2(
+	function (key, value) {
+		return rtfeldman$elm_css$Css$Preprocess$AppendProperty(key + (':' + value));
+	});
+var rtfeldman$elm_css$Css$Preprocess$ApplyStyles = function (a) {
+	return {$: 6, a: a};
+};
+var rtfeldman$elm_css$Css$Internal$getOverloadedProperty = F3(
+	function (functionName, desiredKey, style) {
+		getOverloadedProperty:
+		while (true) {
+			switch (style.$) {
+				case 0:
+					var str = style.a;
+					var key = A2(
+						elm$core$Maybe$withDefault,
+						'',
+						elm$core$List$head(
+							A2(elm$core$String$split, ':', str)));
+					return A2(rtfeldman$elm_css$Css$Internal$property, desiredKey, key);
+				case 1:
+					var selector = style.a;
+					return A2(rtfeldman$elm_css$Css$Internal$property, desiredKey, 'elm-css-error-cannot-apply-' + (functionName + '-with-inapplicable-Style-for-selector'));
+				case 2:
+					var combinator = style.a;
+					return A2(rtfeldman$elm_css$Css$Internal$property, desiredKey, 'elm-css-error-cannot-apply-' + (functionName + '-with-inapplicable-Style-for-combinator'));
+				case 3:
+					var pseudoElement = style.a;
+					return A2(rtfeldman$elm_css$Css$Internal$property, desiredKey, 'elm-css-error-cannot-apply-' + (functionName + '-with-inapplicable-Style-for-pseudo-element setter'));
+				case 4:
+					return A2(rtfeldman$elm_css$Css$Internal$property, desiredKey, 'elm-css-error-cannot-apply-' + (functionName + '-with-inapplicable-Style-for-media-query'));
+				case 5:
+					return A2(rtfeldman$elm_css$Css$Internal$property, desiredKey, 'elm-css-error-cannot-apply-' + (functionName + '-with-inapplicable-Style-for-keyframes'));
+				default:
+					if (!style.a.b) {
+						return A2(rtfeldman$elm_css$Css$Internal$property, desiredKey, 'elm-css-error-cannot-apply-' + (functionName + '-with-empty-Style'));
+					} else {
+						if (!style.a.b.b) {
+							var _n1 = style.a;
+							var only = _n1.a;
+							var $temp$functionName = functionName,
+								$temp$desiredKey = desiredKey,
+								$temp$style = only;
+							functionName = $temp$functionName;
+							desiredKey = $temp$desiredKey;
+							style = $temp$style;
+							continue getOverloadedProperty;
+						} else {
+							var _n2 = style.a;
+							var first = _n2.a;
+							var rest = _n2.b;
+							var $temp$functionName = functionName,
+								$temp$desiredKey = desiredKey,
+								$temp$style = rtfeldman$elm_css$Css$Preprocess$ApplyStyles(rest);
+							functionName = $temp$functionName;
+							desiredKey = $temp$desiredKey;
+							style = $temp$style;
+							continue getOverloadedProperty;
+						}
+					}
+			}
+		}
+	});
+var rtfeldman$elm_css$Css$Internal$IncompatibleUnits = 0;
+var rtfeldman$elm_css$Css$Internal$lengthForOverloadedProperty = A3(rtfeldman$elm_css$Css$Internal$lengthConverter, 0, '', 0);
+var rtfeldman$elm_css$Css$textAlign = function (fn) {
+	return A3(
+		rtfeldman$elm_css$Css$Internal$getOverloadedProperty,
+		'textAlign',
+		'text-align',
+		fn(rtfeldman$elm_css$Css$Internal$lengthForOverloadedProperty));
+};
+var rtfeldman$elm_css$Css$UnitlessInteger = 0;
+var rtfeldman$elm_css$Css$zero = {aB: 0, ag: 0, G: 0, ah: 0, ai: 0, O: 0, P: 0, aD: 0, J: 0, a0: 0, ar: '', aQ: 0, cV: '0'};
+var author$project$Views$Page$heading1 = A2(
+	rtfeldman$elm_css$Html$Styled$styled,
+	rtfeldman$elm_css$Html$Styled$h1,
+	_List_fromArray(
+		[
+			rtfeldman$elm_css$Css$textAlign(rtfeldman$elm_css$Css$center),
+			A2(
+			rtfeldman$elm_css$Css$margin2,
+			rtfeldman$elm_css$Css$em(1),
+			rtfeldman$elm_css$Css$zero),
+			rtfeldman$elm_css$Css$color(
+			rtfeldman$elm_css$Css$hex('000')),
+			rtfeldman$elm_css$Css$fontSize(
+			rtfeldman$elm_css$Css$px(60)),
+			rtfeldman$elm_css$Css$lineHeight(
+			rtfeldman$elm_css$Css$px(1))
+		]));
+var rtfeldman$elm_css$Css$block = {f: 0, cV: 'block'};
+var rtfeldman$elm_css$Css$display = rtfeldman$elm_css$Css$prop1('display');
+var rtfeldman$elm_css$Css$float = function (fn) {
+	return A3(
+		rtfeldman$elm_css$Css$Internal$getOverloadedProperty,
+		'float',
+		'float',
+		fn(rtfeldman$elm_css$Css$Internal$lengthForOverloadedProperty));
+};
+var rtfeldman$elm_css$Css$height = rtfeldman$elm_css$Css$prop1('height');
+var rtfeldman$elm_css$Css$left = rtfeldman$elm_css$Css$prop1('left');
+var rtfeldman$elm_css$Css$width = rtfeldman$elm_css$Css$prop1('width');
+var rtfeldman$elm_css$Html$Styled$div = rtfeldman$elm_css$Html$Styled$node('div');
+var rtfeldman$elm_css$Html$Styled$img = rtfeldman$elm_css$Html$Styled$node('img');
+var rtfeldman$elm_css$Html$Styled$span = rtfeldman$elm_css$Html$Styled$node('span');
+var rtfeldman$elm_css$Html$Styled$strong = rtfeldman$elm_css$Html$Styled$node('strong');
+var rtfeldman$elm_css$Html$Styled$Attributes$class = rtfeldman$elm_css$Html$Styled$Attributes$stringProperty('className');
+var rtfeldman$elm_css$Html$Styled$Attributes$css = rtfeldman$elm_css$Html$Styled$Internal$css;
+var rtfeldman$elm_css$Html$Styled$Attributes$src = function (url) {
+	return A2(rtfeldman$elm_css$Html$Styled$Attributes$stringProperty, 'src', url);
+};
+var rtfeldman$elm_css$Html$Styled$Attributes$target = rtfeldman$elm_css$Html$Styled$Attributes$stringProperty('target');
+var author$project$Views$Page$viewHeader = function (_n0) {
+	var activePage = _n0.bv;
+	var linkIf = F3(
+		function (page, route, caption) {
+			return _Utils_eq(page, activePage) ? A2(
+				rtfeldman$elm_css$Html$Styled$strong,
+				_List_Nil,
+				_List_fromArray(
+					[
+						rtfeldman$elm_css$Html$Styled$text(caption)
+					])) : A2(
+				rtfeldman$elm_css$Html$Styled$a,
+				_List_fromArray(
+					[
+						author$project$Route$href(route)
+					]),
+				_List_fromArray(
+					[
+						rtfeldman$elm_css$Html$Styled$text(caption)
+					]));
+		});
+	return A2(
+		rtfeldman$elm_css$Html$Styled$div,
+		_List_fromArray(
+			[
+				rtfeldman$elm_css$Html$Styled$Attributes$class('header')
+			]),
+		_List_fromArray(
+			[
+				A2(
+				author$project$Views$Page$heading1,
+				_List_Nil,
+				_List_fromArray(
+					[
+						rtfeldman$elm_css$Html$Styled$text('elm-kitchen')
+					])),
+				A2(
+				rtfeldman$elm_css$Html$Styled$div,
+				_List_fromArray(
+					[
+						rtfeldman$elm_css$Html$Styled$Attributes$css(
+						_List_fromArray(
+							[
+								rtfeldman$elm_css$Css$textAlign(rtfeldman$elm_css$Css$center)
+							]))
+					]),
+				_List_fromArray(
+					[
+						A3(linkIf, 0, 0, 'Home'),
+						rtfeldman$elm_css$Html$Styled$text(' | '),
+						A3(linkIf, 1, 1, 'Second page')
+					])),
+				A2(
+				author$project$Views$Page$githubIconStyle,
+				_List_fromArray(
+					[
+						rtfeldman$elm_css$Html$Styled$Attributes$target('_blank'),
+						rtfeldman$elm_css$Html$Styled$Attributes$href('https://github.com/allo-media/elm-kitchen')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						rtfeldman$elm_css$Html$Styled$img,
+						_List_fromArray(
+							[
+								rtfeldman$elm_css$Html$Styled$Attributes$src('https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ei-sc-github.svg/768px-Ei-sc-github.svg.png'),
+								rtfeldman$elm_css$Html$Styled$Attributes$css(
+								_List_fromArray(
+									[
+										rtfeldman$elm_css$Css$width(
+										rtfeldman$elm_css$Css$px(96)),
+										rtfeldman$elm_css$Css$height(
+										rtfeldman$elm_css$Css$px(96)),
+										rtfeldman$elm_css$Css$float(rtfeldman$elm_css$Css$left)
+									]))
+							]),
+						_List_Nil),
+						A2(
+						rtfeldman$elm_css$Html$Styled$span,
+						_List_fromArray(
+							[
+								rtfeldman$elm_css$Html$Styled$Attributes$css(
+								_List_fromArray(
+									[
+										rtfeldman$elm_css$Css$color(
+										rtfeldman$elm_css$Css$hex('000')),
+										rtfeldman$elm_css$Css$display(rtfeldman$elm_css$Css$block),
+										rtfeldman$elm_css$Css$textAlign(rtfeldman$elm_css$Css$center)
+									]))
+							]),
+						_List_fromArray(
+							[
+								rtfeldman$elm_css$Html$Styled$text('Github')
+							]))
+					]))
+			]));
+};
+var rtfeldman$elm_css$Css$sansSerif = {M: 0, cV: 'sans-serif'};
+var author$project$Views$Theme$theme = {
+	be: _List_fromArray(
+		[
+			'Lato',
+			function ($) {
+			return $.cV;
+		}(rtfeldman$elm_css$Css$sansSerif)
+		]),
+	bZ: rtfeldman$elm_css$Css$hex('b01246'),
+	bn: rtfeldman$elm_css$Css$hex('333'),
+	bo: rtfeldman$elm_css$Css$hex('fafafa')
+};
+var rtfeldman$elm_css$Css$auto = {ci: 0, a: 0, ab: 0, aZ: 0, cC: 0, ag: 0, G: 0, z: 0, aj: 0, w: 0, a6: 0, aq: 0, t: 0, cV: 'auto'};
+var rtfeldman$elm_css$Css$backgroundColor = function (c) {
+	return A2(rtfeldman$elm_css$Css$property, 'background-color', c.cV);
+};
+var rtfeldman$elm_css$Css$stringsToValue = function (list) {
+	return elm$core$List$isEmpty(list) ? {cV: 'none'} : {
+		cV: A2(
+			elm$core$String$join,
+			', ',
+			A2(
+				elm$core$List$map,
+				function (s) {
+					return s;
+				},
+				list))
+	};
+};
+var rtfeldman$elm_css$Css$fontFamilies = A2(
+	elm$core$Basics$composeL,
+	rtfeldman$elm_css$Css$prop1('font-family'),
+	rtfeldman$elm_css$Css$stringsToValue);
+var rtfeldman$elm_css$Css$PercentageUnits = 0;
+var rtfeldman$elm_css$Css$pct = A2(rtfeldman$elm_css$Css$Internal$lengthConverter, 0, '%');
+var rtfeldman$elm_css$Css$Structure$TypeSelector = elm$core$Basics$identity;
+var rtfeldman$elm_css$Css$Global$typeSelector = F2(
+	function (selectorStr, styles) {
+		var sequence = A2(rtfeldman$elm_css$Css$Structure$TypeSelectorSequence, selectorStr, _List_Nil);
+		var sel = A3(rtfeldman$elm_css$Css$Structure$Selector, sequence, _List_Nil, elm$core$Maybe$Nothing);
+		return _List_fromArray(
+			[
+				rtfeldman$elm_css$Css$Preprocess$StyleBlockDeclaration(
+				A3(rtfeldman$elm_css$Css$Preprocess$StyleBlock, sel, _List_Nil, styles))
+			]);
+	});
+var rtfeldman$elm_css$Css$Global$body = rtfeldman$elm_css$Css$Global$typeSelector('body');
+var elm$virtual_dom$VirtualDom$node = function (tag) {
+	return _VirtualDom_node(
+		_VirtualDom_noScript(tag));
+};
+var rtfeldman$elm_css$Css$Global$global = function (snippets) {
+	return rtfeldman$elm_css$VirtualDom$Styled$unstyledNode(
+		A3(
+			elm$virtual_dom$VirtualDom$node,
+			'style',
+			_List_Nil,
+			elm$core$List$singleton(
+				elm$virtual_dom$VirtualDom$text(
+					rtfeldman$elm_css$Css$Preprocess$Resolve$compile(
+						elm$core$List$singleton(
+							rtfeldman$elm_css$Css$Preprocess$stylesheet(snippets)))))));
+};
+var rtfeldman$elm_css$Css$Global$html = rtfeldman$elm_css$Css$Global$typeSelector('html');
+var rtfeldman$elm_css$Css$Global$img = rtfeldman$elm_css$Css$Global$typeSelector('img');
+var author$project$Views$Theme$defaultCss = rtfeldman$elm_css$Css$Global$global(
+	_List_fromArray(
+		[
+			rtfeldman$elm_css$Css$Global$html(
+			_List_fromArray(
+				[
+					rtfeldman$elm_css$Css$backgroundColor(author$project$Views$Theme$theme.bo),
+					rtfeldman$elm_css$Css$width(
+					rtfeldman$elm_css$Css$pct(100)),
+					rtfeldman$elm_css$Css$height(
+					rtfeldman$elm_css$Css$pct(100))
+				])),
+			rtfeldman$elm_css$Css$Global$body(
+			_List_fromArray(
+				[
+					rtfeldman$elm_css$Css$color(author$project$Views$Theme$theme.bn),
+					A2(
+					rtfeldman$elm_css$Css$margin2,
+					rtfeldman$elm_css$Css$pct(0),
+					rtfeldman$elm_css$Css$auto),
+					rtfeldman$elm_css$Css$width(
+					rtfeldman$elm_css$Css$px(640)),
+					rtfeldman$elm_css$Css$fontFamilies(author$project$Views$Theme$theme.be)
+				])),
+			rtfeldman$elm_css$Css$Global$img(
+			_List_fromArray(
+				[
+					rtfeldman$elm_css$Css$width(
+					rtfeldman$elm_css$Css$px(640))
+				]))
+		]));
+var rtfeldman$elm_css$Css$padding2 = rtfeldman$elm_css$Css$prop2('padding');
+var elm$virtual_dom$VirtualDom$keyedNode = function (tag) {
+	return _VirtualDom_keyedNode(
+		_VirtualDom_noScript(tag));
+};
+var elm$virtual_dom$VirtualDom$keyedNodeNS = F2(
+	function (namespace, tag) {
+		return A2(
+			_VirtualDom_keyedNodeNS,
+			namespace,
+			_VirtualDom_noScript(tag));
+	});
+var elm$virtual_dom$VirtualDom$nodeNS = function (tag) {
+	return _VirtualDom_nodeNS(
+		_VirtualDom_noScript(tag));
+};
+var rtfeldman$elm_css$VirtualDom$Styled$accumulateStyles = F2(
+	function (_n0, styles) {
+		var newStyles = _n0.b;
+		var classname = _n0.c;
+		return elm$core$List$isEmpty(newStyles) ? styles : A3(elm$core$Dict$insert, classname, newStyles, styles);
+	});
+var rtfeldman$elm_css$VirtualDom$Styled$extractUnstyledAttribute = function (_n0) {
+	var val = _n0.a;
+	return val;
+};
+var rtfeldman$elm_css$VirtualDom$Styled$accumulateKeyedStyledHtml = F2(
+	function (_n6, _n7) {
+		var key = _n6.a;
+		var html = _n6.b;
+		var pairs = _n7.a;
+		var styles = _n7.b;
+		switch (html.$) {
+			case 4:
+				var vdom = html.a;
+				return _Utils_Tuple2(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(key, vdom),
+						pairs),
+					styles);
+			case 0:
+				var elemType = html.a;
+				var properties = html.b;
+				var children = html.c;
+				var combinedStyles = A3(elm$core$List$foldl, rtfeldman$elm_css$VirtualDom$Styled$accumulateStyles, styles, properties);
+				var _n9 = A3(
+					elm$core$List$foldl,
+					rtfeldman$elm_css$VirtualDom$Styled$accumulateStyledHtml,
+					_Utils_Tuple2(_List_Nil, combinedStyles),
+					children);
+				var childNodes = _n9.a;
+				var finalStyles = _n9.b;
+				var vdom = A3(
+					elm$virtual_dom$VirtualDom$node,
+					elemType,
+					A2(elm$core$List$map, rtfeldman$elm_css$VirtualDom$Styled$extractUnstyledAttribute, properties),
+					elm$core$List$reverse(childNodes));
+				return _Utils_Tuple2(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(key, vdom),
+						pairs),
+					finalStyles);
+			case 1:
+				var ns = html.a;
+				var elemType = html.b;
+				var properties = html.c;
+				var children = html.d;
+				var combinedStyles = A3(elm$core$List$foldl, rtfeldman$elm_css$VirtualDom$Styled$accumulateStyles, styles, properties);
+				var _n10 = A3(
+					elm$core$List$foldl,
+					rtfeldman$elm_css$VirtualDom$Styled$accumulateStyledHtml,
+					_Utils_Tuple2(_List_Nil, combinedStyles),
+					children);
+				var childNodes = _n10.a;
+				var finalStyles = _n10.b;
+				var vdom = A4(
+					elm$virtual_dom$VirtualDom$nodeNS,
+					ns,
+					elemType,
+					A2(elm$core$List$map, rtfeldman$elm_css$VirtualDom$Styled$extractUnstyledAttribute, properties),
+					elm$core$List$reverse(childNodes));
+				return _Utils_Tuple2(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(key, vdom),
+						pairs),
+					finalStyles);
+			case 2:
+				var elemType = html.a;
+				var properties = html.b;
+				var children = html.c;
+				var combinedStyles = A3(elm$core$List$foldl, rtfeldman$elm_css$VirtualDom$Styled$accumulateStyles, styles, properties);
+				var _n11 = A3(
+					elm$core$List$foldl,
+					rtfeldman$elm_css$VirtualDom$Styled$accumulateKeyedStyledHtml,
+					_Utils_Tuple2(_List_Nil, combinedStyles),
+					children);
+				var childNodes = _n11.a;
+				var finalStyles = _n11.b;
+				var vdom = A3(
+					elm$virtual_dom$VirtualDom$keyedNode,
+					elemType,
+					A2(elm$core$List$map, rtfeldman$elm_css$VirtualDom$Styled$extractUnstyledAttribute, properties),
+					elm$core$List$reverse(childNodes));
+				return _Utils_Tuple2(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(key, vdom),
+						pairs),
+					finalStyles);
+			default:
+				var ns = html.a;
+				var elemType = html.b;
+				var properties = html.c;
+				var children = html.d;
+				var combinedStyles = A3(elm$core$List$foldl, rtfeldman$elm_css$VirtualDom$Styled$accumulateStyles, styles, properties);
+				var _n12 = A3(
+					elm$core$List$foldl,
+					rtfeldman$elm_css$VirtualDom$Styled$accumulateKeyedStyledHtml,
+					_Utils_Tuple2(_List_Nil, combinedStyles),
+					children);
+				var childNodes = _n12.a;
+				var finalStyles = _n12.b;
+				var vdom = A4(
+					elm$virtual_dom$VirtualDom$keyedNodeNS,
+					ns,
+					elemType,
+					A2(elm$core$List$map, rtfeldman$elm_css$VirtualDom$Styled$extractUnstyledAttribute, properties),
+					elm$core$List$reverse(childNodes));
+				return _Utils_Tuple2(
+					A2(
+						elm$core$List$cons,
+						_Utils_Tuple2(key, vdom),
+						pairs),
+					finalStyles);
+		}
+	});
+var rtfeldman$elm_css$VirtualDom$Styled$accumulateStyledHtml = F2(
+	function (html, _n0) {
+		var nodes = _n0.a;
+		var styles = _n0.b;
+		switch (html.$) {
+			case 4:
+				var vdomNode = html.a;
+				return _Utils_Tuple2(
+					A2(elm$core$List$cons, vdomNode, nodes),
+					styles);
+			case 0:
+				var elemType = html.a;
+				var properties = html.b;
+				var children = html.c;
+				var combinedStyles = A3(elm$core$List$foldl, rtfeldman$elm_css$VirtualDom$Styled$accumulateStyles, styles, properties);
+				var _n2 = A3(
+					elm$core$List$foldl,
+					rtfeldman$elm_css$VirtualDom$Styled$accumulateStyledHtml,
+					_Utils_Tuple2(_List_Nil, combinedStyles),
+					children);
+				var childNodes = _n2.a;
+				var finalStyles = _n2.b;
+				var vdomNode = A3(
+					elm$virtual_dom$VirtualDom$node,
+					elemType,
+					A2(elm$core$List$map, rtfeldman$elm_css$VirtualDom$Styled$extractUnstyledAttribute, properties),
+					elm$core$List$reverse(childNodes));
+				return _Utils_Tuple2(
+					A2(elm$core$List$cons, vdomNode, nodes),
+					finalStyles);
+			case 1:
+				var ns = html.a;
+				var elemType = html.b;
+				var properties = html.c;
+				var children = html.d;
+				var combinedStyles = A3(elm$core$List$foldl, rtfeldman$elm_css$VirtualDom$Styled$accumulateStyles, styles, properties);
+				var _n3 = A3(
+					elm$core$List$foldl,
+					rtfeldman$elm_css$VirtualDom$Styled$accumulateStyledHtml,
+					_Utils_Tuple2(_List_Nil, combinedStyles),
+					children);
+				var childNodes = _n3.a;
+				var finalStyles = _n3.b;
+				var vdomNode = A4(
+					elm$virtual_dom$VirtualDom$nodeNS,
+					ns,
+					elemType,
+					A2(elm$core$List$map, rtfeldman$elm_css$VirtualDom$Styled$extractUnstyledAttribute, properties),
+					elm$core$List$reverse(childNodes));
+				return _Utils_Tuple2(
+					A2(elm$core$List$cons, vdomNode, nodes),
+					finalStyles);
+			case 2:
+				var elemType = html.a;
+				var properties = html.b;
+				var children = html.c;
+				var combinedStyles = A3(elm$core$List$foldl, rtfeldman$elm_css$VirtualDom$Styled$accumulateStyles, styles, properties);
+				var _n4 = A3(
+					elm$core$List$foldl,
+					rtfeldman$elm_css$VirtualDom$Styled$accumulateKeyedStyledHtml,
+					_Utils_Tuple2(_List_Nil, combinedStyles),
+					children);
+				var childNodes = _n4.a;
+				var finalStyles = _n4.b;
+				var vdomNode = A3(
+					elm$virtual_dom$VirtualDom$keyedNode,
+					elemType,
+					A2(elm$core$List$map, rtfeldman$elm_css$VirtualDom$Styled$extractUnstyledAttribute, properties),
+					elm$core$List$reverse(childNodes));
+				return _Utils_Tuple2(
+					A2(elm$core$List$cons, vdomNode, nodes),
+					finalStyles);
+			default:
+				var ns = html.a;
+				var elemType = html.b;
+				var properties = html.c;
+				var children = html.d;
+				var combinedStyles = A3(elm$core$List$foldl, rtfeldman$elm_css$VirtualDom$Styled$accumulateStyles, styles, properties);
+				var _n5 = A3(
+					elm$core$List$foldl,
+					rtfeldman$elm_css$VirtualDom$Styled$accumulateKeyedStyledHtml,
+					_Utils_Tuple2(_List_Nil, combinedStyles),
+					children);
+				var childNodes = _n5.a;
+				var finalStyles = _n5.b;
+				var vdomNode = A4(
+					elm$virtual_dom$VirtualDom$keyedNodeNS,
+					ns,
+					elemType,
+					A2(elm$core$List$map, rtfeldman$elm_css$VirtualDom$Styled$extractUnstyledAttribute, properties),
+					elm$core$List$reverse(childNodes));
+				return _Utils_Tuple2(
+					A2(elm$core$List$cons, vdomNode, nodes),
+					finalStyles);
+		}
+	});
+var elm$core$Dict$singleton = F2(
+	function (key, value) {
+		return A5(elm$core$Dict$RBNode_elm_builtin, 1, key, value, elm$core$Dict$RBEmpty_elm_builtin, elm$core$Dict$RBEmpty_elm_builtin);
+	});
+var rtfeldman$elm_css$VirtualDom$Styled$stylesFromPropertiesHelp = F2(
+	function (candidate, properties) {
+		stylesFromPropertiesHelp:
+		while (true) {
+			if (!properties.b) {
+				return candidate;
+			} else {
+				var _n1 = properties.a;
+				var styles = _n1.b;
+				var classname = _n1.c;
+				var rest = properties.b;
+				if (elm$core$String$isEmpty(classname)) {
+					var $temp$candidate = candidate,
+						$temp$properties = rest;
+					candidate = $temp$candidate;
+					properties = $temp$properties;
+					continue stylesFromPropertiesHelp;
+				} else {
+					var $temp$candidate = elm$core$Maybe$Just(
+						_Utils_Tuple2(classname, styles)),
+						$temp$properties = rest;
+					candidate = $temp$candidate;
+					properties = $temp$properties;
+					continue stylesFromPropertiesHelp;
+				}
+			}
+		}
+	});
+var rtfeldman$elm_css$VirtualDom$Styled$stylesFromProperties = function (properties) {
+	var _n0 = A2(rtfeldman$elm_css$VirtualDom$Styled$stylesFromPropertiesHelp, elm$core$Maybe$Nothing, properties);
+	if (_n0.$ === 1) {
+		return elm$core$Dict$empty;
+	} else {
+		var _n1 = _n0.a;
+		var classname = _n1.a;
+		var styles = _n1.b;
+		return A2(elm$core$Dict$singleton, classname, styles);
+	}
+};
+var rtfeldman$elm_css$Css$Structure$ClassSelector = function (a) {
+	return {$: 0, a: a};
+};
+var rtfeldman$elm_css$VirtualDom$Styled$snippetFromPair = function (_n0) {
+	var classname = _n0.a;
+	var styles = _n0.b;
+	return A2(
+		rtfeldman$elm_css$VirtualDom$Styled$makeSnippet,
+		styles,
+		rtfeldman$elm_css$Css$Structure$UniversalSelectorSequence(
+			_List_fromArray(
+				[
+					rtfeldman$elm_css$Css$Structure$ClassSelector(classname)
+				])));
+};
+var rtfeldman$elm_css$VirtualDom$Styled$toDeclaration = function (dict) {
+	return rtfeldman$elm_css$Css$Preprocess$Resolve$compile(
+		elm$core$List$singleton(
+			rtfeldman$elm_css$Css$Preprocess$stylesheet(
+				A2(
+					elm$core$List$map,
+					rtfeldman$elm_css$VirtualDom$Styled$snippetFromPair,
+					elm$core$Dict$toList(dict)))));
+};
+var rtfeldman$elm_css$VirtualDom$Styled$toStyleNode = function (styles) {
+	return A3(
+		elm$virtual_dom$VirtualDom$node,
+		'style',
+		_List_Nil,
+		elm$core$List$singleton(
+			elm$virtual_dom$VirtualDom$text(
+				rtfeldman$elm_css$VirtualDom$Styled$toDeclaration(styles))));
+};
+var rtfeldman$elm_css$VirtualDom$Styled$unstyle = F3(
+	function (elemType, properties, children) {
+		var unstyledProperties = A2(elm$core$List$map, rtfeldman$elm_css$VirtualDom$Styled$extractUnstyledAttribute, properties);
+		var initialStyles = rtfeldman$elm_css$VirtualDom$Styled$stylesFromProperties(properties);
+		var _n0 = A3(
+			elm$core$List$foldl,
+			rtfeldman$elm_css$VirtualDom$Styled$accumulateStyledHtml,
+			_Utils_Tuple2(_List_Nil, initialStyles),
+			children);
+		var childNodes = _n0.a;
+		var styles = _n0.b;
+		var styleNode = rtfeldman$elm_css$VirtualDom$Styled$toStyleNode(styles);
+		return A3(
+			elm$virtual_dom$VirtualDom$node,
+			elemType,
+			unstyledProperties,
+			A2(
+				elm$core$List$cons,
+				styleNode,
+				elm$core$List$reverse(childNodes)));
+	});
+var rtfeldman$elm_css$VirtualDom$Styled$containsKey = F2(
+	function (key, pairs) {
+		containsKey:
+		while (true) {
+			if (!pairs.b) {
+				return false;
+			} else {
+				var _n1 = pairs.a;
+				var str = _n1.a;
+				var rest = pairs.b;
+				if (_Utils_eq(key, str)) {
+					return true;
+				} else {
+					var $temp$key = key,
+						$temp$pairs = rest;
+					key = $temp$key;
+					pairs = $temp$pairs;
+					continue containsKey;
+				}
+			}
+		}
+	});
+var rtfeldman$elm_css$VirtualDom$Styled$getUnusedKey = F2(
+	function (_default, pairs) {
+		getUnusedKey:
+		while (true) {
+			if (!pairs.b) {
+				return _default;
+			} else {
+				var _n1 = pairs.a;
+				var firstKey = _n1.a;
+				var rest = pairs.b;
+				var newKey = '_' + firstKey;
+				if (A2(rtfeldman$elm_css$VirtualDom$Styled$containsKey, newKey, rest)) {
+					var $temp$default = newKey,
+						$temp$pairs = rest;
+					_default = $temp$default;
+					pairs = $temp$pairs;
+					continue getUnusedKey;
+				} else {
+					return newKey;
+				}
+			}
+		}
+	});
+var rtfeldman$elm_css$VirtualDom$Styled$toKeyedStyleNode = F2(
+	function (allStyles, keyedChildNodes) {
+		var styleNodeKey = A2(rtfeldman$elm_css$VirtualDom$Styled$getUnusedKey, '_', keyedChildNodes);
+		var finalNode = rtfeldman$elm_css$VirtualDom$Styled$toStyleNode(allStyles);
+		return _Utils_Tuple2(styleNodeKey, finalNode);
+	});
+var rtfeldman$elm_css$VirtualDom$Styled$unstyleKeyed = F3(
+	function (elemType, properties, keyedChildren) {
+		var unstyledProperties = A2(elm$core$List$map, rtfeldman$elm_css$VirtualDom$Styled$extractUnstyledAttribute, properties);
+		var initialStyles = rtfeldman$elm_css$VirtualDom$Styled$stylesFromProperties(properties);
+		var _n0 = A3(
+			elm$core$List$foldl,
+			rtfeldman$elm_css$VirtualDom$Styled$accumulateKeyedStyledHtml,
+			_Utils_Tuple2(_List_Nil, initialStyles),
+			keyedChildren);
+		var keyedChildNodes = _n0.a;
+		var styles = _n0.b;
+		var keyedStyleNode = A2(rtfeldman$elm_css$VirtualDom$Styled$toKeyedStyleNode, styles, keyedChildNodes);
+		return A3(
+			elm$virtual_dom$VirtualDom$keyedNode,
+			elemType,
+			unstyledProperties,
+			A2(
+				elm$core$List$cons,
+				keyedStyleNode,
+				elm$core$List$reverse(keyedChildNodes)));
+	});
+var rtfeldman$elm_css$VirtualDom$Styled$unstyleKeyedNS = F4(
+	function (ns, elemType, properties, keyedChildren) {
+		var unstyledProperties = A2(elm$core$List$map, rtfeldman$elm_css$VirtualDom$Styled$extractUnstyledAttribute, properties);
+		var initialStyles = rtfeldman$elm_css$VirtualDom$Styled$stylesFromProperties(properties);
+		var _n0 = A3(
+			elm$core$List$foldl,
+			rtfeldman$elm_css$VirtualDom$Styled$accumulateKeyedStyledHtml,
+			_Utils_Tuple2(_List_Nil, initialStyles),
+			keyedChildren);
+		var keyedChildNodes = _n0.a;
+		var styles = _n0.b;
+		var keyedStyleNode = A2(rtfeldman$elm_css$VirtualDom$Styled$toKeyedStyleNode, styles, keyedChildNodes);
+		return A4(
+			elm$virtual_dom$VirtualDom$keyedNodeNS,
+			ns,
+			elemType,
+			unstyledProperties,
+			A2(
+				elm$core$List$cons,
+				keyedStyleNode,
+				elm$core$List$reverse(keyedChildNodes)));
+	});
+var rtfeldman$elm_css$VirtualDom$Styled$unstyleNS = F4(
+	function (ns, elemType, properties, children) {
+		var unstyledProperties = A2(elm$core$List$map, rtfeldman$elm_css$VirtualDom$Styled$extractUnstyledAttribute, properties);
+		var initialStyles = rtfeldman$elm_css$VirtualDom$Styled$stylesFromProperties(properties);
+		var _n0 = A3(
+			elm$core$List$foldl,
+			rtfeldman$elm_css$VirtualDom$Styled$accumulateStyledHtml,
+			_Utils_Tuple2(_List_Nil, initialStyles),
+			children);
+		var childNodes = _n0.a;
+		var styles = _n0.b;
+		var styleNode = rtfeldman$elm_css$VirtualDom$Styled$toStyleNode(styles);
+		return A4(
+			elm$virtual_dom$VirtualDom$nodeNS,
+			ns,
+			elemType,
+			unstyledProperties,
+			A2(
+				elm$core$List$cons,
+				styleNode,
+				elm$core$List$reverse(childNodes)));
+	});
+var rtfeldman$elm_css$VirtualDom$Styled$toUnstyled = function (vdom) {
+	switch (vdom.$) {
+		case 4:
+			var plainNode = vdom.a;
+			return plainNode;
+		case 0:
+			var elemType = vdom.a;
+			var properties = vdom.b;
+			var children = vdom.c;
+			return A3(rtfeldman$elm_css$VirtualDom$Styled$unstyle, elemType, properties, children);
+		case 1:
+			var ns = vdom.a;
+			var elemType = vdom.b;
+			var properties = vdom.c;
+			var children = vdom.d;
+			return A4(rtfeldman$elm_css$VirtualDom$Styled$unstyleNS, ns, elemType, properties, children);
+		case 2:
+			var elemType = vdom.a;
+			var properties = vdom.b;
+			var children = vdom.c;
+			return A3(rtfeldman$elm_css$VirtualDom$Styled$unstyleKeyed, elemType, properties, children);
+		default:
+			var ns = vdom.a;
+			var elemType = vdom.b;
+			var properties = vdom.c;
+			var children = vdom.d;
+			return A4(rtfeldman$elm_css$VirtualDom$Styled$unstyleKeyedNS, ns, elemType, properties, children);
+	}
+};
+var rtfeldman$elm_css$Html$Styled$toUnstyled = rtfeldman$elm_css$VirtualDom$Styled$toUnstyled;
+var author$project$Views$Page$frame = F2(
+	function (config, _n0) {
+		var title = _n0.a;
+		var content = _n0.b;
+		return {
+			cl: _List_fromArray(
+				[
+					rtfeldman$elm_css$Html$Styled$toUnstyled(
+					A2(
+						rtfeldman$elm_css$Html$Styled$div,
+						_List_Nil,
+						_List_fromArray(
+							[
+								author$project$Views$Theme$defaultCss,
+								author$project$Views$Page$viewHeader(config),
+								A2(
+								rtfeldman$elm_css$Html$Styled$div,
+								_List_fromArray(
+									[
+										rtfeldman$elm_css$Html$Styled$Attributes$css(
+										_List_fromArray(
+											[
+												A2(
+												rtfeldman$elm_css$Css$padding2,
+												rtfeldman$elm_css$Css$em(1),
+												rtfeldman$elm_css$Css$zero)
+											]))
+									]),
+								content)
+							])))
+				]),
+			cR: title + ' | elm-kitchen'
+		};
+	});
+var elm$virtual_dom$VirtualDom$map = _VirtualDom_map;
+var rtfeldman$elm_css$VirtualDom$Styled$KeyedNode = F3(
+	function (a, b, c) {
+		return {$: 2, a: a, b: b, c: c};
+	});
+var rtfeldman$elm_css$VirtualDom$Styled$KeyedNodeNS = F4(
+	function (a, b, c, d) {
+		return {$: 3, a: a, b: b, c: c, d: d};
+	});
+var rtfeldman$elm_css$VirtualDom$Styled$NodeNS = F4(
+	function (a, b, c, d) {
+		return {$: 1, a: a, b: b, c: c, d: d};
+	});
+var elm$virtual_dom$VirtualDom$mapAttribute = _VirtualDom_mapAttribute;
+var rtfeldman$elm_css$VirtualDom$Styled$mapAttribute = F2(
+	function (transform, _n0) {
+		var prop = _n0.a;
+		var styles = _n0.b;
+		var classname = _n0.c;
+		return A3(
+			rtfeldman$elm_css$VirtualDom$Styled$Attribute,
+			A2(elm$virtual_dom$VirtualDom$mapAttribute, transform, prop),
+			styles,
+			classname);
+	});
+var rtfeldman$elm_css$VirtualDom$Styled$map = F2(
+	function (transform, vdomNode) {
+		switch (vdomNode.$) {
+			case 0:
+				var elemType = vdomNode.a;
+				var properties = vdomNode.b;
+				var children = vdomNode.c;
+				return A3(
+					rtfeldman$elm_css$VirtualDom$Styled$Node,
+					elemType,
+					A2(
+						elm$core$List$map,
+						rtfeldman$elm_css$VirtualDom$Styled$mapAttribute(transform),
+						properties),
+					A2(
+						elm$core$List$map,
+						rtfeldman$elm_css$VirtualDom$Styled$map(transform),
+						children));
+			case 1:
+				var ns = vdomNode.a;
+				var elemType = vdomNode.b;
+				var properties = vdomNode.c;
+				var children = vdomNode.d;
+				return A4(
+					rtfeldman$elm_css$VirtualDom$Styled$NodeNS,
+					ns,
+					elemType,
+					A2(
+						elm$core$List$map,
+						rtfeldman$elm_css$VirtualDom$Styled$mapAttribute(transform),
+						properties),
+					A2(
+						elm$core$List$map,
+						rtfeldman$elm_css$VirtualDom$Styled$map(transform),
+						children));
+			case 2:
+				var elemType = vdomNode.a;
+				var properties = vdomNode.b;
+				var children = vdomNode.c;
+				return A3(
+					rtfeldman$elm_css$VirtualDom$Styled$KeyedNode,
+					elemType,
+					A2(
+						elm$core$List$map,
+						rtfeldman$elm_css$VirtualDom$Styled$mapAttribute(transform),
+						properties),
+					A2(
+						elm$core$List$map,
+						function (_n1) {
+							var key = _n1.a;
+							var child = _n1.b;
+							return _Utils_Tuple2(
+								key,
+								A2(rtfeldman$elm_css$VirtualDom$Styled$map, transform, child));
+						},
+						children));
+			case 3:
+				var ns = vdomNode.a;
+				var elemType = vdomNode.b;
+				var properties = vdomNode.c;
+				var children = vdomNode.d;
+				return A4(
+					rtfeldman$elm_css$VirtualDom$Styled$KeyedNodeNS,
+					ns,
+					elemType,
+					A2(
+						elm$core$List$map,
+						rtfeldman$elm_css$VirtualDom$Styled$mapAttribute(transform),
+						properties),
+					A2(
+						elm$core$List$map,
+						function (_n2) {
+							var key = _n2.a;
+							var child = _n2.b;
+							return _Utils_Tuple2(
+								key,
+								A2(rtfeldman$elm_css$VirtualDom$Styled$map, transform, child));
+						},
+						children));
+			default:
+				var vdom = vdomNode.a;
+				return rtfeldman$elm_css$VirtualDom$Styled$Unstyled(
+					A2(elm$virtual_dom$VirtualDom$map, transform, vdom));
+		}
+	});
+var rtfeldman$elm_css$Html$Styled$map = rtfeldman$elm_css$VirtualDom$Styled$map;
+var author$project$Main$view = function (model) {
+	var pageConfig = author$project$Views$Page$Config(model.T);
+	var mapMsg = F2(
+		function (msg, _n1) {
+			var title = _n1.a;
+			var content = _n1.b;
+			return _Utils_Tuple2(
+				title,
+				A2(
+					elm$core$List$map,
+					rtfeldman$elm_css$Html$Styled$map(msg),
+					content));
+		});
+	var _n0 = model.v;
+	switch (_n0.$) {
+		case 1:
+			var homeModel = _n0.a;
+			return A2(
+				author$project$Views$Page$frame,
+				pageConfig(0),
+				A2(
+					mapMsg,
+					author$project$Main$HomeMsg,
+					A2(author$project$Page$Home$view, model.T, homeModel)));
+		case 2:
+			return A2(
+				author$project$Views$Page$frame,
+				pageConfig(1),
+				author$project$Page$SecondPage$view(model.T));
+		case 3:
+			return A2(
+				author$project$Views$Page$frame,
+				pageConfig(2),
+				_Utils_Tuple2(
+					'Not Found',
+					_List_fromArray(
+						[
+							rtfeldman$elm_css$Html$Styled$text('Not found')
+						])));
+		default:
+			return A2(
+				author$project$Views$Page$frame,
+				pageConfig(2),
+				_Utils_Tuple2('', _List_Nil));
+	}
+};
+var elm$browser$Browser$application = _Browser_application;
+var author$project$Main$main = elm$browser$Browser$application(
+	{cB: author$project$Main$init, cG: author$project$Main$UrlChanged, cH: author$project$Main$UrlRequested, cP: author$project$Main$subscriptions, cS: author$project$Main$update, cW: author$project$Main$view});
+_Platform_export({'Main':{'init':author$project$Main$main(
+	elm$json$Json$Decode$succeed(
+		{}))(0)}});}(this));
