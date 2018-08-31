@@ -8,11 +8,8 @@ This is a modest attempt at providing a simplistic yet opinionated Elm [SPA](htt
 
 - Elm 0.19 ready
 - Multiple pages navigation & routing
-- Flags
-- Session
-- Development server with hot reloading
-- Sample HTTP request
-- Default test layout
+- Live development server with hot reloading
+- [elm-test](https://github.com/elm-community/elm-test) support
 - [elm-css](http://package.elm-lang.org/packages/rtfeldman/elm-css/latest) support
 
 ## Code organization
@@ -20,20 +17,20 @@ This is a modest attempt at providing a simplistic yet opinionated Elm [SPA](htt
 The application stores Elm source code in the `src` directory:
 
 ```
+$ tree --dirsfirst skeleton/src
 src
 ├── Data
-│   ├── Counter.elm
-│   ├── Date.elm
 │   └── Session.elm
-├── Main.elm
 ├── Page
-│   └── Home.elm
+│   ├── Home.elm
+│   └── SecondPage.elm
 ├── Request
 │   └── Github.elm
-├── Route.elm
-└── Views
-    ├── Page.elm
-    └── Theme.elm
+├── Views
+│   ├── Page.elm
+│   └── Theme.elm
+├── Main.elm
+└── Route.elm
 ```
 
 Richard Feldman explains this organization in a [dedicated blog post](https://dev.to/rtfeldman/tour-of-an-open-source-elm-spa).
@@ -55,7 +52,7 @@ To start the development server:
 $ npm start
 ```
 
-This will serve and recompile Elm and SCSS code when source files change. Served application is available at [localhost:3000](http://localhost:3000/).
+This will serve and recompile Elm code when source files change. Served application is available at [localhost:3000](http://localhost:3000/).
 
 ## Tests
 
