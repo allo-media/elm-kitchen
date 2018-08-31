@@ -5,7 +5,7 @@ import Browser.Navigation as Nav
 import Html.Styled exposing (Attribute)
 import Html.Styled.Attributes as Attr
 import Url exposing (Url)
-import Url.Parser as Parser exposing ((</>), Parser, oneOf, s, string)
+import Url.Parser as Parser exposing ((</>), Parser)
 
 
 type Route
@@ -15,15 +15,10 @@ type Route
 
 parser : Parser (Route -> a) a
 parser =
-    oneOf
+    Parser.oneOf
         [ Parser.map Home Parser.top
-        , Parser.map SecondPage (s "second-page")
+        , Parser.map SecondPage (Parser.s "second-page")
         ]
-
-
-href : Route -> Attribute msg
-href route =
-    Attr.href (routeToString route)
 
 
 fromUrl : Url -> Maybe Route
@@ -32,8 +27,18 @@ fromUrl url =
         |> Parser.parse parser
 
 
-routeToString : Route -> String
-routeToString route =
+href : Route -> Attribute msg
+href route =
+    Attr.href (toString route)
+
+
+pushUrl : Nav.Key -> Route -> Cmd msg
+pushUrl key route =
+    Nav.pushUrl key (toString route)
+
+
+toString : Route -> String
+toString route =
     let
         pieces =
             case route of
@@ -44,8 +49,3 @@ routeToString route =
                     [ "second-page" ]
     in
     "#/" ++ String.join "/" pieces
-
-
-pushUrl : Nav.Key -> Route -> Cmd msg
-pushUrl key route =
-    Nav.pushUrl key (routeToString route)
