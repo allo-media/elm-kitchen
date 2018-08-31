@@ -8,7 +8,6 @@
     "copy-assets": "rimraf build && mkdir build && cp -r public/* build",
     "debug": "elm-live src/Main.elm --debug --port=3000 --dir=public/ --output=public/app.js",
     "deploy": "npm run build && gh-pages --dist build/",
-    "install": "elm make",
     "live": "elm-live src/Main.elm --port=3000 --dir=public/ --output=public/app.js",
     "start": "npm run live",
     "test": "elm-test"
