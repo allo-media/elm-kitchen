@@ -11,7 +11,7 @@ import Views.Theme exposing (Element, defaultCss)
 
 type ActivePage
     = Home
-    | SecondPage
+    | Counter
     | Other
 
 
@@ -75,7 +75,7 @@ viewHeader { activePage } =
         , div [ css [ textAlign center ] ]
             [ linkIf Home Route.Home "Home"
             , text " | "
-            , linkIf SecondPage Route.SecondPage "Second page"
+            , linkIf Counter Route.Counter "Second page"
             ]
         , githubIconStyle
             [ Html.Styled.Attributes.target "_blank"

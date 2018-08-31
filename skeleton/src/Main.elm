@@ -4,8 +4,8 @@ import Browser exposing (Document)
 import Browser.Navigation as Nav
 import Data.Session exposing (Session)
 import Html.Styled as Html exposing (..)
+import Page.Counter as Counter
 import Page.Home as Home
-import Page.SecondPage as SecondPage
 import Route exposing (Route)
 import Url exposing (Url)
 import Views.Page as Page
@@ -18,7 +18,7 @@ type alias Flags =
 type Page
     = Blank
     | HomePage Home.Model
-    | SecondPage
+    | CounterPage Counter.Model
     | NotFound
 
 
@@ -31,6 +31,7 @@ type alias Model =
 
 type Msg
     = HomeMsg Home.Msg
+    | CounterMsg Counter.Msg
     | RouteChanged (Maybe Route)
     | UrlChanged Url
     | UrlRequested Browser.UrlRequest
@@ -38,6 +39,16 @@ type Msg
 
 setRoute : Maybe Route -> Model -> ( Model, Cmd Msg )
 setRoute maybeRoute model =
+    let
+        toPage page subInit subMsg =
+            let
+                ( subModel, subCmds ) =
+                    subInit model.session
+            in
+            ( { model | page = page subModel }
+            , Cmd.map subMsg subCmds
+            )
+    in
     case maybeRoute of
         Nothing ->
             ( { model | page = NotFound }
@@ -45,18 +56,10 @@ setRoute maybeRoute model =
             )
 
         Just Route.Home ->
-            let
-                ( homeModel, homeCmds ) =
-                    Home.init model.session
-            in
-            ( { model | page = HomePage homeModel }
-            , Cmd.map HomeMsg homeCmds
-            )
+            toPage HomePage Home.init HomeMsg
 
-        Just Route.SecondPage ->
-            ( { model | page = SecondPage }
-            , Cmd.none
-            )
+        Just Route.Counter ->
+            toPage CounterPage Counter.init CounterMsg
 
 
 init : Flags -> Url -> Nav.Key -> ( Model, Cmd Msg )
@@ -89,6 +92,9 @@ update msg ({ page, session } as model) =
     case ( msg, page ) of
         ( HomeMsg homeMsg, HomePage homeModel ) ->
             toPage HomePage HomeMsg (Home.update session) homeMsg homeModel
+
+        ( CounterMsg counterMsg, CounterPage counterModel ) ->
+            toPage CounterPage CounterMsg (Counter.update session) counterMsg counterModel
 
         ( RouteChanged route, _ ) ->
             setRoute route model
@@ -125,7 +131,7 @@ subscriptions model =
         HomePage _ ->
             Sub.none
 
-        SecondPage ->
+        CounterPage _ ->
             Sub.none
 
         NotFound ->
@@ -150,9 +156,10 @@ view model =
                 |> mapMsg HomeMsg
                 |> Page.frame (pageConfig Page.Home)
 
-        SecondPage ->
-            SecondPage.view model.session
-                |> Page.frame (pageConfig Page.SecondPage)
+        CounterPage counterModel ->
+            Counter.view model.session counterModel
+                |> mapMsg CounterMsg
+                |> Page.frame (pageConfig Page.Counter)
 
         NotFound ->
             ( "Not Found", [ Html.text "Not found" ] )
