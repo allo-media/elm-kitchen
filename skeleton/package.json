@@ -15,7 +15,7 @@
     "test": "elm-test"
   },
   "author": "Allo-Media",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "elm": "^0.19.0",
     "elm-format": "^0.8.0",
