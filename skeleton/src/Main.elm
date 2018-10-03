@@ -32,7 +32,6 @@ type alias Model =
 type Msg
     = HomeMsg Home.Msg
     | CounterMsg Counter.Msg
-    | RouteChanged (Maybe Route)
     | UrlChanged Url
     | UrlRequested Browser.UrlRequest
 
@@ -96,33 +95,22 @@ update msg ({ page, session } as model) =
         ( CounterMsg counterMsg, CounterPage counterModel ) ->
             toPage CounterPage CounterMsg (Counter.update session) counterMsg counterModel
 
-        ( RouteChanged route, _ ) ->
-            setRoute route model
-
         ( UrlRequested urlRequest, _ ) ->
             case urlRequest of
                 Browser.Internal url ->
-                    ( model
-                    , Nav.pushUrl model.navKey (Url.toString url)
-                    )
+                    ( model, Nav.pushUrl model.navKey (Url.toString url) )
 
                 Browser.External href ->
-                    ( model
-                    , Nav.load href
-                    )
+                    ( model, Nav.load href )
 
         ( UrlChanged url, _ ) ->
             setRoute (Route.fromUrl url) model
 
         ( _, NotFound ) ->
-            ( { model | page = NotFound }
-            , Cmd.none
-            )
+            ( { model | page = NotFound }, Cmd.none )
 
         ( _, _ ) ->
-            ( model
-            , Cmd.none
-            )
+            ( model, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
