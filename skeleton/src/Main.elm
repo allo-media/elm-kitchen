@@ -23,8 +23,7 @@ type Page
 
 
 type alias Model =
-    { navKey : Nav.Key
-    , page : Page
+    { page : Page
     , session : Session
     }
 
@@ -68,11 +67,10 @@ init flags url navKey =
         -- you'll usually want to retrieve and decode serialized session
         -- information from flags here
         session =
-            {}
+            { navKey = navKey }
     in
     setRoute (Route.fromUrl url)
-        { navKey = navKey
-        , page = Blank
+        { page = Blank
         , session = session
         }
 
@@ -103,7 +101,7 @@ update msg ({ page, session } as model) =
             case urlRequest of
                 Browser.Internal url ->
                     ( model
-                    , Nav.pushUrl model.navKey (Url.toString url)
+                    , Nav.pushUrl session.navKey (Url.toString url)
                     )
 
                 Browser.External href ->
