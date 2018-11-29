@@ -16,16 +16,17 @@ type Msg
     = Inc
 
 
-init : Context -> ( Model, Cmd Msg )
-init _ =
-    ( 0, Cmd.none )
+init : Context -> ( Model, Context, Cmd Msg )
+init context =
+    ( 0, context, Cmd.none )
 
 
-update : Context -> Msg -> Model -> ( Model, Cmd Msg )
-update _ msg model =
+update : Context -> Msg -> Model -> ( Model, Context, Cmd Msg )
+update context msg model =
     case msg of
         Inc ->
             ( model + 1
+            , context
             , Cmd.none
             )
 

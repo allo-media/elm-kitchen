@@ -41,10 +41,10 @@ setRoute maybeRoute model =
     let
         toPage page subInit subMsg =
             let
-                ( subModel, subCmds ) =
+                ( subModel, newContext, subCmds ) =
                     subInit model.context
             in
-            ( { model | page = page subModel }
+            ( { model | context = newContext, page = page subModel }
             , Cmd.map subMsg subCmds
             )
     in
@@ -80,19 +80,19 @@ update msg ({ page, context } as model) =
     let
         toPage toModel toMsg subUpdate subMsg subModel =
             let
-                ( newModel, newCmd ) =
-                    subUpdate subMsg subModel
+                ( newModel, newContext, newCmd ) =
+                    subUpdate context subMsg subModel
             in
-            ( { model | page = toModel newModel }
+            ( { model | context = newContext, page = toModel newModel }
             , Cmd.map toMsg newCmd
             )
     in
     case ( msg, page ) of
         ( HomeMsg homeMsg, HomePage homeModel ) ->
-            toPage HomePage HomeMsg (Home.update context) homeMsg homeModel
+            toPage HomePage HomeMsg Home.update homeMsg homeModel
 
         ( CounterMsg counterMsg, CounterPage counterModel ) ->
-            toPage CounterPage CounterMsg (Counter.update context) counterMsg counterModel
+            toPage CounterPage CounterMsg Counter.update counterMsg counterModel
 
         ( UrlRequested urlRequest, _ ) ->
             case urlRequest of
