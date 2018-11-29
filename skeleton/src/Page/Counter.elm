@@ -1,7 +1,7 @@
 module Page.Counter exposing (Model, Msg, init, update, view)
 
 import Css exposing (fontSize, marginRight)
-import Data.Context exposing (Context)
+import Data.Shared exposing (Shared)
 import Html.Styled as Html exposing (..)
 import Html.Styled.Attributes exposing (css)
 import Html.Styled.Events exposing (onClick)
@@ -16,22 +16,22 @@ type Msg
     = Inc
 
 
-init : Context -> ( Model, Context, Cmd Msg )
-init context =
-    ( 0, context, Cmd.none )
+init : Shared -> ( Model, Shared, Cmd Msg )
+init shared =
+    ( 0, shared, Cmd.none )
 
 
-update : Context -> Msg -> Model -> ( Model, Context, Cmd Msg )
-update context msg model =
+update : Shared -> Msg -> Model -> ( Model, Shared, Cmd Msg )
+update shared msg model =
     case msg of
         Inc ->
             ( model + 1
-            , context
+            , shared
             , Cmd.none
             )
 
 
-view : Context -> Model -> ( String, List (Html Msg) )
+view : Shared -> Model -> ( String, List (Html Msg) )
 view _ model =
     ( "Second Page"
     , [ h1 [] [ text "Second page" ]

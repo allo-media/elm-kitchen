@@ -2,8 +2,8 @@ module Views.Page exposing (ActivePage(..), Config, frame)
 
 import Browser exposing (Document)
 import Css exposing (..)
-import Data.Context exposing (Context)
 import Data.Session exposing (Session)
+import Data.Shared exposing (Shared)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (class, css, href, src)
 import Route
@@ -17,7 +17,7 @@ type ActivePage
 
 
 type alias Config =
-    { context : Context
+    { shared : Shared
     , activePage : ActivePage
     }
 

@@ -2,8 +2,8 @@ module Main exposing (main)
 
 import Browser exposing (Document)
 import Browser.Navigation as Nav
-import Data.Context exposing (Context)
 import Data.Session exposing (Session)
+import Data.Shared exposing (Shared)
 import Html.Styled as Html exposing (..)
 import Page.Counter as Counter
 import Page.Home as Home
@@ -25,7 +25,7 @@ type Page
 
 type alias Model =
     { page : Page
-    , context : Context
+    , shared : Shared
     }
 
 
@@ -41,10 +41,10 @@ setRoute maybeRoute model =
     let
         toPage page subInit subMsg =
             let
-                ( subModel, newContext, subCmds ) =
-                    subInit model.context
+                ( subModel, newShared, subCmds ) =
+                    subInit model.shared
             in
-            ( { model | context = newContext, page = page subModel }
+            ( { model | shared = newShared, page = page subModel }
             , Cmd.map subMsg subCmds
             )
     in
@@ -64,26 +64,26 @@ setRoute maybeRoute model =
 init : Flags -> Url -> Nav.Key -> ( Model, Cmd Msg )
 init flags url navKey =
     let
-        context =
+        shared =
             { navKey = navKey
             , session = {}
             }
     in
     setRoute (Route.fromUrl url)
         { page = Blank
-        , context = context
+        , shared = shared
         }
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update msg ({ page, context } as model) =
+update msg ({ page, shared } as model) =
     let
         toPage toModel toMsg subUpdate subMsg subModel =
             let
-                ( newModel, newContext, newCmd ) =
-                    subUpdate context subMsg subModel
+                ( newModel, newShared, newCmd ) =
+                    subUpdate shared subMsg subModel
             in
-            ( { model | context = newContext, page = toModel newModel }
+            ( { model | shared = newShared, page = toModel newModel }
             , Cmd.map toMsg newCmd
             )
     in
@@ -97,7 +97,7 @@ update msg ({ page, context } as model) =
         ( UrlRequested urlRequest, _ ) ->
             case urlRequest of
                 Browser.Internal url ->
-                    ( model, Nav.pushUrl context.navKey (Url.toString url) )
+                    ( model, Nav.pushUrl shared.navKey (Url.toString url) )
 
                 Browser.External href ->
                     ( model, Nav.load href )
@@ -129,22 +129,22 @@ subscriptions model =
 
 
 view : Model -> Document Msg
-view { page, context } =
+view { page, shared } =
     let
         pageConfig =
-            Page.Config context
+            Page.Config shared
 
         mapMsg msg ( title, content ) =
             ( title, content |> List.map (Html.map msg) )
     in
     case page of
         HomePage homeModel ->
-            Home.view context homeModel
+            Home.view shared homeModel
                 |> mapMsg HomeMsg
                 |> Page.frame (pageConfig Page.Home)
 
         CounterPage counterModel ->
-            Counter.view context counterModel
+            Counter.view shared counterModel
                 |> mapMsg CounterMsg
                 |> Page.frame (pageConfig Page.Counter)
 

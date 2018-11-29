@@ -1,10 +1,10 @@
-module Data.Context exposing (Context)
+module Data.Shared exposing (Shared)
 
 import Browser.Navigation as Nav
 import Data.Session exposing (Session)
 
 
-type alias Context =
+type alias Shared =
     { navKey : Nav.Key
     , session : Session
     }
