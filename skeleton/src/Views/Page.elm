@@ -2,6 +2,7 @@ module Views.Page exposing (ActivePage(..), Config, frame)
 
 import Browser exposing (Document)
 import Css exposing (..)
+import Data.Context exposing (Context)
 import Data.Session exposing (Session)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (class, css, href, src)
@@ -16,7 +17,7 @@ type ActivePage
 
 
 type alias Config =
-    { session : Session
+    { context : Context
     , activePage : ActivePage
     }
 

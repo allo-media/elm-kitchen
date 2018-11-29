@@ -2,6 +2,7 @@ module Main exposing (main)
 
 import Browser exposing (Document)
 import Browser.Navigation as Nav
+import Data.Context exposing (Context)
 import Data.Session exposing (Session)
 import Html.Styled as Html exposing (..)
 import Page.Counter as Counter
@@ -24,7 +25,7 @@ type Page
 
 type alias Model =
     { page : Page
-    , session : Session
+    , context : Context
     }
 
 
@@ -41,7 +42,7 @@ setRoute maybeRoute model =
         toPage page subInit subMsg =
             let
                 ( subModel, subCmds ) =
-                    subInit model.session
+                    subInit model.context
             in
             ( { model | page = page subModel }
             , Cmd.map subMsg subCmds
@@ -63,19 +64,19 @@ setRoute maybeRoute model =
 init : Flags -> Url -> Nav.Key -> ( Model, Cmd Msg )
 init flags url navKey =
     let
-        -- you'll usually want to retrieve and decode serialized session
-        -- information from flags here
-        session =
-            { navKey = navKey }
+        context =
+            { navKey = navKey
+            , session = {}
+            }
     in
     setRoute (Route.fromUrl url)
         { page = Blank
-        , session = session
+        , context = context
         }
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update msg ({ page, session } as model) =
+update msg ({ page, context } as model) =
     let
         toPage toModel toMsg subUpdate subMsg subModel =
             let
@@ -88,15 +89,15 @@ update msg ({ page, session } as model) =
     in
     case ( msg, page ) of
         ( HomeMsg homeMsg, HomePage homeModel ) ->
-            toPage HomePage HomeMsg (Home.update session) homeMsg homeModel
+            toPage HomePage HomeMsg (Home.update context) homeMsg homeModel
 
         ( CounterMsg counterMsg, CounterPage counterModel ) ->
-            toPage CounterPage CounterMsg (Counter.update session) counterMsg counterModel
+            toPage CounterPage CounterMsg (Counter.update context) counterMsg counterModel
 
         ( UrlRequested urlRequest, _ ) ->
             case urlRequest of
                 Browser.Internal url ->
-                    ( model, Nav.pushUrl session.navKey (Url.toString url) )
+                    ( model, Nav.pushUrl context.navKey (Url.toString url) )
 
                 Browser.External href ->
                     ( model, Nav.load href )
@@ -128,22 +129,22 @@ subscriptions model =
 
 
 view : Model -> Document Msg
-view model =
+view { page, context } =
     let
         pageConfig =
-            Page.Config model.session
+            Page.Config context
 
         mapMsg msg ( title, content ) =
             ( title, content |> List.map (Html.map msg) )
     in
-    case model.page of
+    case page of
         HomePage homeModel ->
-            Home.view model.session homeModel
+            Home.view context homeModel
                 |> mapMsg HomeMsg
                 |> Page.frame (pageConfig Page.Home)
 
         CounterPage counterModel ->
-            Counter.view model.session counterModel
+            Counter.view context counterModel
                 |> mapMsg CounterMsg
                 |> Page.frame (pageConfig Page.Counter)
 

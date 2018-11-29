@@ -1,7 +1,7 @@
 module Page.Home exposing (Model, Msg(..), init, update, view)
 
 import Browser exposing (Document)
-import Data.Session exposing (Session)
+import Data.Context exposing (Context)
 import Html.Styled as Html exposing (..)
 import Http
 import Markdown
@@ -18,8 +18,8 @@ type Msg
     = ReadmeReceived (Result Http.Error String)
 
 
-init : Session -> ( Model, Cmd Msg )
-init session =
+init : Context -> ( Model, Cmd Msg )
+init { session } =
     ( { readme = "Retrieving README from github" }
     , Github.getReadme session |> Http.send ReadmeReceived
     )
@@ -34,7 +34,7 @@ There was an error attempting to retrieve README information:
 > *""" ++ Github.errorToString error ++ "*"
 
 
-update : Session -> Msg -> Model -> ( Model, Cmd Msg )
+update : Context -> Msg -> Model -> ( Model, Cmd Msg )
 update _ msg model =
     case msg of
         ReadmeReceived (Ok readme) ->
@@ -48,7 +48,7 @@ update _ msg model =
             )
 
 
-view : Session -> Model -> ( String, List (Html Msg) )
+view : Context -> Model -> ( String, List (Html Msg) )
 view _ model =
     ( "Home"
     , [ model.readme
