@@ -88,9 +88,16 @@ update msg ({ page, session } as model) =
             let
                 ( newModel, newSession, newCmd ) =
                     subUpdate session subMsg subModel
+
+                storeCmd =
+                    if session.store /= newSession.store then
+                        newSession.store |> Session.serializeStore |> Ports.saveStore
+
+                    else
+                        Cmd.none
             in
             ( { model | session = newSession, page = toModel newModel }
-            , Cmd.map toMsg newCmd
+            , Cmd.map toMsg (Cmd.batch [ newCmd, storeCmd ])
             )
     in
     case ( msg, page ) of
