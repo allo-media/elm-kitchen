@@ -2,9 +2,10 @@ module Main exposing (main)
 
 import Browser exposing (Document)
 import Browser.Navigation as Nav
-import Data.Session exposing (Session)
-import Data.Shared exposing (Shared)
+import Data.Session as Session exposing (Session)
 import Html.Styled as Html exposing (..)
+import Json.Decode as Decode
+import Json.Encode as Encode
 import Page.Counter as Counter
 import Page.Home as Home
 import Route exposing (Route)
@@ -13,7 +14,9 @@ import Views.Page as Page
 
 
 type alias Flags =
-    {}
+    { clientUrl : String
+    , store : String
+    }
 
 
 type Page
@@ -25,7 +28,7 @@ type Page
 
 type alias Model =
     { page : Page
-    , shared : Shared
+    , session : Session
     }
 
 
@@ -41,10 +44,10 @@ setRoute maybeRoute model =
     let
         toPage page subInit subMsg =
             let
-                ( subModel, newShared, subCmds ) =
-                    subInit model.shared
+                ( subModel, newSession, subCmds ) =
+                    subInit model.session
             in
-            ( { model | shared = newShared, page = page subModel }
+            ( { model | session = newSession, page = page subModel }
             , Cmd.map subMsg subCmds
             )
     in
@@ -64,26 +67,30 @@ setRoute maybeRoute model =
 init : Flags -> Url -> Nav.Key -> ( Model, Cmd Msg )
 init flags url navKey =
     let
-        shared =
-            { navKey = navKey
-            , session = {}
+        session =
+            { clientUrl = flags.clientUrl
+            , navKey = navKey
+            , store =
+                flags.store
+                    |> Decode.decodeString Session.decodeStore
+                    |> Result.withDefault { counter = 0 }
             }
     in
     setRoute (Route.fromUrl url)
         { page = Blank
-        , shared = shared
+        , session = session
         }
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update msg ({ page, shared } as model) =
+update msg ({ page, session } as model) =
     let
         toPage toModel toMsg subUpdate subMsg subModel =
             let
-                ( newModel, newShared, newCmd ) =
-                    subUpdate shared subMsg subModel
+                ( newModel, newSession, newCmd ) =
+                    subUpdate session subMsg subModel
             in
-            ( { model | shared = newShared, page = toModel newModel }
+            ( { model | session = newSession, page = toModel newModel }
             , Cmd.map toMsg newCmd
             )
     in
@@ -97,7 +104,7 @@ update msg ({ page, shared } as model) =
         ( UrlRequested urlRequest, _ ) ->
             case urlRequest of
                 Browser.Internal url ->
-                    ( model, Nav.pushUrl shared.navKey (Url.toString url) )
+                    ( model, Nav.pushUrl session.navKey (Url.toString url) )
 
                 Browser.External href ->
                     ( model, Nav.load href )
@@ -129,22 +136,22 @@ subscriptions model =
 
 
 view : Model -> Document Msg
-view { page, shared } =
+view { page, session } =
     let
         pageConfig =
-            Page.Config shared
+            Page.Config session
 
         mapMsg msg ( title, content ) =
             ( title, content |> List.map (Html.map msg) )
     in
     case page of
         HomePage homeModel ->
-            Home.view shared homeModel
+            Home.view session homeModel
                 |> mapMsg HomeMsg
                 |> Page.frame (pageConfig Page.Home)
 
         CounterPage counterModel ->
-            Counter.view shared counterModel
+            Counter.view session counterModel
                 |> mapMsg CounterMsg
                 |> Page.frame (pageConfig Page.Counter)
 

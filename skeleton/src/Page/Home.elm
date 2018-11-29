@@ -1,7 +1,7 @@
 module Page.Home exposing (Model, Msg(..), init, update, view)
 
 import Browser exposing (Document)
-import Data.Shared exposing (Shared)
+import Data.Session exposing (Session)
 import Html.Styled as Html exposing (..)
 import Http
 import Markdown
@@ -18,11 +18,11 @@ type Msg
     = ReadmeReceived (Result Http.Error String)
 
 
-init : Shared -> ( Model, Shared, Cmd Msg )
-init shared =
+init : Session -> ( Model, Session, Cmd Msg )
+init session =
     ( { readme = "Retrieving README from github" }
-    , shared
-    , Github.getReadme shared.session |> Http.send ReadmeReceived
+    , session
+    , Github.getReadme session |> Http.send ReadmeReceived
     )
 
 
@@ -35,23 +35,23 @@ There was an error attempting to retrieve README information:
 > *""" ++ Github.errorToString error ++ "*"
 
 
-update : Shared -> Msg -> Model -> ( Model, Shared, Cmd Msg )
-update shared msg model =
+update : Session -> Msg -> Model -> ( Model, Session, Cmd Msg )
+update session msg model =
     case msg of
         ReadmeReceived (Ok readme) ->
             ( { model | readme = readme }
-            , shared
+            , session
             , Cmd.none
             )
 
         ReadmeReceived (Err error) ->
             ( { model | readme = errorToMarkdown error }
-            , shared
+            , session
             , Cmd.none
             )
 
 
-view : Shared -> Model -> ( String, List (Html Msg) )
+view : Session -> Model -> ( String, List (Html Msg) )
 view _ model =
     ( "Home"
     , [ model.readme

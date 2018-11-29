@@ -1,10 +1,11 @@
 module Page.Counter exposing (Model, Msg, init, update, view)
 
 import Css exposing (fontSize, marginRight)
-import Data.Shared exposing (Shared)
+import Data.Session as Session exposing (Session)
 import Html.Styled as Html exposing (..)
 import Html.Styled.Attributes exposing (css)
 import Html.Styled.Events exposing (onClick)
+import Ports
 import Route
 
 
@@ -16,22 +17,29 @@ type Msg
     = Inc
 
 
-init : Shared -> ( Model, Shared, Cmd Msg )
-init shared =
-    ( 0, shared, Cmd.none )
+init : Session -> ( Model, Session, Cmd Msg )
+init session =
+    ( session.store.counter, session, Cmd.none )
 
 
-update : Shared -> Msg -> Model -> ( Model, Shared, Cmd Msg )
-update shared msg model =
+update : Session -> Msg -> Model -> ( Model, Session, Cmd Msg )
+update ({ store } as session) msg model =
+    let
+        newCount =
+            model + 1
+
+        newStore =
+            { store | counter = newCount }
+    in
     case msg of
         Inc ->
-            ( model + 1
-            , shared
-            , Cmd.none
+            ( newCount
+            , { session | store = newStore }
+            , newStore |> Session.encodeStore |> Ports.saveStore
             )
 
 
-view : Shared -> Model -> ( String, List (Html Msg) )
+view : Session -> Model -> ( String, List (Html Msg) )
 view _ model =
     ( "Second Page"
     , [ h1 [] [ text "Second page" ]
