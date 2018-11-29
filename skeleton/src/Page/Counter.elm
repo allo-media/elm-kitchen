@@ -35,7 +35,7 @@ update ({ store } as session) msg model =
         Inc ->
             ( newCount
             , { session | store = newStore }
-            , newStore |> Session.encodeStore |> Ports.saveStore
+            , newStore |> Session.serializeStore |> Ports.saveStore
             )
 
 

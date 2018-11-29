@@ -3,7 +3,7 @@ port module Ports exposing (saveStore, storeChanged)
 import Json.Encode as Encode
 
 
-port saveStore : Encode.Value -> Cmd msg
+port saveStore : String -> Cmd msg
 
 
-port storeChanged : (Encode.Value -> msg) -> Sub msg
+port storeChanged : (String -> msg) -> Sub msg

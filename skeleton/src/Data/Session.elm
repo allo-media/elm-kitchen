@@ -1,8 +1,20 @@
-module Data.Session exposing (Session, Store, decodeStore, encodeStore)
+module Data.Session exposing
+    ( Session
+    , Store
+    , deserializeStore
+    , serializeStore
+    )
 
 import Browser.Navigation as Nav
 import Json.Decode as Decode exposing (Decoder)
 import Json.Encode as Encode
+
+
+type alias Session =
+    { navKey : Nav.Key
+    , clientUrl : String
+    , store : Store
+    }
 
 
 {-| A serializable data structure holding session information you want to share
@@ -12,11 +24,9 @@ type alias Store =
     { counter : Int }
 
 
-type alias Session =
-    { navKey : Nav.Key
-    , clientUrl : String
-    , store : Store
-    }
+defaultStore : Store
+defaultStore =
+    { counter = 0 }
 
 
 decodeStore : Decoder Store
@@ -30,3 +40,13 @@ encodeStore v =
     Encode.object
         [ ( "counter", Encode.int v.counter )
         ]
+
+
+deserializeStore : String -> Store
+deserializeStore =
+    Decode.decodeString decodeStore >> Result.withDefault defaultStore
+
+
+serializeStore : Store -> String
+serializeStore =
+    encodeStore >> Encode.encode 0

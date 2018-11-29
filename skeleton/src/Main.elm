@@ -8,6 +8,7 @@ import Json.Decode as Decode
 import Json.Encode as Encode
 import Page.Counter as Counter
 import Page.Home as Home
+import Ports
 import Route exposing (Route)
 import Url exposing (Url)
 import Views.Page as Page
@@ -15,7 +16,7 @@ import Views.Page as Page
 
 type alias Flags =
     { clientUrl : String
-    , store : String
+    , rawStore : String
     }
 
 
@@ -35,6 +36,7 @@ type alias Model =
 type Msg
     = HomeMsg Home.Msg
     | CounterMsg Counter.Msg
+    | StoreChanged String
     | UrlChanged Url
     | UrlRequested Browser.UrlRequest
 
@@ -70,10 +72,7 @@ init flags url navKey =
         session =
             { clientUrl = flags.clientUrl
             , navKey = navKey
-            , store =
-                flags.store
-                    |> Decode.decodeString Session.decodeStore
-                    |> Result.withDefault { counter = 0 }
+            , store = Session.deserializeStore flags.rawStore
             }
     in
     setRoute (Route.fromUrl url)
@@ -101,6 +100,11 @@ update msg ({ page, session } as model) =
         ( CounterMsg counterMsg, CounterPage counterModel ) ->
             toPage CounterPage CounterMsg Counter.update counterMsg counterModel
 
+        ( StoreChanged json, _ ) ->
+            ( { model | session = { session | store = Session.deserializeStore json } }
+            , Cmd.none
+            )
+
         ( UrlRequested urlRequest, _ ) ->
             case urlRequest of
                 Browser.Internal url ->
@@ -121,18 +125,21 @@ update msg ({ page, session } as model) =
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    case model.page of
-        HomePage _ ->
-            Sub.none
+    Sub.batch
+        [ Ports.storeChanged StoreChanged
+        , case model.page of
+            HomePage _ ->
+                Sub.none
 
-        CounterPage _ ->
-            Sub.none
+            CounterPage _ ->
+                Sub.none
 
-        NotFound ->
-            Sub.none
+            NotFound ->
+                Sub.none
 
-        Blank ->
-            Sub.none
+            Blank ->
+                Sub.none
+        ]
 
 
 view : Model -> Document Msg
