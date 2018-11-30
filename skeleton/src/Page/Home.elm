@@ -18,9 +18,10 @@ type Msg
     = ReadmeReceived (Result Http.Error String)
 
 
-init : Session -> ( Model, Cmd Msg )
+init : Session -> ( Model, Session, Cmd Msg )
 init session =
     ( { readme = "Retrieving README from github" }
+    , session
     , Github.getReadme session |> Http.send ReadmeReceived
     )
 
@@ -34,16 +35,18 @@ There was an error attempting to retrieve README information:
 > *""" ++ Github.errorToString error ++ "*"
 
 
-update : Session -> Msg -> Model -> ( Model, Cmd Msg )
-update _ msg model =
+update : Session -> Msg -> Model -> ( Model, Session, Cmd Msg )
+update session msg model =
     case msg of
         ReadmeReceived (Ok readme) ->
             ( { model | readme = readme }
+            , session
             , Cmd.none
             )
 
         ReadmeReceived (Err error) ->
             ( { model | readme = errorToMarkdown error }
+            , session
             , Cmd.none
             )
 

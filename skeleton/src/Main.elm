@@ -2,17 +2,22 @@ module Main exposing (main)
 
 import Browser exposing (Document)
 import Browser.Navigation as Nav
-import Data.Session exposing (Session)
+import Data.Session as Session exposing (Session)
 import Html.Styled as Html exposing (..)
+import Json.Decode as Decode
+import Json.Encode as Encode
 import Page.Counter as Counter
 import Page.Home as Home
+import Ports
 import Route exposing (Route)
 import Url exposing (Url)
 import Views.Page as Page
 
 
 type alias Flags =
-    {}
+    { clientUrl : String
+    , rawStore : String
+    }
 
 
 type Page
@@ -31,6 +36,7 @@ type alias Model =
 type Msg
     = HomeMsg Home.Msg
     | CounterMsg Counter.Msg
+    | StoreChanged String
     | UrlChanged Url
     | UrlRequested Browser.UrlRequest
 
@@ -40,10 +46,10 @@ setRoute maybeRoute model =
     let
         toPage page subInit subMsg =
             let
-                ( subModel, subCmds ) =
+                ( subModel, newSession, subCmds ) =
                     subInit model.session
             in
-            ( { model | page = page subModel }
+            ( { model | session = newSession, page = page subModel }
             , Cmd.map subMsg subCmds
             )
     in
@@ -63,10 +69,11 @@ setRoute maybeRoute model =
 init : Flags -> Url -> Nav.Key -> ( Model, Cmd Msg )
 init flags url navKey =
     let
-        -- you'll usually want to retrieve and decode serialized session
-        -- information from flags here
         session =
-            { navKey = navKey }
+            { clientUrl = flags.clientUrl
+            , navKey = navKey
+            , store = Session.deserializeStore flags.rawStore
+            }
     in
     setRoute (Route.fromUrl url)
         { page = Blank
@@ -79,19 +86,31 @@ update msg ({ page, session } as model) =
     let
         toPage toModel toMsg subUpdate subMsg subModel =
             let
-                ( newModel, newCmd ) =
-                    subUpdate subMsg subModel
+                ( newModel, newSession, newCmd ) =
+                    subUpdate session subMsg subModel
+
+                storeCmd =
+                    if session.store /= newSession.store then
+                        newSession.store |> Session.serializeStore |> Ports.saveStore
+
+                    else
+                        Cmd.none
             in
-            ( { model | page = toModel newModel }
-            , Cmd.map toMsg newCmd
+            ( { model | session = newSession, page = toModel newModel }
+            , Cmd.map toMsg (Cmd.batch [ newCmd, storeCmd ])
             )
     in
     case ( msg, page ) of
         ( HomeMsg homeMsg, HomePage homeModel ) ->
-            toPage HomePage HomeMsg (Home.update session) homeMsg homeModel
+            toPage HomePage HomeMsg Home.update homeMsg homeModel
 
         ( CounterMsg counterMsg, CounterPage counterModel ) ->
-            toPage CounterPage CounterMsg (Counter.update session) counterMsg counterModel
+            toPage CounterPage CounterMsg Counter.update counterMsg counterModel
+
+        ( StoreChanged json, _ ) ->
+            ( { model | session = { session | store = Session.deserializeStore json } }
+            , Cmd.none
+            )
 
         ( UrlRequested urlRequest, _ ) ->
             case urlRequest of
@@ -113,37 +132,40 @@ update msg ({ page, session } as model) =
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    case model.page of
-        HomePage _ ->
-            Sub.none
+    Sub.batch
+        [ Ports.storeChanged StoreChanged
+        , case model.page of
+            HomePage _ ->
+                Sub.none
 
-        CounterPage _ ->
-            Sub.none
+            CounterPage _ ->
+                Sub.none
 
-        NotFound ->
-            Sub.none
+            NotFound ->
+                Sub.none
 
-        Blank ->
-            Sub.none
+            Blank ->
+                Sub.none
+        ]
 
 
 view : Model -> Document Msg
-view model =
+view { page, session } =
     let
         pageConfig =
-            Page.Config model.session
+            Page.Config session
 
         mapMsg msg ( title, content ) =
             ( title, content |> List.map (Html.map msg) )
     in
-    case model.page of
+    case page of
         HomePage homeModel ->
-            Home.view model.session homeModel
+            Home.view session homeModel
                 |> mapMsg HomeMsg
                 |> Page.frame (pageConfig Page.Home)
 
         CounterPage counterModel ->
-            Counter.view model.session counterModel
+            Counter.view session counterModel
                 |> mapMsg CounterMsg
                 |> Page.frame (pageConfig Page.Counter)
 
