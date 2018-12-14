@@ -15,7 +15,7 @@
     const app = Elm.Main.init({
       flags: {
         clientUrl: location.origin + location.pathname,
-        rawStore: localStorage[storeKey]
+        rawStore: localStorage[storeKey] || ""
       }
     });
 
