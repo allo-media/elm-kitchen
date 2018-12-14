@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run copy-assets && elm make src/Main.elm --optimize --output=build/app.js",
-    "copy-assets": "rimraf build && mkdir build && cp -r public/* build",
+    "copy-assets": "rimraf build && mkdir build && cp -Lr public/* build",
     "debug": "elm-live src/Main.elm --port=3000 --dir=public/ -- --output=public/app.js --debug",
     "deploy": "npm run build && gh-pages --dist build/",
     "install": "elm make src/Main.elm",
