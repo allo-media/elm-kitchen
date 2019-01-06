@@ -1,8 +1,9 @@
 {
-  "name": "elm-spa",
+  "name": "elm-kitchen-sample-app",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "author": "You",
+  "license": "MIT",
   "scripts": {
     "build": "npm run copy-assets && elm make src/Main.elm --optimize --output=build/app.js && npm run optimize",
     "copy-assets": "rimraf build && mkdir build && cp -Lr public/* build",
@@ -10,12 +11,13 @@
     "deploy": "npm run build && gh-pages --dist build/",
     "install": "elm make src/Main.elm",
     "live": "elm-live src/Main.elm --port=3000 --dir=public/ -- --output=public/app.js",
-    "optimize": "uglifyjs build/app.js -c -m -o build/app.js",
+    "optimize": "uglifyjs build/app.js -c $npm_package_uglify_params | uglifyjs -m --output=build/app.js",
     "start": "npm run live",
     "test": "elm-test"
   },
-  "author": "Allo-Media",
-  "license": "MIT",
+  "uglify": {
+    "params": "pure_funcs=\"F2,F3,F4,F5,F6,F7,F8,F9,A2,A3,A4,A5,A6,A7,A8,A9\",pure_getters,keep_fargs=false,unsafe_comps,unsafe"
+  },
   "devDependencies": {
     "elm": "^0.19.0-bugfix2",
     "elm-format": "^0.8.0",
