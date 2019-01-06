@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run copy-assets && elm make src/Main.elm --optimize --output=build/app.js",
+    "build": "npm run copy-assets && elm make src/Main.elm --optimize --output=build/app.js && npm run optimize",
     "copy-assets": "rimraf build && mkdir build && cp -Lr public/* build",
     "debug": "elm-live src/Main.elm --port=3000 --dir=public/ -- --output=public/app.js --debug",
     "deploy": "npm run build && gh-pages --dist build/",
     "install": "elm make src/Main.elm",
     "live": "elm-live src/Main.elm --port=3000 --dir=public/ -- --output=public/app.js",
+    "optimize": "uglifyjs build/app.js -c -m -o build/app.js",
     "start": "npm run live",
     "test": "elm-test"
   },
@@ -22,6 +23,7 @@
     "elm-test": "^0.19.0-rev3",
     "gh-pages": "^2.0.1",
     "npm-run-all": "^4.1.2",
-    "rimraf": "^2.6.1"
+    "rimraf": "^2.6.1",
+    "uglify-js": "^3.4.9"
   }
 }
