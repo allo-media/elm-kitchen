@@ -22,7 +22,7 @@ init : Session -> ( Model, Session, Cmd Msg )
 init session =
     ( { readme = "Retrieving README from github" }
     , session
-    , Github.getReadme session |> Http.send ReadmeReceived
+    , Github.getReadme session ReadmeReceived
     )
 
 
