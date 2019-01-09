@@ -1,14 +1,14 @@
 module Request.Github exposing (errorToString, getReadme)
 
 import Data.Session exposing (Session)
-import Http exposing (Error(..), Request, getString)
+import Http exposing (Error(..))
 
 
 errorToString : Http.Error -> String
 errorToString error =
     case error of
-        BadUrl _ ->
-            "Bad url."
+        BadUrl url ->
+            "Bad url: " ++ url
 
         Timeout ->
             "Request timed out."
@@ -16,13 +16,16 @@ errorToString error =
         NetworkError ->
             "Network error. Are you online?"
 
-        BadStatus response ->
-            "HTTP error " ++ String.fromInt response.status.code
+        BadStatus status_code ->
+            "HTTP error " ++ String.fromInt status_code
 
-        BadPayload _ _ ->
-            "Unable to parse response body."
+        BadBody body ->
+            "Unable to parse response body: " ++ body
 
 
-getReadme : Session -> Request String
-getReadme _ =
-    getString "README.md"
+getReadme : Session -> (Result Error String -> msg) -> Cmd msg
+getReadme session event =
+    Http.get
+        { url = "README.md"
+        , expect = Http.expectString event
+        }
