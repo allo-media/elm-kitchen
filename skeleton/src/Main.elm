@@ -48,9 +48,16 @@ setRoute maybeRoute model =
             let
                 ( subModel, newSession, subCmds ) =
                     subInit model.session
+
+                storeCmd =
+                    if model.session.store /= newSession.store then
+                        newSession.store |> Session.serializeStore |> Ports.saveStore
+
+                    else
+                        Cmd.none
             in
             ( { model | session = newSession, page = page subModel }
-            , Cmd.map subMsg subCmds
+            , Cmd.batch [ Cmd.map subMsg subCmds, storeCmd ]
             )
     in
     case maybeRoute of
