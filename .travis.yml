@@ -1,0 +1,31 @@
+sudo: false
+
+language: node_js
+node_js:
+  - "10"
+
+matrix:
+  fast_finish: true
+
+cache:
+  directories:
+  - node_modules
+  - sysconfcpus
+
+install:
+  - |
+    if [ ! -d sysconfcpus/bin ];
+    then
+      git clone https://github.com/obmarg/libsysconfcpus.git;
+      cd libsysconfcpus;
+      ./configure --prefix=$TRAVIS_BUILD_DIR/sysconfcpus;
+      make && make install;
+      cd ..;
+    fi
+  - npm i
+
+script:
+  - node index.js demo
+  - cd $TRAVIS_BUILD_DIR/demo; npm i
+  - cd $TRAVIS_BUILD_DIR/demo; $TRAVIS_BUILD_DIR/sysconfcpus/bin/sysconfcpus -n 2 npm run build
+  - cd $TRAVIS_BUILD_DIR/demo; $TRAVIS_BUILD_DIR/sysconfcpus/bin/sysconfcpus -n 2 npm run optimize
