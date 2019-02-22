@@ -3,6 +3,8 @@ module Main exposing (main)
 import Browser exposing (Document)
 import Browser.Navigation as Nav
 import Data.Session as Session exposing (Session)
+import Decoders.Session exposing (deserializeStore)
+import Encoders.Session exposing (serializeStore)
 import Html.Styled as Html exposing (..)
 import Json.Decode as Decode
 import Json.Encode as Encode
@@ -51,7 +53,7 @@ setRoute maybeRoute model =
 
                 storeCmd =
                     if model.session.store /= newSession.store then
-                        newSession.store |> Session.serializeStore |> Ports.saveStore
+                        newSession.store |> serializeStore |> Ports.saveStore
 
                     else
                         Cmd.none
@@ -79,7 +81,7 @@ init flags url navKey =
         session =
             { clientUrl = flags.clientUrl
             , navKey = navKey
-            , store = Session.deserializeStore flags.rawStore
+            , store = deserializeStore flags.rawStore
             }
     in
     setRoute (Route.fromUrl url)
@@ -98,7 +100,7 @@ update msg ({ page, session } as model) =
 
                 storeCmd =
                     if session.store /= newSession.store then
-                        newSession.store |> Session.serializeStore |> Ports.saveStore
+                        newSession.store |> serializeStore |> Ports.saveStore
 
                     else
                         Cmd.none
@@ -115,7 +117,7 @@ update msg ({ page, session } as model) =
             toPage CounterPage CounterMsg Counter.update counterMsg counterModel
 
         ( StoreChanged json, _ ) ->
-            ( { model | session = { session | store = Session.deserializeStore json } }
+            ( { model | session = { session | store = deserializeStore json } }
             , Cmd.none
             )
 

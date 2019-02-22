@@ -1,13 +1,6 @@
-module Data.Session exposing
-    ( Session
-    , Store
-    , deserializeStore
-    , serializeStore
-    )
+module Data.Session exposing (Session, Store, defaultStore)
 
 import Browser.Navigation as Nav
-import Json.Decode as Decode exposing (Decoder)
-import Json.Encode as Encode
 
 
 type alias Session =
@@ -27,26 +20,3 @@ type alias Store =
 defaultStore : Store
 defaultStore =
     { counter = 0 }
-
-
-decodeStore : Decoder Store
-decodeStore =
-    Decode.map Store
-        (Decode.field "counter" Decode.int)
-
-
-encodeStore : Store -> Encode.Value
-encodeStore v =
-    Encode.object
-        [ ( "counter", Encode.int v.counter )
-        ]
-
-
-deserializeStore : String -> Store
-deserializeStore =
-    Decode.decodeString decodeStore >> Result.withDefault defaultStore
-
-
-serializeStore : Store -> String
-serializeStore =
-    encodeStore >> Encode.encode 0
