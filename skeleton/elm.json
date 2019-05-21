@@ -13,7 +13,6 @@
             "elm/json": "1.1.2",
             "elm/url": "1.0.0",
             "elm-explorations/markdown": "1.0.0",
-            "rtfeldman/elm-css": "16.0.0"
         },
         "indirect": {
             "Skinney/murmur3": "2.0.7",
