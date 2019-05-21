@@ -1,6 +1,5 @@
 module Page.Counter exposing (Model, Msg, init, update, view)
 
-import Css exposing (fontSize, margin2, zero)
 import Data.Session as Session exposing (Session)
 import Html exposing (..)
 import Html.Events exposing (onClick)

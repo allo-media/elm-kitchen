@@ -1,7 +1,6 @@
 module Views.Page exposing (ActivePage(..), Config, frame)
 
 import Browser exposing (Document)
-import Css exposing (..)
 import Data.Session exposing (Session)
 import Html exposing (..)
 import Html.Attributes exposing (class, href, src)
