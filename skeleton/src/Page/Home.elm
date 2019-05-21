@@ -2,7 +2,7 @@ module Page.Home exposing (Model, Msg(..), init, update, view)
 
 import Browser exposing (Document)
 import Data.Session exposing (Session)
-import Html.Styled as Html exposing (..)
+import Html exposing (..)
 import Http
 import Markdown
 import Request.Github as Github
@@ -56,6 +56,5 @@ view _ model =
     ( "Home"
     , [ model.readme
             |> Markdown.toHtml []
-            |> Html.fromUnstyled
       ]
     )
