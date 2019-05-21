@@ -23,10 +23,8 @@ frame : Config -> ( String, List (Html msg) ) -> Document msg
 frame config ( title, content ) =
     { title = title ++ " | elm-kitchen"
     , body =
-        [ div []
-            [ viewHeader config
-            , div [] content
-            ]
+        [ viewHeader config
+        , main_ [] content
         ]
     }
 
@@ -41,15 +39,16 @@ viewHeader { activePage } =
             else
                 a [ Route.href route ] [ text caption ]
     in
-    div [ class "header" ]
+    header []
         [ h1 [] [ text "elm-kitchen" ]
-        , div []
+        , nav []
             [ linkIf Home Route.Home "Home"
             , text " | "
             , linkIf Counter Route.Counter "Second page"
             ]
         , a
-            [ Html.Attributes.target "_blank"
+            [ class "GithubIcon"
+            , Html.Attributes.target "_blank"
             , href "https://github.com/allo-media/elm-kitchen"
             ]
             [ img
