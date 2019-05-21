@@ -15,12 +15,10 @@
             "elm-explorations/markdown": "1.0.0"
         },
         "indirect": {
-            "Skinney/murmur3": "2.0.7",
             "elm/bytes": "1.0.7",
             "elm/file": "1.0.1",
             "elm/time": "1.0.0",
-            "elm/virtual-dom": "1.0.0",
-            "rtfeldman/elm-hex": "1.0.0"
+            "elm/virtual-dom": "1.0.0"
         }
     },
     "test-dependencies": {
