@@ -1,13 +1,10 @@
 module Page.Counter exposing (Model, Msg, init, update, view)
 
-import Css exposing (fontSize, margin2, zero)
 import Data.Session as Session exposing (Session)
-import Html.Styled as Html exposing (..)
-import Html.Styled.Attributes exposing (css)
-import Html.Styled.Events exposing (onClick)
+import Html exposing (..)
+import Html.Events exposing (onClick)
 import Ports
 import Route
-import Views.Theme exposing (Element)
 
 
 type alias Model =
@@ -47,24 +44,16 @@ update ({ store } as session) msg model =
             )
 
 
-btn : Element msg
-btn =
-    styled button
-        [ fontSize (Css.rem 1.2)
-        , margin2 zero (Css.px 10)
-        ]
-
-
 view : Session -> Model -> ( String, List (Html Msg) )
 view _ model =
     ( "Second Page"
     , [ h1 [] [ text "Second page" ]
       , p [] [ text "This is the second page, featuring a counter." ]
       , p []
-            [ btn [ onClick Dec ] [ text "-" ]
+            [ button [ onClick Dec ] [ text "-" ]
             , strong [] [ text (String.fromInt model) ]
-            , btn [ onClick Inc ] [ text "+" ]
-            , btn [ onClick Reset ] [ text "reset" ]
+            , button [ onClick Inc ] [ text "+" ]
+            , button [ onClick Reset ] [ text "reset" ]
             ]
       , p [] [ a [ Route.href Route.Home ] [ text "Back home" ] ]
       ]

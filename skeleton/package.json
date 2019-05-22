@@ -9,7 +9,6 @@
     "copy-assets": "rimraf build && mkdir build && cp -Lr public/* build",
     "debug": "elm-live src/Main.elm --port=3000 --dir=public/ -- --output=public/app.js --debug",
     "deploy": "npm run build && gh-pages --dist build/",
-    "install": "elm make src/Main.elm",
     "live": "elm-live src/Main.elm --port=3000 --dir=public/ -- --output=public/app.js",
     "optimize": "uglifyjs build/app.js -c $npm_package_uglify_params | uglifyjs -m --output=build/app.js",
     "start": "npm run live",

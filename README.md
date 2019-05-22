@@ -12,7 +12,6 @@ This is a modest attempt at providing a simplistic yet opinionated Elm [SPA](htt
 - Multiple pages navigation & routing
 - Live development server with hot reloading
 - [elm-test](https://github.com/elm-community/elm-test) support
-- [elm-css](http://package.elm-lang.org/packages/rtfeldman/elm-css/latest) support
 - JavaScript build minification using UglifyJS.
 
 ## Code organization
