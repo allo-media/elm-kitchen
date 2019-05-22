@@ -22,7 +22,10 @@ type alias Config =
 frame : Config -> ( String, List (Html msg) ) -> Document msg
 frame config ( title, content ) =
     { title = title ++ " | elm-kitchen"
-    , body = viewHeader config :: content
+    , body =
+        [ viewHeader config
+        , main_ [] content
+        ]
     }
 
 
