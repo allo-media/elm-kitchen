@@ -24,7 +24,7 @@ errorToString error =
 
 
 getReadme : Session -> (Result Error String -> msg) -> Cmd msg
-getReadme session event =
+getReadme _ event =
     Http.get
         { url = "README.md"
         , expect = Http.expectString event

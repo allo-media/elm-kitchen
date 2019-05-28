@@ -1,12 +1,10 @@
 module Page.Home exposing (Model, Msg(..), init, update, view)
 
-import Browser exposing (Document)
 import Data.Session exposing (Session)
 import Html exposing (..)
 import Http
 import Markdown
 import Request.Github as Github
-import Task
 
 
 type alias Model =

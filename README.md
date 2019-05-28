@@ -9,7 +9,7 @@ This is a modest attempt at providing a simplistic yet opinionated Elm [SPA](htt
 ## Features
 
 - Elm 0.19 ready
-- Multiple pages navigation & routing
+- Multiple pages navigation & routing, based on URL fragments
 - Live development server with hot reloading
 - [elm-test](https://github.com/elm-community/elm-test) support
 - JavaScript build minification using UglifyJS.
