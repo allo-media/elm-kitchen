@@ -1,5 +1,6 @@
 module Request.Github exposing (errorToString, getReadme)
 
+import Data.Session exposing (Session)
 import Http exposing (Error(..))
 
 
