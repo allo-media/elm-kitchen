@@ -1,6 +1,5 @@
 module Request.Github exposing (errorToString, getReadme)
 
-import Data.Session exposing (Session)
 import Http exposing (Error(..))
 
 
@@ -24,7 +23,7 @@ errorToString error =
 
 
 getReadme : Session -> (Result Error String -> msg) -> Cmd msg
-getReadme session event =
+getReadme _ event =
     Http.get
         { url = "README.md"
         , expect = Http.expectString event

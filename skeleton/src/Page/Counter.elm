@@ -1,9 +1,8 @@
 module Page.Counter exposing (Model, Msg, init, update, view)
 
-import Data.Session as Session exposing (Session)
+import Data.Session exposing (Session)
 import Html exposing (..)
 import Html.Events exposing (onClick)
-import Ports
 import Route
 
 
