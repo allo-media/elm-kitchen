@@ -20,7 +20,7 @@ parser =
         ]
 
 
-{-| Note: as elm-kitchen relies on URL fragment based routing, the source URL is
+{-| Note: as elm-kitten relies on URL fragment based routing, the source URL is
 updated so that the `fragment` part becomes the `path` one.
 -}
 fromUrl : Url -> Maybe Route

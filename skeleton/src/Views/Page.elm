@@ -21,7 +21,7 @@ type alias Config =
 
 frame : Config -> ( String, List (Html msg) ) -> Document msg
 frame config ( title, content ) =
-    { title = title ++ " | elm-kitchen"
+    { title = title ++ " | elm-kitten"
     , body =
         [ viewHeader config
         , main_ [] content
@@ -40,7 +40,7 @@ viewHeader { activePage } =
                 a [ Route.href route ] [ text caption ]
     in
     header []
-        [ h1 [] [ text "elm-kitchen" ]
+        [ h1 [] [ text "elm-kitten" ]
         , nav []
             [ linkIf Home Route.Home "Home"
             , text " | "

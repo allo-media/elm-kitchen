@@ -3,7 +3,7 @@
   "version": "5.0.0",
   "description": "An utility to generate an Elm SPA skeleton, forked from elm-kitchen.",
   "bin": {
-    "elm-kitchen": "index.js"
+    "elm-kitten": "index.js"
   },
   "scripts": {
     "test": "exit 1"
