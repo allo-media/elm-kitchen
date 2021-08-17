@@ -1,6 +1,6 @@
 # elm-kitten
 
-[![Build Status](https://travis-ci.org/n1k0/elm-kitten.svg?branch=master)](https://travis-ci.org/n1k0/elm-kitten)
+![build status](https://github.com/n1k0/elm-kitten/actions/workflows/node.js.yml/badge.svg)
 
 This project has been forken from [elm kitchen](https://github.com/allo-media/elm-kitten), which has been unmaintained for more than a year now.
 
