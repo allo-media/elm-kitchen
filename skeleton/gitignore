@@ -3,3 +3,5 @@
 /tests/elm-stuff
 /node_modules
 /public/app.js
+/public/main.css
+/public/main.css.map

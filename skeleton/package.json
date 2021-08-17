@@ -5,19 +5,23 @@
   "author": "You",
   "license": "MIT",
   "scripts": {
-    "build": "npm run copy-assets && elm make src/Main.elm --optimize --output=build/app.js && npm run optimize",
+    "build": "npm run copy-assets && npm run sass:build && npm run elm:build && npm run elm:optimize",
     "copy-assets": "rimraf build && mkdir build && cpy 'public/**/*' build",
-    "debug": "elm-live src/Main.elm --port=3000 --dir=public/ -- --output=public/app.js --debug",
     "deploy": "npm run build && gh-pages --dist build/",
-    "live": "elm-live src/Main.elm --port=3000 --dir=public/ -- --output=public/app.js",
-    "optimize": "uglifyjs build/app.js -c $npm_package_uglify_params | uglifyjs -m -o build/app.js",
-    "start": "npm run live",
+    "elm:build": "elm make src/Main.elm --optimize --output=build/app.js",
+    "elm:debug": "elm-live src/Main.elm --port=3000 --dir=public/ -- --output=public/app.js --debug",
+    "elm:live": "elm-live src/Main.elm --port=3000 --dir=public/ -- --output=public/app.js",
+    "elm:optimize": "uglifyjs build/app.js -c $npm_package_uglify_params | uglifyjs -m -o build/app.js",
+    "sass:build": "sass styles/main.scss build/main.css",
+    "sass:watch": "sass --watch styles/main.scss public/main.css",
+    "start": "concurrently -n \"sass,_elm\" -c \"green,blue\" -k \"npm run sass:watch\" \"npm run elm:live\"",
     "test": "elm-test"
   },
   "uglify": {
     "params": "pure_funcs=\"F2,F3,F4,F5,F6,F7,F8,F9,A2,A3,A4,A5,A6,A7,A8,A9\",pure_getters,keep_fargs=false,unsafe_comps,unsafe"
   },
   "devDependencies": {
+    "concurrently": "^6.2.1",
     "cpy-cli": "^3.1.1",
     "elm": "^0.19.1-5",
     "elm-format": "^0.8.5",
@@ -26,6 +30,7 @@
     "gh-pages": "^3.2.3",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2",
+    "sass": "^1.38.0",
     "uglify-js": "^3.14.1"
   }
 }
