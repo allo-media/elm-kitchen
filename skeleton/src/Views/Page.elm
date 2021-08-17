@@ -49,7 +49,7 @@ viewHeader { activePage } =
         , a
             [ class "GithubIcon"
             , Html.Attributes.target "_blank"
-            , href "https://github.com/allo-media/elm-kitchen"
+            , href "https://github.com/n1k0/elm-kitten"
             ]
             [ img
                 [ src "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Ei-sc-github.svg/768px-Ei-sc-github.svg.png"

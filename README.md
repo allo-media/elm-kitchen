@@ -1,10 +1,12 @@
-# elm-kitchen
+# elm-kitten
 
-[![Build Status](https://travis-ci.org/allo-media/elm-kitchen.svg?branch=master)](https://travis-ci.org/allo-media/elm-kitchen)
+[![Build Status](https://travis-ci.org/n1k0/elm-kitten.svg?branch=master)](https://travis-ci.org/n1k0/elm-kitten)
 
-This is a modest attempt at providing a simplistic yet opinionated Elm [SPA](https://en.wikipedia.org/wiki/Single-page_application) application skeleton based on rtfeldman's [Elm Example SPA](https://github.com/rtfeldman/elm-spa-example/), for [Allo-Media](http://tech.allo-media.net/)'s own needs.
+This project has been forken from [elm kitchen](https://github.com/allo-media/elm-kitten), which has been unmaintained for more than a year now.
 
-[Check for yourself](https://allo-media.github.io/elm-kitchen/)
+> This is a modest attempt at providing a simplistic yet opinionated Elm [SPA](https://en.wikipedia.org/wiki/Single-page_application) application skeleton based on rtfeldman's [Elm Example SPA](https://github.com/rtfeldman/elm-spa-example/), for [Allo-Media](http://tech.allo-media.net/)'s own needs.
+
+[Check for yourself](https://n1k0.github.io/elm-kitten/)
 
 ## Features
 
@@ -40,8 +42,8 @@ Richard Feldman explains this organization in a [dedicated blog post](https://de
 ## Installation
 
 ```
-$ npm install -g elm-kitchen
-$ elm-kitchen my-app
+$ npm install -g elm-kitten
+$ elm-kitten my-app
 $ cd my-app
 $ npm install
 ```
