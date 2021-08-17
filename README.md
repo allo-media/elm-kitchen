@@ -14,6 +14,7 @@ This project has been forken from [elm kitchen](https://github.com/allo-media/el
 - Multiple pages navigation & routing, based on URL fragments
 - Live development server with hot reloading
 - [elm-test](https://github.com/elm-community/elm-test) support
+- [SASS](https://sass-lang.com/) support
 - JavaScript build minification using UglifyJS.
 
 ## Code organization

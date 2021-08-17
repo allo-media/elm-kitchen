@@ -47,16 +47,16 @@ button {
   border-radius: 4px;
   color: #999;
   text-decoration: none;
-}
 
-.GithubIcon img {
-  width: 96px;
-  height: 96px;
-  float: left;
-}
+  img {
+    width: 96px;
+    height: 96px;
+    float: left;
+  }
 
-.GithubIcon span {
-  color: var(--primary-color);
-  display: block;
-  text-align: center;
+  span {
+    color: var(--primary-color);
+    display: block;
+    text-align: center;
+  }
 }
